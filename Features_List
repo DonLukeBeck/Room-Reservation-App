@@ -2,16 +2,22 @@ Critcial:
 - Start Page: Registration page, Login Page
 - Admin: Add Room, Add Bike, Remove Room, Modify Bikes, Add Timeslot, Modify Building, Modify Rooms, Modify Timeslots
 - Employees: Book all rooms including exam rooms and lecture rooms, can book more than one room simultaneously
-- Students: Can only book one room at a time, limit of booking time a day
+- Students: Can only book one room at a time, limit of booking time a day, can't book certain rooms such as lecture halls and exam rooms
 - Rooms can't be booked outside of the building's opening hours
-
-
-
+- Users can view their own reservations (cancel?) as well as previous reservations
 
 Important:
 - Rooms can be booked 2-4 weeks in advance
+- Buildings have bikes associated with them that can be rented for a certain timeslot
+- Food can be ordered to specific food courts in each building
+- Each time slots are 30 minutes long
+- Application should be relatively user friendly
 
 
 Optional:
+- Calendar view for users
+- Users should be able to view the menu and prices in the application
 
 Superficial:
+- Small description of each rooms and can be edited by the admin
+
