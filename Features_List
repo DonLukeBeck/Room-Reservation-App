@@ -1,0 +1,17 @@
+Critcial:
+- Start Page: Registration page, Login Page
+- Admin: Add Room, Add Bike, Remove Room, Modify Bikes, Add Timeslot, Modify Building, Modify Rooms, Modify Timeslots
+- Employees: Book all rooms including exam rooms and lecture rooms, can book more than one room simultaneously
+- Students: Can only book one room at a time, limit of booking time a day
+- Rooms can't be booked outside of the building's opening hours
+
+
+
+
+Important:
+- Rooms can be booked 2-4 weeks in advance
+
+
+Optional:
+
+Superficial:
