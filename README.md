@@ -16,6 +16,7 @@ Add your own name (do not add the names for others!) to the section below.
 |---| Stoyan Dimitrov | S.G.Dimitrov@student.tudelft.nl |
 |---| François Ezard | Ezard-1@student.tudelft.nl |
 |---| Luca Andreoli | L.Andreoli@student.tudelft.nl
+|---| Amaury Charlot | A.C.A.Charlot@student.tudelft.nl
 <!-- Instructions (remove once assignment has been completed -->
 <!-- - Add (only!) your own name to the table above (use Markdown formatting) -->
 <!-- - Mention your *student* email address -->
