@@ -11,7 +11,7 @@ Add your own name (do not add the names for others!) to the section below.
 | 📸 | Name | Email |
 |---|---|---|
 | ![](https://eu.ui-avatars.com/api/?name=OOPP&length=4&size=50&color=DDD&background=777&font-size=0.325) | Your Name Here | Y.NameHere@student.tudelft.nl |
-|---| Luca Becheanu | L.Becheanu@student.tudelft.nl |
+| ![](https://gitlab.ewi.tudelft.nl/uploads/-/system/user/avatar/2491/avatar.png?width=100) | Luca Becheanu | L.Becheanu@student.tudelft.nl |
 |---| Tim Tian | T.Tian-2@student.tudelft.nl |
 |---| Stoyan Dimitrov | S.G.Dimitrov@student.tudelft.nl |
 |---| François Ezard | Ezard-1@student.tudelft.nl |
