@@ -1,0 +1,36 @@
+Week 1 meetings 10/02/20
+	TA notes:
+		-Git Assignment(Individual)
+		-Meeting client (Asking specifics)
+		-Common agenda before meetings
+		-Check out grading rubric
+	CTA notes:
+        -Theme: Room Booking - App for Students
+                - Register an account
+                - Authentication: Log-in with student number/netid
+                - More roles (users (student,employees), admin)
+                - Time slots for every room ( that can be set/ only available for 30 minutes)
+                - You can book as many as you want ( but not 2 at the same time)
+                - System works with buildings based on where the time slots are available
+                - Rooms are meant for meetings/private studies ( not exam rooms)
+                - Rooms for employees is optional
+                - The user needs to see all his reservations history ( the ones he reserved in the past as well)
+                - First the building is chosen, then the room
+                - Building has opening hours ( restricts time slots)
+                - It has to be a web application ( desktop client)
+        - Description with what the room has ( ex. Number of seats/tables)
+        - Admin should be able to make changes of the room ( but not cancel somebody’s reservation)
+        - Building description ( maybe link with google maps)
+        - Information about holidays ( certain rooms can not be reserved)
+        - The user interface is our choice
+        - There needs to be a way to rent a bike
+            - bikes should be associated with buildings
+            - connected to ONE building
+            - fixed capacity of bikes per building
+            - some way to track the bike
+            - fixed time / timeslots, same as the ones from rooms
+            -admin adds/removes bikes, same as the way from rooms
+        - Non functional requirements: - Java Only
+                          - Any frameworks
+                          - Without sockets; API on HTTPS
+                          - localhost

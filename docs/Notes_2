@@ -1,0 +1,54 @@
+Week 2 meetings 17/02/20
+    CTA notes:
+        -Make a digital version of our tree/workflow and upload it to gitlab.
+
+        -Make document/list with priorities, from essential to lowest priority and upload it to gitlab.
+            -Bullet points on requirements, very specific/not vague
+        -e.g. User should be able to see their reservations, maybe in the form of a list.
+        (essential)
+             -We make it a calender instead of a list.
+        (additional feature, has lower priority)
+
+        -Add Food Courts to buildings
+            -You should be able to order food whenever the building is open to rooms or a
+        possible pick-up spot.
+                -NOTE, users aren't able to order food from one building to another.
+            -Users should be able to view a menu in the application, preferably including prices.
+            -Users should pay up front (in person), not online/on our application.
+
+        -Food courts, bikes and rooms aren't linked and should be viewed as separate entities.
+            -All three are not available whenever the building is closed
+
+        -Booking rooms
+            -2 to 4 weeks booking ahead of time
+            -Possibly limit the amount of reservations per day
+            -Students aren't allowed to book 2 rooms at the same time
+        -However, give more flexibility to employees
+            -Employees are allowed to book certain rooms students can't, e.g. exam rooms
+
+        -Time slots
+            -Time slots have been decided on 30 minutes
+            -We need to take into account the opening hours of the buildings
+
+        -Try to make our application user friendly, this helps both the user and developer.
+    TA notes:
+        Features list:
+            -Admins aren't critical, but important
+            -Add subfeatures, for example: admins have subfeatures like adding rooms, adding bikes, etc.
+            -Be more specific when describing some features
+            -Critical features: be able to search for rooms
+            -Important features: filtering rooms, have a capacity limit.
+            -Booking rooms in advance is not a feature, but a constraint
+
+        Template:
+            -Run using gradle, not the run button
+
+
+        Agenda:
+            -Put all points we want to talk about in the agenda
+            -Add notes to a file
+            -We can check our code locally using gradle check
+
+        Frameworks:
+            -Decide on what frameworks we're gonna use
+                -Recommended is: JavaFX, Spring and MySQL
