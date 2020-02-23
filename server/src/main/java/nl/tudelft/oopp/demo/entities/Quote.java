@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "quotes")
+
 public class Quote {
     @Id
     @Column(name = "id")

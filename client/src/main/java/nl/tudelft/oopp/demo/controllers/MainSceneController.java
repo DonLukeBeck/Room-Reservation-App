@@ -16,26 +16,18 @@ public class MainSceneController {
      * Handles clicking the button.
      */
 
-    private Stage primaryStage;
-    private Stage loginStage;
-    private Stage registerStage;
-
     public void buttonRegisterClicked(ActionEvent actionEvent) {
         try {
             //get event from starting application stage
             Node node = (Node) actionEvent.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            this.primaryStage = stage;
             stage.close();
 
-
-
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/RegisterScene.fxml")));
-            this.registerStage = new Stage();
-            this.registerStage.setWidth(600);
-            this.registerStage.setHeight(600);
-            this.registerStage.setScene(scene);
-            this.registerStage.show();
+            stage.setWidth(600);
+            stage.setHeight(600);
+            stage.setScene(scene);
+            stage.show();
 
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -48,17 +40,12 @@ public class MainSceneController {
             //get event from starting application stage
             Node node = (Node) actionEvent.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            this.primaryStage = stage;
             stage.close();
-
-
-
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/LoginScene.fxml")));
-            this.loginStage = new Stage();
-            this.loginStage.setWidth(600);
-            this.loginStage.setHeight(600);
-            this.loginStage.setScene(scene);
-            this.loginStage.show();
+            stage.setWidth(600);
+            stage.setHeight(600);
+            stage.setScene(scene);
+            stage.show();
 
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
