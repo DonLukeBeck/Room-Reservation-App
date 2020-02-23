@@ -7,7 +7,7 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="nl.tudelft.oopp.demo.controllers.MainSceneController">
-    <Label text="Hello world!"/>
-    <Label text="This is a simple demo application."/>
-    <Button fx:id="button" text="Click me!" onAction="#buttonClicked"/>
+    <Label text="Register Page"/>
+    <Label text="This is the page where you can register"/>
+    <Button fx:id="button" text="Return" onAction="#buttonReturnClicked"/>
 </VBox>
