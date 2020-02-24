@@ -14,7 +14,7 @@ Add your own name (do not add the names for others!) to the section below.
 | ![](https://gitlab.ewi.tudelft.nl/uploads/-/system/user/avatar/2491/avatar.png?width=100) | Luca Becheanu | L.Becheanu@student.tudelft.nl |
 |---| Tim Tian | T.Tian-2@student.tudelft.nl |
 |---| Stoyan Dimitrov | S.G.Dimitrov@student.tudelft.nl |
-|---| François Ezard | Ezard-1@student.tudelft.nl |
+| ![](https://gitlab.ewi.tudelft.nl/uploads/-/system/user/avatar/2710/avatar.png?width=100) | François Ezard | Ezard-1@student.tudelft.nl |
 |---| Luca Andreoli | L.Andreoli@student.tudelft.nl |
 |---| Amaury Charlot | A.C.A.Charlot@student.tudelft.nl |
 |---| Gerrit Croes | G.Croes@student.tudelft.nl |
