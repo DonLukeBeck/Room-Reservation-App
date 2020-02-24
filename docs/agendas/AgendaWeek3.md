@@ -2,8 +2,8 @@
 
 Date:           24/02/2020\
 Main focus:     Establishing and dividing tasks between team members\
-Chair:          {Insert Here}\
-Note taker:     {Insert Here}
+Chair:          {Insert Here}
+Note taker:     {François Ezard}
 
 # Opening
 *Here you check that everybody is present.*
