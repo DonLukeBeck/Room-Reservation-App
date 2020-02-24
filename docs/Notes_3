@@ -1,0 +1,13 @@
+- Make a local MySQL database
+- Store images on the database
+- Call the getRandomQuote method when there is a get request
+- Need to change/setup database config
+- Change the driver class since it uses a H2 database and need to change it for MySQL
+- Different front end pages for the different users, so admin has a different page
+- When inputing data need to validate the input, and check that all the boxes are filled in
+- Make sure that if request is made whilst server is down the request still goes through eventually
+- Can have an attribute field for the different user permissions
+- Can hardcode an admin into the database no need to register
+- Open issues are all the issues to face for the project
+- Create different labels to know what category the issue fits under
+- Schema design SQL, can create visual schema and generates SQL command
