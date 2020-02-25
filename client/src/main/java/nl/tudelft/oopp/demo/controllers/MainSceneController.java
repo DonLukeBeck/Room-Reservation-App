@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import java.io.IOException;
@@ -16,7 +18,31 @@ public class MainSceneController {
     @FXML
     private javafx.scene.control.Button button1;
 
-    public void buttonLogIn(ActionEvent event) throws IOException {
+    @FXML
+    private TextField username;
+
+    @FXML
+    private TextField pass;
+
+
+    public void buttonLogIn(ActionEvent event) throws IOException, InterruptedException {
+        String user = username.getText();
+
+        String pas = pass.getText();
+
+        System.out.println(user);
+        System.out.println(pas);
+
+        String str = ServerCommunication.getSth(user, pas);
+        System.out.println(str);
+
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Quote for you");
+//        alert.setHeaderText(null);
+//        alert.setContentText(ServerCommunication.getQuote());
+//        alert.showAndWait();
+
+
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
 

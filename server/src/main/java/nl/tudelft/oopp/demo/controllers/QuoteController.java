@@ -6,6 +6,7 @@ import java.util.Random;
 import nl.tudelft.oopp.demo.entities.Quote;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -42,5 +43,14 @@ public class QuoteController {
         quotes.add(q3);
 
         return quotes.get(new Random().nextInt(quotes.size()));
+    }
+
+    @GetMapping("login")
+    //@ResponseBody
+    @RequestMapping("login")
+    public String Login() {
+
+
+        return "connection";
     }
 }

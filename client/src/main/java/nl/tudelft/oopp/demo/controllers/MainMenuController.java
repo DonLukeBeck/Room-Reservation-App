@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 
 
+
 public class MainMenuController {
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
