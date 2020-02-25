@@ -44,13 +44,4 @@ public class QuoteController {
 
         return quotes.get(new Random().nextInt(quotes.size()));
     }
-
-    @GetMapping("login")
-    //@ResponseBody
-    @RequestMapping("login")
-    public String Login() {
-
-
-        return "connection";
-    }
 }

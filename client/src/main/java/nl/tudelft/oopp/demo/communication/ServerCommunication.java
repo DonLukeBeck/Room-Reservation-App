@@ -33,13 +33,13 @@ public class ServerCommunication {
     }
 
     public static String getSth(String user, String pass) throws IOException, InterruptedException {
-
+/*
         Map values = new HashMap<String, String>() {{
             put("name", "John Doe");
             put ("occupation", "gardener");
         }};
 
-        String requestBody = "user: " + user + "pas: " + pass;
+        String requestBody = "user: " + user;
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -48,20 +48,18 @@ public class ServerCommunication {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-//        System.out.println(response.body());
-//         HttpRequest request1 = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/login")).build();
-//         HttpResponse<String> response1 = null;
-//
-//        try {
-//            response1 = client.send(request, HttpResponse.BodyHandlers.ofString());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "Communication with server failed";
-//        }
-//        if (response1.statusCode() != 200) {
-//            System.out.println("Status: " + response1.statusCode());
-//        }
+*/
+        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/login?user="+user+"&pass="+pass)).build();
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Communication with server failed";
+        }
+        if (response.statusCode() != 200) {
+            System.out.println("Status: " + response.statusCode());
+        }
         return response.body();
     }
 
