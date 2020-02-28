@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="479.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.MainSceneController">
    <children>
-      <ImageView fitHeight="463.0" fitWidth="660.0" layoutX="51.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="433.0" fitWidth="600.0" layoutX="145.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/campusMap.jpg" />
          </image>
       </ImageView>
+      <ImageView fitHeight="350.0" fitWidth="130.0" layoutX="15.0" layoutY="115.0">
+         <image>
+            <Image url="@images/DelftBlue.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="15.0" layoutY="14.0">
+         <image>
+            <Image url="@images/flame1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="600.0" layoutX="145.0" layoutY="14.0">
+         <image>
+            <Image url="@images/DelftBlue.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="26.0" layoutY="370.0" text="- Back to Menu" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
