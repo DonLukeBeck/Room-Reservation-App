@@ -59,8 +59,9 @@ public class RoomReservationMenu {
     private void Calendarr(Event event) throws IOException {
         int i = 1;
         int flag = 0;
-        int col1 = 0;
-        int row1 = 0;
+        //int col1 = 0;
+       // int row1 = 0;
+
 //        Integer column;
 //        Integer roww;
 //        AnchorPane[][] gridPaneNodes = new AnchorPane[6][4];
@@ -127,39 +128,50 @@ public class RoomReservationMenu {
 //                //}
 //            }
 //        }
+       // try {
+            Calendar c = Calendar.getInstance();
 
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.MONTH, Calendar.MARCH);
-        for (Node e : Grid.getChildren()) {
-            c.set(Calendar.DAY_OF_MONTH, i);
+            c.set(Calendar.MONTH, Calendar.MARCH);
+            int days = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+            int day = 1;
+            for (Node e : Grid.getChildren()) {
+                c.set(Calendar.DAY_OF_MONTH, i);
 
-            String time1[] = (c.getTime() + "").split(" ");
-            String time = time1[0];
-           // System.out.println(time);
-            //System.out.println(e.getId());
-            if (flag == 0) {
-                if (e.getId().equals(time)) {
-                    flag++;
+                String time1[] = (c.getTime() + "").split(" ");
+                String time = time1[0];
+                if (flag == 0) {
+                    if (e.getId().equals(time)) {
+                        flag++;
+                        // System.out.println(c.getTime());
+                        Text text = new Text(day+"");
+                        text.setX(5);
+                        text.setY(115);
+                        text.setRotate(-90);
+
+                        i++;
+                        //e = (AnchorPane) e;
+                        ((AnchorPane) e).getChildren().add(text);
+                        day++;
+                    }
+                } else {
                    // System.out.println(c.getTime());
-                    Text text = new Text(time);
+                    Text text = new Text(day+"");
                     text.setX(5);
-                    text.setY(10);
-
+                    text.setY(115);
+                    text.setRotate(-90);
                     i++;
+                    days--;
+                    if(days == 0) return;
+                    System.out.println(i);
                     //e = (AnchorPane) e;
                     ((AnchorPane) e).getChildren().add(text);
+                    day++;
                 }
-            } else {
-                System.out.println(c.getTime());
-                Text text = new Text(time);
-                text.setX(5);
-                text.setY(10);
-                i++;
-                //e = (AnchorPane) e;
-                ((AnchorPane) e).getChildren().add(text);
             }
         }
+//        catch (Exception e){
+//            return;
+//        }
     }
- }
 
 
