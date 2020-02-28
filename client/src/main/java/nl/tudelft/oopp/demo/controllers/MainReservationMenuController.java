@@ -45,4 +45,46 @@ public class MainReservationMenuController {
         stage.show();
     }
 
+    public void GoToRooms(Event event) throws IOException {
+        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/ReservationRoom.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void GoToBikes(Event event) throws IOException {
+        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/ReservationBike.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void GoToFood(Event event) throws IOException {
+        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/ReservationFood.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }

@@ -22,6 +22,7 @@ public class LoginController {
     @ResponseBody
     public Login loginUser(@RequestParam(name ="user") String user,@RequestParam(name ="pass") String pass) {
         Login credentials = new Login(user, pass);
+        System.out.println("New user! username: " + user + "  pass: " + pass);
         return credentials;
     }
 

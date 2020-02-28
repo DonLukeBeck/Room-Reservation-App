@@ -30,18 +30,11 @@ public class MainSceneController {
 
         String pas = pass.getText();
 
-        System.out.println(user);
-        System.out.println(pas);
+        //System.out.println(user);
+        //System.out.println(pas);
 
         String str = ServerCommunication.getSth(user, pas);
         System.out.println(str);
-
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Quote for you");
-//        alert.setHeaderText(null);
-//        alert.setContentText(ServerCommunication.getQuote());
-//        alert.showAndWait();
-
 
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
