@@ -4,8 +4,6 @@ plugins {
 	id 'org.asciidoctor.convert' version '1.5.8'
 }
 
-mainClassName = 'nl.tudelft.oopp.demo.DemoApplication'
-
 configurations {
 	developmentOnly
 	runtimeClasspath {
@@ -19,7 +17,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	// Local test database (in-memory)
-	implementation 'com.h2database:h2'
+	//implementation 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
 	developmentOnly 'org.hibernate:hibernate-entitymanager'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
