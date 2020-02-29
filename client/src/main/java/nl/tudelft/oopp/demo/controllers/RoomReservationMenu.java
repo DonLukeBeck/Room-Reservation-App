@@ -17,20 +17,23 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class RoomReservationMenu {
+
     @FXML
     private ChoiceBox YearChoice;
-
-
 
     @FXML
     private ChoiceBox MonthChoice;
 
-  //  private int month;
-   // private String year;
+    private int Fmonth;
+    private int Fyear;
+    private int FDay;
 
     @FXML
     private void Year(Event event) throws  IOException{
@@ -38,18 +41,8 @@ public class RoomReservationMenu {
                 "2020", "2021", "2022"
         };
         YearChoice.setItems(FXCollections.observableArrayList("2020", "2021", "2022"));
-        //MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
-
-//        YearChoice.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
-//           year = Ychoice[new_value.intValue()];
-//            System.out.println(year);
-//        });
-//
-//        MonthChoice.getSelectionModel().selectedIndexProperty().addListener((ov, value, new_value) -> {
-//            month = new_value.intValue();
-//            System.out.println(month);
-//        });
     }
+
     @FXML
     private void Month(Event event) throws  IOException{
         //YearChoice.setItems(FXCollections.observableArrayList("2020", "2021", "2022"));
@@ -186,6 +179,9 @@ public class RoomReservationMenu {
             yearIndex = 2022;
         }
 
+        Fyear = yearIndex;
+        Fmonth = monIndex;
+
         Calendar c = Calendar.getInstance();
         System.out.println(yearIndex);
         System.out.println(monIndex+1);
@@ -233,6 +229,48 @@ public class RoomReservationMenu {
                     day++;
                 }
             }
+        }
+    }
+
+    @FXML
+    public void DateOnCalendar(Event event) throws IOException {
+        String str = event.getSource().toString();
+        AnchorPane e = (AnchorPane) event.getSource();
+        String CurrentDate = " ";
+        if(!(e.getChildren().isEmpty())){
+            CurrentDate = e.getChildren().toString();
+            String[] CurDate = CurrentDate.split("text=");
+            //System.out.println(CurrentDate);
+            CurrentDate = CurDate[1];
+            CurrentDate = CurrentDate.substring(1,3);
+            String[] CurDat = CurrentDate.split("\"");
+            CurrentDate = CurDat[0];
+            //CurrentDate = CurrentDate.replaceAll(" \" ", " ");
+           // System.out.println(CurrentDate);
+        }
+        else{
+            CurrentDate = "32";
+        }
+
+        FDay = Integer.parseInt(CurrentDate);
+
+        if(FDay == 32) return;
+       // System.out.println(FDay);
+
+
+        Date date = new GregorianCalendar(Fyear, Fmonth, FDay).getTime();
+        Calendar now = Calendar.getInstance();
+        Date now1 = now.getTime();
+
+        if(date.before(now1)){
+            FXMLLoader loader = new FXMLLoader();
+            URL xmlUrl = getClass().getResource("/PreviousDateAlert.fxml");
+            loader.setLocation(xmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
         }
     }
 }
