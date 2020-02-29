@@ -20,7 +20,7 @@ import java.net.URL;
 import java.time.YearMonth;
 import java.util.Calendar;
 
-public class RoomReservationMenu {
+public class BikeReservationMenu {
     @FXML
     private ChoiceBox YearChoice;
 
@@ -29,8 +29,8 @@ public class RoomReservationMenu {
     @FXML
     private ChoiceBox MonthChoice;
 
-  //  private int month;
-   // private String year;
+    //  private int month;
+    // private String year;
 
     @FXML
     private void Year(Event event) throws  IOException{
@@ -99,7 +99,7 @@ public class RoomReservationMenu {
     @FXML
     private void Calendarr(Event event) throws IOException {
         //int col1 = 0;
-       // int row1 = 0;
+        // int row1 = 0;
 
 //        Integer column;
 //        Integer roww;
@@ -236,6 +236,7 @@ public class RoomReservationMenu {
         }
     }
 }
+
 
 
 

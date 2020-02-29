@@ -1,0 +1,7 @@
+.choice-box .context-menu { -fx-background-color: white; }
+
+.choice-box .menu-item:focused { -fx-background-color: blue; }
+
+.choice-box {
+    -fx-text-fill: white;
+}
