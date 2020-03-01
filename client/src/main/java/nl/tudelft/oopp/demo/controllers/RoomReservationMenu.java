@@ -258,11 +258,17 @@ public class RoomReservationMenu {
        // System.out.println(FDay);
 
 
-        Date date = new GregorianCalendar(Fyear, Fmonth, FDay).getTime();
+        //Date date = new GregorianCalendar(Fyear, Fmonth, FDay).getTime();
+        Calendar check = Calendar.getInstance();
+        check.set(Calendar.MONTH, Fmonth);
+        check.set(Calendar.YEAR, Fyear);
+        check.set(Calendar.DAY_OF_MONTH, FDay);
+        //System.out.println(check.toString());
+        Date date1 = check.getTime();
         Calendar now = Calendar.getInstance();
         Date now1 = now.getTime();
 
-        if(date.before(now1)){
+        if(date1.before(now1)){
             FXMLLoader loader = new FXMLLoader();
             URL xmlUrl = getClass().getResource("/PreviousDateAlert.fxml");
             loader.setLocation(xmlUrl);
