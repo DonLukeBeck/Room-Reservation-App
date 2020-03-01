@@ -1,11 +1,12 @@
-package nl.tudelft.oopp.demo;
+package nl.tudelft.oopp.demo.controllers;
 
+import nl.tudelft.oopp.demo.entities.LoginUser;
+import nl.tudelft.oopp.demo.entities.RegisterNewUser;
+import nl.tudelft.oopp.demo.entities.Users;
+import nl.tudelft.oopp.demo.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller // This means that this class is a Controller
 public class MainController {
@@ -14,20 +15,19 @@ public class MainController {
     @Autowired
     private UsersRepository usersRepository;
 
-    @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser (@RequestParam String netID, @RequestParam String password) {
+    @PostMapping("/registerNewUser") // Map ONLY POST Requests
+    public @ResponseBody boolean register(@RequestBody RegisterNewUser user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
-        Users n = new Users();
-        n.setNetID(netID);
-        n.setPassword(password);
-        n.setRole("user");
-        usersRepository.save(n);
-        return "Saved";
+        Users newUser = new Users();
+        newUser.setNetID(user.getNetID());
+        newUser.setPassword(user.getPassword());
+        newUser.setRole("user");
+        usersRepository.save(newUser);
+        return true;
     }
 
-    @GetMapping(path="/all")
+    @GetMapping("/all")
     public @ResponseBody Iterable<Users> getAllUsers() {
         // This returns a JSON or XML with the users
         return usersRepository.findAll();

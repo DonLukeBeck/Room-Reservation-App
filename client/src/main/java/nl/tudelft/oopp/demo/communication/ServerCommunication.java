@@ -1,66 +1,39 @@
 package nl.tudelft.oopp.demo.communication;
 
-import java.io.IOException;
-import java.net.URI;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class ServerCommunication {
 
     private static HttpClient client = HttpClient.newBuilder().build();
 
-    /**
-     * Retrieves a quote from the server.
-     * @return the body of a get request to the server.
-     * @throws Exception if communication with the server fails.
-     */
-    public static String getQuote() {
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/quote")).build();
-        HttpResponse<String> response = null;
+    private static String baseURL = "http://localhost:8080";
+    private static WebClient webClient = WebClient.create(baseURL);
+
+    public static boolean login(String user, String pass) {
+
+        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\"}";
         try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            boolean bool = webClient.post().uri("/registerNewUser")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("User Logged in");
+                return true;
+            } else {
+                System.out.println("Authentication failed");
+                return false;
+            }
         } catch (Exception e) {
-            e.printStackTrace();
-            return "Communication with server failed";
+            System.out.println(e);
+            return false;
         }
-        if (response.statusCode() != 200) {
-            System.out.println("Status: " + response.statusCode());
-        }
-        return response.body();
     }
-
-    public static String getSth(String user, String pass) throws IOException, InterruptedException {
-/*
-        Map values = new HashMap<String, String>() {{
-            put("name", "John Doe");
-            put ("occupation", "gardener");
-        }};
-
-        String requestBody = "user: " + user;
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/login"))
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-*/
-        HttpRequest request = HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:8080/login?user="+user+"&pass="+pass)).build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Communication with server failed";
-        }
-        if (response.statusCode() != 200) {
-            System.out.println("Status: " + response.statusCode());
-        }
-        return response.body();
-    }
-
 }

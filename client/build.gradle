@@ -7,6 +7,9 @@ mainClassName = "nl.tudelft.oopp.demo.MainApp"
 dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:5.6.0")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.6.0")
+    compile 'org.json:json:20180130'
+    implementation 'org.springframework:spring-webflux:5.1.8.RELEASE'
+    implementation 'io.projectreactor.netty:reactor-netty:0.8.9.RELEASE'
 }
 
 javafx {

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 
 
+
 public class MainSceneController {
     @FXML
     private javafx.scene.control.Button button1;
@@ -27,14 +28,10 @@ public class MainSceneController {
 
     public void buttonLogIn(ActionEvent event) throws IOException, InterruptedException {
         String user = username.getText();
-
         String pas = pass.getText();
 
-        //System.out.println(user);
-        //System.out.println(pas);
-
-        String str = ServerCommunication.getSth(user, pas);
-        System.out.println(str);
+        boolean verifyUser = ServerCommunication.login(user, pas);
+        System.out.println(verifyUser);
 
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
