@@ -1,8 +1,8 @@
 ## Agenda Week 4
 
-Date:           02/03/2020
-Main focus:     Establishing and dividing tasks between team members
-Note taker:     {}
+Date:           {02/03/2020}\
+Main focus:     {}\
+Note taker:     {Amaury Charlot}\
 
 # Opening
 *Here you check that everybody is present.*
@@ -12,7 +12,7 @@ Note taker:     {}
 
 # Points of action
 *The items below are things you should look into after the first meeting. During the meeting you can divide (some of) the work between the team members, so that everybody has something to do afterwards.*
-
+- Add everything onto the board, if all issues are done it should mean the project is finished
 
 # Action points for next week (Scrum board)
 *Every week you fill the Scrum board with new action points for that week. See the to do list for the items you should implement.*
@@ -22,6 +22,9 @@ Note taker:     {}
 
 # Questions
 *If there are any questions, now is the time to ask them.*
+- Does CRUD have to be through the UI?
+- Is the board only for product aspect or also the report?
+- Fix checkstyle before continuing
 
 # Closing
 *Now you can start working on the project. Good luck!*
