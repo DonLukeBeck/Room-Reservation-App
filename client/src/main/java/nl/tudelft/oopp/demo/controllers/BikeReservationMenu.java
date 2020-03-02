@@ -1,5 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.awt.ScrollPane;
+import java.io.IOException;
+import java.net.URL;
+import java.time.YearMonth;
+import java.util.Calendar;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -10,20 +15,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
-import java.time.YearMonth;
-import java.util.Calendar;
 
 public class BikeReservationMenu {
     @FXML
     private ChoiceBox YearChoice;
-
 
 
     @FXML
@@ -31,9 +28,17 @@ public class BikeReservationMenu {
 
     //  private int month;
     // private String year;
+    @FXML
+    private javafx.scene.control.Button ReserveScene;
+    @FXML
+    private AnchorPane Mon;
+    @FXML
+    private GridPane Grid;
+    @FXML
+    private ScrollPane Scroll;
 
     @FXML
-    private void Year(Event event) throws  IOException{
+    private void Year(Event event) throws IOException {
         String[] Ychoice = new String[]{
                 "2020", "2021", "2022"
         };
@@ -50,14 +55,13 @@ public class BikeReservationMenu {
 //            System.out.println(month);
 //        });
     }
+
     @FXML
-    private void Month(Event event) throws  IOException{
+    private void Month(Event event) throws IOException {
         //YearChoice.setItems(FXCollections.observableArrayList("2020", "2021", "2022"));
         MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
 
     }
-
-
 
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -69,9 +73,6 @@ public class BikeReservationMenu {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-    @FXML
-    private javafx.scene.control.Button ReserveScene;
 
     public void GoBack(Event event) throws IOException {
         Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
@@ -86,15 +87,6 @@ public class BikeReservationMenu {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
-    @FXML
-    private AnchorPane Mon;
-
-    @FXML
-    private GridPane Grid;
-
-    @FXML
-    private ScrollPane Scroll;
 
     @FXML
     private void Calendarr(Event event) throws IOException {
@@ -173,26 +165,26 @@ public class BikeReservationMenu {
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         int monIndex = -1;
         // System.out.println(MonthChoice.getValue());
-        for(int j = 0; j < months.length; j++){
-            if(MonthChoice.getValue().equals(months[j])) {
+        for (int j = 0; j < months.length; j++) {
+            if (MonthChoice.getValue().equals(months[j])) {
                 monIndex = j;
             }
         }
         int yearIndex = 2020;
-        if(YearChoice.getValue().equals("2021")){
+        if (YearChoice.getValue().equals("2021")) {
             yearIndex = 2021;
         }
-        if(YearChoice.getValue().equals("2022")){
+        if (YearChoice.getValue().equals("2022")) {
             yearIndex = 2022;
         }
 
         Calendar c = Calendar.getInstance();
         System.out.println(yearIndex);
-        System.out.println(monIndex+1);
+        System.out.println(monIndex + 1);
         c.set(Calendar.YEAR, yearIndex);
         c.set(Calendar.MONTH, monIndex);
 
-        YearMonth yearMon = YearMonth.of(yearIndex, monIndex+1);
+        YearMonth yearMon = YearMonth.of(yearIndex, monIndex + 1);
         int days = yearMon.lengthOfMonth();
         System.out.println(days);
         int day = 1;
@@ -202,8 +194,7 @@ public class BikeReservationMenu {
             c.set(Calendar.DAY_OF_MONTH, i);
             try {
                 ((AnchorPane) e).getChildren().clear();
-            }
-            catch (Exception idc){
+            } catch (Exception idc) {
                 System.out.println("Meaningless error");
             }
 
@@ -212,7 +203,7 @@ public class BikeReservationMenu {
             if (flag == 0) {
                 if (e.getId().equals(time)) {
                     flag++;
-                    Text text = new Text(day+"");
+                    Text text = new Text(day + "");
                     text.setX(5);
                     text.setY(115);
                     text.setRotate(-90);
@@ -222,13 +213,13 @@ public class BikeReservationMenu {
                     day++;
                 }
             } else {
-                Text text = new Text(day+"");
+                Text text = new Text(day + "");
                 text.setX(5);
                 text.setY(115);
                 text.setRotate(-90);
                 i++;
                 days--;
-                if(days > 0) {
+                if (days > 0) {
                     ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }

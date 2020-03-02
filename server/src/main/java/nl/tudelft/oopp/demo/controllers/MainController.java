@@ -1,12 +1,14 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import nl.tudelft.oopp.demo.entities.LoginUser;
 import nl.tudelft.oopp.demo.entities.RegisterNewUser;
 import nl.tudelft.oopp.demo.entities.Users;
 import nl.tudelft.oopp.demo.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // This means that this class is a Controller
 public class MainController {
@@ -16,7 +18,8 @@ public class MainController {
     private UsersRepository usersRepository;
 
     @PostMapping("/registerNewUser") // Map ONLY POST Requests
-    public @ResponseBody boolean register(@RequestBody RegisterNewUser user) {
+    public @ResponseBody
+    boolean register(@RequestBody RegisterNewUser user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         Users newUser = new Users();
@@ -28,7 +31,8 @@ public class MainController {
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<Users> getAllUsers() {
+    public @ResponseBody
+    Iterable<Users> getAllUsers() {
         // This returns a JSON or XML with the users
         return usersRepository.findAll();
     }
