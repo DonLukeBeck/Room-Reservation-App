@@ -1,9 +1,9 @@
 package nl.tudelft.oopp.demo.communication;
 
+import java.net.http.HttpClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import java.net.http.HttpClient;
 
 
 public class ServerCommunication {
@@ -13,9 +13,16 @@ public class ServerCommunication {
     private static String baseURL = "http://localhost:8080";
     private static WebClient webClient = WebClient.create(baseURL);
 
-    public static boolean login(String user, String pass) {
+    /**
+     * Create new user.
+     * @param user NetId
+     * @param pass Password from the user
+     * @return true if new user is created, false if not.
+     */
+    public static boolean signUp(String user, String pass, String role) {
 
-        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\"}";
+        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\",\"role\":\"" + role + "\"}";
+        System.out.println(body);
         try {
             boolean bool = webClient.post().uri("/registerNewUser")
                     .contentType(MediaType.APPLICATION_JSON)

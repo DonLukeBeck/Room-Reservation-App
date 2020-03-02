@@ -25,7 +25,7 @@ public class MainController {
         Users newUser = new Users();
         newUser.setNetID(user.getNetID());
         newUser.setPassword(user.getPassword());
-        newUser.setRole("user");
+        newUser.setRole(user.getRole());
         usersRepository.save(newUser);
         return true;
     }

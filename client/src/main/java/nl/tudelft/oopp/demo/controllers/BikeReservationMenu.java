@@ -1,10 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.awt.ScrollPane;
-import java.io.IOException;
-import java.net.URL;
-import java.time.YearMonth;
-import java.util.Calendar;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,6 +12,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
+import java.time.YearMonth;
+import java.util.Calendar;
 
 public class BikeReservationMenu {
     @FXML
@@ -198,7 +199,7 @@ public class BikeReservationMenu {
                 System.out.println("Meaningless error");
             }
 
-            String time1[] = (c.getTime() + "").split(" ");
+            String[] time1 = (c.getTime() + "").split(" ");
             String time = time1[0];
             if (flag == 0) {
                 if (e.getId().equals(time)) {

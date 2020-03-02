@@ -27,12 +27,13 @@ public class MainSceneController {
     private TextField pass;
 
 
-    public void buttonLogIn(ActionEvent event) throws IOException, InterruptedException {
-        String user = username.getText();
-        String pas = pass.getText();
 
-        boolean verifyUser = ServerCommunication.login(user, pas);
-        System.out.println(verifyUser);
+    public void buttonLogIn(ActionEvent event) throws IOException, InterruptedException {
+//        String user = username.getText();
+//        String pas = pass.getText();
+//
+//        boolean verifyUser = ServerCommunication.login(user, pas);
+//        System.out.println(verifyUser);
 
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();

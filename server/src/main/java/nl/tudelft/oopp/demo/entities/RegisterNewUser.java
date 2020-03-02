@@ -6,6 +6,8 @@ public class RegisterNewUser {
 
     private String password;
 
+    private String role;
+
     public RegisterNewUser() {
     }
 
@@ -23,6 +25,14 @@ public class RegisterNewUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }
