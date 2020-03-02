@@ -32,6 +32,31 @@ public class ServerCommunication {
                     .bodyToMono(Boolean.class)
                     .block();
             if (bool) {
+                System.out.println("User registered");
+                return true;
+            } else {
+                System.out.println("Authentication failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public static boolean logIn(String user, String pass) {
+
+        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\"}";
+        System.out.println(body);
+        try {
+            boolean bool = webClient.post().uri("/logInNewUser")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
                 System.out.println("User Logged in");
                 return true;
             } else {

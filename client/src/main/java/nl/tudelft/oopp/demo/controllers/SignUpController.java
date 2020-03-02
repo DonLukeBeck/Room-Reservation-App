@@ -39,6 +39,10 @@ public class SignUpController {
 
     @SuppressWarnings({"checkstyle:WhitespaceAround", "checkstyle:MethodName", "checkstyle:MissingJavadocMethod"})
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
+        if(pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()){
+            return;
+        }
+
         String firstPass = pass.getText();
         String secondPass = coPass.getText();
         String username = user.getText();

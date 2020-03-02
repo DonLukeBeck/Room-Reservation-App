@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
@@ -24,16 +25,15 @@ public class MainSceneController {
     private TextField username;
 
     @FXML
-    private TextField pass;
+    private PasswordField pass;
 
 
 
-    public void buttonLogIn(ActionEvent event) throws IOException, InterruptedException {
-//        String user = username.getText();
-//        String pas = pass.getText();
-//
-//        boolean verifyUser = ServerCommunication.login(user, pas);
-//        System.out.println(verifyUser);
+    public void logIn(ActionEvent event) throws IOException, InterruptedException {
+        if(pass.getText().isBlank() || username.getText().isBlank()){
+            return;
+
+        }
 
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
@@ -48,7 +48,7 @@ public class MainSceneController {
         stage.show();
     }
 
-    public void SignUp(ActionEvent event) throws IOException, InterruptedException {
+    public void register(ActionEvent event) throws IOException, InterruptedException {
         Stage stage1 = (Stage) button2.getScene().getWindow();
         stage1.close();
 
