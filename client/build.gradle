@@ -10,8 +10,11 @@ dependencies {
     compile 'org.json:json:20180130'
     implementation 'org.springframework:spring-webflux:5.1.8.RELEASE'
     implementation 'io.projectreactor.netty:reactor-netty:0.8.9.RELEASE'
+    compile 'com.jfoenix:jfoenix:9.0.8'
 }
-
+repositories {
+    mavenCentral()
+}
 javafx {
     version = "13"
     modules = [ 'javafx.controls', 'javafx.fxml' ]

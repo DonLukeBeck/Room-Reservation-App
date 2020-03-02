@@ -33,7 +33,7 @@
                <Insets bottom="23.0" right="23.0" top="13.0" />
             </opaqueInsets>
          </Button>
-         <Button defaultButton="true" layoutX="155.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="87.0" text="Sign Up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <Button fx:id="button2" defaultButton="true" layoutX="155.0" layoutY="226.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SignUp" prefHeight="38.0" prefWidth="87.0" text="Sign Up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
             <font>
                <Font size="16.0" />
             </font>
