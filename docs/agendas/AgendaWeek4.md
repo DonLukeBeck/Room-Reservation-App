@@ -13,6 +13,8 @@ Note taker:     {Amaury Charlot}\
 # Points of action
 *The items below are things you should look into after the first meeting. During the meeting you can divide (some of) the work between the team members, so that everybody has something to do afterwards.*
 - Add everything onto the board, if all issues are done it should mean the project is finished
+- Fix checkstyle before continuing
+- Create a local database to work on as to avoid server issues
 
 # Action points for next week (Scrum board)
 *Every week you fill the Scrum board with new action points for that week. See the to do list for the items you should implement.*
@@ -24,7 +26,6 @@ Note taker:     {Amaury Charlot}\
 *If there are any questions, now is the time to ask them.*
 - Does CRUD have to be through the UI?
 - Is the board only for product aspect or also the report?
-- Fix checkstyle before continuing
 
 # Closing
 *Now you can start working on the project. Good luck!*
