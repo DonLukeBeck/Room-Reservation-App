@@ -4,6 +4,8 @@ plugins {
 	id 'org.asciidoctor.convert' version '1.5.8'
 }
 
+mainClassName = 'nl.tudelft.oopp.demo.DemoApplication'
+
 configurations {
 	developmentOnly
 	runtimeClasspath {

@@ -22,7 +22,6 @@ public class ServerCommunication {
     public static boolean signUp(String user, String pass, String role) {
 
         String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\",\"role\":\"" + role + "\"}";
-        System.out.println(body);
         try {
             boolean bool = webClient.post().uri("/registerNewUser")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -47,7 +46,6 @@ public class ServerCommunication {
     public static boolean logIn(String user, String pass) {
 
         String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\"}";
-        System.out.println(body);
         try {
             boolean bool = webClient.post().uri("/logInNewUser")
                     .contentType(MediaType.APPLICATION_JSON)

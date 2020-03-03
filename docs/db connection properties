@@ -1,9 +1,11 @@
+// project database
 # MySQL connection properties
 spring.jpa.hibernate.ddl-auto=none
 spring.datasource.url=jdbc:mysql://projects-db.ewi.tudelft.nl:3306/projects_OOPP-Project-29
 spring.datasource.username=pu_tx9MCiNb5ggcv
 spring.datasource.password=cmHmaXidf4R2
 
+// local database
 # MySQL connection properties
 spring.jpa.hibernate.ddl-auto=none
 spring.datasource.url=jdbc:mysql://localhost:3306/project_oopp-project-29
