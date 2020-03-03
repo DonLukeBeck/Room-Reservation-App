@@ -107,219 +107,9 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="512.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="515.0" text="08:00 - 08:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="556.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="559.0" text="08:30 - 09:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="600.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="603.0" text="09:00 - 09:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="644.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="647.0" text="09:30 - 10:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="688.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="691.0" text="10:00 - 10:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="747.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="750.0" text="23:00 - 23:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="747.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="750.0" text="23:30 - 00:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="380.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="383.0" text="06:30 - 07:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="424.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="427.0" text="07:00 - 07:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="245.0" layoutY="468.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="289.0" layoutY="471.0" text="07:30 - 08:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="512.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="515.0" text="12:00 - 12:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="556.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="559.0" text="12:30 - 13:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="600.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="603.0" text="13:00 - 13:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="644.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="647.0" text="13:30 - 14:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="688.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="691.0" text="14:00 - 14:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="380.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="383.0" text="10:30 - 11:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="424.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="427.0" text="11:00 - 11:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="468.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="471.0" text="11:30 - 12:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="512.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="515.0" text="16:00 - 16:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="556.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="559.0" text="16:30 - 17:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="600.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="603.0" text="17:00 - 17:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="644.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="647.0" text="17:30 - 18:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="688.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="691.0" text="18:00 - 18:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="380.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="383.0" text="14:30 - 15:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="424.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="427.0" text="15:00 - 15:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="657.0" layoutY="468.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="701.0" layoutY="471.0" text="15:30 - 16:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="512.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="515.0" text="20:00 - 20:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="556.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="559.0" text="20:30 - 21:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="600.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="603.0" text="21:00 - 21:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="644.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="647.0" text="21:30 - 22:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="688.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="691.0" text="22:00 - 22:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="380.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="383.0" text="18:30 - 19:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="424.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="427.0" text="19:00 - 19:30" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="863.0" layoutY="468.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="907.0" layoutY="471.0" text="19:30 - 20:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
       <Label fx:id="sc1" contentDisplay="CENTER" layoutX="283.0" layoutY="734.0" prefHeight="51.0" prefWidth="97.0" text="Extra: " textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS Bold" size="24.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="451.0" layoutY="747.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-      <Label layoutX="495.0" layoutY="750.0" text="22:30 - 23:00" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="245.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
@@ -346,5 +136,219 @@
             <Font name="Comic Sans MS Bold" size="16.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="186.0" layoutY="362.0" prefHeight="431.0" prefWidth="908.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="146.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="149.0" text="08:00 - 08:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="190.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="193.0" text="08:30 - 09:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="234.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="237.0" text="09:00 - 09:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="278.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="281.0" text="09:30 - 10:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="322.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="325.0" text="10:00 - 10:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="381.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="384.0" text="23:00 - 23:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="381.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="384.0" text="23:30 - 00:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="14.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="17.0" text="06:30 - 07:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="58.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="61.0" text="07:00 - 07:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="102.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="103.0" layoutY="105.0" text="07:30 - 08:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="146.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="149.0" text="12:00 - 12:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="190.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="193.0" text="12:30 - 13:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="234.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="237.0" text="13:00 - 13:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="278.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="281.0" text="13:30 - 14:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="322.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="325.0" text="14:00 - 14:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="14.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="17.0" text="10:30 - 11:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="58.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="61.0" text="11:00 - 11:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="102.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="105.0" text="11:30 - 12:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="146.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="149.0" text="16:00 - 16:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="190.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="193.0" text="16:30 - 17:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="234.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="237.0" text="17:00 - 17:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="278.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="281.0" text="17:30 - 18:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="322.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="325.0" text="18:00 - 18:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="14.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="17.0" text="14:30 - 15:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="58.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="61.0" text="15:00 - 15:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="102.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="515.0" layoutY="105.0" text="15:30 - 16:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="146.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="149.0" text="20:00 - 20:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="190.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="193.0" text="20:30 - 21:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="234.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="237.0" text="21:00 - 21:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="278.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="281.0" text="21:30 - 22:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="322.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="325.0" text="22:00 - 22:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="14.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="17.0" text="18:30 - 19:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="58.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="61.0" text="19:00 - 19:30" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="102.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="721.0" layoutY="105.0" text="19:30 - 20:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="381.0" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Label layoutX="309.0" layoutY="384.0" text="22:30 - 23:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

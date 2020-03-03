@@ -30,6 +30,9 @@ public class RoomReservationMenu {
     private int Fmonth;
     private int Fyear;
     private int FDay;
+
+    public String reservationDate;
+
     @FXML
     private javafx.scene.control.Button ReserveScene;
     @FXML
@@ -266,6 +269,22 @@ public class RoomReservationMenu {
             stage.setScene(new Scene(root));
             stage.show();
         }
+
+        reservationDate = date1.toString();
+        System.out.println(reservationDate);
+        System.out.println(MainMenuController.getId());
+        Stage stage1 = (Stage) e.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/TimeSlots.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
     }
 }
 

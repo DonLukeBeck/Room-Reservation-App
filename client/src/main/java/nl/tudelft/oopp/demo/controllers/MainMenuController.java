@@ -11,6 +11,13 @@ import javafx.stage.Stage;
 
 
 public class MainMenuController {
+    private static String id;
+
+
+    public static String getId() {
+        return id;
+    }
+
     @FXML
     private javafx.scene.control.ScrollPane scene1;
 
@@ -37,7 +44,7 @@ public class MainMenuController {
         }
         // System.out.println(str);
         String[] ArrId = newTemp.split("=");
-        String id = ArrId[1];
+        this.id = ArrId[1];
         id = id.substring(0, id.length() - 1);
         System.out.println(id);
 
