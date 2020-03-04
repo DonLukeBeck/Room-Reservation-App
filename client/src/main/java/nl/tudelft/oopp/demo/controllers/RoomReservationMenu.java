@@ -39,8 +39,6 @@ public class RoomReservationMenu {
     private AnchorPane Mon;
     @FXML
     private GridPane Grid;
-    @FXML
-    private ScrollPane Scroll;
 
     @FXML
     private void Year(Event event) throws IOException {
@@ -268,6 +266,7 @@ public class RoomReservationMenu {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+            return;
         }
 
         reservationDate = date1.toString();
