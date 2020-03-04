@@ -1,11 +1,10 @@
 package nl.tudelft.oopp.demo.entities;
 
-        import javax.persistence.Entity;
-        import javax.persistence.Id;
-        import javax.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-//@Table(name = "Users")
+
 public class Users {
     @Id
     private String netID;
