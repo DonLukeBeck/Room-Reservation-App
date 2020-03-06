@@ -1,12 +1,9 @@
 package nl.tudelft.oopp.demo.communication;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.List;
-import nl.tudelft.oopp.demo.entities.Buildings;
-import nl.tudelft.oopp.demo.entities.Reservations;
-import nl.tudelft.oopp.demo.entities.Rooms;
+import nl.tudelft.oopp.demo.entities.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -22,8 +19,8 @@ public class ServerCommunication {
 
     /**
      * Create new user.
-     * @param user NetId
-     * @param pass Password from the user
+     * @param user net_id
+     * @param pass password from the user
      * @return true if new user is created, false if not.
      */
     public boolean signUp(String user, String pass, String role) {
@@ -52,7 +49,7 @@ public class ServerCommunication {
 
     public boolean logIn(String user, String pass) {
 
-        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\"}";
+        String body = "{\"net_id\":\"" + user + "\",\"password\":\"" + pass + "\"}";
         try {
             boolean bool = this.webClient.post().uri("/logInNewUser")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -149,6 +146,84 @@ public class ServerCommunication {
         });
 
         return reservationsJsonList;
+    }
+
+    /**
+     * Retrieves bikes list from the server.
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public List<Bikes> getBikes() throws IOException {
+        String jsonString = this.webClient.get().uri("/allBikes")
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Bikes> bikesJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Bikes>>() {
+        });
+
+        return bikesJsonList;
+    }
+
+    /**
+     * Retrieves menus list from the server.
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public List<Menus> getMenus() throws IOException {
+        String jsonString = this.webClient.get().uri("/allMenus")
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Menus> menusJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Menus>>() {
+        });
+
+        return menusJsonList;
+    }
+
+    /**
+     * Retrieves dishes list from the server.
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public List<Dishes> getDishes() throws IOException {
+        String jsonString = this.webClient.get().uri("/allDishes")
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Dishes> dishesJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Dishes>>() {
+        });
+
+        return dishesJsonList;
     }
 
 }

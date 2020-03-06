@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.util.List;
 import nl.tudelft.oopp.demo.entities.RegisterNewUser;
 import nl.tudelft.oopp.demo.entities.Users;
 import nl.tudelft.oopp.demo.repositories.UsersRepository;
@@ -32,7 +33,7 @@ public class UsersController {
 
     @GetMapping("/allUsers")
     public @ResponseBody
-    Iterable<Users> getAllUsers() {
+    List<Users> getAllUsers() {
         // This returns a JSON or XML with the users
         return usersRepository.findAll();
     }

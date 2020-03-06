@@ -3,7 +3,6 @@ package nl.tudelft.oopp.demo.entities;
 import java.sql.Date;
 import java.sql.Time;
 
-
 public class Reservations {
 
     private int id;
