@@ -50,7 +50,7 @@ public class MainReservationMenuController {
         stage1.close();
 
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/ReservationRoom.fxml");
+        URL xmlUrl = getClass().getResource("/RoomMenu.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
 

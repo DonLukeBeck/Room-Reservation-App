@@ -27,9 +27,19 @@ public class RoomReservationMenu {
     @FXML
     private ChoiceBox MonthChoice;
 
-    private int Fmonth;
-    private int Fyear;
-    private int FDay;
+    private static int Fmonth;
+    private static int Fyear;
+    private static int FDay;
+
+    public static int getMonth() {
+        return Fmonth;
+    }
+    public static int getYear() {
+        return Fyear;
+    }
+    public static int getDay() {
+        return FDay;
+    }
 
     public String reservationDate;
 

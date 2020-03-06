@@ -34,7 +34,6 @@ public class MainSceneController {
             return;
 
         }
-
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
 

@@ -45,7 +45,7 @@ public class MainMenuController {
         // System.out.println(str);
         String[] ArrId = newTemp.split("=");
         this.id = ArrId[1];
-        id = id.substring(0, id.length() - 1);
+        id = id.substring(1, id.length() - 1);
         System.out.println(id);
 
         Stage stage1 = (Stage) scene1.getScene().getWindow();
