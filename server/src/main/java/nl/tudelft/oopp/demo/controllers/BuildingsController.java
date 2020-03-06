@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.util.List;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.repositories.BuildingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class BuildingsController {
 
     @GetMapping("/allBuildings")
     public @ResponseBody
-    Iterable<Buildings> getAllBuildings() {
+    List<Buildings> getAllBuildings() {
         // This returns a JSON or XML with the buildings
         return buildingsRepository.findAll();
     }
