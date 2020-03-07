@@ -2,24 +2,34 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.entities.Buildings;
 
 
-public class TimeSlotsController {
+public class TimeSlotsController implements Initializable {
     private static String building;
     private static String room;
     private static String date;
     private static String timeslot;
+    ServerCommunication con = new ServerCommunication();
+
     @FXML
-    private CheckBox test;
+    private AnchorPane slots;
 
     public static String getBuilding() {
         return building;
@@ -65,10 +75,6 @@ public class TimeSlotsController {
 
         date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
 
-        System.out.println(building);
-        System.out.println(room);
-        System.out.println(date);
-
         Rectangle slot = (Rectangle) event.getSource();
         if (slot.fillProperty().getValue().equals(Color.valueOf("#ffc500"))) {
             slot.fillProperty().setValue(Color.valueOf("blue"));
@@ -90,5 +96,84 @@ public class TimeSlotsController {
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
 
+        Stage stage1 = (Stage) slot.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/CompleteReservation.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        List<Buildings> list = null;
+
+        try {
+            list = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Time closed = null;
+        Time open = null;
+        
+        for (Buildings e : list) {
+            if (e.getBuildingNumber() == Integer.parseInt(MainMenuController.getId())) {
+                System.out.println("Works");
+                open = e.getOpeningHours();
+                closed = e.getClosingHours();
+                break;
+            }
+        }
+        String opentime = open.toString().substring(0, 5);
+        String closingtime = closed.toString().substring(0, 5);
+        String[] opening = opentime.split(":");
+        String[] closing = closingtime.split(":");
+        double start = Integer.parseInt(opening[0]);
+        double end = Integer.parseInt(closing[0]);
+
+        if (opening[1].equals("30")) {
+            start = start + 0.5;
+        }
+
+        if (closing[1].equals("30")) {
+            end = end + 0.5;
+        }
+
+        for (Node k : slots.getChildren()) {
+            if (k instanceof Rectangle) {
+                String str = k.toString();
+                String[] temp = str.split(" ");
+                String newTemp = "";
+                for (int i = 0; i < temp.length; i++) {
+                    if (temp[i].contains("id=")) {
+                        newTemp = temp[i];
+                        break;
+                    }
+                }
+                String[] ArrId = newTemp.split("=");
+                String temp2 = ArrId[1];
+                temp2 = temp2.substring(1, temp2.length() - 1);
+                String time = temp2.replace('A', ':');
+
+                String[] firsttime = time.split(" ");
+                String[] seperateHandM = firsttime[0].split(":");
+                double hours = Integer.parseInt(seperateHandM[0]);
+
+                if (seperateHandM[1].equals("30")) {
+                    hours = hours + 0.5;
+                }
+                if(hours < start || hours >= end){
+                    ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
+                    k.disableProperty().setValue(true);
+                }
+            }
+        }
     }
 }

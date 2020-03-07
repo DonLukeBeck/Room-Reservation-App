@@ -184,14 +184,11 @@ public class RoomReservationMenu {
         Fmonth = monIndex;
 
         Calendar c = Calendar.getInstance();
-        System.out.println(yearIndex);
-        System.out.println(monIndex + 1);
         c.set(Calendar.YEAR, yearIndex);
         c.set(Calendar.MONTH, monIndex);
 
         YearMonth yearMon = YearMonth.of(yearIndex, monIndex + 1);
         int days = yearMon.lengthOfMonth();
-        System.out.println(days);
         int day = 1;
 
 
@@ -280,8 +277,6 @@ public class RoomReservationMenu {
         }
 
         reservationDate = date1.toString();
-        System.out.println(reservationDate);
-        System.out.println(MainMenuController.getId());
         Stage stage1 = (Stage) e.getScene().getWindow();
         stage1.close();
 

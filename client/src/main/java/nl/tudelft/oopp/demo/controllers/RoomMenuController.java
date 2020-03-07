@@ -29,7 +29,6 @@ public class RoomMenuController implements Initializable {
 
     public static List<Rooms> rooms;
 
-
     public static String getId() {
         return room_id;
     }
@@ -46,7 +45,6 @@ public class RoomMenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         String buildingId = MainMenuController.getId();
-        System.out.println(buildingId);
         int builId = Integer.parseInt(buildingId);
 
         List<Rooms> allrooms = null;
@@ -255,14 +253,12 @@ public class RoomMenuController implements Initializable {
         String[] ArrId = newTemp.split("=");
         String temp2 = ArrId[1];
         temp2 = temp2.substring(1,temp2.length() - 1);
-        System.out.println(temp2);
+
         int roomIndex = Integer.parseInt(temp2);
 
         this.room_id = this.rooms.get(roomIndex).getRoom_id();
-        System.out.println(room_id);
 
         String buildingId = MainMenuController.getId().substring(1);
-        System.out.println(buildingId);
 
         Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
         stage1.close();
