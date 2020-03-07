@@ -15,9 +15,7 @@ Note taker:     {Amaury Charlot}\
 - Add everything onto the board, if all issues are done it should mean the project is finished
 - Fix checkstyle before continuing
 - Create a local database to work on as to avoid server issues
-
-# Action points for next week (Scrum board)
-*Every week you fill the Scrum board with new action points for that week. See the to do list for the items you should implement.*
+- Start looking into authentication
 
 # Any other business
 *If anybody has something that should be discussed but came up with that after the agenda was finalized (in point 2), he/she should bring that up now so that it can be discussed after all.*
