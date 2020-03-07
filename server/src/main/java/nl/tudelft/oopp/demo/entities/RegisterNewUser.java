@@ -2,7 +2,7 @@ package nl.tudelft.oopp.demo.entities;
 
 public class RegisterNewUser {
 
-    private String netID;
+    private String netid;
 
     private String password;
 
@@ -11,12 +11,13 @@ public class RegisterNewUser {
     public RegisterNewUser() {
     }
 
-    public String getNetID() {
-        return netID;
+
+    public String getNetid() {
+        return netid;
     }
 
-    public void setNetID(String netID) {
-        this.netID = netID;
+    public void setNetid(String netid) {
+        this.netid = netid;
     }
 
     public String getPassword() {
@@ -34,5 +35,4 @@ public class RegisterNewUser {
     public void setRole(String role) {
         this.role = role;
     }
-
 }

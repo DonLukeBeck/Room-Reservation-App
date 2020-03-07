@@ -25,7 +25,8 @@ public class ServerCommunication {
      */
     public boolean signUp(String user, String pass, String role) {
 
-        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\",\"role\":\"" + role + "\"}";
+        String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\",\"role\":\"" + role + "\"}";
+
         try {
             boolean bool = this.webClient.post().uri("/registerNewUser")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -49,9 +50,9 @@ public class ServerCommunication {
 
     public boolean logIn(String user, String pass) {
 
-        String body = "{\"net_id\":\"" + user + "\",\"password\":\"" + pass + "\"}";
+        String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\"}";
         try {
-            boolean bool = this.webClient.post().uri("/logInNewUser")
+            boolean bool = this.webClient.post().uri("/loginUser")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)

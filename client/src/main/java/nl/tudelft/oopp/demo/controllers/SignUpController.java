@@ -2,7 +2,6 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
