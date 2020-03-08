@@ -2,19 +2,20 @@ package nl.tudelft.oopp.demo.entities;
 
 public class LoginUser {
     //class for login page
-    private String netID;
+    private String netid;
 
     private String password;
 
     public LoginUser() {
     }
 
-    public String getNetID() {
-        return netID;
+
+    public String getNetid() {
+        return netid;
     }
 
-    public void setNetID(String netID) {
-        this.netID = netID;
+    public void setNetid(String netid) {
+        this.netid = netid;
     }
 
     public String getPassword() {
@@ -24,5 +25,4 @@ public class LoginUser {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

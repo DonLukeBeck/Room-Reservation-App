@@ -25,7 +25,8 @@ public class ServerCommunication {
      */
     public boolean signUp(String user, String pass, String role) {
 
-        String body = "{\"netID\":\"" + user + "\",\"password\":\"" + pass + "\",\"role\":\"" + role + "\"}";
+        String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\",\"role\":\"" + role + "\"}";
+
         try {
             boolean bool = this.webClient.post().uri("/registerNewUser")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -47,27 +48,28 @@ public class ServerCommunication {
         }
     }
 
-    public boolean logIn(String user, String pass) {
+    public String logIn(String user, String pass) {
 
-        String body = "{\"net_id\":\"" + user + "\",\"password\":\"" + pass + "\"}";
+        String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\"}";
         try {
-            boolean bool = this.webClient.post().uri("/logInNewUser")
+            String str = this.webClient.post().uri("/loginUser")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
-                    .bodyToMono(Boolean.class)
+                    .bodyToMono(String.class)
                     .block();
-            if (bool) {
+            if (!str.isEmpty()) {
                 System.out.println("User Logged in");
-                return true;
+                System.out.println(str);
+                return str;
             } else {
                 System.out.println("Authentication failed");
-                return false;
+                return "";
             }
         } catch (Exception e) {
-            System.out.println(e);
-            return false;
+            System.out.println("Authentication failed");
+            return "";
         }
     }
 

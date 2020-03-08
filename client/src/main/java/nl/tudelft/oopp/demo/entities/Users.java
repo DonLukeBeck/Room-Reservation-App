@@ -3,7 +3,7 @@ package nl.tudelft.oopp.demo.entities;
 
 public class Users {
 
-    private String netID;
+    private String netid;
 
     private String password;
 
@@ -12,12 +12,12 @@ public class Users {
     public Users() {
     }
 
-    public String getNetID() {
-        return netID;
+    public String getNetid() {
+        return netid;
     }
 
-    public void setNetID(String netID) {
-        this.netID = netID;
+    public void setNetid(String netid) {
+        this.netid = netid;
     }
 
     public String getPassword() {

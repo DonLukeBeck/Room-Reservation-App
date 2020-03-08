@@ -2,7 +2,6 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -98,7 +97,7 @@ public class SignUpController {
         }
 
         if (check) {
-           boolean server =  con.signUp(username, firstPass, role);
+           boolean signUp =  con.signUp(username, firstPass, role);
         } else {
             System.out.println("Pass do not match!");
             Label text = new Label("Passwords do not match!");

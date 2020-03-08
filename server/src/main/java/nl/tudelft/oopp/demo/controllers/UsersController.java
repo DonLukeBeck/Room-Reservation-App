@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
+import nl.tudelft.oopp.demo.entities.LoginUser;
 import nl.tudelft.oopp.demo.entities.RegisterNewUser;
 import nl.tudelft.oopp.demo.entities.Users;
 import nl.tudelft.oopp.demo.repositories.UsersRepository;
@@ -23,12 +24,28 @@ public class UsersController {
     boolean register(@RequestBody RegisterNewUser user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        if(!usersRepository.findUserByNetid(user.getNetid()).getNetid().isEmpty()){
+            return false;
+        }
         Users newUser = new Users();
-        newUser.setNetID(user.getNetID());
+        newUser.setNetid(user.getNetid());
         newUser.setPassword(user.getPassword());
         newUser.setRole(user.getRole());
         usersRepository.save(newUser);
         return true;
+    }
+
+    @PostMapping("/loginUser") // Map ONLY POST Requests
+    public @ResponseBody
+    String login(@RequestBody LoginUser user) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        try {
+            Users foundUser = usersRepository.findUserByNetidAndPass(user.getNetid(), user.getPassword());
+            return foundUser.getNetid();
+        }catch(NullPointerException e){
+            return "";
+        }
     }
 
     @GetMapping("/allUsers")
