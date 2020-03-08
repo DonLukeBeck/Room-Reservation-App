@@ -32,8 +32,9 @@ public class MainSceneController {
     public void logIn(ActionEvent event) throws IOException, InterruptedException {
         if(pass.getText().isBlank() || username.getText().isBlank()){
             return;
-
         }
+
+
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
 

@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.CompletedReservationController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.BikeReservationCompleted">
     <children>
         <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
             <children>
@@ -44,7 +44,7 @@
         </ImageView>
         <Pane prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
             <children>
-                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="29.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/flame1.png" />
                     </image>
@@ -107,34 +107,29 @@
             </font>
         </Label>
         <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="136.0" layoutX="331.0" layoutY="118.0" stroke="#00a6d6" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-width: 30.0; -fx-arc-height: 30.0;" visible="false" width="188.0" />
-      <Label fx:id="builId" layoutX="254.0" layoutY="400.0" text="Building Id: ">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font></Label>
-      <Label fx:id="room" layoutX="254.0" layoutY="540.0" text="Room Id: ">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="date" layoutX="254.0" layoutY="610.0" text="Date:">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="254.0" layoutY="470.0" text="Building name: ">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="timeslot" layoutX="254.0" layoutY="680.0" text="Time slot: ">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="scene" layoutX="764.0" layoutY="663.0" onAction="#goToMainMenu" prefHeight="61.0" prefWidth="248.0" ripplerFill="BLUE" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: white; -fx-border-width: 2.5; -fx-border-color: #606060;" text="Go To Main Menu" textFill="#00a6d6">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
-         </font>
-      </JFXButton>
+        <Label fx:id="builId" layoutX="254.0" layoutY="400.0" text="Building Id: ">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font></Label>
+        <Label fx:id="date" layoutX="254.0" layoutY="544.0" text="Date:">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="254.0" layoutY="470.0" text="Building name: ">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+        <Label fx:id="timeslot" layoutX="254.0" layoutY="614.0" text="Time slot: ">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+        <JFXButton fx:id="scene" layoutX="764.0" layoutY="663.0" onAction="#goToMainMenu" prefHeight="61.0" prefWidth="248.0" ripplerFill="BLUE" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: white; -fx-border-width: 2.5; -fx-border-color: #606060;" text="Go To Main Menu" textFill="#00a6d6">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </JFXButton>
     </children>
 </AnchorPane>

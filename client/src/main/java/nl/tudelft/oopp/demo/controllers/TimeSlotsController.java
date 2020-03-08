@@ -12,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -30,6 +29,8 @@ public class TimeSlotsController implements Initializable {
 
     @FXML
     private AnchorPane slots;
+    @FXML
+    private javafx.scene.control.Button ReserveScene;
 
     public static String getBuilding() {
         return building;
@@ -122,7 +123,7 @@ public class TimeSlotsController implements Initializable {
 
         Time closed = null;
         Time open = null;
-        
+
         for (Buildings e : list) {
             if (e.getBuildingNumber() == Integer.parseInt(MainMenuController.getId())) {
                 System.out.println("Works");
@@ -169,11 +170,25 @@ public class TimeSlotsController implements Initializable {
                 if (seperateHandM[1].equals("30")) {
                     hours = hours + 0.5;
                 }
-                if(hours < start || hours >= end){
+                if (hours < start || hours >= end) {
                     ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
                     k.disableProperty().setValue(true);
                 }
             }
         }
+    }
+
+    public void GoBack(Event event) throws IOException {
+        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/ReservationRoom.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
