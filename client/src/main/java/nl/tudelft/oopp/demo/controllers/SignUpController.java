@@ -97,7 +97,7 @@ public class SignUpController {
         }
 
         if (check) {
-           boolean server =  con.signUp(username, firstPass, role);
+           boolean signUp =  con.signUp(username, firstPass, role);
         } else {
             System.out.println("Pass do not match!");
             Label text = new Label("Passwords do not match!");

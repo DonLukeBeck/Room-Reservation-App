@@ -24,6 +24,9 @@ public class UsersController {
     boolean register(@RequestBody RegisterNewUser user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        if(!usersRepository.findUserByNetid(user.getNetid()).getNetid().isEmpty()){
+            return false;
+        }
         Users newUser = new Users();
         newUser.setNetid(user.getNetid());
         newUser.setPassword(user.getPassword());
@@ -34,14 +37,14 @@ public class UsersController {
 
     @PostMapping("/loginUser") // Map ONLY POST Requests
     public @ResponseBody
-    boolean login(@RequestBody LoginUser user) {
+    String login(@RequestBody LoginUser user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        Users foundUser = usersRepository.findUserByNetidAndPass(user.getNetid(),user.getPassword());
-        if(foundUser.getNetid() == null){
-            return false;
-        }else{
-            return true;
+        try {
+            Users foundUser = usersRepository.findUserByNetidAndPass(user.getNetid(), user.getPassword());
+            return foundUser.getNetid();
+        }catch(NullPointerException e){
+            return "";
         }
     }
 

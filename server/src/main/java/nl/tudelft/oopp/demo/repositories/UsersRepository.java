@@ -11,5 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface UsersRepository extends JpaRepository<Users, Long> {
    @Query(value = "SELECT * FROM users WHERE netid = ?1 AND password = ?2 LIMIT 1", nativeQuery = true)
    Users findUserByNetidAndPass(String netid, String password);
-
+   @Query(value = "SELECT * FROM users WHERE netid = ?1 LIMIT 1", nativeQuery = true)
+   Users findUserByNetid(String netid);
 }

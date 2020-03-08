@@ -8,10 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
 import java.io.IOException;
 import java.net.URL;
+import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
 
 public class MainSceneController {
@@ -27,13 +27,18 @@ public class MainSceneController {
     @FXML
     private PasswordField pass;
 
-
+    ServerCommunication con = new ServerCommunication();
 
     public void logIn(ActionEvent event) throws IOException, InterruptedException {
         if(pass.getText().isBlank() || username.getText().isBlank()){
             return;
-
         }
+
+        String user = username.getText();
+        String password = pass.getText();
+
+        String logIn =  con.logIn(user, password);
+
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
 
