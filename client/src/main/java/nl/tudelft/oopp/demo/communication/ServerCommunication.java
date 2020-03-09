@@ -150,31 +150,6 @@ public class ServerCommunication {
         return reservationsJsonList;
     }
 
-    /**
-     * Retrieves bikes list from the server.
-     * @return the body of a get request to the server.
-     * @throws Exception if communication with the server fails.
-     */
-    public List<Bikes> getBikes() throws IOException {
-        String jsonString = this.webClient.get().uri("/allBikes")
-                .retrieve()
-                .onStatus(HttpStatus::is4xxClientError, response -> {
-                    System.out.println("4xx error");
-                    return Mono.error(new RuntimeException("4xx"));
-                })
-                .onStatus(HttpStatus::is5xxServerError, response -> {
-                    System.out.println("5xx error");
-                    return Mono.error(new RuntimeException("5xx"));
-                })
-                .bodyToMono(String.class)
-                .block();
-
-        ObjectMapper mapper = new ObjectMapper();
-        List<Bikes> bikesJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Bikes>>() {
-        });
-
-        return bikesJsonList;
-    }
 
     /**
      * Retrieves menus list from the server.
@@ -226,6 +201,38 @@ public class ServerCommunication {
         });
 
         return dishesJsonList;
+    }
+
+    /**
+     * Create new user.
+     *
+     *
+     * @return true if new user is created, false if not.
+     */
+    public boolean reservation(String userReserving, String timeSlot, String date, String room) {
+        System.out.println(userReserving);
+        System.out.println(room);
+        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"room_reserved\":\"" + room + "\"}";
+
+        try {
+            boolean bool = this.webClient.post().uri("/postReservation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Room reserved");
+                return true;
+            } else {
+                System.out.println("Reservation failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 
 }

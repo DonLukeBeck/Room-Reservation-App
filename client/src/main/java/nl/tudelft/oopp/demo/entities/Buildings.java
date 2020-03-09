@@ -4,25 +4,27 @@ import java.sql.Time;
 
 public class Buildings {
 
-    private int buildingNumber;
+    private int building_number;
 
     private String name;
 
-    private Time openingHours;
+    private Time opening_hours;
 
-    private Time closingHours;
+    private Time closing_hours;
 
-    private String numberOfRooms;
+    private int number_of_rooms;
+
+    private int number_of_bikes;
 
     public Buildings() {
     }
 
-    public int getBuildingNumber() {
-        return buildingNumber;
+    public int getBuilding_number() {
+        return building_number;
     }
 
-    public void setBuildingNumber(int buildingNumber) {
-        this.buildingNumber = buildingNumber;
+    public void setBuilding_number(int building_number) {
+        this.building_number = building_number;
     }
 
     public String getName() {
@@ -33,27 +35,35 @@ public class Buildings {
         this.name = name;
     }
 
-    public Time getOpeningHours() {
-        return openingHours;
+    public Time getOpening_hours() {
+        return opening_hours;
     }
 
-    public void setOpeningHours(Time openingHours) {
-        this.openingHours = openingHours;
+    public void setOpening_hours(Time opening_hours) {
+        this.opening_hours = opening_hours;
     }
 
-    public Time getClosingHours() {
-        return closingHours;
+    public Time getClosing_hours() {
+        return closing_hours;
     }
 
-    public void setClosingHours(Time closingHours) {
-        this.closingHours = closingHours;
+    public void setClosing_hours(Time closing_hours) {
+        this.closing_hours = closing_hours;
     }
 
-    public String getNumberOfRooms() {
-        return numberOfRooms;
+    public int getNumber_of_rooms() {
+        return number_of_rooms;
     }
 
-    public void setNumberOfRooms(String numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
+    public void setNumber_of_rooms(int number_of_rooms) {
+        this.number_of_rooms = number_of_rooms;
+    }
+
+    public int getNumber_of_bikes() {
+        return number_of_bikes;
+    }
+
+    public void setNumber_of_bikes(int number_of_bikes) {
+        this.number_of_bikes = number_of_bikes;
     }
 }

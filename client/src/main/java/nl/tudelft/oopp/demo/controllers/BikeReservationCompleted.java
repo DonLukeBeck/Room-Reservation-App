@@ -50,7 +50,7 @@ public class BikeReservationCompleted implements Initializable {
 
 
         for (Buildings e : list) {
-            if (e.getBuildingNumber() == Integer.parseInt(BikeSlots.getBuilding())) {
+            if (e.getBuilding_number() == Integer.parseInt(BikeSlots.getBuilding())) {
                 name = e.getName();
                 System.out.println(name);
             }

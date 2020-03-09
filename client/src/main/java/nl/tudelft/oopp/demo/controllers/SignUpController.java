@@ -68,11 +68,11 @@ public class SignUpController {
         //Printing all buildings from database
         List<Buildings> buildings = con.getBuildings();
         for(int i = 0; i < buildings.size(); i++) {
-            System.out.println(buildings.get(i).getBuildingNumber());
+            System.out.println(buildings.get(i).getBuilding_number());
             System.out.println(buildings.get(i).getName());
-            System.out.println(buildings.get(i).getOpeningHours());
-            System.out.println(buildings.get(i).getClosingHours());
-            System.out.println(buildings.get(i).getNumberOfRooms());
+            System.out.println(buildings.get(i).getOpening_hours());
+            System.out.println(buildings.get(i).getClosing_hours());
+            System.out.println(buildings.get(i).getNumber_of_rooms());
         }
         System.out.println("******************");
         //Printing all rooms from database
@@ -88,12 +88,12 @@ public class SignUpController {
         List<Reservations> reservations = con.getReservations();
         for(int i = 0; i < reservations.size(); i++) {
             System.out.println(reservations.get(i).getId());
-            System.out.println(reservations.get(i).getUserReserving());
+            System.out.println(reservations.get(i).getUser_reserving());
             System.out.println(reservations.get(i).getTimeslot());
             System.out.println(reservations.get(i).getDate());
-            System.out.println(reservations.get(i).getRoomReserved());
-            System.out.println(reservations.get(i).getBikeReserved());
-            System.out.println(reservations.get(i).getDishOrdered());
+            System.out.println(reservations.get(i).getRoom_reserved());
+            System.out.println(reservations.get(i).getBike_reserved());
+            System.out.println(reservations.get(i).getDish_ordered());
         }
 
         if (check) {

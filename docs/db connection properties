@@ -8,6 +8,6 @@ spring.datasource.password=cmHmaXidf4R2
 // local database
 # MySQL connection properties
 spring.jpa.hibernate.ddl-auto=none
-spring.datasource.url=jdbc:mysql://localhost:3306/project_oopp-project-29
+spring.datasource.url=jdbc:mysql://localhost:3306/sys
 spring.datasource.username=admin
 spring.datasource.password=1234

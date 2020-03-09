@@ -1,9 +1,11 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import com.sun.tools.javac.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -78,6 +80,7 @@ public class TimeSlotsController implements Initializable {
 
         date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
 
+
         Rectangle slot = (Rectangle) event.getSource();
         if (slot.fillProperty().getValue().equals(Color.valueOf("#ffc500"))) {
             slot.fillProperty().setValue(Color.valueOf("blue"));
@@ -97,7 +100,9 @@ public class TimeSlotsController implements Initializable {
         String temp2 = ArrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
-        System.out.println(timeslot);
+        System.out.println(MainSceneController.getUser());
+
+        con.reservation(MainSceneController.getUser(), timeslot+":00", date, room);
 
         Stage stage1 = (Stage) slot.getScene().getWindow();
         stage1.close();
@@ -135,10 +140,10 @@ public class TimeSlotsController implements Initializable {
         Time open = null;
 
         for (Buildings e : list) {
-            if (e.getBuildingNumber() == Integer.parseInt(MainMenuController.getId())) {
+            if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
                 System.out.println("Works");
-                open = e.getOpeningHours();
-                closed = e.getClosingHours();
+                open = e.getOpening_hours();
+                closed = e.getClosing_hours();
                 break;
             }
         }
@@ -163,7 +168,7 @@ public class TimeSlotsController implements Initializable {
         for (Reservations e : allReservations) {
             System.out.println(date);
             System.out.println(e.getDate().toString());
-            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
+            if (e.getDate().toString().equals(date) && e.getRoom_reserved() != null && e.getRoom_reserved().equals(room)) {
                 allSuitableRes.add(e);
             }
         }

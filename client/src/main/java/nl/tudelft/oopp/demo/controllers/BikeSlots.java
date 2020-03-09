@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
-import nl.tudelft.oopp.demo.entities.Bikes;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
@@ -114,7 +113,6 @@ public class BikeSlots implements Initializable {
         }
 
         date = BikeReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
-        // System.out.println(date);
 
         List<Buildings> list = null;
 
@@ -124,7 +122,7 @@ public class BikeSlots implements Initializable {
             e.printStackTrace();
         }
 
-        List<Bikes> bikes = null;
+/*        List<Bikes> bikes = null;
 
         try {
             bikes = con.getBikes();
@@ -136,9 +134,9 @@ public class BikeSlots implements Initializable {
             if (Integer.parseInt(MainMenuController.getId()) == e.getBikeBuilding()) {
                 buildingavailablebikes = e.getBikeAvailability();
                 break;
-            }
+           }
         }
-
+*/
         List<Reservations> reservations = null;
         try {
             reservations = con.getReservations();
@@ -148,7 +146,7 @@ public class BikeSlots implements Initializable {
 
         List<Reservations> reservationOnChosenDate = new ArrayList<>();
         for (Reservations e : reservations) {
-            if (e.getDate().toString().equals(date) && e.getBikeReserved() != 0) {
+            if (e.getDate().toString().equals(date) && e.getBike_reserved() != 0) {
                 reservationOnChosenDate.add(e);
                 System.out.println("Added");
             }
@@ -157,9 +155,9 @@ public class BikeSlots implements Initializable {
         Time open = null;
 
         for (Buildings e : list) {
-            if (e.getBuildingNumber() == Integer.parseInt(MainMenuController.getId())) {
-                open = e.getOpeningHours();
-                closed = e.getClosingHours();
+            if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
+                open = e.getOpening_hours();
+                closed = e.getClosing_hours();
                 break;
             }
         }

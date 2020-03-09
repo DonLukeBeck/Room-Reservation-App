@@ -18,6 +18,12 @@ public class MainSceneController {
     @FXML
     private javafx.scene.control.Button button1;
 
+    private static String user;
+
+    public static String getUser(){
+        return user;
+    }
+
     @FXML
     private javafx.scene.control.Button button2;
 
@@ -34,7 +40,7 @@ public class MainSceneController {
             return;
         }
 
-        String user = username.getText();
+        user = username.getText();
         String password = pass.getText();
 
         String logIn =  con.logIn(user, password);

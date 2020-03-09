@@ -54,7 +54,7 @@ public class CompletedReservationController implements Initializable {
 
 
         for (Buildings e : list) {
-            if (e.getBuildingNumber() == Integer.parseInt(TimeSlotsController.getBuilding())) {
+            if (e.getBuilding_number() == Integer.parseInt(TimeSlotsController.getBuilding())) {
                 name = e.getName();
                 System.out.println(name);
             }
