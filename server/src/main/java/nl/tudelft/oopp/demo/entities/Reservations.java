@@ -17,6 +17,8 @@ public class Reservations {
 
     private Date date;
 
+    private int building_reserved;
+
     private String room_reserved;
 
     private int bike_reserved;
@@ -83,5 +85,13 @@ public class Reservations {
 
     public void setDish_ordered(String dish_ordered) {
         this.dish_ordered = dish_ordered;
+    }
+
+    public int getBuilding_reserved() {
+        return building_reserved;
+    }
+
+    public void setBuilding_reserved(int building_reserved) {
+        this.building_reserved = building_reserved;
     }
 }

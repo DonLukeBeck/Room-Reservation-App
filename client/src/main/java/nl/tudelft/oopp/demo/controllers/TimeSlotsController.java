@@ -1,11 +1,9 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import com.sun.tools.javac.Main;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -102,7 +100,7 @@ public class TimeSlotsController implements Initializable {
         timeslot = temp2.replace('A', ':');
         System.out.println(MainSceneController.getUser());
 
-        con.reservation(MainSceneController.getUser(), timeslot+":00", date, room);
+        con.reservation(MainSceneController.getUser(), timeslot+":00", date, Integer.parseInt(building), room);
 
         Stage stage1 = (Stage) slot.getScene().getWindow();
         stage1.close();

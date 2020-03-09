@@ -37,6 +37,7 @@ public class ReservationsController {
         newReservation.setTimeslot(reservation.getTimeslot());
         newReservation.setUser_reserving(reservation.getUser_reserving());
         newReservation.setRoom_reserved(reservation.getRoom_reserved());
+        newReservation.setBuilding_reserved(reservation.getBuilding_reserved());
 
         System.out.println(newReservation.getId());
         System.out.println(newReservation.getUser_reserving());

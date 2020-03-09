@@ -209,10 +209,10 @@ public class ServerCommunication {
      *
      * @return true if new user is created, false if not.
      */
-    public boolean reservation(String userReserving, String timeSlot, String date, String room) {
+    public boolean reservation(String userReserving, String timeSlot, String date, int building_reserved, String room) {
         System.out.println(userReserving);
         System.out.println(room);
-        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"room_reserved\":\"" + room + "\"}";
+        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\""+ building_reserved + "\",\"room_reserved\":\"" + room + "\"}";
 
         try {
             boolean bool = this.webClient.post().uri("/postReservation")
