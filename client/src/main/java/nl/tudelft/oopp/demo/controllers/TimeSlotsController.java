@@ -3,6 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
+import nl.tudelft.oopp.demo.entities.Reservations;
 
 
 public class TimeSlotsController implements Initializable {
@@ -121,6 +123,14 @@ public class TimeSlotsController implements Initializable {
             e.printStackTrace();
         }
 
+        List<Reservations> allReservations = null;
+
+        try {
+            allReservations = con.getReservations();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Time closed = null;
         Time open = null;
 
@@ -132,6 +142,33 @@ public class TimeSlotsController implements Initializable {
                 break;
             }
         }
+
+        room = RoomMenuController.getId();
+        int checkDate = RoomReservationMenu.getDay();
+        int checkMonth = RoomReservationMenu.getMonth() + 1;
+        String formatDate = checkDate + "";
+        String formatMonth = checkMonth + "";
+
+        if (checkDate < 10) {
+            formatDate = "0" + checkDate;
+        }
+        if (checkMonth < 10) {
+            formatMonth = "0" + checkMonth;
+        }
+
+        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
+
+        List<Reservations> allSuitableRes = new ArrayList<>();
+
+        for (Reservations e : allReservations) {
+            System.out.println(date);
+            System.out.println(e.getDate().toString());
+            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
+                allSuitableRes.add(e);
+            }
+        }
+        System.out.println(allSuitableRes.toString());
+
         String opentime = open.toString().substring(0, 5);
         String closingtime = closed.toString().substring(0, 5);
         String[] opening = opentime.split(":");
@@ -173,6 +210,14 @@ public class TimeSlotsController implements Initializable {
                 if (hours < start || hours >= end) {
                     ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
                     k.disableProperty().setValue(true);
+                }
+                if (!allSuitableRes.isEmpty()) {
+                    for (Reservations t : allSuitableRes) {
+                        if (t.getTimeslot().toString().substring(0, 5).equals(firsttime[0])) {
+                            ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
+                            k.disableProperty().setValue(true);
+                        }
+                    }
                 }
             }
         }

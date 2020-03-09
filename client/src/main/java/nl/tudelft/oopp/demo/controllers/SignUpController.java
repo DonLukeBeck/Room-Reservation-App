@@ -114,7 +114,7 @@ public class SignUpController {
         stage1.close();
 
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainMenu.fxml");
+        URL xmlUrl = getClass().getResource("/mainScene.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
 
