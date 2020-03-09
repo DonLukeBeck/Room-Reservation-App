@@ -208,7 +208,7 @@ public class BikeSlots implements Initializable {
                     }
 
                     if (availablebikes <= 0) {
-                        ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
+                        ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
                         k.disableProperty().setValue(true);
                     }
 
