@@ -1,0 +1,6 @@
+- Reserve 1 month ahead max
+- Implement a logout method
+- Add filtering method to be able to find rooms according to
+- Calendar view for user reservations overview
+- Custom entry in calendar in reservations overview
+- Calendar view should start with current year and month, and can search for another time if need be
