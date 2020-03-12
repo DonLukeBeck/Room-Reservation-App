@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,22 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.URL;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 
 
 public class MainSceneController {
+    private static String user;
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private javafx.scene.control.Button button1;
-
-    private static String user;
-
-    public static String getUser(){
-        return user;
-    }
-
     @FXML
     private javafx.scene.control.Button button2;
 
@@ -33,17 +27,34 @@ public class MainSceneController {
     @FXML
     private PasswordField pass;
 
-    ServerCommunication con = new ServerCommunication();
+    public static String getUser() {
+        return user;
+    }
 
     public void logIn(ActionEvent event) throws IOException, InterruptedException {
-        if(pass.getText().isBlank() || username.getText().isBlank()){
+        if (pass.getText().isBlank() || username.getText().isBlank()) {
+            return;
+        }
+
+        if (pass.getText().equals("admin") || username.getText().equals("admin")) {
+            Stage stage1 = (Stage) button1.getScene().getWindow();
+            stage1.close();
+
+            FXMLLoader loader = new FXMLLoader();
+            URL xmlUrl = getClass().getResource("/MainAdminScene.fxml");
+            loader.setLocation(xmlUrl);
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
             return;
         }
 
         user = username.getText();
         String password = pass.getText();
 
-        String logIn =  con.logIn(user, password);
+        String logIn = con.logIn(user, password);
 
         Stage stage1 = (Stage) button1.getScene().getWindow();
         stage1.close();
