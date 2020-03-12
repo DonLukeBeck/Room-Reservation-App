@@ -117,7 +117,7 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="979.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#Calendarr" prefHeight="31.0" prefWidth="77.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-background-radius: 8; -fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2;" text="Search">
+      <Button layoutX="973.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#Calendarr" prefHeight="31.0" prefWidth="77.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-background-radius: 8; -fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2;" text="Search">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -216,14 +216,8 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="MonthChoice" layoutX="803.0" layoutY="93.0" onMouseClicked="#Month" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-background-radius: 8; -fx-border-width: 2.5; -fx-border-radius: 8;" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="YearChoice" layoutX="595.0" layoutY="93.0" onMouseClicked="#Year" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 8; -fx-background-radius: 8;" stylesheets="@style/style.css" />
-      <Label layoutX="481.0" layoutY="93.0" text="Pick a year:">
-         <font>
-            <Font name="Comic Sans MS Bold Italic" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="732.0" layoutY="96.0" text="Month: ">
+      <ChoiceBox fx:id="MonthChoice" layoutX="797.0" layoutY="93.0" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-background-radius: 8; -fx-border-width: 2.5; -fx-border-radius: 8;" stylesheets="@style/style.css" />
+      <Label layoutX="726.0" layoutY="96.0" text="Month: ">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="18.0" />
          </font>

@@ -98,7 +98,6 @@ public class TimeSlotsController implements Initializable {
         String temp2 = ArrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
-        System.out.println(MainSceneController.getUser());
 
         con.reservation(MainSceneController.getUser(), timeslot+":00", date, Integer.parseInt(building), room);
 
@@ -164,8 +163,6 @@ public class TimeSlotsController implements Initializable {
         List<Reservations> allSuitableRes = new ArrayList<>();
 
         for (Reservations e : allReservations) {
-            System.out.println(date);
-            System.out.println(e.getDate().toString());
             if (e.getDate().toString().equals(date) && e.getRoom_reserved() != null && e.getRoom_reserved().equals(room)) {
                 allSuitableRes.add(e);
             }

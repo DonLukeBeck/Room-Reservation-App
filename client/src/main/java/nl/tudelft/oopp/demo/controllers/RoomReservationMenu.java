@@ -1,48 +1,36 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.awt.ScrollPane;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class RoomReservationMenu {
-
-    @FXML
-    private ChoiceBox YearChoice;
-
-    @FXML
-    private ChoiceBox MonthChoice;
+public class RoomReservationMenu implements Initializable {
 
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
-
-    public static int getMonth() {
-        return Fmonth;
-    }
-    public static int getYear() {
-        return Fyear;
-    }
-    public static int getDay() {
-        return FDay;
-    }
+    private static int MonthNow;
+    private static int DayNow;
 
     public String reservationDate;
-
+    @FXML
+    private ChoiceBox MonthChoice;
     @FXML
     private javafx.scene.control.Button ReserveScene;
     @FXML
@@ -50,19 +38,16 @@ public class RoomReservationMenu {
     @FXML
     private GridPane Grid;
 
-    @FXML
-    private void Year(Event event) throws IOException {
-        String[] Ychoice = new String[]{
-                "2020", "2021", "2022"
-        };
-        YearChoice.setItems(FXCollections.observableArrayList("2020", "2021", "2022"));
+    public static int getMonth() {
+        return Fmonth;
     }
 
-    @FXML
-    private void Month(Event event) throws IOException {
-        //YearChoice.setItems(FXCollections.observableArrayList("2020", "2021", "2022"));
-        MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+    public static int getYear() {
+        return Fyear;
+    }
 
+    public static int getDay() {
+        return FDay;
     }
 
     public void CampusMap(Event event) throws IOException {
@@ -92,76 +77,6 @@ public class RoomReservationMenu {
 
     @FXML
     private void Calendarr(Event event) throws IOException {
-        //int col1 = 0;
-        // int row1 = 0;
-
-//        Integer column;
-//        Integer roww;
-//        AnchorPane[][] gridPaneNodes = new AnchorPane[6][4];
-//        //System.out.println("Begin");
-//        try {
-//            for (Node e : Grid.getChildren()) {
-//                //System.out.println("Begin2");
-//                // System.out.print(child.toString());
-//                column = GridPane.getColumnIndex(e);
-//
-//                if (column == null) col1 = 0;
-//                else col1 = column.intValue();
-//
-//                //System.out.println(col1);
-//                roww = GridPane.getRowIndex(e);
-//                if (roww == null) row1 = 0;
-//                else row1 = roww.intValue();
-//
-//                //System.out.println(col1 + "     " + row1);
-//                gridPaneNodes[col1][row1] = (AnchorPane) e;
-//
-//            }
-//        }
-//        catch(Exception e){
-//           System.out.println("ok1");
-//        }
-//        System.out.println("ok");
-//        Calendar c = Calendar.getInstance();
-//
-//        for (int row = 0; row < 5; row++) {
-//            for(int col = 0; col < 6; col++) {
-//                //try {
-//                    Node e = gridPaneNodes[col][row];
-//                    e = (AnchorPane) e;
-//                    c.set(Calendar.DAY_OF_MONTH, i);
-//
-//                    String time1[] = (c.getTime() + "").split(" ");
-//                    String time = time1[0];
-//                    //System.out.println(time);
-//                    //System.out.println(e);
-////                    if (flag == 0) {
-////                        if (e.getId().equals(time)) {
-////                            flag++;
-////                            System.out.println(e.getId());
-////                            Text text = new Text(time);
-////                            text.setX(5);
-////                            text.setY(10);
-////
-////                            i++;
-////                            ((AnchorPane) e).getChildren().add(text);
-////                        }
-//                    //} else {
-//                        System.out.println(e.getId());
-//                        Text text = new Text(time);
-//                        text.setX(5);
-//                        text.setY(10);
-//                        i++;
-//                        ((AnchorPane) e).getChildren().add(text);
-//                    //}
-//                    //System.out.println(flag);
-//                }
-//                //catch (Exception e){
-//                  //  System.out.print("ok");
-//                //}
-//            }
-//        }
-
         int i = 1;
         int flag = 0;
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -173,17 +88,13 @@ public class RoomReservationMenu {
             }
         }
         int yearIndex = 2020;
-        if (YearChoice.getValue().equals("2021")) {
-            yearIndex = 2021;
-        }
-        if (YearChoice.getValue().equals("2022")) {
-            yearIndex = 2022;
-        }
 
         Fyear = yearIndex;
         Fmonth = monIndex;
 
         Calendar c = Calendar.getInstance();
+        yearIndex = c.get(Calendar.YEAR);
+
         c.set(Calendar.YEAR, yearIndex);
         c.set(Calendar.MONTH, monIndex);
 
@@ -211,6 +122,14 @@ public class RoomReservationMenu {
                     text.setRotate(-90);
 
                     i++;
+                    if (day == DayNow && Fmonth == MonthNow) {
+                        System.out.println("Here");
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    } else {
+                        BorderWidths bor = new BorderWidths(0, 0, 0, 0);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
                     ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }
@@ -222,6 +141,14 @@ public class RoomReservationMenu {
                 i++;
                 days--;
                 if (days > 0) {
+                    if (day == DayNow && Fmonth == MonthNow) {
+                        System.out.println("Here");
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    } else {
+                        BorderWidths bor = new BorderWidths(0, 0, 0, 0);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
                     ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }
@@ -289,6 +216,89 @@ public class RoomReservationMenu {
         stage.setScene(new Scene(root));
         stage.show();
 
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+
+        Calendar defaultCalendar = Calendar.getInstance();
+
+        int year = defaultCalendar.get(Calendar.YEAR);
+        int month = defaultCalendar.get(Calendar.MONTH);
+        int day1 = defaultCalendar.get(Calendar.DAY_OF_MONTH);
+        DayNow = day1;
+
+        defaultCalendar.set(Calendar.YEAR, year);
+        defaultCalendar.set(Calendar.MONTH, month);
+
+        MonthNow = month;
+        Fyear = year;
+        Fmonth = month;
+        String defMon = null;
+        for (int i = 0; i < allMonths.length; i++) {
+            if (i == month) {
+                defMon = allMonths[i];
+                break;
+            }
+        }
+
+        MonthChoice.setValue(defMon);
+
+        int flag = 0;
+        int i = 1;
+
+        YearMonth yearMon = YearMonth.of(year, month + 1);
+
+        int days = yearMon.lengthOfMonth();
+        int day = 1;
+
+        for (Node e : Grid.getChildren()) {
+            defaultCalendar.set(Calendar.DAY_OF_MONTH, i);
+            try {
+                ((AnchorPane) e).getChildren().clear();
+            } catch (Exception idc) {
+                System.out.println("Meaningless error");
+            }
+
+
+            String[] time1 = (defaultCalendar.getTime() + "").split(" ");
+            String time = time1[0];
+            if (flag == 0) {
+                if (e.getId().equals(time)) {
+                    flag++;
+                    Text text = new Text(day + "");
+                    text.setX(5);
+                    text.setY(115);
+                    text.setRotate(-90);
+                    if (day == day1) {
+                        System.out.println("Here");
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
+                    i++;
+                    ((AnchorPane) e).getChildren().add(text);
+                    day++;
+                }
+            } else {
+                Text text = new Text(day + "");
+                text.setX(5);
+                text.setY(115);
+                text.setRotate(-90);
+                i++;
+                days--;
+                if (days > 0) {
+                    if (day == day1) {
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
+
+                    ((AnchorPane) e).getChildren().add(text);
+                    day++;
+                }
+            }
+        }
     }
 }
 

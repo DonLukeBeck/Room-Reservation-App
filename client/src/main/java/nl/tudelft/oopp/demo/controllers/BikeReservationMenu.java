@@ -1,71 +1,51 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.util.Date;
-import javafx.collections.FXCollections;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
 import java.util.Calendar;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import java.util.Date;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class BikeReservationMenu {
+public class BikeReservationMenu implements Initializable {
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
-
-    public static int getMonth() {
-        return Fmonth;
-    }
-    public static int getYear() {
-        return Fyear;
-    }
-    public static int getDay() {
-        return FDay;
-    }
+    private static int MonthNow;
+    private static int DayNow;
     public String reservationDate;
-
-    @FXML
-    private ChoiceBox YearChoice;
-
-
     @FXML
     private ChoiceBox MonthChoice;
-
-    //  private int month;
-    // private String year;
     @FXML
     private javafx.scene.control.Button ReserveScene;
     @FXML
     private AnchorPane Mon;
     @FXML
     private GridPane Grid;
-    @FXML
-    private ScrollPane Scroll;
 
-    @FXML
-    private void Year(Event event) throws IOException {
-        String[] Ychoice = new String[]{
-                "2020", "2021", "2022"
-        };
-        YearChoice.setItems(FXCollections.observableArrayList("2020", "2021", "2022"));
+    public static int getMonth() {
+        return Fmonth;
     }
 
-    @FXML
-    private void Month(Event event) throws IOException {
-        MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+    public static int getYear() {
+        return Fyear;
+    }
 
+    public static int getDay() {
+        return FDay;
     }
 
     public void CampusMap(Event event) throws IOException {
@@ -106,17 +86,13 @@ public class BikeReservationMenu {
             }
         }
         int yearIndex = 2020;
-        if (YearChoice.getValue().equals("2021")) {
-            yearIndex = 2021;
-        }
-        if (YearChoice.getValue().equals("2022")) {
-            yearIndex = 2022;
-        }
 
         Fyear = yearIndex;
         Fmonth = monIndex;
 
         Calendar c = Calendar.getInstance();
+        yearIndex = c.get(Calendar.YEAR);
+
         c.set(Calendar.YEAR, yearIndex);
         c.set(Calendar.MONTH, monIndex);
 
@@ -144,6 +120,14 @@ public class BikeReservationMenu {
                     text.setRotate(-90);
 
                     i++;
+                    if (day == DayNow && Fmonth == MonthNow) {
+                        System.out.println("Here");
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    } else {
+                        BorderWidths bor = new BorderWidths(0, 0, 0, 0);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
                     ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }
@@ -155,6 +139,14 @@ public class BikeReservationMenu {
                 i++;
                 days--;
                 if (days > 0) {
+                    if (day == DayNow && Fmonth == MonthNow) {
+                        System.out.println("Here");
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    } else {
+                        BorderWidths bor = new BorderWidths(0, 0, 0, 0);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
                     ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }
@@ -223,7 +215,91 @@ public class BikeReservationMenu {
         stage.show();
 
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+
+        Calendar defaultCalendar = Calendar.getInstance();
+
+        int year = defaultCalendar.get(Calendar.YEAR);
+        int month = defaultCalendar.get(Calendar.MONTH);
+        int day1 = defaultCalendar.get(Calendar.DAY_OF_MONTH);
+        DayNow = day1;
+
+        defaultCalendar.set(Calendar.YEAR, year);
+        defaultCalendar.set(Calendar.MONTH, month);
+
+        MonthNow = month;
+        Fyear = year;
+        Fmonth = month;
+        String defMon = null;
+        for (int i = 0; i < allMonths.length; i++) {
+            if (i == month) {
+                defMon = allMonths[i];
+                break;
+            }
+        }
+
+        MonthChoice.setValue(defMon);
+
+        int flag = 0;
+        int i = 1;
+
+        YearMonth yearMon = YearMonth.of(year, month + 1);
+
+        int days = yearMon.lengthOfMonth();
+        int day = 1;
+
+        for (Node e : Grid.getChildren()) {
+            defaultCalendar.set(Calendar.DAY_OF_MONTH, i);
+            try {
+                ((AnchorPane) e).getChildren().clear();
+            } catch (Exception idc) {
+                System.out.println("Meaningless error");
+            }
+
+
+            String[] time1 = (defaultCalendar.getTime() + "").split(" ");
+            String time = time1[0];
+            if (flag == 0) {
+                if (e.getId().equals(time)) {
+                    flag++;
+                    Text text = new Text(day + "");
+                    text.setX(5);
+                    text.setY(115);
+                    text.setRotate(-90);
+                    if (day == day1) {
+                        System.out.println("Here");
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
+                    i++;
+                    ((AnchorPane) e).getChildren().add(text);
+                    day++;
+                }
+            } else {
+                Text text = new Text(day + "");
+                text.setX(5);
+                text.setY(115);
+                text.setRotate(-90);
+                i++;
+                days--;
+                if (days > 0) {
+                    if (day == day1) {
+                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                    }
+
+                    ((AnchorPane) e).getChildren().add(text);
+                    day++;
+                }
+            }
+        }
+    }
 }
+
 
 
 

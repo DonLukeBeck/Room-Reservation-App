@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 
-<AnchorPane prefHeight="219.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.RoomReservationMenu">
+<AnchorPane prefHeight="219.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AlertController">
    <children>
       <Label layoutX="176.0" layoutY="14.0" text="Ooops!">
          <font>
