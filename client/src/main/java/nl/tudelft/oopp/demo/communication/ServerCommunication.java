@@ -48,28 +48,37 @@ public class ServerCommunication {
         }
     }
 
-    public String logIn(String user, String pass) {
+    public Users logIn(String user, String pass) {
 
         String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\"}";
+        Users userLogged = new Users();
         try {
-            String str = this.webClient.post().uri("/loginUser")
+            String userJson = this.webClient.post().uri("/loginUser")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
-            if (!str.isEmpty()) {
+            if (!userJson.isEmpty()) {
                 System.out.println("User Logged in");
-                System.out.println(str);
-                return str;
+                System.out.println(userJson);
+                ObjectMapper mapper = new ObjectMapper();
+                userLogged = mapper.readValue(userJson, Users.class);
+                System.out.println(userLogged.getNetid());
+                System.out.println(userLogged.getRole());
+                return userLogged;
             } else {
                 System.out.println("Authentication failed");
-                return "";
+                System.out.println(userLogged.getNetid());
+                System.out.println(userLogged.getRole());
+                return userLogged;
             }
         } catch (Exception e) {
             System.out.println("Authentication failed");
-            return "";
+            System.out.println(userLogged.getNetid());
+            System.out.println(userLogged.getRole());
+            return userLogged;
         }
     }
 

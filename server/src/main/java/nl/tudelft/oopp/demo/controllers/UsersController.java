@@ -42,7 +42,8 @@ public class UsersController {
         // @RequestParam means it is a parameter from the GET or POST request
         try {
             Users foundUser = usersRepository.findUserByNetidAndPass(user.getNetid(), user.getPassword());
-            return foundUser.getNetid();
+            String userJson =  "{\"netid\":\"" + foundUser.getNetid() + "\",\"role\":\"" + foundUser.getRole() + "\"}";
+            return userJson;
         }catch(NullPointerException e){
             return "";
         }

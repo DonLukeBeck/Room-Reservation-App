@@ -11,6 +11,7 @@ dependencies {
     implementation 'org.springframework:spring-webflux:5.1.8.RELEASE'
     implementation 'io.projectreactor.netty:reactor-netty:0.8.9.RELEASE'
     compile 'com.jfoenix:jfoenix:9.0.8'
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.0'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.9.3'
 }
 repositories {
