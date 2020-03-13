@@ -16,6 +16,8 @@ public class Buildings {
 
     private int number_of_bikes;
 
+    private String url;
+
     public Buildings() {
     }
 
@@ -65,5 +67,13 @@ public class Buildings {
 
     public void setNumber_of_bikes(int number_of_bikes) {
         this.number_of_bikes = number_of_bikes;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
