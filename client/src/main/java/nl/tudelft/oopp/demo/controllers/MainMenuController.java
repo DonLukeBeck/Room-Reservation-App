@@ -17,7 +17,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
@@ -33,6 +36,9 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private AnchorPane pane1;
+
+    @FXML
+    private Pane sidePane;
 
     public static String getId() {
         return id;
@@ -68,6 +74,8 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Buildings> buildingsList = new ArrayList<>();
+        int layoutY = 220;
+
         try {
             buildingsList = con.getBuildings();
         } catch (IOException e) {
@@ -76,29 +84,16 @@ public class MainMenuController implements Initializable {
 
         int i = 0;
         int capsCount = 0;
-//        Time open = new Time(6, 0, 0);
-//        Time close = new Time(21, 0, 0);
-//        Buildings k = new Buildings();
-//        k.setName("Civil Engineering and Geosciences");
-//        k.setBuilding_number(28);
-//        k.setNumber_of_bikes(2);
-//        k.setNumber_of_rooms(5);
-//        k.setClosing_hours(close);
-//        k.setOpening_hours(open);
-//
-//        buildingsList.add(k);
-//        buildingsList.add(k);
-//        buildingsList.add(k);
-//        buildingsList.add(k);
-
-        List<String> imageBuildingsList = new ArrayList<>();
-
-        imageBuildingsList.add("https://iamap.tudelft.nl/wp-content/uploads/2017/10/34_3ME_V1-900x601.jpg");
-        imageBuildingsList.add("https://iamap.tudelft.nl/wp-content/uploads/2017/10/36_EWI_V1_b-900x601.jpg");
+        int changeInPosition = 0;
 
         for (Buildings e : buildingsList) {
+            capsCount = 0;
+            changeInPosition = 0;
             String buildingName = "";
             for (Character a : e.getName().toCharArray()) {
+                if (a.equals('(')) {
+                    break;
+                }
                 if (Character.isUpperCase(a)) {
                     capsCount++;
                     buildingName = buildingName + a;
@@ -106,15 +101,25 @@ public class MainMenuController implements Initializable {
             }
             if (capsCount == 1 || capsCount == 0) {
                 buildingName = e.getName();
+                changeInPosition = 40;
             } else {
                 buildingName = "Faculty of " + buildingName;
             }
+
+            Label sideBuilding = new Label("-" + buildingName);
+            sideBuilding.setLayoutX(56);
+            sideBuilding.setLayoutY(layoutY +28);
+            sideBuilding.setFont(Font.font("System", FontWeight.BOLD , 14));
+            sideBuilding.setTextFill(Color.valueOf("white"));
+            layoutY = layoutY + 28;
+            sidePane.getChildren().add(sideBuilding);
+
             if (i == 0) {
                 Label textName = new Label(buildingName);
                 Label textID = new Label("Building: " + e.getBuilding_number());
 
                 pane1.getChildren().add(textName);
-                textName.setLayoutX(72);
+                textName.setLayoutX(72 + changeInPosition);
                 textName.setLayoutY(14);
                 textName.setFont(Font.font("System", 20));
                 textName.setId("A");
@@ -124,7 +129,7 @@ public class MainMenuController implements Initializable {
                 textID.setLayoutY(41);
                 textID.setFont(Font.font("System", 20));
 
-                Image image = new Image(imageBuildingsList.get(i));
+                Image image = new Image(e.getUrl());
                 ImageView imageBuil = new ImageView(image);
                 pane1.getChildren().add(imageBuil);
                 imageBuil.fitHeightProperty().setValue(192);
@@ -133,7 +138,7 @@ public class MainMenuController implements Initializable {
                 imageBuil.setY(74);
                 imageBuil.setOnMouseClicked(event -> {
                     try {
-                        goToMenuReservation(event , e.getBuilding_number()+"");
+                        goToMenuReservation(event, e.getBuilding_number() + "");
                     } catch (IOException k) {
                         k.printStackTrace();
                     }
@@ -144,7 +149,7 @@ public class MainMenuController implements Initializable {
                 Label textID = new Label("Building: " + e.getBuilding_number());
 
                 pane1.getChildren().add(textName);
-                textName.setLayoutX(377);
+                textName.setLayoutX(377+ changeInPosition);
                 textName.setLayoutY(14);
                 textName.setFont(Font.font("System", 20));
                 textName.setId("B");
@@ -154,7 +159,7 @@ public class MainMenuController implements Initializable {
                 textID.setLayoutY(41);
                 textID.setFont(Font.font("System", 20));
 
-                Image image = new Image(imageBuildingsList.get(i));
+                Image image = new Image(e.getUrl());
                 ImageView imageBuil = new ImageView(image);
                 pane1.getChildren().add(imageBuil);
                 imageBuil.fitHeightProperty().setValue(192);
@@ -163,7 +168,7 @@ public class MainMenuController implements Initializable {
                 imageBuil.setY(74);
                 imageBuil.setOnMouseClicked(event -> {
                     try {
-                        goToMenuReservation(event, ""+e.getBuilding_number());
+                        goToMenuReservation(event, "" + e.getBuilding_number());
                     } catch (IOException k) {
                         k.printStackTrace();
                     }
@@ -174,7 +179,7 @@ public class MainMenuController implements Initializable {
                 Label textID = new Label("Building: " + e.getBuilding_number());
 
                 pane1.getChildren().add(textName);
-                textName.setLayoutX(682);
+                textName.setLayoutX(682+ changeInPosition);
                 textName.setLayoutY(14);
                 textName.setFont(Font.font("System", 20));
                 textName.setId("C");
@@ -184,7 +189,7 @@ public class MainMenuController implements Initializable {
                 textID.setLayoutY(41);
                 textID.setFont(Font.font("System", 20));
 
-                Image image = new Image(imageBuildingsList.get(i));
+                Image image = new Image(e.getUrl());
                 ImageView imageBuil = new ImageView(image);
                 pane1.getChildren().add(imageBuil);
                 imageBuil.fitHeightProperty().setValue(192);
@@ -193,7 +198,7 @@ public class MainMenuController implements Initializable {
                 imageBuil.setY(74);
                 imageBuil.setOnMouseClicked(event -> {
                     try {
-                        goToMenuReservation(event, ""+e.getBuilding_number());
+                        goToMenuReservation(event, "" + e.getBuilding_number());
                     } catch (IOException k) {
                         k.printStackTrace();
                     }
@@ -207,20 +212,36 @@ public class MainMenuController implements Initializable {
             return;
         }
         Label last = null;
+        i++;
 
         for (int j = i; j < buildingsList.size(); j++) {
+            capsCount = 0;
             String buildingName = "";
+            changeInPosition = 0;
             for (Character a : buildingsList.get(j).getName().toCharArray()) {
+                if (a.toString().equals("(")) {
+                    break;
+                }
                 if (Character.isUpperCase(a)) {
                     capsCount++;
                     buildingName = buildingName + a;
                 }
             }
+
             if (capsCount == 1 || capsCount == 0) {
                 buildingName = buildingsList.get(j).getName();
+                changeInPosition = 40;
             } else {
                 buildingName = "Faculty of " + buildingName;
             }
+
+            Label sideBuilding = new Label("-" + buildingName);
+            sideBuilding.setLayoutX(56);
+            sideBuilding.setLayoutY(layoutY +28);
+            sideBuilding.setFont(Font.font("System", FontWeight.BOLD , 14));
+            sideBuilding.setTextFill(Color.valueOf("white"));
+            layoutY = layoutY + 28;
+            sidePane.getChildren().add(sideBuilding);
 
             for (Node e : pane1.getChildren()) {
                 if (e instanceof Label && e.getId() != null) {
@@ -228,12 +249,11 @@ public class MainMenuController implements Initializable {
                 }
             }
             if (last.getId().contains("A")) {
-                System.out.println("A");
                 Label textName = new Label(buildingName);
                 Label textID = new Label("Building: " + buildingsList.get(j).getBuilding_number());
 
                 pane1.getChildren().add(textName);
-                textName.setLayoutX(387);
+                textName.setLayoutX(387+ changeInPosition);
                 textName.setLayoutY(last.getLayoutY());
                 textName.setFont(Font.font("System", 20));
                 textName.setId("B");
@@ -243,14 +263,14 @@ public class MainMenuController implements Initializable {
                 textID.setLayoutY(last.getLayoutY() + 27);
                 textID.setFont(Font.font("System", 20));
 
-                Image image = new Image(imageBuildingsList.get(j));
+                Image image = new Image(buildingsList.get(j).getUrl());
                 ImageView imageBuil = new ImageView(image);
                 pane1.getChildren().add(imageBuil);
                 imageBuil.fitHeightProperty().setValue(192);
                 imageBuil.setFitWidth(282);
                 imageBuil.setX(302);
                 imageBuil.setY(last.getLayoutY() + 60);
-                String getId = buildingsList.get(j).getBuilding_number()+"";
+                String getId = buildingsList.get(j).getBuilding_number() + "";
                 imageBuil.setOnMouseClicked(event -> {
                     try {
                         goToMenuReservation(event, getId);
@@ -260,12 +280,11 @@ public class MainMenuController implements Initializable {
                 });
             }
             if (last.getId().contains("B")) {
-                System.out.println("B");
                 Label textName = new Label(buildingName);
                 Label textID = new Label("Building: " + buildingsList.get(j).getBuilding_number());
 
                 pane1.getChildren().add(textName);
-                textName.setLayoutX(682);
+                textName.setLayoutX(682 + changeInPosition);
                 textName.setLayoutY(last.getLayoutY());
                 textName.setFont(Font.font("System", 20));
                 textName.setId("C");
@@ -275,14 +294,14 @@ public class MainMenuController implements Initializable {
                 textID.setLayoutY(last.getLayoutY() + 27);
                 textID.setFont(Font.font("System", 20));
 
-                Image image = new Image(imageBuildingsList.get(j));
+                Image image = new Image(buildingsList.get(j).getUrl());
                 ImageView imageBuil = new ImageView(image);
                 pane1.getChildren().add(imageBuil);
                 imageBuil.fitHeightProperty().setValue(192);
                 imageBuil.setFitWidth(282);
                 imageBuil.setX(601);
                 imageBuil.setY(last.getLayoutY() + 60);
-                String getId = buildingsList.get(j).getBuilding_number()+"";
+                String getId = buildingsList.get(j).getBuilding_number() + "";
                 imageBuil.setOnMouseClicked(event -> {
                     try {
                         goToMenuReservation(event, getId);
@@ -292,12 +311,11 @@ public class MainMenuController implements Initializable {
                 });
             }
             if (last.getId().contains("C")) {
-                System.out.println("C");
                 Label textName = new Label(buildingName);
                 Label textID = new Label("Building: " + buildingsList.get(j).getBuilding_number());
 
                 pane1.getChildren().add(textName);
-                textName.setLayoutX(82);
+                textName.setLayoutX(82+ changeInPosition);
                 textName.setLayoutY(last.getLayoutY() + 268);
                 textName.setFont(Font.font("System", 20));
                 textName.setId("A");
@@ -307,14 +325,14 @@ public class MainMenuController implements Initializable {
                 textID.setLayoutY(last.getLayoutY() + 295);
                 textID.setFont(Font.font("System", 20));
 
-                Image image = new Image(imageBuildingsList.get(j));
+                Image image = new Image(buildingsList.get(j).getUrl());
                 ImageView imageBuil = new ImageView(image);
                 pane1.getChildren().add(imageBuil);
                 imageBuil.fitHeightProperty().setValue(192);
                 imageBuil.setFitWidth(282);
                 imageBuil.setX(4);
                 imageBuil.setY(last.getLayoutY() + 60 + 268);
-                String getId = buildingsList.get(j).getBuilding_number()+"";
+                String getId = buildingsList.get(j).getBuilding_number() + "";
                 imageBuil.setOnMouseClicked(event -> {
                     try {
                         goToMenuReservation(event, getId);

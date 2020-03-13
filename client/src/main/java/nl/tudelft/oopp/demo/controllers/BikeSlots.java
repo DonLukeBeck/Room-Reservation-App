@@ -13,9 +13,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
@@ -33,6 +37,8 @@ public class BikeSlots implements Initializable {
     private AnchorPane slots;
     @FXML
     private javafx.scene.control.Button ReserveScene;
+    @FXML
+    private Pane sidePane;
 
     public static String getBuilding() {
         return building;
@@ -97,6 +103,9 @@ public class BikeSlots implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
+
         int checkDate = BikeReservationMenu.getDay();
         int checkMonth = BikeReservationMenu.getMonth() + 1;
         String formatDate = checkDate + "";
@@ -113,6 +122,42 @@ public class BikeSlots implements Initializable {
         }
 
         date = BikeReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
+        List<Buildings> buildingsList = new ArrayList<>();
+        int layoutY = 220;
+        try {
+            buildingsList = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Buildings e : buildingsList) {
+            int capsCount = 0;
+            int changeInPosition = 0;
+            String buildingName = "";
+            for (Character a : e.getName().toCharArray()) {
+                if (a.equals('(')) {
+                    break;
+                }
+                if (Character.isUpperCase(a)) {
+                    capsCount++;
+                    buildingName = buildingName + a;
+                }
+            }
+            if (capsCount == 1 || capsCount == 0) {
+                buildingName = e.getName();
+                changeInPosition = 40;
+            } else {
+                buildingName = "Faculty of " + buildingName;
+            }
+
+            Label sideBuilding = new Label("-" + buildingName);
+            sideBuilding.setLayoutX(56);
+            sideBuilding.setLayoutY(layoutY + 28);
+            sideBuilding.setFont(Font.font("System", FontWeight.BOLD, 14));
+            sideBuilding.setTextFill(Color.valueOf("white"));
+            layoutY = layoutY + 28;
+            sidePane.getChildren().add(sideBuilding);
+        }
 
         List<Buildings> list = null;
 

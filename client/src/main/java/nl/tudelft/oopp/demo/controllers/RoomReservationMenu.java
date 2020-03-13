@@ -3,9 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -15,13 +13,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class RoomReservationMenu implements Initializable {
-
+    ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
@@ -37,6 +40,8 @@ public class RoomReservationMenu implements Initializable {
     private AnchorPane Mon;
     @FXML
     private GridPane Grid;
+    @FXML
+    private Pane sidePane;
 
     public static int getMonth() {
         return Fmonth;
@@ -224,6 +229,43 @@ public class RoomReservationMenu implements Initializable {
         MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
 
         Calendar defaultCalendar = Calendar.getInstance();
+
+        List<Buildings> buildingsList = new ArrayList<>();
+        int layoutY = 220;
+        try {
+            buildingsList = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Buildings e : buildingsList) {
+            int capsCount = 0;
+            int changeInPosition = 0;
+            String buildingName = "";
+            for (Character a : e.getName().toCharArray()) {
+                if (a.equals('(')) {
+                    break;
+                }
+                if (Character.isUpperCase(a)) {
+                    capsCount++;
+                    buildingName = buildingName + a;
+                }
+            }
+            if (capsCount == 1 || capsCount == 0) {
+                buildingName = e.getName();
+                changeInPosition = 40;
+            } else {
+                buildingName = "Faculty of " + buildingName;
+            }
+
+            Label sideBuilding = new Label("-" + buildingName);
+            sideBuilding.setLayoutX(56);
+            sideBuilding.setLayoutY(layoutY + 28);
+            sideBuilding.setFont(Font.font("System", FontWeight.BOLD, 14));
+            sideBuilding.setTextFill(Color.valueOf("white"));
+            layoutY = layoutY + 28;
+            sidePane.getChildren().add(sideBuilding);
+        }
 
         int year = defaultCalendar.get(Calendar.YEAR);
         int month = defaultCalendar.get(Calendar.MONTH);

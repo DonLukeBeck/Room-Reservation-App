@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -30,6 +31,9 @@ public class CompletedReservationController implements Initializable {
     @FXML
     private Button scene;
 
+    @FXML
+    private Pane sidePane;
+
     ServerCommunication con = new ServerCommunication();
 
     public String getName() {
@@ -39,6 +43,8 @@ public class CompletedReservationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Buildings> list = null;
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
 
         try {
             list = con.getBuildings();
@@ -52,14 +58,14 @@ public class CompletedReservationController implements Initializable {
         builId.textFillProperty().setValue(Color.valueOf("#ffc500"));
         pane.getChildren().add(builId);
 
-
         for (Buildings e : list) {
             if (e.getBuilding_number() == Integer.parseInt(TimeSlotsController.getBuilding())) {
                 name = e.getName();
                 System.out.println(name);
             }
         }
-        Label builname = new Label(name);
+        String[] nameA = name.split("\\(");
+        Label builname = new Label(nameA[0]);
         pane.getChildren().add(builname);
         builname.layoutYProperty().setValue(470);
         builname.layoutXProperty().setValue(440);

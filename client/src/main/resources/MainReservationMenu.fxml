@@ -4,9 +4,9 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<?import javafx.scene.paint.Color?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.MainReservationMenuController">
     <children>
         <Label contentDisplay="CENTER" layoutX="340.0" layoutY="324.0" text="What would you want to reserve" textAlignment="CENTER" textFill="#2dc26b">
@@ -42,7 +42,7 @@
                 <Image url="@images/libr1.jpg" />
             </image>
         </ImageView>
-        <Pane layoutX="-2.0" prefHeight="800.0" prefWidth="189.0" style="-fx-background-color: #00A6D6;">
+        <Pane fx:id="sidePane" layoutX="-2.0" prefHeight="800.0" prefWidth="189.0" style="-fx-background-color: #00A6D6;">
             <children>
                 <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="29.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -54,46 +54,6 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="56.0" layoutY="248.0" text="- EEMCS" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="57.0" layoutY="276.0" text="- Aula" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="305.0" text="- Pulse" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="332.0" text="- Library" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="55.0" layoutY="360.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AE" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="55.0" layoutY="390.0" prefHeight="20.0" prefWidth="126.0" text="- Faculty of MMME" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="53.0" layoutY="418.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of IO" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="54.0" layoutY="446.0" prefHeight="20.0" prefWidth="108.0" text="- Faculty of CEG" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="476.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AS" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
                 <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold Italic" size="14.0" />

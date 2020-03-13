@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -33,6 +34,8 @@ public class TimeSlotsController implements Initializable {
     private AnchorPane slots;
     @FXML
     private javafx.scene.control.Button ReserveScene;
+    @FXML
+    private Pane sidePane;
 
     public static String getBuilding() {
         return building;
@@ -117,7 +120,11 @@ public class TimeSlotsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         List<Buildings> list = null;
+
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
 
         try {
             list = con.getBuildings();

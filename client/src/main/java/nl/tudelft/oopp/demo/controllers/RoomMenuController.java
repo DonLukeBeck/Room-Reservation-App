@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -39,10 +40,14 @@ public class RoomMenuController implements Initializable {
     private Rectangle rect1;
     @FXML
     private javafx.scene.control.ScrollPane scene1;
+    @FXML
+    private Pane sidePane;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
 
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);

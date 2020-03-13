@@ -42,7 +42,7 @@
                 <Image url="@images/libr1.jpg" />
             </image>
         </ImageView>
-        <Pane prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
+        <Pane fx:id="sidePane" prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
             <children>
                 <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -54,46 +54,6 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="56.0" layoutY="248.0" text="- EEMCS" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="57.0" layoutY="276.0" text="- Aula" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="305.0" text="- Pulse" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="332.0" text="- Library" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="55.0" layoutY="360.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AE" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="55.0" layoutY="390.0" prefHeight="20.0" prefWidth="126.0" text="- Faculty of MMME" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="53.0" layoutY="418.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of IO" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="54.0" layoutY="446.0" prefHeight="20.0" prefWidth="108.0" text="- Faculty of CEG" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="476.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AS" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
             </children>
         </Pane>
         <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="286.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">

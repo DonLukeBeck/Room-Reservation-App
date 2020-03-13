@@ -3,9 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -19,8 +17,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class BikeReservationMenu implements Initializable {
+    ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
@@ -35,6 +36,9 @@ public class BikeReservationMenu implements Initializable {
     private AnchorPane Mon;
     @FXML
     private GridPane Grid;
+
+    @FXML
+    private Pane sidePane;
 
     public static int getMonth() {
         return Fmonth;
@@ -223,10 +227,20 @@ public class BikeReservationMenu implements Initializable {
 
         Calendar defaultCalendar = Calendar.getInstance();
 
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
+
         int year = defaultCalendar.get(Calendar.YEAR);
         int month = defaultCalendar.get(Calendar.MONTH);
         int day1 = defaultCalendar.get(Calendar.DAY_OF_MONTH);
         DayNow = day1;
+
+        List<Buildings> buildings = new ArrayList<>();
+        try {
+            buildings = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         defaultCalendar.set(Calendar.YEAR, year);
         defaultCalendar.set(Calendar.MONTH, month);

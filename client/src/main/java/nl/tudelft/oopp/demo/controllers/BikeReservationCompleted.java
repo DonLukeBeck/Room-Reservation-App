@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -28,12 +29,18 @@ public class BikeReservationCompleted implements Initializable {
     @FXML
     private Button scene;
 
+    @FXML
+    private Pane sidePane;
+
     public String getName() {
         return name;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
+
         List<Buildings> list = null;
 
         try {
@@ -55,7 +62,8 @@ public class BikeReservationCompleted implements Initializable {
                 System.out.println(name);
             }
         }
-        Label builname = new Label(name);
+        String[] nameA = name.split("\\(");
+        Label builname = new Label(nameA[0]);
         pane.getChildren().add(builname);
         builname.layoutYProperty().setValue(470);
         builname.layoutXProperty().setValue(440);
