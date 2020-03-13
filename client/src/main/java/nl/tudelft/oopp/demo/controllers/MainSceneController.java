@@ -11,6 +11,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.entities.Users;
 
 
 public class MainSceneController {
@@ -36,37 +37,52 @@ public class MainSceneController {
             return;
         }
 
-        if (pass.getText().equals("admin") || username.getText().equals("admin")) {
-            Stage stage1 = (Stage) button1.getScene().getWindow();
-            stage1.close();
-
-            FXMLLoader loader = new FXMLLoader();
-            URL xmlUrl = getClass().getResource("/MainAdminScene.fxml");
-            loader.setLocation(xmlUrl);
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-            return;
-        }
-
         user = username.getText();
         String password = pass.getText();
 
-        String logIn = con.logIn(user, password);
+        Users userLogged = con.logIn(user, password);
 
-        Stage stage1 = (Stage) button1.getScene().getWindow();
-        stage1.close();
+        // verify if user is logged in
+        if(!userLogged.getNetid().isEmpty()){
+            //if he s logged in, verify what role he has
 
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
+            if (userLogged.getRole().equals("admin")) {
+                //redirect to admin page
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+                Stage stage1 = (Stage) button1.getScene().getWindow();
+                stage1.close();
+
+                FXMLLoader loader = new FXMLLoader();
+                URL xmlUrl = getClass().getResource("/MainAdminScene.fxml");
+                loader.setLocation(xmlUrl);
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+                return;
+            }
+            else if(userLogged.getRole().equals("student")){
+                //redirect to student page
+
+                Stage stage1 = (Stage) button1.getScene().getWindow();
+                stage1.close();
+
+                FXMLLoader loader = new FXMLLoader();
+                URL xmlUrl = getClass().getResource("/MainMenu.fxml");
+                loader.setLocation(xmlUrl);
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            }else{
+                //redirect to teacher page
+            }
+        }else {
+            //else show error message - user not in db
+        }
+
     }
 
     public void register(ActionEvent event) throws IOException, InterruptedException {

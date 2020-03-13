@@ -3,11 +3,9 @@ package nl.tudelft.oopp.demo.entities;
 
 public class Users {
 
-    private String netid;
+    private String netid = "";
 
-    private String password;
-
-    private String role;
+    private String role = "";
 
     public Users() {
     }
@@ -18,14 +16,6 @@ public class Users {
 
     public void setNetid(String netid) {
         this.netid = netid;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getRole() {
