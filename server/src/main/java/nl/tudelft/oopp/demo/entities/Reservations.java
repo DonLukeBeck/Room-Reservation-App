@@ -17,6 +17,7 @@ public class Reservations {
 
     private Date date;
 
+
     private int building_reserved;
 
     private String room_reserved;
