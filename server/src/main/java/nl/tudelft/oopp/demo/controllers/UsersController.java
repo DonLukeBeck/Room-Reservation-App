@@ -24,15 +24,20 @@ public class UsersController {
     boolean register(@RequestBody RegisterNewUser user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        if(!usersRepository.findUserByNetid(user.getNetid()).getNetid().isEmpty()){
+        try {
+            if (!usersRepository.findUserByNetid(user.getNetid()).getNetid().isEmpty()) {
+                return false;
+            }
             return false;
+        }catch(NullPointerException e){
+            Users newUser = new Users();
+            newUser.setNetid(user.getNetid());
+            newUser.setPassword(user.getPassword());
+            newUser.setRole(user.getRole());
+            usersRepository.save(newUser);
+            return true;
         }
-        Users newUser = new Users();
-        newUser.setNetid(user.getNetid());
-        newUser.setPassword(user.getPassword());
-        newUser.setRole(user.getRole());
-        usersRepository.save(newUser);
-        return true;
+
     }
 
     @PostMapping("/loginUser") // Map ONLY POST Requests
