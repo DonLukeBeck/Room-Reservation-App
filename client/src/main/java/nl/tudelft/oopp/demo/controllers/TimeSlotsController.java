@@ -36,6 +36,8 @@ public class TimeSlotsController implements Initializable {
     private javafx.scene.control.Button ReserveScene;
     @FXML
     private Pane sidePane;
+    @FXML
+    private AnchorPane mainScreen;
 
     public static String getBuilding() {
         return building;
@@ -104,18 +106,8 @@ public class TimeSlotsController implements Initializable {
 
         con.reservation(MainSceneController.getUser(), timeslot+":00", date, Integer.parseInt(building), room);
 
-        Stage stage1 = (Stage) slot.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/CompleteReservation.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
     @Override
@@ -174,7 +166,6 @@ public class TimeSlotsController implements Initializable {
                 allSuitableRes.add(e);
             }
         }
-        System.out.println(allSuitableRes.toString());
 
         String opentime = open.toString().substring(0, 5);
         String closingtime = closed.toString().substring(0, 5);
@@ -231,16 +222,7 @@ public class TimeSlotsController implements Initializable {
     }
 
     public void GoBack(Event event) throws IOException {
-        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/ReservationRoom.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
     }
 }

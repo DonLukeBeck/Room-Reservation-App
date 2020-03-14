@@ -270,7 +270,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Rectangle fx:id="A20A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="190.0" onMouseDragged="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+            <Rectangle fx:id="A20A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
             <Label layoutX="721.0" layoutY="193.0" text="20:30 - 21:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />

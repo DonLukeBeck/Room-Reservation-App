@@ -40,6 +40,12 @@ public class MainMenuController implements Initializable {
     @FXML
     private Pane sidePane;
 
+    @FXML
+    private AnchorPane mainScreen;
+
+    @FXML
+    private AnchorPane filterPane;
+
     public static String getId() {
         return id;
     }
@@ -58,22 +64,14 @@ public class MainMenuController implements Initializable {
     public void goToMenuReservation(Event event, String buildingNumber) throws IOException {
         id = buildingNumber;
 
-        Stage stage1 = (Stage) scene1.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainReservationMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helper = new HelperController();
+        helper.loadNextScene("/MainReservationMenu.fxml",mainScreen);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Buildings> buildingsList = new ArrayList<>();
+        filterPane.setVisible(false);
         int layoutY = 220;
 
         try {

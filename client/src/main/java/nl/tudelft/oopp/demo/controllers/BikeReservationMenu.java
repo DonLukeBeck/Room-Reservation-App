@@ -36,6 +36,8 @@ public class BikeReservationMenu implements Initializable {
     private AnchorPane Mon;
     @FXML
     private GridPane Grid;
+    @FXML
+    private AnchorPane mainScreen;
 
     @FXML
     private Pane sidePane;
@@ -206,17 +208,8 @@ public class BikeReservationMenu implements Initializable {
         }
 
         reservationDate = date1.toString();
-        Stage stage1 = (Stage) e.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/TimeSlotBikes.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/TimeSlotBikes.fxml", mainScreen);
 
     }
 

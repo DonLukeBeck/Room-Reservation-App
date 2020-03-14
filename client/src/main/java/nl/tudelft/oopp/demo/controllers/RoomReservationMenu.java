@@ -42,6 +42,7 @@ public class RoomReservationMenu implements Initializable {
     private GridPane Grid;
     @FXML
     private Pane sidePane;
+    @FXML AnchorPane mainScreen;
 
     public static int getMonth() {
         return Fmonth;
@@ -67,21 +68,12 @@ public class RoomReservationMenu implements Initializable {
     }
 
     public void GoBack(Event event) throws IOException {
-        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainReservationMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
     @FXML
-    private void Calendarr(Event event) throws IOException {
+    private void calendarSearch(Event event) throws IOException {
         int i = 1;
         int flag = 0;
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -209,18 +201,8 @@ public class RoomReservationMenu implements Initializable {
         }
 
         reservationDate = date1.toString();
-        Stage stage1 = (Stage) e.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/TimeSlots.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/TimeSlots.fxml", mainScreen);
     }
 
     @Override

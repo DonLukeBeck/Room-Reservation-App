@@ -42,6 +42,8 @@ public class RoomMenuController implements Initializable {
     private javafx.scene.control.ScrollPane scene1;
     @FXML
     private Pane sidePane;
+    @FXML
+    private AnchorPane mainScreen;
 
 
     @Override
@@ -233,17 +235,8 @@ public class RoomMenuController implements Initializable {
     private javafx.scene.control.Button ReserveScene;
 
     public void GoBack(Event event) throws IOException {
-        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
 
     public void roomChosen(Event event) throws IOException {
@@ -265,16 +258,7 @@ public class RoomMenuController implements Initializable {
 
         String buildingId = MainMenuController.getId().substring(1);
 
-        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/ReservationRoom.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
     }
 }

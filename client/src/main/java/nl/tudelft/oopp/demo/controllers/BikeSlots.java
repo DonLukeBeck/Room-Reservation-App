@@ -36,6 +36,8 @@ public class BikeSlots implements Initializable {
     @FXML
     private AnchorPane slots;
     @FXML
+    private AnchorPane mainScreen;
+    @FXML
     private javafx.scene.control.Button ReserveScene;
     @FXML
     private Pane sidePane;
@@ -87,17 +89,8 @@ public class BikeSlots implements Initializable {
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
 
-        Stage stage1 = (Stage) slot.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/ReservationBikeCompleted.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/ReservationBikeCompleted.fxml", mainScreen);
 
     }
 
@@ -167,21 +160,6 @@ public class BikeSlots implements Initializable {
             e.printStackTrace();
         }
 
-/*        List<Bikes> bikes = null;
-
-        try {
-            bikes = con.getBikes();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (Bikes e : bikes) {
-            if (Integer.parseInt(MainMenuController.getId()) == e.getBikeBuilding()) {
-                buildingavailablebikes = e.getBikeAvailability();
-                break;
-           }
-        }
-*/
         List<Reservations> reservations = null;
         try {
             reservations = con.getReservations();
@@ -193,7 +171,6 @@ public class BikeSlots implements Initializable {
         for (Reservations e : reservations) {
             if (e.getDate().toString().equals(date) && e.getBike_reserved() != 0) {
                 reservationOnChosenDate.add(e);
-                System.out.println("Added");
             }
         }
         Time closed = null;
@@ -302,17 +279,8 @@ public class BikeSlots implements Initializable {
     }
 
     public void GoBack(Event event) throws IOException {
-        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/ReservationBike.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
     }
 
 }

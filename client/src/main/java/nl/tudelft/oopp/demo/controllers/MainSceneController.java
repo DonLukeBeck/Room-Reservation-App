@@ -43,7 +43,7 @@ public class MainSceneController {
         Users userLogged = con.logIn(user, password);
 
         // verify if user is logged in
-        if(!userLogged.getNetid().isEmpty()){
+        if (!userLogged.getNetid().isEmpty()) {
             //if he s logged in, verify what role he has
 
             if (userLogged.getRole().equals("admin")) {
@@ -61,8 +61,7 @@ public class MainSceneController {
                 stage.setScene(new Scene(root));
                 stage.show();
                 return;
-            }
-            else if(userLogged.getRole().equals("student")){
+            } else if (userLogged.getRole().equals("student")) {
                 //redirect to student page
 
                 Stage stage1 = (Stage) button1.getScene().getWindow();
@@ -76,11 +75,13 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
-            }else{
+            } else {
                 //redirect to teacher page
+                return;
             }
-        }else {
+        } else {
             //else show error message - user not in db
+            return;
         }
 
     }

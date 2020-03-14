@@ -6,15 +6,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
@@ -36,19 +32,13 @@ public class AdminController implements Initializable {
     @FXML
     private ChoiceBox listBuilding;
 
+    @FXML
+    private AnchorPane mainScreen;
+
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
-        Stage stage1 = (Stage) add.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/AdminView.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helper = new HelperController();
+        helper.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
     @Override
@@ -68,9 +58,6 @@ public class AdminController implements Initializable {
                 j++;
             }
         }
-        for (String e : list) {
-            System.out.println(e);
-        }
         List<Buildings> listGetBuildings = null;
         try {
             listGetBuildings = con.getBuildings();
@@ -89,16 +76,7 @@ public class AdminController implements Initializable {
     }
 
     public void goBack(ActionEvent event) throws IOException {
-        Stage stage1 = (Stage) goBack.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainAdminScene.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/MainAdminScene.fxml", mainScreen);
     }
 }

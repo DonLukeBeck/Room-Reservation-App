@@ -1,18 +1,17 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
 public class AdminSceneController {
     private static String id;
     @FXML
     private javafx.scene.control.Button add;
+
+    @FXML
+    private AnchorPane mainScreen;
 
     public static String getId() {
         return id;
@@ -20,16 +19,7 @@ public class AdminSceneController {
 
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
-        Stage stage1 = (Stage) add.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/AdminView.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/AdminView.fxml", mainScreen);
     }
 }

@@ -97,16 +97,7 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     public void goToMainMenu(Event event) throws IOException {
-        Stage stage1 = (Stage) scene.getScene().getWindow();
-        stage1.close();
-
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/MainMenu.fxml", pane);
     }
 }
