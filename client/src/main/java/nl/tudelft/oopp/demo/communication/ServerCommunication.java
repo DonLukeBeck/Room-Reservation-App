@@ -16,12 +16,11 @@ public class ServerCommunication {
 
     // private static HttpClient client = HttpClient.newBuilder().build();
 
-    private String baseURL = "http://localhost:8080";
-    private WebClient webClient = WebClient.create(baseURL);
+    private String baseUrl = "http://localhost:8080";
+    private WebClient webClient = WebClient.create(baseUrl);
 
     /**
      * Create new user.
-     *
      * @param user net_id
      * @param pass password from the user
      * @return true if new user is created, false if not.
@@ -51,6 +50,12 @@ public class ServerCommunication {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @param pass
+     * @return
+     */
     public Users logIn(String user, String pass) {
 
         String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\"}";
@@ -88,7 +93,6 @@ public class ServerCommunication {
 
     /**
      * Retrieves building list from the server.
-     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -115,7 +119,6 @@ public class ServerCommunication {
 
     /**
      * Retrieves rooms list from the server.
-     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -142,7 +145,6 @@ public class ServerCommunication {
 
     /**
      * Retrieves reservations list from the server.
-     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -170,7 +172,6 @@ public class ServerCommunication {
 
     /**
      * Retrieves menus list from the server.
-     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -197,7 +198,6 @@ public class ServerCommunication {
 
     /**
      * Retrieves dishes list from the server.
-     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -224,13 +224,12 @@ public class ServerCommunication {
 
     /**
      * Create new user.
-     *
      * @return true if new user is created, false if not.
      */
-    public boolean reservation(String userReserving, String timeSlot, String date, int building_reserved, String room) {
+    public boolean reservation(String userReserving, String timeSlot, String date, int buildingReserved, String room) {
         System.out.println(userReserving);
         System.out.println(room);
-        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\"" + building_reserved + "\",\"room_reserved\":\"" + room + "\"}";
+        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\"" + buildingReserved + "\",\"room_reserved\":\"" + room + "\"}";
 
         try {
             boolean bool = this.webClient.post().uri("/postReservation")

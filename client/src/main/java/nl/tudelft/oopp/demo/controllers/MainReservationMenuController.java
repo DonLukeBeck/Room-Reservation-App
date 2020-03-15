@@ -1,5 +1,11 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,13 +22,6 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-
 public class MainReservationMenuController implements Initializable {
 
     ServerCommunication con = new ServerCommunication();
@@ -32,14 +31,14 @@ public class MainReservationMenuController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
 
     /**
-     * Method for campus map to pop up
+     * Method for campus map to pop up.
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
-    public void CampusMap(Event event) throws IOException {
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -51,41 +50,41 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     * Method to go to previous page
+     * Method to go to previous page.
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
-    public void GoBack(Event event) throws IOException {
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
 
     /**
-     *Method to go to room reservation
+     *Method to go to room reservation.
      * @param event Clicking on 'Rooms'
      * @throws IOException
      */
-    public void GoToRooms(Event event) throws IOException {
+    public void goToRooms(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/RoomMenu.fxml", mainScreen);
     }
 
     /**
-     *Method to go to bike reservation
+     *Method to go to bike reservation.
      * @param event Clicking on 'Bikes'
      * @throws IOException
      */
-    public void GoToBikes(Event event) throws IOException {
+    public void goToBikes(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
     }
 
     /**
-     *Method to go to food reservation
+     *Method to go to food reservation.
      * @param event Clicking on 'Food'
      * @throws IOException
      */
-    public void GoToFood(Event event) throws IOException {
+    public void goToFood(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationFood.fxml", mainScreen);
     }

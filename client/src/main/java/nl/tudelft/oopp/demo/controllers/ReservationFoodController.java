@@ -1,5 +1,11 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +23,6 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Rooms;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-
 public class ReservationFoodController implements Initializable {
     public static List<Rooms> rooms;
     private static String room_id;
@@ -39,10 +38,10 @@ public class ReservationFoodController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
 
     /**
-     * Method to get Room ID
+     * Method to get Room ID.
      * @return Room ID
      */
     public static String getId() {
@@ -229,11 +228,11 @@ public class ReservationFoodController implements Initializable {
     }
 
     /**
-     * Method for the campus map to pop up
+     * Method for the campus map to pop up.
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
-    public void CampusMap(Event event) throws IOException {
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -245,11 +244,11 @@ public class ReservationFoodController implements Initializable {
     }
 
     /**
-     * Method to return to previous page
+     * Method to return to previous page.
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
-    public void GoBack(Event event) throws IOException {
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
@@ -268,8 +267,8 @@ public class ReservationFoodController implements Initializable {
                 newTemp = temp[i];
             }
         }
-        String[] ArrId = newTemp.split("=");
-        String temp2 = ArrId[1];
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
 
         int roomIndex = Integer.parseInt(temp2);

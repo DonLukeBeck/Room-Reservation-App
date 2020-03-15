@@ -1,5 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Users;
-
-import java.io.IOException;
-import java.net.URL;
-
 
 public class MainSceneController {
     private static String user;
@@ -30,7 +29,7 @@ public class MainSceneController {
     private PasswordField pass;
 
     /**
-     *Method to get User
+     *Method to get User.
      * @return User
      */
     public static String getUser() {

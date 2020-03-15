@@ -11,7 +11,7 @@ public class Users {
     }
 
     /**
-     *Method to get the NetID of a User
+     *Method to get the NetID of a User.
      * @return User NetID
      */
     public String getNetid() {
@@ -19,7 +19,7 @@ public class Users {
     }
 
     /**
-     *Method to set the NetID of a User
+     *Method to set the NetID of a User.
      * @param netid User NetID
      */
     public void setNetid(String netid) {
@@ -27,7 +27,7 @@ public class Users {
     }
 
     /**
-     *Method to get the role of the User
+     *Method to get the role of the User.
      * @return User Role
      */
     public String getRole() {
@@ -35,7 +35,7 @@ public class Users {
     }
 
     /**
-     *Method to set the Role of a User
+     *Method to set the Role of a User.
      * @param role User Role
      */
     public void setRole(String role) {

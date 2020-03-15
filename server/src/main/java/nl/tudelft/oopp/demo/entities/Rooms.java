@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 public class Rooms {
     @Id
-    private String room_id;
+    private String roomId;
 
     private int capacity;
 
@@ -19,12 +19,12 @@ public class Rooms {
     }
 
 
-    public String getRoom_id() {
-        return room_id;
+    public String getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(String room_id) {
-        this.room_id = room_id;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     public int getCapacity() {

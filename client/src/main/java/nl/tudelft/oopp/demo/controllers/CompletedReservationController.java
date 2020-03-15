@@ -1,5 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,12 +21,6 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-
 public class CompletedReservationController implements Initializable {
     private static String name;
     ServerCommunication con = new ServerCommunication();
@@ -33,7 +32,7 @@ public class CompletedReservationController implements Initializable {
     private Pane sidePane;
 
     /**
-     * Method to get Name
+     * Method to get Name.
      * @return Name
      */
     public String getName() {
@@ -100,11 +99,11 @@ public class CompletedReservationController implements Initializable {
     }
 
     /**
-     * Method to pop up campus map
+     * Method to pop up campus map.
      * @param event Clicking on campus map button
      * @throws IOException
      */
-    public void CampusMap(Event event) throws IOException {
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -116,7 +115,7 @@ public class CompletedReservationController implements Initializable {
     }
 
     /**
-     *Method to go back to main menu
+     *Method to go back to main menu.
      * @param event
      * @throws IOException
      */

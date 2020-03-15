@@ -1,5 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +20,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 
 public class BikeReservationCompleted implements Initializable {
     private static String name;
@@ -91,7 +90,12 @@ public class BikeReservationCompleted implements Initializable {
         pane.getChildren().add(timeslot);
     }
 
-    public void CampusMap(Event event) throws IOException {
+    /**
+     *Method for campus map to pop up
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -102,6 +106,11 @@ public class BikeReservationCompleted implements Initializable {
         stage.show();
     }
 
+    /**
+     *Method to go back to previous page
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);

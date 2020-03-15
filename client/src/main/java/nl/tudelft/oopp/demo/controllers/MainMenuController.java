@@ -1,5 +1,11 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,13 +25,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 
 public class MainMenuController implements Initializable {
     private static String id;
@@ -48,7 +47,7 @@ public class MainMenuController implements Initializable {
     private AnchorPane filterPane;
 
     /**
-     * Method to get the ID
+     * Method to get the ID.
      * @return ID
      */
     public static String getId() {
@@ -56,11 +55,11 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Method for campus map to pop up
+     * Method for campus map to pop up.
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
-    public void CampusMap(Event event) throws IOException {
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);

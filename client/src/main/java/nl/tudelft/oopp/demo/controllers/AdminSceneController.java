@@ -14,7 +14,7 @@ public class AdminSceneController {
     private AnchorPane mainScreen;
 
     /***
-     * Method to get ID
+     * Method to get ID.
      * @return The id
      */
     public static String getId() {

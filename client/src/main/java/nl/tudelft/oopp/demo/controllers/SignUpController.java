@@ -50,7 +50,7 @@ public class SignUpController {
      * @throws InterruptedException
      */
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
-        if(pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()){
+        if (pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()) {
             return;
         }
 
@@ -58,7 +58,7 @@ public class SignUpController {
         String secondPass = coPass.getText();
         String username = user.getText();
         String role = "student";
-        if(checkBox.isSelected()){
+        if (checkBox.isSelected()) {
             role = "teacher";
         }
 
@@ -72,18 +72,18 @@ public class SignUpController {
 
         //Printing all buildings from database
         List<Buildings> buildings = con.getBuildings();
-        for(int i = 0; i < buildings.size(); i++) {
+        for (int i = 0; i < buildings.size(); i++) {
             System.out.println(buildings.get(i).getBuilding_number());
             System.out.println(buildings.get(i).getName());
-            System.out.println(buildings.get(i).getOpening_hours());
-            System.out.println(buildings.get(i).getClosing_hours());
-            System.out.println(buildings.get(i).getNumber_of_rooms());
+            System.out.println(buildings.get(i).getOpeningHours());
+            System.out.println(buildings.get(i).getClosingHours());
+            System.out.println(buildings.get(i).getNumberOf_Rooms());
         }
         System.out.println("******************");
         //Printing all rooms from database
         List<Rooms> rooms = con.getRooms();
-        for(int i = 0; i < rooms.size(); i++) {
-            System.out.println(rooms.get(i).getRoom_id());
+        for (int i = 0; i < rooms.size(); i++) {
+            System.out.println(rooms.get(i).getRoomId());
             System.out.println(rooms.get(i).getCapacity());
             System.out.println(rooms.get(i).getType());
             System.out.println(rooms.get(i).getAssociatedBuilding());
@@ -91,14 +91,14 @@ public class SignUpController {
         System.out.println("******************");
         //Printing all reservations from database
         List<Reservations> reservations = con.getReservations();
-        for(int i = 0; i < reservations.size(); i++) {
+        for (int i = 0; i < reservations.size(); i++) {
             System.out.println(reservations.get(i).getId());
-            System.out.println(reservations.get(i).getUser_reserving());
+            System.out.println(reservations.get(i).getUserReserving());
             System.out.println(reservations.get(i).getTimeslot());
             System.out.println(reservations.get(i).getDate());
-            System.out.println(reservations.get(i).getRoom_reserved());
-            System.out.println(reservations.get(i).getBike_reserved());
-            System.out.println(reservations.get(i).getDish_ordered());
+            System.out.println(reservations.get(i).getRoomReserved());
+            System.out.println(reservations.get(i).getBikeReserved());
+            System.out.println(reservations.get(i).getDishOrdered());
         }
 
         if (check) {
@@ -109,7 +109,7 @@ public class SignUpController {
             text.setTextFill(Color.web("red"));
             text.setVisible(true);
             text.setLayoutX(coPass.getLayoutX());
-            text.setLayoutY(coPass.getLayoutY()+28);
+            text.setLayoutY(coPass.getLayoutY() + 28);
             pane.getChildren().add(text);
 
             return;

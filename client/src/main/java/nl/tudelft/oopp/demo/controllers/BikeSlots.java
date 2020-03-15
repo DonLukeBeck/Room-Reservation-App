@@ -1,5 +1,12 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,13 +26,6 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 
 public class BikeSlots implements Initializable {
     private static String building;
@@ -39,28 +39,28 @@ public class BikeSlots implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
     @FXML
     private Pane sidePane;
 
-    /***
-     * Method to return building
+    /**
+     * Method to return building.
      * @return Building
      */
     public static String getBuilding() {
         return building;
     }
 
-    /***
-     * Method to return Date
+    /**
+     * Method to return Date.
      * @return Date
      */
     public static String getDate() {
         return date;
     }
 
-    /***
-     * Method to get the timeslot
+    /**
+     * Method to get the timeslot.
      * @return Timeslot
      */
     public static String getTimeslot() {
@@ -68,11 +68,11 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     * Method for campus map to pop up
+     * Method for campus map to pop up.
      * @param event Clicking on campus map
      * @throws IOException
      */
-    public void CampusMap(Event event) throws IOException {
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -106,8 +106,8 @@ public class BikeSlots implements Initializable {
                 newTemp = temp[i];
             }
         }
-        String[] ArrId = newTemp.split("=");
-        String temp2 = ArrId[1];
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
@@ -205,8 +205,8 @@ public class BikeSlots implements Initializable {
 
         for (Buildings e : list) {
             if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
-                open = e.getOpening_hours();
-                closed = e.getClosing_hours();
+                open = e.getOpeningHours();
+                closed = e.getClosingHours();
                 break;
             }
         }
@@ -238,8 +238,8 @@ public class BikeSlots implements Initializable {
                             break;
                         }
                     }
-                    String[] ArrId = newTemp.split("=");
-                    String temp2 = ArrId[1];
+                    String[] arrId = newTemp.split("=");
+                    String temp2 = arrId[1];
                     temp2 = temp2.substring(1, temp2.length() - 1);
                     String time = temp2.replace('A', ':');
 
@@ -282,8 +282,8 @@ public class BikeSlots implements Initializable {
                             break;
                         }
                     }
-                    String[] ArrId = newTemp.split("=");
-                    String temp2 = ArrId[1];
+                    String[] arrId = newTemp.split("=");
+                    String temp2 = arrId[1];
                     temp2 = temp2.substring(1, temp2.length() - 1);
                     String time = temp2.replace('A', ':');
 
@@ -306,11 +306,11 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     * Method for go back button
+     * Method for go back button.
      * @param event Clicking on go back
      * @throws IOException
      */
-    public void GoBack(Event event) throws IOException {
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
     }

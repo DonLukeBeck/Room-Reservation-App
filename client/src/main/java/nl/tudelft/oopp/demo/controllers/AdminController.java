@@ -1,5 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
 @SuppressWarnings("checkstyle:Indentation")
 public class AdminController implements Initializable {
@@ -37,6 +38,11 @@ public class AdminController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
         HelperController helper = new HelperController();
