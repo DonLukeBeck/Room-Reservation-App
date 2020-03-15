@@ -1,11 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +19,13 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
 
 public class BikeSlots implements Initializable {
     private static String building;
@@ -42,18 +43,35 @@ public class BikeSlots implements Initializable {
     @FXML
     private Pane sidePane;
 
+    /***
+     * Method to return building
+     * @return Building
+     */
     public static String getBuilding() {
         return building;
     }
 
+    /***
+     * Method to return Date
+     * @return Date
+     */
     public static String getDate() {
         return date;
     }
 
+    /***
+     * Method to get the timeslot
+     * @return Timeslot
+     */
     public static String getTimeslot() {
         return timeslot;
     }
 
+    /**
+     * Method for campus map to pop up
+     * @param event Clicking on campus map
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -65,6 +83,11 @@ public class BikeSlots implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
 
@@ -94,6 +117,10 @@ public class BikeSlots implements Initializable {
 
     }
 
+    /**
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
@@ -278,6 +305,11 @@ public class BikeSlots implements Initializable {
         }
     }
 
+    /**
+     * Method for go back button
+     * @param event Clicking on go back
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBike.fxml", mainScreen);

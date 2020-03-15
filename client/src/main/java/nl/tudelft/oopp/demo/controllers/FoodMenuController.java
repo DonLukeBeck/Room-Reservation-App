@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -13,7 +14,14 @@ public class FoodMenuController {
 
     @FXML
     private javafx.scene.control.ScrollPane scene1;
+    @FXML
+    private javafx.scene.control.Button ReserveScene;
 
+    /**
+     * Method to pop up campus map
+     * @param event Clicking on 'campus map'
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -25,10 +33,11 @@ public class FoodMenuController {
         stage.show();
     }
 
-
-    @FXML
-    private javafx.scene.control.Button ReserveScene;
-
+    /***
+     * Method to go back
+     * @param event Clicking on 'Go Back"
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
         stage1.close();
@@ -43,4 +52,3 @@ public class FoodMenuController {
         stage.show();
     }
 }
-

@@ -43,7 +43,12 @@ public class SignUpController {
     @FXML
     private CheckBox checkBox;
 
-    @SuppressWarnings({"checkstyle:WhitespaceAround", "checkstyle:MethodName", "checkstyle:MissingJavadocMethod"})
+    /***
+     *
+     * @param event
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
         if(pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()){
             return;

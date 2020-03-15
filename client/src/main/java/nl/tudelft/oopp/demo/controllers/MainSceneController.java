@@ -1,7 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.io.IOException;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Users;
+
+import java.io.IOException;
+import java.net.URL;
 
 
 public class MainSceneController {
@@ -28,10 +29,20 @@ public class MainSceneController {
     @FXML
     private PasswordField pass;
 
+    /**
+     *Method to get User
+     * @return User
+     */
     public static String getUser() {
         return user;
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void logIn(ActionEvent event) throws IOException, InterruptedException {
         if (pass.getText().isBlank() || username.getText().isBlank()) {
             return;
@@ -86,6 +97,12 @@ public class MainSceneController {
 
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void register(ActionEvent event) throws IOException, InterruptedException {
         Stage stage1 = (Stage) button2.getScene().getWindow();
         stage1.close();

@@ -1,9 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.YearMonth;
-import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,15 +19,21 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
+import java.io.IOException;
+import java.net.URL;
+import java.time.YearMonth;
+import java.util.*;
+
 public class FoodDatePickerController implements Initializable {
-    ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
     private static int MonthNow;
     private static int DayNow;
-
     public String reservationDate;
+    ServerCommunication con = new ServerCommunication();
+    @FXML
+    AnchorPane mainScreen;
     @FXML
     private ChoiceBox MonthChoice;
     @FXML
@@ -42,20 +44,36 @@ public class FoodDatePickerController implements Initializable {
     private GridPane Grid;
     @FXML
     private Pane sidePane;
-    @FXML AnchorPane mainScreen;
 
+    /**
+     *Method to get Month
+     * @return Month
+     */
     public static int getMonth() {
         return Fmonth;
     }
 
+    /**
+     *Method to get Year
+     * @return Year
+     */
     public static int getYear() {
         return Fyear;
     }
 
+    /**
+     *Method to get Day
+     * @return Day
+     */
     public static int getDay() {
         return FDay;
     }
 
+    /**
+     *Method to pop up campus map
+     * @param event Clicking on campus map
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -67,11 +85,21 @@ public class FoodDatePickerController implements Initializable {
         stage.show();
     }
 
+    /**
+     *Method to go back
+     * @param event Clicking on 'go back' button
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void calendarSearch(Event event) throws IOException {
         int i = 1;
@@ -153,6 +181,11 @@ public class FoodDatePickerController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void DateOnCalendar(Event event) throws IOException {
         String str = event.getSource().toString();
@@ -205,6 +238,11 @@ public class FoodDatePickerController implements Initializable {
         helperController.loadNextScene("/TimeSlots.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
@@ -325,6 +363,3 @@ public class FoodDatePickerController implements Initializable {
         }
     }
 }
-
-
-

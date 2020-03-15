@@ -1,10 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Time;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,25 +16,35 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 
 public class CompletedReservationController implements Initializable {
     private static String name;
-
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private AnchorPane pane;
-
     @FXML
     private Button scene;
-
     @FXML
     private Pane sidePane;
 
-    ServerCommunication con = new ServerCommunication();
-
+    /**
+     * Method to get Name
+     * @return Name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Buildings> list = null;
@@ -94,6 +99,11 @@ public class CompletedReservationController implements Initializable {
         pane.getChildren().add(timeslot);
     }
 
+    /**
+     * Method to pop up campus map
+     * @param event Clicking on campus map button
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -104,6 +114,12 @@ public class CompletedReservationController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    /**
+     *Method to go back to main menu
+     * @param event
+     * @throws IOException
+     */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);

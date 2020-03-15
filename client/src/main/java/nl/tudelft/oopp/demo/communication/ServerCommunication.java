@@ -1,8 +1,10 @@
 package nl.tudelft.oopp.demo.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.List;
+
 import nl.tudelft.oopp.demo.entities.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,7 @@ public class ServerCommunication {
 
     /**
      * Create new user.
+     *
      * @param user net_id
      * @param pass password from the user
      * @return true if new user is created, false if not.
@@ -85,6 +88,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves building list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -103,13 +107,15 @@ public class ServerCommunication {
                 .block();
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Buildings> buildingsJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Buildings>>() {});
+        List<Buildings> buildingsJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Buildings>>() {
+        });
 
         return buildingsJsonList;
     }
 
     /**
      * Retrieves rooms list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -128,13 +134,15 @@ public class ServerCommunication {
                 .block();
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Rooms> roomsJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Rooms>>() {});
+        List<Rooms> roomsJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Rooms>>() {
+        });
 
         return roomsJsonList;
     }
 
     /**
      * Retrieves reservations list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -162,6 +170,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves menus list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -188,6 +197,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves dishes list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -215,13 +225,12 @@ public class ServerCommunication {
     /**
      * Create new user.
      *
-     *
      * @return true if new user is created, false if not.
      */
     public boolean reservation(String userReserving, String timeSlot, String date, int building_reserved, String room) {
         System.out.println(userReserving);
         System.out.println(room);
-        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\""+ building_reserved + "\",\"room_reserved\":\"" + room + "\"}";
+        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\"" + building_reserved + "\",\"room_reserved\":\"" + room + "\"}";
 
         try {
             boolean bool = this.webClient.post().uri("/postReservation")

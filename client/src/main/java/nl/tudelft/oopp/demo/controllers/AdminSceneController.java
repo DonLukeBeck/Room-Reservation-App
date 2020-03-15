@@ -13,10 +13,19 @@ public class AdminSceneController {
     @FXML
     private AnchorPane mainScreen;
 
+    /***
+     * Method to get ID
+     * @return The id
+     */
     public static String getId() {
         return id;
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
         HelperController helperController = new HelperController();

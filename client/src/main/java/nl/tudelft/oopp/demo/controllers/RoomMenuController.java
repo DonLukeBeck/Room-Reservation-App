@@ -46,6 +46,11 @@ public class RoomMenuController implements Initializable {
     private AnchorPane mainScreen;
 
 
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
@@ -220,6 +225,11 @@ public class RoomMenuController implements Initializable {
 
     }
 
+    /**
+     * Method for campus map to pop up
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -234,11 +244,21 @@ public class RoomMenuController implements Initializable {
     @FXML
     private javafx.scene.control.Button ReserveScene;
 
+    /**
+     *Method to go back to previous page
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void roomChosen(Event event) throws IOException {
         String str = event.getSource().toString();
         String[] temp = str.split(" ");
@@ -254,7 +274,7 @@ public class RoomMenuController implements Initializable {
 
         int roomIndex = Integer.parseInt(temp2);
 
-        this.room_id = this.rooms.get(roomIndex).getRoom_id();
+        room_id = rooms.get(roomIndex).getRoom_id();
 
         String buildingId = MainMenuController.getId().substring(1);
 

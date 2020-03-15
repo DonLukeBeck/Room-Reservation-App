@@ -39,22 +39,43 @@ public class TimeSlotsController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
 
+    /**
+     * Method to get Building
+     * @return Building
+     */
     public static String getBuilding() {
         return building;
     }
 
+    /**
+     * Method to get Room
+     * @return Room
+     */
     public static String getRoom() {
         return room;
     }
 
+    /**
+     * Method to get Date
+     * @return Date
+     */
     public static String getDate() {
         return date;
     }
 
+    /***
+     * Method to get Timeslot
+     * @return Timeslot
+     */
     public static String getTimeslot() {
         return timeslot;
     }
 
+    /**
+     * Method to pop up campus map
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -66,6 +87,11 @@ public class TimeSlotsController implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
         room = RoomMenuController.getId();
@@ -110,6 +136,11 @@ public class TimeSlotsController implements Initializable {
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -221,6 +252,11 @@ public class TimeSlotsController implements Initializable {
         }
     }
 
+    /**
+     * Method to go back to previous page
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);

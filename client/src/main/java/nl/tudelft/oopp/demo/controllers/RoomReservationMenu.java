@@ -44,18 +44,35 @@ public class RoomReservationMenu implements Initializable {
     private Pane sidePane;
     @FXML AnchorPane mainScreen;
 
+    /**
+     * Method to get Month
+     * @return Month
+     */
     public static int getMonth() {
         return Fmonth;
     }
 
+    /**
+     * Method to get year
+     * @return Year
+     */
     public static int getYear() {
         return Fyear;
     }
 
+    /**
+     * Method to get Day
+     * @return Day
+     */
     public static int getDay() {
         return FDay;
     }
 
+    /**
+     * Method for campus map to pop up
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -67,11 +84,21 @@ public class RoomReservationMenu implements Initializable {
         stage.show();
     }
 
+    /**
+     * Method to go back to previous page
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void calendarSearch(Event event) throws IOException {
         int i = 1;
@@ -153,6 +180,11 @@ public class RoomReservationMenu implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void DateOnCalendar(Event event) throws IOException {
         String str = event.getSource().toString();
@@ -325,6 +357,3 @@ public class RoomReservationMenu implements Initializable {
         }
     }
 }
-
-
-

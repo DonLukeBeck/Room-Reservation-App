@@ -1,10 +1,8 @@
 package nl.tudelft.oopp.demo.entities;
 
-import java.sql.Blob;
-import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import org.hibernate.type.BlobType;
+import java.sql.Time;
 
 @Entity // This tells Hibernate to make a table out of this class
 

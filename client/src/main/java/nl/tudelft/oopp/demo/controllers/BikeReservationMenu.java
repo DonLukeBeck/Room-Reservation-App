@@ -1,9 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.YearMonth;
-import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,14 +16,19 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
+import java.io.IOException;
+import java.net.URL;
+import java.time.YearMonth;
+import java.util.*;
+
 public class BikeReservationMenu implements Initializable {
-    ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
     private static int MonthNow;
     private static int DayNow;
     public String reservationDate;
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private ChoiceBox MonthChoice;
     @FXML
@@ -42,18 +43,35 @@ public class BikeReservationMenu implements Initializable {
     @FXML
     private Pane sidePane;
 
+    /***
+     *
+     * @return
+     */
     public static int getMonth() {
         return Fmonth;
     }
 
+    /***
+     * Method to get the Year
+     * @return The year
+     */
     public static int getYear() {
         return Fyear;
     }
 
+    /***
+     * Method to get the day
+     * @return The day
+     */
     public static int getDay() {
         return FDay;
     }
 
+    /***
+     *Method for 'campus map' button
+     * @param event Event that triggers the campus map pop-up, in this case clicking on campus map
+     * @throws IOException
+     */
     public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -65,6 +83,11 @@ public class BikeReservationMenu implements Initializable {
         stage.show();
     }
 
+    /***
+     *Method for 'go back' button
+     * @param event Clicking on the go back button
+     * @throws IOException
+     */
     public void GoBack(Event event) throws IOException {
         Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
         stage1.close();
@@ -79,6 +102,11 @@ public class BikeReservationMenu implements Initializable {
         stage.show();
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void Calendarr(Event event) throws IOException {
         int i = 1;
@@ -160,6 +188,11 @@ public class BikeReservationMenu implements Initializable {
         }
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void DateOnCalendar(Event event) throws IOException {
         String str = event.getSource().toString();
@@ -213,6 +246,11 @@ public class BikeReservationMenu implements Initializable {
 
     }
 
+    /***
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
