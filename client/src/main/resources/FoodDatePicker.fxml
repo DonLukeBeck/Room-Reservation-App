@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.FoodReservationMenu">
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.FoodDatePickerController">
     <children>
         <Label contentDisplay="CENTER" layoutX="340.0" layoutY="324.0" textAlignment="CENTER" textFill="#2dc26b">
             <font>
@@ -182,7 +182,7 @@
                 <Font name="Comic Sans MS Bold Italic" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="767.0" layoutY="38.0" prefHeight="35.0" prefWidth="197.0" text="Reserve a room">
+        <Label layoutX="767.0" layoutY="38.0" prefHeight="35.0" prefWidth="197.0" text="Order food">
             <font>
                 <Font name="Comic Sans MS Bold Italic" size="24.0" />
             </font>

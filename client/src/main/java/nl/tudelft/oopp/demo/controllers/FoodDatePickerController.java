@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
-public class FoodReservationMenu implements Initializable {
+public class FoodDatePickerController implements Initializable {
     ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
