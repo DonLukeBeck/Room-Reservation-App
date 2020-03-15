@@ -162,7 +162,7 @@ public class AdminController implements Initializable {
         System.out.println(bikes);
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
-        con.addBuildingAdmin(buildingID, buildingName, buildingOpen+":00", buildingClose+":00", imageUrl, bikes, 0);
+        con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ":00", buildingClose + ":00", imageUrl, bikes, 0);
     }
 
     public void addRoom(Event event) throws IOException {

@@ -251,9 +251,9 @@ public class ServerCommunication {
         }
     }
 
-    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity , int roomCapacity) {
+    public boolean addBuildingAdmin(int buildingID, String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity, int roomCapacity) {
 
-        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\""+ buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity +  "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
+        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" + buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\"" + buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity + "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addBuilding")
@@ -278,7 +278,7 @@ public class ServerCommunication {
 
     public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
 
-        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\""+ buildingID + "\"}";
+        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" + roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\"" + buildingID + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addRoom")

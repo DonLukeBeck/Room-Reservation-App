@@ -23,11 +23,9 @@ import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class SignUpController {
 
-    ServerCommunication con = new ServerCommunication();
-
     @FXML
     public javafx.scene.control.Button button3;
-
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private TextField user;
 
@@ -45,7 +43,7 @@ public class SignUpController {
 
     @SuppressWarnings({"checkstyle:WhitespaceAround", "checkstyle:MethodName", "checkstyle:MissingJavadocMethod"})
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
-        if(pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()){
+        if (pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()) {
             return;
         }
 
@@ -53,7 +51,7 @@ public class SignUpController {
         String secondPass = coPass.getText();
         String username = user.getText();
         String role = "student";
-        if(checkBox.isSelected()){
+        if (checkBox.isSelected()) {
             role = "teacher";
         }
 
@@ -67,7 +65,7 @@ public class SignUpController {
 
         //Printing all buildings from database
         List<Buildings> buildings = con.getBuildings();
-        for(int i = 0; i < buildings.size(); i++) {
+        for (int i = 0; i < buildings.size(); i++) {
             System.out.println(buildings.get(i).getBuilding_number());
             System.out.println(buildings.get(i).getName());
             System.out.println(buildings.get(i).getOpening_hours());
@@ -77,7 +75,7 @@ public class SignUpController {
         System.out.println("******************");
         //Printing all rooms from database
         List<Rooms> rooms = con.getRooms();
-        for(int i = 0; i < rooms.size(); i++) {
+        for (int i = 0; i < rooms.size(); i++) {
             System.out.println(rooms.get(i).getRoom_id());
             System.out.println(rooms.get(i).getCapacity());
             System.out.println(rooms.get(i).getType());
@@ -86,7 +84,7 @@ public class SignUpController {
         System.out.println("******************");
         //Printing all reservations from database
         List<Reservations> reservations = con.getReservations();
-        for(int i = 0; i < reservations.size(); i++) {
+        for (int i = 0; i < reservations.size(); i++) {
             System.out.println(reservations.get(i).getId());
             System.out.println(reservations.get(i).getUser_reserving());
             System.out.println(reservations.get(i).getTimeslot());
@@ -97,14 +95,14 @@ public class SignUpController {
         }
 
         if (check) {
-           boolean signUp =  con.signUp(username, firstPass, role);
+            boolean signUp = con.signUp(username, firstPass, role);
         } else {
             System.out.println("Pass do not match!");
             Label text = new Label("Passwords do not match!");
             text.setTextFill(Color.web("red"));
             text.setVisible(true);
             text.setLayoutX(coPass.getLayoutX());
-            text.setLayoutY(coPass.getLayoutY()+28);
+            text.setLayoutY(coPass.getLayoutY() + 28);
             pane.getChildren().add(text);
 
             return;

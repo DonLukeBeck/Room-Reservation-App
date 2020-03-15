@@ -25,7 +25,6 @@ public class Reservations {
     }
 
 
-
     public int getId() {
         return id;
     }

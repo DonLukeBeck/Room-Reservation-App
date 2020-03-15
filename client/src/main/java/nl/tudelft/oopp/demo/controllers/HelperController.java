@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -17,7 +16,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
-
 
 
 public class HelperController {
@@ -42,7 +40,7 @@ public class HelperController {
         return list;
     }
 
-    public void loadNextScene(String path,  AnchorPane scene1) throws IOException {
+    public void loadNextScene(String path, AnchorPane scene1) throws IOException {
         Stage stage1 = (Stage) scene1.getScene().getWindow();
 
         FXMLLoader loader = new FXMLLoader();

@@ -35,15 +35,15 @@ public class Rooms {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public int getAssociatedBuilding() {
         return associated_building;
     }
 
     public void setAssociatedBuilding(int associated_building) {
         this.associated_building = associated_building;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }

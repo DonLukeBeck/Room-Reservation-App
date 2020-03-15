@@ -2,7 +2,6 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -24,17 +23,13 @@ import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class CompletedReservationController implements Initializable {
     private static String name;
-
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private AnchorPane pane;
-
     @FXML
     private Button scene;
-
     @FXML
     private Pane sidePane;
-
-    ServerCommunication con = new ServerCommunication();
 
     public String getName() {
         return name;
@@ -104,6 +99,7 @@ public class CompletedReservationController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);

@@ -104,7 +104,7 @@ public class TimeSlotsController implements Initializable {
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
 
-        con.reservation(MainSceneController.getUser(), timeslot+":00", date, Integer.parseInt(building), room);
+        con.reservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building), room);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);

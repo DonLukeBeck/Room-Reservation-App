@@ -21,13 +21,13 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class BikeReservationMenu implements Initializable {
-    ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
     private static int MonthNow;
     private static int DayNow;
     public String reservationDate;
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private ChoiceBox MonthChoice;
     @FXML

@@ -24,14 +24,15 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class RoomReservationMenu implements Initializable {
-    ServerCommunication con = new ServerCommunication();
     private static int Fmonth;
     private static int Fyear;
     private static int FDay;
     private static int MonthNow;
     private static int DayNow;
-
     public String reservationDate;
+    ServerCommunication con = new ServerCommunication();
+    @FXML
+    AnchorPane mainScreen;
     @FXML
     private ChoiceBox MonthChoice;
     @FXML
@@ -42,7 +43,6 @@ public class RoomReservationMenu implements Initializable {
     private GridPane Grid;
     @FXML
     private Pane sidePane;
-    @FXML AnchorPane mainScreen;
 
     public static int getMonth() {
         return Fmonth;

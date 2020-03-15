@@ -35,9 +35,13 @@ public class Rooms {
         this.capacity = capacity;
     }
 
-    public String getType() { return type; }
+    public String getType() {
+        return type;
+    }
 
-    public void setType(String type) { this.type = type; }
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getAssociated_building() {
         return associated_building;

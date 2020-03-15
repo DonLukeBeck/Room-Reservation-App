@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
-import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Rooms;
 import nl.tudelft.oopp.demo.repositories.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class RoomsController {
                 return false;
             }
             return false;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Rooms newRoom = new Rooms();
             System.out.println(room.getAssociated_building());
             newRoom.setAssociated_building(room.getAssociated_building());
