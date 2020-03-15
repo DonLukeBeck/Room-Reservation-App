@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.FoodMenuController">
+    <children>
+        <Label contentDisplay="CENTER" layoutX="340.0" layoutY="324.0" textAlignment="CENTER" textFill="#2dc26b">
+            <font>
+                <Font name="Comic Sans MS" size="40.0" />
+            </font>
+        </Label>
+        <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <Label layoutX="14.0" layoutY="425.0" text="Go to:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#CampusMap" onMouseClicked="#CampusMap" onMouseDragged="#CampusMap" text="- Campus map" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="37.0" layoutY="483.0" text="- Contacts" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/Icon_User.png" />
+                    </image>
+                </ImageView>
+            </children></Pane>
+        <Pane layoutX="-2.0" prefHeight="800.0" prefWidth="189.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/flame1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="22.0" layoutY="210.0" text="Buildings:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="56.0" layoutY="248.0" text="- EEMCS" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="57.0" layoutY="276.0" text="- Aula" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="55.0" layoutY="305.0" text="- Pulse" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="55.0" layoutY="332.0" text="- Library" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Label layoutX="55.0" layoutY="360.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AE" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Label layoutX="55.0" layoutY="390.0" prefHeight="20.0" prefWidth="126.0" text="- Faculty of MMME" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Label layoutX="53.0" layoutY="418.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of IO" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Label layoutX="54.0" layoutY="446.0" prefHeight="20.0" prefWidth="108.0" text="- Faculty of CEG" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="55.0" layoutY="476.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AS" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font></Label>
+                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color></DropShadow>
+                    </effect></Button>
+                <Hyperlink layoutX="54.0" layoutY="249.0" prefHeight="9.0" prefWidth="64.0">
+                    <font>
+                        <Font size="9.0" />
+                    </font>
+                </Hyperlink>
+                <Hyperlink layoutX="57.0" layoutY="247.0" prefHeight="23.0" prefWidth="64.0" />
+            <AnchorPane layoutX="-47.0" layoutY="96.0" prefHeight="200.0" prefWidth="200.0" />
+            </children>
+        </Pane>
+        <Label layoutX="759.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" text="Order food">
+            <font>
+                <Font name="Comic Sans MS Bold Italic" size="24.0" />
+            </font>
+        </Label>
+      <ScrollPane layoutX="188.0" layoutY="308.0" prefHeight="514.0" prefWidth="907.5">
+         <content>
+            <AnchorPane blendMode="DARKEN" prefHeight="573.0" prefWidth="908.0">
+               <children>
+                  <Label layoutX="137.0" layoutY="160.0" text="Taco's">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label alignment="CENTER" layoutX="118.0" layoutY="187.0" prefWidth="88.0" text="€ 4,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label layoutX="380.0" layoutY="160.0" text="Chicken sandwich">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="411.0" layoutY="187.0" prefWidth="88.0" text="€ 5,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="685.0" layoutY="160.0" text="Pizza Margeritha">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="708.0" layoutY="187.0" prefWidth="88.0" text="€  5,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="115.0" layoutY="395.0" text="Beef burger">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="118.0" layoutY="422.0" prefWidth="88.0" text="€ 6,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="438.0" layoutY="395.0" text="Fries">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="411.0" layoutY="422.0" prefWidth="88.0" text="€ 3,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="714.0" layoutY="395.0" text="Spaghetti">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="708.0" layoutY="422.0" prefWidth="88.0" text="€ 6,99">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="143.0" fitWidth="159.0" layoutX="673.0" layoutY="13.0">
+                     <image>
+                        <Image url="@images/Pizza_Margherita-913.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="136.0" fitWidth="200.0" layoutX="62.0" layoutY="16.0">
+                     <image>
+                        <Image url="@images/taco.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="138.0" fitWidth="208.0" layoutX="351.0" layoutY="15.0">
+                     <image>
+                        <Image url="@images/sandwich.jpg" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.05" contrast="0.24" />
+                     </effect>
+                  </ImageView>
+                  <ImageView fitHeight="114.0" fitWidth="227.0" layoutX="337.0" layoutY="262.0">
+                     <image>
+                        <Image url="@images/fries.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="108.0" fitWidth="146.0" layoutX="89.0" layoutY="265.0">
+                     <image>
+                        <Image url="@images/beef%20burger.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="135.0" fitWidth="147.0" layoutX="678.0" layoutY="252.0">
+                     <image>
+                        <Image url="@images/spaghetti.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </content></ScrollPane>
+      <Label layoutX="276.0" layoutY="227.0" text="Please pick the item you would like to order" textFill="#2dc26b">
+         <font>
+            <Font name="Comic Sans MS" size="36.0" />
+         </font></Label>
+      <ImageView fitHeight="184.0" fitWidth="907.5" layoutX="187.0" layoutY="-5.0">
+         <image>
+            <Image url="@images/campus.jpg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.2" contrast="0.05" />
+         </effect>
+      </ImageView>
+        <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="232.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/TU-delft-768x325.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

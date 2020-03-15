@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.FoodSlots">
+    <children>
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="487.0" layoutY="264.0" text="Choose a time slot" textAlignment="CENTER" textFill="#2dc26b">
+            <font>
+                <Font name="Comic Sans MS" size="36.0" />
+            </font>
+        </Label>
+        <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <Label layoutX="14.0" layoutY="425.0" text="Go to:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#CampusMap" onMouseClicked="#CampusMap" onMouseDragged="#CampusMap" text="- Campus map" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="37.0" layoutY="483.0" text="- Contacts" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/Icon_User.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="37.0" layoutY="514.0" prefHeight="20.0" prefWidth="95.0" text="- Resources" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children></Pane>
+        <ImageView fitHeight="251.0" fitWidth="948.0" layoutX="186.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/libr1.jpg" />
+            </image>
+        </ImageView>
+        <Pane fx:id="sidePane" layoutX="-2.0" prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/flame1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="22.0" layoutY="210.0" text="Buildings:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color></DropShadow>
+                    </effect></Button>
+            </children>
+        </Pane>
+        <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="286.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/TU-delft-768x325.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="sc1" contentDisplay="CENTER" layoutX="283.0" layoutY="734.0" prefHeight="51.0" prefWidth="97.0" text="Extra: " textAlignment="CENTER">
+            <font>
+                <Font name="Comic Sans MS Bold" size="24.0" />
+            </font>
+        </Label>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="245.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#827c7c" height="20.0" layoutX="451.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="657.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc500" height="20.0" layoutX="863.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Label layoutX="286.0" layoutY="339.0" prefHeight="22.0" prefWidth="67.0" text="- Free">
+            <font>
+                <Font name="Comic Sans MS Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="495.0" layoutY="339.0" prefHeight="22.0" prefWidth="67.0" text="- Closed">
+            <font>
+                <Font name="Comic Sans MS Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="701.0" layoutY="339.0" prefHeight="23.0" prefWidth="95.0" text="- Occcupied">
+            <font>
+                <Font name="Comic Sans MS Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="906.0" layoutY="339.0" prefHeight="23.0" prefWidth="158.0" text="- Selected">
+            <font>
+                <Font name="Comic Sans MS Bold" size="16.0" />
+            </font>
+        </Label>
+        <AnchorPane fx:id="slots" layoutX="186.0" layoutY="362.0" prefHeight="431.0" prefWidth="908.0">
+            <children>
+                <Rectangle fx:id="A08A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="149.0" text="08:00 - 08:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A08A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="193.0" text="08:30 - 09:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A09A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="237.0" text="09:00 - 09:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A09A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="278.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="281.0" text="09:30 - 10:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A10A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="325.0" text="10:00 - 10:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A23A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="381.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="384.0" text="23:00 - 23:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A23A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="381.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="384.0" text="23:30 - 00:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A06A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="17.0" text="06:30 - 07:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A07A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="61.0" text="07:00 - 07:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A07A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="103.0" layoutY="105.0" text="07:30 - 08:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A12A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="149.0" text="12:00 - 12:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A12A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="193.0" text="12:30 - 13:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A13A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="237.0" text="13:00 - 13:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A13A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="278.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="281.0" text="13:30 - 14:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A14A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="325.0" text="14:00 - 14:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A10A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="17.0" text="10:30 - 11:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A11A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="61.0" text="11:00 - 11:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A11A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="105.0" text="11:30 - 12:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A16A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="149.0" text="16:00 - 16:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A16A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="193.0" text="16:30 - 17:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A17A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="237.0" text="17:00 - 17:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A17A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="278.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="281.0" text="17:30 - 18:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A18A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="325.0" text="18:00 - 18:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A14A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="17.0" text="14:30 - 15:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A15A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="61.0" text="15:00 - 15:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A15A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="515.0" layoutY="105.0" text="15:30 - 16:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A20A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="149.0" text="20:00 - 20:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A20A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="193.0" text="20:30 - 21:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A21A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="237.0" text="21:00 - 21:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A21A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="278.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="281.0" text="21:30 - 22:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A22A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="325.0" text="22:00 - 22:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A18A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="17.0" text="18:30 - 19:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A19A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="61.0" text="19:00 - 19:30" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A19A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="721.0" layoutY="105.0" text="19:30 - 20:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Rectangle fx:id="A22A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="381.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
+                <Label layoutX="309.0" layoutY="384.0" text="22:30 - 23:00" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

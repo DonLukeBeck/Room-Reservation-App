@@ -5,15 +5,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.BikeReservationMenu">
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.ReservationFoodController">
     <children>
-        <Label contentDisplay="CENTER" layoutX="340.0" layoutY="324.0" textAlignment="CENTER" textFill="#2dc26b">
-            <font>
-                <Font name="Comic Sans MS" size="40.0" />
-            </font>
-        </Label>
         <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
             <children>
                 <Label layoutX="14.0" layoutY="425.0" text="Go to:" textFill="WHITE">
@@ -36,10 +32,20 @@
                         <Image url="@images/Icon_User.png" />
                     </image>
                 </ImageView>
+                <Label layoutX="37.0" layoutY="514.0" prefHeight="20.0" prefWidth="95.0" text="- Resources" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
             </children></Pane>
-        <Pane layoutX="-2.0" prefHeight="800.0" prefWidth="189.0" style="-fx-background-color: #00A6D6;">
+        <ImageView fitHeight="251.0" fitWidth="948.0" layoutX="186.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/libr1.jpg" />
+            </image>
+        </ImageView>
+        <Pane fx:id="sidePane" layoutX="-2.0" prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
             <children>
-                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/flame1.png" />
                     </image>
@@ -49,46 +55,6 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="56.0" layoutY="248.0" text="- EEMCS" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="57.0" layoutY="276.0" text="- Aula" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="305.0" text="- Pulse" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="332.0" text="- Library" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="55.0" layoutY="360.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AE" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="55.0" layoutY="390.0" prefHeight="20.0" prefWidth="126.0" text="- Faculty of MMME" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="53.0" layoutY="418.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of IO" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
-                <Label layoutX="54.0" layoutY="446.0" prefHeight="20.0" prefWidth="108.0" text="- Faculty of CEG" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <Label layoutX="55.0" layoutY="476.0" prefHeight="20.0" prefWidth="97.0" text="- Faculty of AS" textFill="WHITE">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font></Label>
                 <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold Italic" size="14.0" />
@@ -99,37 +65,29 @@
                                 <Color red="1.0" green="1.0" blue="1.0" />
                             </color></DropShadow>
                     </effect></Button>
-                <Hyperlink layoutX="54.0" layoutY="249.0" prefHeight="9.0" prefWidth="64.0">
-                    <font>
-                        <Font size="9.0" />
-                    </font>
-                </Hyperlink>
-                <Hyperlink layoutX="57.0" layoutY="247.0" prefHeight="23.0" prefWidth="64.0" />
             </children>
         </Pane>
-        <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="187.0" pickOnBounds="true" preserveRatio="true">
+        <ScrollPane fx:id="scene1" layoutX="186.0" layoutY="356.0" prefHeight="438.0" prefWidth="908.0">
+            <content>
+                <AnchorPane fx:id="pane1" accessibleRole="MENU_BAR" prefWidth="889.0">
+                    <children>
+                        <Rectangle fx:id="A" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="136.0" layoutX="630.0" layoutY="-125.0" stroke="#00a6d6" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-width: 30.0; -fx-arc-height: 30.0;" visible="false" width="188.0" />
+                        <Rectangle fx:id="B" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="136.0" layoutX="344.0" layoutY="-125.0" stroke="#00a6d6" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-width: 30.0; -fx-arc-height: 30.0;" visible="false" width="188.0" />
+                        <Rectangle fx:id="C" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="136.0" layoutX="58.0" layoutY="-125.0" stroke="#00a6d6" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-width: 30.0; -fx-arc-height: 30.0;" visible="false" width="188.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="286.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Button layoutX="979.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#Calendarr" prefHeight="31.0" prefWidth="77.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-background-radius: 8; -fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2;" text="Search">
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="265.0" layoutY="278.0" prefHeight="51.0" prefWidth="751.0" text="Choose the room you want to order food to" textAlignment="CENTER" textFill="#2dc26b">
             <font>
-                <Font name="System Bold Italic" size="14.0" />
-            </font>
-            <effect>
-                <ColorAdjust contrast="0.06" />
-            </effect></Button>
-        <ChoiceBox fx:id="MonthChoice" layoutX="803.0" layoutY="93.0" onMouseClicked="#Month" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-background-radius: 8; -fx-border-width: 2.5; -fx-border-radius: 8;" stylesheets="@style/style.css" />
-        <ChoiceBox fx:id="YearChoice" layoutX="595.0" layoutY="93.0" onMouseClicked="#Year" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 8; -fx-background-radius: 8;" stylesheets="@style/style.css" />
-        <Label layoutX="759.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" text="Order food">
-            <font>
-                <Font name="Comic Sans MS Bold Italic" size="24.0" />
+                <Font name="Comic Sans MS" size="36.0" />
             </font>
         </Label>
-      <Label layoutX="402.0" layoutY="329.0" prefHeight="46.0" prefWidth="293.0" text="To be implemented!">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Label>
+        <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="136.0" layoutX="331.0" layoutY="118.0" stroke="#00a6d6" strokeType="INSIDE" strokeWidth="2.0" style="-fx-arc-width: 30.0; -fx-arc-height: 30.0;" visible="false" width="188.0" />
     </children>
 </AnchorPane>

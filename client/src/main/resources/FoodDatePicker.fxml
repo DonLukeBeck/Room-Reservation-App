@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.FoodDatePickerController">
+    <children>
+        <Label contentDisplay="CENTER" layoutX="340.0" layoutY="324.0" textAlignment="CENTER" textFill="#2dc26b">
+            <font>
+                <Font name="Comic Sans MS" size="40.0" />
+            </font>
+        </Label>
+        <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <Label layoutX="14.0" layoutY="425.0" text="Go to:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#CampusMap" onMouseClicked="#CampusMap" onMouseDragged="#CampusMap" text="- Campus map" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="37.0" layoutY="483.0" text="- Contacts" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/Icon_User.png" />
+                    </image>
+                </ImageView>
+            </children></Pane>
+        <Pane fx:id="sidePane" layoutX="-2.0" prefHeight="800.0" prefWidth="189.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="32.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/flame1.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="22.0" layoutY="210.0" text="Buildings:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color></DropShadow>
+                    </effect></Button>
+                <Hyperlink layoutX="54.0" layoutY="249.0" prefHeight="9.0" prefWidth="64.0">
+                    <font>
+                        <Font size="9.0" />
+                    </font>
+                </Hyperlink>
+                <Hyperlink layoutX="57.0" layoutY="247.0" prefHeight="23.0" prefWidth="64.0" />
+            </children>
+        </Pane>
+        <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="188.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/TU-delft-768x325.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="221.0" layoutY="140.0" prefHeight="27.0" prefWidth="74.0" text="Monday" textAlignment="JUSTIFY">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Button layoutX="973.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#calendarSearch" prefHeight="31.0" prefWidth="77.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-background-radius: 8; -fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2;" text="Search">
+            <font>
+                <Font name="System Bold Italic" size="14.0" />
+            </font>
+            <effect>
+                <ColorAdjust contrast="0.06" />
+            </effect></Button>
+        <GridPane fx:id="Grid" gridLinesVisible="true" layoutX="335.0" layoutY="35.0" prefHeight="889.0" prefWidth="610.0" rotate="90.0" style="-fx-background-color: #e6faff;">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane fx:id="Mon" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                <AnchorPane fx:id="Tue" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
+                <AnchorPane fx:id="Wed" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                <AnchorPane fx:id="Thu" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                <AnchorPane fx:id="Fri" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                <AnchorPane fx:id="Sat" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                <AnchorPane fx:id="Sun" onMouseClicked="#DateOnCalendar" prefHeight="102.0" prefWidth="50.0" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+        <Label layoutX="347.0" layoutY="140.0" prefHeight="27.0" prefWidth="74.0" text="Tuesday">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="461.0" layoutY="140.0" text="Wednesday">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="597.0" layoutY="140.0" prefHeight="27.0" prefWidth="85.0" text="Thursday">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="742.0" layoutY="140.0" text="Friday">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="855.0" layoutY="140.0" text="Saturday">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="989.0" layoutY="140.0" text="Sunday">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <ChoiceBox fx:id="MonthChoice" layoutX="797.0" layoutY="93.0" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-background-radius: 8; -fx-border-width: 2.5; -fx-border-radius: 8;" stylesheets="@style/style.css" />
+        <Label layoutX="726.0" layoutY="96.0" text="Month: ">
+            <font>
+                <Font name="Comic Sans MS Bold Italic" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="767.0" layoutY="38.0" prefHeight="35.0" prefWidth="197.0" text="Order food">
+            <font>
+                <Font name="Comic Sans MS Bold Italic" size="24.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="67.0" fitWidth="100.0" layoutX="664.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/Room_emoji.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
