@@ -75,7 +75,7 @@
                 </Label>
             </children>
         </Pane>
-        <ScrollPane fx:id="filterPane" layoutX="192.0" layoutY="356.0" prefHeight="438.0" prefWidth="902.0">
+        <ScrollPane fx:id="scene1" layoutX="192.0" layoutY="356.0" prefHeight="438.0" prefWidth="902.0">
             <content>
                 <AnchorPane fx:id="pane1" accessibleRole="MENU_BAR" prefHeight="804.0" prefWidth="628.0" />
             </content>
