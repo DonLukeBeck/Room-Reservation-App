@@ -9,7 +9,7 @@ public class Rooms {
 
     private String type;
 
-    private int associatedBuilding;
+    private int associated_building;
 
     public Rooms() {
     }
@@ -36,10 +36,14 @@ public class Rooms {
     }
 
     public int getAssociatedBuilding() {
-        return associatedBuilding;
+        return associated_building;
     }
 
-    public void setAssociatedBuilding(int associatedBuilding) {
-        this.associatedBuilding = associatedBuilding;
+    public void setAssociatedBuilding(int associated_building) {
+        this.associated_building = associated_building;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

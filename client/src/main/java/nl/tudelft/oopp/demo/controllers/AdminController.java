@@ -96,7 +96,7 @@ public class AdminController implements Initializable {
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
-        roomType.setItems(FXCollections.observableArrayList("Student", "Teacher"));
+        roomType.setItems(FXCollections.observableArrayList("Study hall", "Exam hall"));
     }
 
     public void goBack(ActionEvent event) throws IOException {
@@ -162,7 +162,7 @@ public class AdminController implements Initializable {
         System.out.println(bikes);
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
-        //con.addBuildingAdmin(buildingID, buildingName, buildingOpen+":00", buildingClose+":00", imageUrl, bikes, 0);
+        con.addBuildingAdmin(buildingID, buildingName, buildingOpen+":00", buildingClose+":00", imageUrl, bikes, 0);
     }
 
     public void addRoom(Event event) throws IOException {
@@ -211,6 +211,6 @@ public class AdminController implements Initializable {
         System.out.println(roomCap);
         System.out.println(building);
         System.out.println(roomType.getValue());
-        //con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
+        con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
     }
 }

@@ -251,53 +251,53 @@ public class ServerCommunication {
         }
     }
 
-//    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity , int roomCapacity) {
-//
-//        String body = "{\"buildingID\":\"" + buildingID + "\",\" buildingName\":\"" +  buildingName + "\",\"buildingOpen\":\"" + buildingOpen + "\",\"buildingClose\":\""+ buildingClose + "\",\"imageUrl\":\"" + imageUrl +  "\",\"bikeCapacity\":\"" + bikeCapacity + "\",\"roomCapacity\":\"" + roomCapacity + "\"}";
-//
-//        try {
-//            boolean bool = this.webClient.post().uri("/postReservation")
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .body(BodyInserters.fromObject(body))
-//                    .accept(MediaType.APPLICATION_JSON)
-//                    .retrieve()
-//                    .bodyToMono(Boolean.class)
-//                    .block();
-//            if (bool) {
-//                System.out.println("Building added");
-//                return true;
-//            } else {
-//                System.out.println("failed");
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            return false;
-//        }
-//    }
+    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity , int roomCapacity) {
 
-//    public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
-//
-//        String body = "{\"RoomID\":\"" + roomID + "\",\" RoomCapacity\":\"" +  roomCap + "\",\"buildingID\":\"" + buildingID + "\",\"RoomType\":\""+ roomType + "\"}";
-//
-//        try {
-//            boolean bool = this.webClient.post().uri("/postReservation")
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .body(BodyInserters.fromObject(body))
-//                    .accept(MediaType.APPLICATION_JSON)
-//                    .retrieve()
-//                    .bodyToMono(Boolean.class)
-//                    .block();
-//            if (bool) {
-//                System.out.println("Room added");
-//                return true;
-//            } else {
-//                System.out.println("failed");
-//                return false;
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            return false;
-//        }
-//    }
+        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\""+ buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity +  "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
+        System.out.println(body);
+        try {
+            boolean bool = this.webClient.post().uri("/addBuilding")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Building added");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
+
+        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\""+ buildingID + "\"}";
+        System.out.println(body);
+        try {
+            boolean bool = this.webClient.post().uri("/addRoom")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Room added");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }
