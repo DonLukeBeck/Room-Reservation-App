@@ -6,11 +6,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
@@ -30,10 +36,23 @@ public class AdminController implements Initializable {
     private ComboBox listClose;
 
     @FXML
-    private ChoiceBox listBuilding;
-
-    @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private TextField addBuildingID;
+    @FXML
+    private TextField addBuildingName;
+    @FXML
+    private TextField addBuildingUrl;
+    @FXML
+    private TextField addBuildingBikes;
+    @FXML
+    private TextField roomID;
+    @FXML
+    private TextField roomCapacity;
+    @FXML
+    private ChoiceBox listBuildingID;
+    @FXML
+    private ChoiceBox roomType;
 
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
@@ -70,13 +89,128 @@ public class AdminController implements Initializable {
             listAllBuildings[j] = "" + t.getBuilding_number();
             j++;
         }
+        listOpen.setValue("07:00");
+        listClose.setValue("23:30");
+        roomType.setValue("Student");
+        listBuildingID.setValue("Choose building");
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
-        listBuilding.setItems(FXCollections.observableArrayList(listAllBuildings));
+        listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
+        roomType.setItems(FXCollections.observableArrayList("Student", "Teacher"));
     }
 
     public void goBack(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainAdminScene.fxml", mainScreen);
+    }
+
+    public void addBuilding(Event event) throws IOException {
+        String bikeCapacity = addBuildingBikes.getText();
+        Label exception = new Label();
+
+        mainScreen.getChildren().add(exception);
+        for (Node e : mainScreen.getChildren()) {
+            if ((e instanceof Label) && (e.getId() != null) && e.getId().equals("Exception")) {
+                ((Label) e).setText(" ");
+            }
+        }
+
+        if (addBuildingID.getText().isBlank() || addBuildingName.getText().isBlank() || addBuildingUrl.getText().isBlank() || addBuildingUrl.getText().isBlank()) {
+            exception.setText("Fill all fields!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(45);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        int buildingID = 0;
+        try {
+            buildingID = Integer.parseInt(addBuildingID.getText());
+        } catch (Exception e) {
+            exception.setText("Only numbers are allowed for building ID!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(45);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+
+        }
+
+        int bikes = 0;
+        try {
+            bikes = Integer.parseInt(bikeCapacity);
+        } catch (Exception e) {
+            exception.setText("Only numbers are allowed for bike capacity!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(45);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+
+        }
+        String buildingName = addBuildingName.getText();
+        String imageUrl = addBuildingUrl.getText();
+        String buildingOpen = listOpen.getValue().toString();
+        String buildingClose = listClose.getValue().toString();
+        System.out.println(buildingName);
+        System.out.println(buildingID);
+        System.out.println(imageUrl);
+        System.out.println(bikes);
+        System.out.println(buildingOpen);
+        System.out.println(buildingClose);
+        //con.addBuildingAdmin(buildingID, buildingName, buildingOpen+":00", buildingClose+":00", imageUrl, bikes, 0);
+    }
+
+    public void addRoom(Event event) throws IOException {
+        Label exception = new Label();
+
+        mainScreen.getChildren().add(exception);
+        for (Node e : mainScreen.getChildren()) {
+            if ((e instanceof Label) && (e.getId() != null) && e.getId().equals("Exception")) {
+                ((Label) e).setText(" ");
+            }
+        }
+
+        if (roomID.getText().isBlank() || roomCapacity.getText().isBlank()) {
+            exception.setText("Fill all fields!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+        if (listBuildingID.getValue().toString().equals("Choose building")) {
+            exception.setText("Choose building!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        int roomCap = 0;
+        try {
+            roomCap = Integer.parseInt(roomCapacity.getText());
+        } catch (Exception e) {
+            exception.setText("Only numbers are allowed for room capacity!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+        int building = Integer.parseInt(listBuildingID.getValue().toString());
+        System.out.println(roomID.getText());
+        System.out.println(roomCap);
+        System.out.println(building);
+        System.out.println(roomType.getValue());
+        //con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
     }
 }

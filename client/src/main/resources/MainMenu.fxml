@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.MainMenuController">
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.MainMenuController">
     <children>
         <Label fx:id="sc" contentDisplay="CENTER" layoutX="286.0" layoutY="291.0" text="Choose the building you want to reserve in" textAlignment="CENTER" textFill="#2dc26b">
             <font>
@@ -50,11 +45,12 @@
                   <Image url="@images/filter.png" />
                </image>
             </ImageView>
-            <Label layoutX="48.0" layoutY="315.0" text="Filter all rooms" textFill="WHITE">
+            <Label layoutX="48.0" layoutY="315.0" text="Filter " textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
+            <Button fx:id="openFilter" layoutX="5.0" layoutY="315.0" mnemonicParsing="false" onAction="#openFilter" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: transperant;" />
             </children></Pane>
         <ImageView fitHeight="251.0" fitWidth="948.0" layoutX="186.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -75,7 +71,7 @@
                 </Label>
             </children>
         </Pane>
-        <ScrollPane fx:id="filterPane" layoutX="192.0" layoutY="356.0" prefHeight="438.0" prefWidth="902.0">
+        <ScrollPane fx:id="scene1" layoutX="192.0" layoutY="356.0" prefHeight="438.0" prefWidth="902.0">
             <content>
                 <AnchorPane fx:id="pane1" accessibleRole="MENU_BAR" prefHeight="804.0" prefWidth="628.0" />
             </content>
@@ -85,40 +81,48 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-      <AnchorPane fx:id="filterPane" layoutX="186.0" prefHeight="251.0" prefWidth="908.0" style="-fx-background-color: white;">
+      <AnchorPane fx:id="filterPane" layoutX="186.0" prefHeight="251.0" prefWidth="908.0" style="-fx-background-color: white; -fx-border-color: #00A6D6; -fx-border-width: 0 0 3 0;">
          <children>
-            <ComboBox layoutX="474.0" layoutY="199.0" prefWidth="150.0" promptText="Dish" />
-            <ComboBox layoutX="274.0" layoutY="199.0" prefWidth="150.0" promptText="Building ID" />
-            <ComboBox layoutX="474.0" layoutY="134.0" prefWidth="150.0" promptText="Time Slot" />
-            <ComboBox layoutX="274.0" layoutY="134.0" prefWidth="150.0" promptText="Building ID" />
-            <ComboBox layoutX="474.0" layoutY="65.0" prefWidth="150.0" promptText="Time Slot" />
-            <ComboBox layoutX="75.0" layoutY="65.0" prefWidth="150.0" promptText="Building ID" />
-            <JFXButton layoutX="695.0" layoutY="60.0" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Search room" textFill="WHITE">
+            <ComboBox fx:id="filterFood" layoutX="599.0" layoutY="204.0" prefHeight="26.0" prefWidth="150.0" promptText="Dish" stylesheets="@style/style.css" />
+            <ComboBox fx:id="buildingID2" layoutX="254.0" layoutY="204.0" prefWidth="150.0" promptText="Building ID" stylesheets="@style/style.css" />
+            <ComboBox fx:id="filterSlot1" layoutX="599.0" layoutY="139.0" prefWidth="150.0" promptText="Time Slot" stylesheets="@style/style.css" />
+            <ComboBox fx:id="buildingID1" layoutX="254.0" layoutY="139.0" prefWidth="150.0" promptText="Building ID" stylesheets="@style/style.css" />
+            <ComboBox fx:id="filterSlot" layoutX="599.0" layoutY="70.0" prefWidth="150.0" promptText="Time Slot" stylesheets="@style/style.css" />
+            <ComboBox fx:id="buildingID" layoutX="88.0" layoutY="70.0" prefWidth="150.0" promptText="Building ID" stylesheets="@style/style.css" />
+            <JFXButton fx:id="searchRoom" layoutX="786.0" layoutY="65.0" onAction="#searchRoom" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Search room" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="695.0" layoutY="129.0" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Search bike" textFill="WHITE">
+            <JFXButton fx:id="searchBike" layoutX="786.0" layoutY="134.0" onAction="#searchBike" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Search bike" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="695.0" layoutY="194.0" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Search food" textFill="WHITE">
+            <JFXButton fx:id="searchFood" layoutX="786.0" layoutY="199.0" onAction="#searchFood" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Search food" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
-            <TextField layoutX="265.0" layoutY="65.0" text="Preferred room capacity" />
-            <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="120.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <TextField fx:id="filterCapacity" layoutX="255.0" layoutY="70.0" promptText="Preferred room capacity" />
+            <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="119.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/bike_emoji.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="72.0" fitWidth="108.0" layoutX="110.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="72.0" fitWidth="63.0" layoutX="109.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/MenuIcon.png" />
                </image>
             </ImageView>
+            <JFXButton layoutX="14.0" layoutY="14.0" onAction="#closeFilter" prefHeight="36.0" prefWidth="74.0" style="-fx-background-color: grey;" text="Close" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <DatePicker fx:id="filterDate" layoutX="429.0" layoutY="70.0" prefHeight="26.0" prefWidth="149.0" promptText="Pick date" />
+            <DatePicker fx:id="filterDate1" layoutX="429.0" layoutY="138.0" prefHeight="26.0" prefWidth="149.0" promptText="Pick date" />
+            <DatePicker fx:id="filterDate2" layoutX="429.0" layoutY="203.0" prefHeight="26.0" prefWidth="149.0" promptText="Pick date" />
          </children>
       </AnchorPane>
     </children>
