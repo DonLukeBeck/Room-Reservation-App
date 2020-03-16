@@ -10,10 +10,11 @@ import javafx.stage.Stage;
 
 public class MainSceneDisplay extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
+    /**
+     *
+     * @param primaryStage
+     * @throws IOException
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -23,5 +24,13 @@ public class MainSceneDisplay extends Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+    }
+
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        launch(args);
     }
 }

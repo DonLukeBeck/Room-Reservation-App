@@ -7,86 +7,149 @@ public class Reservations {
 
     private int id;
 
-    private String user_reserving;
+    private String userReserving;
 
     private Time timeslot;
 
     private Date date;
 
-    private int building_reserved;
+    private int buildingReserved;
 
-    private String room_reserved;
+    private String roomReserved;
 
-    private int bike_reserved;
+    private int bikeReserved;
 
-    private String dish_ordered;
+    private String dishOrdered;
 
     public Reservations() {
     }
 
 
+    /**
+     *Method to get the Reservation ID.
+     * @return Reservation ID
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *Method to set the Reservation ID.
+     * @param id Reservation ID
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *Method to get the Timeslot of the reservation.
+     * @return Reservation timeslot
+     */
     public Time getTimeslot() {
         return timeslot;
     }
 
+    /**
+     *Method to set the Timeslot of the reservation.
+     * @param timeslot Reservation timeslot
+     */
     public void setTimeslot(Time timeslot) {
         this.timeslot = timeslot;
     }
 
+    /**
+     *Method to get the reservation Date.
+     * @return Reservation Date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     *Method ot set the reservation Date.
+     * @param date Reservation Date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
-
-    public String getUser_reserving() {
-        return user_reserving;
+    /**
+     *Method to get the User making the reservation.
+     * @return User Reserving
+     */
+    public String getUserReserving() {
+        return userReserving;
     }
 
-    public void setUser_reserving(String user_reserving) {
-        this.user_reserving = user_reserving;
+    /**
+     *Method to set the User making the reservation.
+     * @param userReserving User Reserving
+     */
+    public void setUser_reserving(String userReserving) {
+        this.userReserving = userReserving;
     }
 
-    public String getRoom_reserved() {
-        return room_reserved;
+    /**
+     *Method to get the room associated with the reservation.
+     * @return Room Reserved
+     */
+    public String getRoomReserved() {
+        return roomReserved;
     }
 
-    public void setRoom_reserved(String room_reserved) {
-        this.room_reserved = room_reserved;
+    /**
+     *Method to set the room reserved by the reservation.
+     * @param roomReserved Room Reserved
+     */
+    public void setRoomReserved(String roomReserved) {
+        this.roomReserved = roomReserved;
     }
 
-    public int getBike_reserved() {
-        return bike_reserved;
+    /**
+     *Method to get the bike that is associated with the reservation.
+     * @return
+     */
+    public int getBikeReserved() {
+        return bikeReserved;
     }
 
-    public void setBike_reserved(int bike_reserved) {
-        this.bike_reserved = bike_reserved;
+    /**
+     *Method to set the bike associated with the Reservation.
+     * @param bikeReserved Bike Reserved
+     */
+    public void setBikeReserved(int bikeReserved) {
+        this.bikeReserved = bikeReserved;
     }
 
-    public String getDish_ordered() {
-        return dish_ordered;
+    /**
+     *Method to get the Dish associated with the reservation.
+     * @return Dish Ordered
+     */
+    public String getDishOrdered() {
+        return dishOrdered;
     }
 
-    public void setDish_ordered(String dish_ordered) {
-        this.dish_ordered = dish_ordered;
+    /**
+     *Method to set the Dish associated with the reservation.
+     * @param dishOrdered Dish Ordered
+     */
+    public void setDishOrdered(String dishOrdered) {
+        this.dishOrdered = dishOrdered;
     }
 
+    /**
+     *Method to get the Building associated with the reservation.
+     * @return Associated Building
+     */
     public int getBuilding_reserved() {
-        return building_reserved;
+        return buildingReserved;
     }
 
-    public void setBuilding_reserved(int building_reserved) {
-        this.building_reserved = building_reserved;
+    /**
+     *Method to set the Building associated with the reservation.
+     * @param buildingReserved Associated Building
+     */
+    public void setBuildingReserved(int buildingReserved) {
+        this.buildingReserved = buildingReserved;
     }
 }

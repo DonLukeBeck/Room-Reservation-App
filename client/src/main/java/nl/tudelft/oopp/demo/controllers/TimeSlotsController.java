@@ -33,29 +33,50 @@ public class TimeSlotsController implements Initializable {
     @FXML
     private AnchorPane slots;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
     @FXML
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
 
+    /**
+     * Method to get Building.
+     * @return Building
+     */
     public static String getBuilding() {
         return building;
     }
 
+    /**
+     * Method to get Room.
+     * @return Room
+     */
     public static String getRoom() {
         return room;
     }
 
+    /**
+     * Method to get Date.
+     * @return Date
+     */
     public static String getDate() {
         return date;
     }
 
+    /**
+     * Method to get Timeslot.
+     * @return Timeslot
+     */
     public static String getTimeslot() {
         return timeslot;
     }
 
-    public void CampusMap(Event event) throws IOException {
+    /**
+     * Method to pop up campus map.
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -66,6 +87,11 @@ public class TimeSlotsController implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
         room = RoomMenuController.getId();
@@ -99,8 +125,8 @@ public class TimeSlotsController implements Initializable {
                 newTemp = temp[i];
             }
         }
-        String[] ArrId = newTemp.split("=");
-        String temp2 = ArrId[1];
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
 
@@ -110,6 +136,11 @@ public class TimeSlotsController implements Initializable {
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -138,8 +169,8 @@ public class TimeSlotsController implements Initializable {
         for (Buildings e : list) {
             if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
                 System.out.println("Works");
-                open = e.getOpening_hours();
-                closed = e.getClosing_hours();
+                open = e.getOpeningHours();
+                closed = e.getClosingHours();
                 break;
             }
         }
@@ -162,7 +193,7 @@ public class TimeSlotsController implements Initializable {
         List<Reservations> allSuitableRes = new ArrayList<>();
 
         for (Reservations e : allReservations) {
-            if (e.getDate().toString().equals(date) && e.getRoom_reserved() != null && e.getRoom_reserved().equals(room)) {
+            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
                 allSuitableRes.add(e);
             }
         }
@@ -173,7 +204,7 @@ public class TimeSlotsController implements Initializable {
         String[] closing = closingtime.split(":");
         double start = Integer.parseInt(opening[0]);
         double end = Integer.parseInt(closing[0]);
-        if(end < 6){
+        if (end < 6) {
             end = end + 24;
         }
 
@@ -195,8 +226,8 @@ public class TimeSlotsController implements Initializable {
                         break;
                     }
                 }
-                String[] ArrId = newTemp.split("=");
-                String temp2 = ArrId[1];
+                String[] arrId = newTemp.split("=");
+                String temp2 = arrId[1];
                 temp2 = temp2.substring(1, temp2.length() - 1);
                 String time = temp2.replace('A', ':');
 
@@ -223,7 +254,12 @@ public class TimeSlotsController implements Initializable {
         }
     }
 
-    public void GoBack(Event event) throws IOException {
+    /**
+     * Method to go back to previous page.
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
     }

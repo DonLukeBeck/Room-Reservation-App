@@ -14,20 +14,20 @@ public class Reservations {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String user_reserving;
+    private String userReserving;
 
     private Time timeslot;
 
     private Date date;
 
 
-    private int building_reserved;
+    private int buildingReserved;
 
-    private String room_reserved;
+    private String roomReserved;
 
-    private int bike_reserved;
+    private int bikeReserved;
 
-    private String dish_ordered;
+    private String dishOrdered;
 
     public Reservations() {
     }
@@ -59,42 +59,42 @@ public class Reservations {
 
 
     public String getUser_reserving() {
-        return user_reserving;
+        return userReserving;
     }
 
-    public void setUser_reserving(String user_reserving) {
-        this.user_reserving = user_reserving;
+    public void setUser_reserving(String userReserving) {
+        this.userReserving = userReserving;
     }
 
     public String getRoom_reserved() {
-        return room_reserved;
+        return roomReserved;
     }
 
-    public void setRoom_reserved(String room_reserved) {
-        this.room_reserved = room_reserved;
+    public void setRoom_reserved(String roomReserved) {
+        this.roomReserved = roomReserved;
     }
 
     public int getBike_reserved() {
-        return bike_reserved;
+        return bikeReserved;
     }
 
-    public void setBike_reserved(int bike_reserved) {
-        this.bike_reserved = bike_reserved;
+    public void setBike_reserved(int bikeReserved) {
+        this.bikeReserved = bikeReserved;
     }
 
     public String getDish_ordered() {
-        return dish_ordered;
+        return dishOrdered;
     }
 
-    public void setDish_ordered(String dish_ordered) {
-        this.dish_ordered = dish_ordered;
+    public void setDish_ordered(String dishOrdered) {
+        this.dishOrdered = dishOrdered;
     }
 
     public int getBuilding_reserved() {
-        return building_reserved;
+        return buildingReserved;
     }
 
-    public void setBuilding_reserved(int building_reserved) {
-        this.building_reserved = building_reserved;
+    public void setBuilding_reserved(int buildingReserved) {
+        this.buildingReserved = buildingReserved;
     }
 }

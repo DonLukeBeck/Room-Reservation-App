@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -24,6 +25,8 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
+
+@SuppressWarnings("checkstyle:Indentation")
 public class AdminController implements Initializable {
     ServerCommunication con = new ServerCommunication();
 
@@ -58,12 +61,22 @@ public class AdminController implements Initializable {
     @FXML
     private ChoiceBox roomType;
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
         HelperController helper = new HelperController();
         helper.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
+    /***
+     *
+     * @param location Location of the picture
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] list = new String[48];
@@ -103,11 +116,21 @@ public class AdminController implements Initializable {
         roomType.setItems(FXCollections.observableArrayList("Study hall", "Exam hall"));
     }
 
+    /***
+     *
+     * @param event
+     * @throws IOException
+     */
     public void goBack(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainAdminScene.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void addBuilding(Event event) throws IOException {
         String bikeCapacity = addBuildingBikes.getText();
         Label exception = new Label();
@@ -171,6 +194,11 @@ public class AdminController implements Initializable {
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void addRoom(Event event) throws IOException {
         Label exception = new Label();
 

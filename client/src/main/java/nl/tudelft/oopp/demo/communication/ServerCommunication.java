@@ -1,8 +1,10 @@
 package nl.tudelft.oopp.demo.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.util.List;
+
 import nl.tudelft.oopp.demo.entities.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,8 +16,8 @@ public class ServerCommunication {
 
     // private static HttpClient client = HttpClient.newBuilder().build();
 
-    private String baseURL = "http://localhost:8080";
-    private WebClient webClient = WebClient.create(baseURL);
+    private String baseUrl = "http://localhost:8080";
+    private WebClient webClient = WebClient.create(baseUrl);
 
     /**
      * Create new user.
@@ -49,6 +51,12 @@ public class ServerCommunication {
         }
     }
 
+    /**
+     *
+     * @param user
+     * @param pass
+     * @return
+     */
     public Users logIn(String user, String pass) {
 
         String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\"}";
@@ -132,7 +140,8 @@ public class ServerCommunication {
                 .block();
 
         ObjectMapper mapper = new ObjectMapper();
-        List<Rooms> roomsJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Rooms>>() {});
+        List<Rooms> roomsJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Rooms>>() {
+        });
 
         return roomsJsonList;
     }
@@ -225,10 +234,10 @@ public class ServerCommunication {
      *
      * @return true if new user is created, false if not.
      */
-    public boolean reservation(String userReserving, String timeSlot, String date, int building_reserved, String room) {
+    public boolean reservation(String userReserving, String timeSlot, String date, int buildingReserved, String room) {
         System.out.println(userReserving);
         System.out.println(room);
-        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\"" + building_reserved + "\",\"room_reserved\":\"" + room + "\"}";
+        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\"" + buildingReserved + "\",\"room_reserved\":\"" + room + "\"}";
 
         try {
             boolean bool = this.webClient.post().uri("/postReservation")
@@ -251,9 +260,20 @@ public class ServerCommunication {
         }
     }
 
-    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity , int roomCapacity) {
+    /**
+     *
+     * @param buildingID
+     * @param buildingName
+     * @param buildingOpen
+     * @param buildingClose
+     * @param imageUrl
+     * @param bikeCapacity
+     * @param roomCapacity
+     * @return
+     */
+    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity, int roomCapacity) {
 
-        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\""+ buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity +  "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
+        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\"" + buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity +  "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addBuilding")
@@ -276,9 +296,17 @@ public class ServerCommunication {
         }
     }
 
+    /**
+     *
+     * @param roomID
+     * @param roomCap
+     * @param buildingID
+     * @param roomType
+     * @return
+     */
     public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
 
-        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\""+ buildingID + "\"}";
+        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\"" + buildingID + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addRoom")

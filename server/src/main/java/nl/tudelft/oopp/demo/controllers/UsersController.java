@@ -19,6 +19,11 @@ public class UsersController {
     @Autowired
     private UsersRepository usersRepository;
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     @PostMapping("/registerNewUser") // Map ONLY POST Requests
     public @ResponseBody
     boolean register(@RequestBody RegisterNewUser user) {
@@ -29,7 +34,7 @@ public class UsersController {
                 return false;
             }
             return false;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             Users newUser = new Users();
             newUser.setNetid(user.getNetid());
             newUser.setPassword(user.getPassword());
@@ -40,6 +45,11 @@ public class UsersController {
 
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     @PostMapping("/loginUser") // Map ONLY POST Requests
     public @ResponseBody
     String login(@RequestBody LoginUser user) {
@@ -49,7 +59,7 @@ public class UsersController {
             Users foundUser = usersRepository.findUserByNetidAndPass(user.getNetid(), user.getPassword());
             String userJson =  "{\"netid\":\"" + foundUser.getNetid() + "\",\"role\":\"" + foundUser.getRole() + "\"}";
             return userJson;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             return "";
         }
     }

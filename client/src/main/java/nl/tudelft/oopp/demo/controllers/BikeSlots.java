@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,23 +39,40 @@ public class BikeSlots implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
     @FXML
     private Pane sidePane;
 
+    /**
+     * Method to return building.
+     * @return Building
+     */
     public static String getBuilding() {
         return building;
     }
 
+    /**
+     * Method to return Date.
+     * @return Date
+     */
     public static String getDate() {
         return date;
     }
 
+    /**
+     * Method to get the timeslot.
+     * @return Timeslot
+     */
     public static String getTimeslot() {
         return timeslot;
     }
 
-    public void CampusMap(Event event) throws IOException {
+    /**
+     * Method for campus map to pop up.
+     * @param event Clicking on campus map
+     * @throws IOException
+     */
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -65,6 +83,11 @@ public class BikeSlots implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
 
@@ -83,8 +106,8 @@ public class BikeSlots implements Initializable {
                 newTemp = temp[i];
             }
         }
-        String[] ArrId = newTemp.split("=");
-        String temp2 = ArrId[1];
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
@@ -94,6 +117,10 @@ public class BikeSlots implements Initializable {
 
     }
 
+    /**
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
@@ -169,7 +196,7 @@ public class BikeSlots implements Initializable {
 
         List<Reservations> reservationOnChosenDate = new ArrayList<>();
         for (Reservations e : reservations) {
-            if (e.getDate().toString().equals(date) && e.getBike_reserved() != 0) {
+            if (e.getDate().toString().equals(date) && e.getBikeReserved() != 0) {
                 reservationOnChosenDate.add(e);
             }
         }
@@ -178,8 +205,8 @@ public class BikeSlots implements Initializable {
 
         for (Buildings e : list) {
             if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
-                open = e.getOpening_hours();
-                closed = e.getClosing_hours();
+                open = e.getOpeningHours();
+                closed = e.getClosingHours();
                 break;
             }
         }
@@ -213,8 +240,8 @@ public class BikeSlots implements Initializable {
                             break;
                         }
                     }
-                    String[] ArrId = newTemp.split("=");
-                    String temp2 = ArrId[1];
+                    String[] arrId = newTemp.split("=");
+                    String temp2 = arrId[1];
                     temp2 = temp2.substring(1, temp2.length() - 1);
                     String time = temp2.replace('A', ':');
 
@@ -257,8 +284,8 @@ public class BikeSlots implements Initializable {
                             break;
                         }
                     }
-                    String[] ArrId = newTemp.split("=");
-                    String temp2 = ArrId[1];
+                    String[] arrId = newTemp.split("=");
+                    String temp2 = arrId[1];
                     temp2 = temp2.substring(1, temp2.length() - 1);
                     String time = temp2.replace('A', ':');
 
@@ -280,7 +307,12 @@ public class BikeSlots implements Initializable {
         }
     }
 
-    public void GoBack(Event event) throws IOException {
+    /**
+     * Method for go back button.
+     * @param event Clicking on go back
+     * @throws IOException
+     */
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
     }

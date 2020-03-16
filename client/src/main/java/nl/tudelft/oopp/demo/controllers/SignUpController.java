@@ -41,7 +41,12 @@ public class SignUpController {
     @FXML
     private CheckBox checkBox;
 
-    @SuppressWarnings({"checkstyle:WhitespaceAround", "checkstyle:MethodName", "checkstyle:MissingJavadocMethod"})
+    /***
+     *
+     * @param event
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
         if (pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()) {
             return;
@@ -68,15 +73,15 @@ public class SignUpController {
         for (int i = 0; i < buildings.size(); i++) {
             System.out.println(buildings.get(i).getBuilding_number());
             System.out.println(buildings.get(i).getName());
-            System.out.println(buildings.get(i).getOpening_hours());
-            System.out.println(buildings.get(i).getClosing_hours());
-            System.out.println(buildings.get(i).getNumber_of_rooms());
+            System.out.println(buildings.get(i).getOpeningHours());
+            System.out.println(buildings.get(i).getClosingHours());
+            System.out.println(buildings.get(i).getNumberOf_Rooms());
         }
         System.out.println("******************Rooms");
         //Printing all rooms from database
         List<Rooms> rooms = con.getRooms();
         for (int i = 0; i < rooms.size(); i++) {
-            System.out.println(rooms.get(i).getRoom_id());
+            System.out.println(rooms.get(i).getRoomId());
             System.out.println(rooms.get(i).getCapacity());
             System.out.println(rooms.get(i).getType());
             System.out.println(rooms.get(i).getAssociatedBuilding());
@@ -86,12 +91,12 @@ public class SignUpController {
         List<Reservations> reservations = con.getReservations();
         for (int i = 0; i < reservations.size(); i++) {
             System.out.println(reservations.get(i).getId());
-            System.out.println(reservations.get(i).getUser_reserving());
+            System.out.println(reservations.get(i).getUserReserving());
             System.out.println(reservations.get(i).getTimeslot());
             System.out.println(reservations.get(i).getDate());
-            System.out.println(reservations.get(i).getRoom_reserved());
-            System.out.println(reservations.get(i).getBike_reserved());
-            System.out.println(reservations.get(i).getDish_ordered());
+            System.out.println(reservations.get(i).getRoomReserved());
+            System.out.println(reservations.get(i).getBikeReserved());
+            System.out.println(reservations.get(i).getDishOrdered());
         }
 
         if (check) {

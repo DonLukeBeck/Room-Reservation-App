@@ -1,6 +1,5 @@
 package nl.tudelft.oopp.demo.repositories;
 
-
 import nl.tudelft.oopp.demo.entities.Reservations;
 import org.springframework.data.jpa.repository.JpaRepository;
 

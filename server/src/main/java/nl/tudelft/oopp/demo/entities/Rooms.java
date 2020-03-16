@@ -7,24 +7,24 @@ import javax.persistence.Id;
 
 public class Rooms {
     @Id
-    private String room_id;
+    private String roomId;
 
     private int capacity;
 
     private String type;
 
-    private int associated_building;
+    private int associatedBuilding;
 
     public Rooms() {
     }
 
 
-    public String getRoom_id() {
-        return room_id;
+    public String getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(String room_id) {
-        this.room_id = room_id;
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     public int getCapacity() {
@@ -44,10 +44,10 @@ public class Rooms {
     }
 
     public int getAssociated_building() {
-        return associated_building;
+        return associatedBuilding;
     }
 
-    public void setAssociated_building(int associated_building) {
-        this.associated_building = associated_building;
+    public void setAssociated_building(int associatedBuilding) {
+        this.associatedBuilding = associatedBuilding;
     }
 }

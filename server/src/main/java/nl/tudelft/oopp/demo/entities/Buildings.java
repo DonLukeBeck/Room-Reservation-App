@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.entities;
 
 import java.sql.Time;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,77 +9,133 @@ import javax.persistence.Id;
 
 public class Buildings {
     @Id
-    private int building_number;
+    private int buildingNumber;
 
     private String name;
 
-    private Time opening_hours;
+    private Time openingHours;
 
-    private Time closing_hours;
+    private Time closingHours;
 
-    private int number_of_rooms;
+    private int numberOfRooms;
 
-    private int number_of_bikes;
+    private int numberOfBikes;
 
     private String url;
 
     public Buildings() {
     }
 
-
+    /**
+     * Method to get Building Number.
+     * @return Building Number
+     */
     public int getBuilding_number() {
-        return building_number;
+        return buildingNumber;
     }
 
-    public void setBuilding_number(int building_number) {
-        this.building_number = building_number;
+    /**
+     * Method to set Building Number.
+     * @param buildingNumber Number to be set to the building
+     */
+    public void setBuildingNumber(int buildingNumber) {
+        this.buildingNumber = buildingNumber;
     }
 
+    /**
+     * Method to get Name of a Building.
+     * @return Building Name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Mehtod to set Building Name.
+     * @param name Buidling Name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    public Time getOpening_hours() {
-        return opening_hours;
+    /**
+     * Method to get Opening Hours of a Building.
+     * @return Building Opening Hours
+     */
+    public Time getOpeningHours() {
+        return openingHours;
     }
 
-    public void setOpening_hours(Time opening_hours) {
-        this.opening_hours = opening_hours;
+    /**
+     * Method to set Building Opening Hours.
+     * @param openingHours Building Opening Hours
+     */
+    public void setOpeningHours(Time openingHours) {
+        this.openingHours = openingHours;
     }
 
-    public Time getClosing_hours() {
-        return closing_hours;
+    /**
+     * Method to get Building Closing Hours.
+     * @return Building Closing Hours
+     */
+    public Time getClosingHours() {
+        return closingHours;
     }
 
-    public void setClosing_hours(Time closing_hours) {
-        this.closing_hours = closing_hours;
+    /**
+     * Method to set Building Closing Hours.
+     * @param closingHours Closing Hours of a Building
+     */
+    public void setClosingHours(Time closingHours) {
+        this.closingHours = closingHours;
     }
 
-    public int getNumber_of_rooms() {
-        return number_of_rooms;
+    /**
+     *Method to get the number of rooms in a Building.
+     * @return Number of rooms in Building
+     */
+    public int getNumberOfRooms() {
+        return numberOfRooms;
     }
 
-    public void setNumber_of_rooms(int number_of_rooms) {
-        this.number_of_rooms = number_of_rooms;
+    /**
+     *Method to set Number of Rooms in a Building.
+     * @param numberOfRooms Number of rooms in a building
+     */
+    public void setNumberOfRooms(int numberOfRooms) {
+        this.numberOfRooms = numberOfRooms;
     }
 
-    public int getNumber_of_bikes() {
-        return number_of_bikes;
+    /**
+     *Method to get the number of bikes associated with a Building.
+     * @return Number of Bikes associated with the Building
+     */
+    public int getNumberOfBikes() {
+        return numberOfBikes;
     }
 
-    public void setNumber_of_bikes(int number_of_bikes) {
-        this.number_of_bikes = number_of_bikes;
+    /**
+     *Method to set the number of bikes asssociated with a Building.
+     * @param numberOfBikes Number of bikes associated to the building
+     */
+    public void setNumberOfBikes(int numberOfBikes) {
+        this.numberOfBikes = numberOfBikes;
     }
 
+    /**
+     *Method to get the URL of the Building Image.
+     * @return URL of Building Image
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     *Method to set the URL of the Building Image.
+     * @param url URL of building image
+     */
     public void setUrl(String url) {
         this.url = url;
     }
+
 }

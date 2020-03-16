@@ -38,12 +38,17 @@ public class RoomMenuController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
 
     public static String getId() {
         return room_id;
     }
 
+    /**
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
@@ -111,7 +116,7 @@ public class RoomMenuController implements Initializable {
                 cap.setLayoutX(390);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label roomId1 = new Label(rooms.get(j).getRoom_id());
+                Label roomId1 = new Label(rooms.get(j).getRoomId());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(390);
@@ -158,7 +163,7 @@ public class RoomMenuController implements Initializable {
                 cap.setLayoutX(676);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label roomId1 = new Label(rooms.get(j).getRoom_id());
+                Label roomId1 = new Label(rooms.get(j).getRoomId());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(676);
@@ -203,7 +208,7 @@ public class RoomMenuController implements Initializable {
                 cap.setLayoutX(104);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label roomId1 = new Label(rooms.get(j).getRoom_id());
+                Label roomId1 = new Label(rooms.get(j).getRoomId());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(104);
@@ -220,7 +225,12 @@ public class RoomMenuController implements Initializable {
 
     }
 
-    public void CampusMap(Event event) throws IOException {
+    /**
+     * Method for campus map to pop up.
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -231,11 +241,24 @@ public class RoomMenuController implements Initializable {
         stage.show();
     }
 
-    public void GoBack(Event event) throws IOException {
+    @FXML
+    private javafx.scene.control.Button ReserveScene;
+
+    /**
+     *Method to go back to previous page.
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void roomChosen(Event event) throws IOException {
         String str = event.getSource().toString();
         String[] temp = str.split(" ");
@@ -245,13 +268,13 @@ public class RoomMenuController implements Initializable {
                 newTemp = temp[i];
             }
         }
-        String[] ArrId = newTemp.split("=");
-        String temp2 = ArrId[1];
-        temp2 = temp2.substring(1, temp2.length() - 1);
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
+        temp2 = temp2.substring(1,temp2.length() - 1);
 
         int roomIndex = Integer.parseInt(temp2);
 
-        this.room_id = this.rooms.get(roomIndex).getRoom_id();
+        room_id = rooms.get(roomIndex).getRoomId();
 
         String buildingId = MainMenuController.getId().substring(1);
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,10 +18,13 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
-
 public class HelperController {
     ServerCommunication con = new ServerCommunication();
 
+    /**
+     *Method to get all timeslots.
+     * @return List of all timeslots
+     */
     public String[] getAllTimeSlots() {
         String[] list = new String[48];
         int j = 0;
@@ -40,6 +44,12 @@ public class HelperController {
         return list;
     }
 
+    /**
+     *
+     * @param path
+     * @param scene1
+     * @throws IOException
+     */
     public void loadNextScene(String path, AnchorPane scene1) throws IOException {
         Stage stage1 = (Stage) scene1.getScene().getWindow();
 
@@ -52,6 +62,10 @@ public class HelperController {
         stage1.show();
     }
 
+    /**
+     *
+     * @param sidePane
+     */
     public void loadSidePane(Pane sidePane) {
         List<Buildings> buildingsList = new ArrayList<>();
         int layoutY = 220;

@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
+
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.repositories.BuildingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class BuildingsController {
         return buildingsRepository.findAll();
     }
 
+    /**
+     *
+     * @param building
+     * @return
+     */
     @PostMapping("/addBuilding") // Map ONLY POST Requests
     public @ResponseBody
     boolean addBuilding(@RequestBody Buildings building) {
@@ -35,12 +41,12 @@ public class BuildingsController {
             return false;
         } catch (NullPointerException e) {
             Buildings newBuilding = new Buildings();
-            newBuilding.setBuilding_number(building.getBuilding_number());
-            newBuilding.setClosing_hours(building.getClosing_hours());
+            newBuilding.setBuildingNumber(building.getBuilding_number());
+            newBuilding.setClosingHours(building.getClosingHours());
             newBuilding.setName(building.getName());
-            newBuilding.setOpening_hours(building.getOpening_hours());
-            newBuilding.setNumber_of_bikes(building.getNumber_of_bikes());
-            newBuilding.setNumber_of_rooms(building.getNumber_of_rooms());
+            newBuilding.setOpeningHours(building.getOpeningHours());
+            newBuilding.setNumberOfBikes(building.getNumberOfBikes());
+            newBuilding.setNumberOfRooms(building.getNumberOfRooms());
             newBuilding.setUrl(building.getUrl());
             buildingsRepository.save(newBuilding);
             return true;

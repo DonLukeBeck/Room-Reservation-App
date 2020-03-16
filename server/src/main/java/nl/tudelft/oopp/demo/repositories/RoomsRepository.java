@@ -1,6 +1,5 @@
 package nl.tudelft.oopp.demo.repositories;
 
-
 import nl.tudelft.oopp.demo.entities.Rooms;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -10,5 +9,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RoomsRepository extends JpaRepository<Rooms, Long> {
     @Query(value = "SELECT * FROM rooms WHERE room_id = ?1 LIMIT 1", nativeQuery = true)
-    Rooms findRoomsByRoomId(String room_id);
+    Rooms findRoomsByRoomId(String roomId);
 }

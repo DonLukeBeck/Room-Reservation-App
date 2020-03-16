@@ -34,29 +34,46 @@ public class RoomReservationMenu implements Initializable {
     @FXML
     AnchorPane mainScreen;
     @FXML
-    private ChoiceBox MonthChoice;
+    private ChoiceBox monthChoice;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
     @FXML
-    private AnchorPane Mon;
+    private AnchorPane mon;
     @FXML
-    private GridPane Grid;
+    private GridPane grid;
     @FXML
     private Pane sidePane;
 
+    /**
+     * Method to get Month.
+     * @return Month
+     */
     public static int getMonth() {
         return Fmonth;
     }
 
+    /**
+     * Method to get year.
+     * @return Year
+     */
     public static int getYear() {
         return Fyear;
     }
 
+    /**
+     * Method to get Day.
+     * @return Day
+     */
     public static int getDay() {
         return FDay;
     }
 
-    public void CampusMap(Event event) throws IOException {
+    /**
+     * Method for campus map to pop up.
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException
+     */
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -67,11 +84,21 @@ public class RoomReservationMenu implements Initializable {
         stage.show();
     }
 
-    public void GoBack(Event event) throws IOException {
+    /**
+     * Method to go back to previous page.
+     * @param event Clicking on 'Go Back'
+     * @throws IOException
+     */
+    public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void calendarSearch(Event event) throws IOException {
         int i = 1;
@@ -80,7 +107,7 @@ public class RoomReservationMenu implements Initializable {
         int monIndex = -1;
         // System.out.println(MonthChoice.getValue());
         for (int j = 0; j < months.length; j++) {
-            if (MonthChoice.getValue().equals(months[j])) {
+            if (monthChoice.getValue().equals(months[j])) {
                 monIndex = j;
             }
         }
@@ -100,7 +127,7 @@ public class RoomReservationMenu implements Initializable {
         int day = 1;
 
 
-        for (Node e : Grid.getChildren()) {
+        for (Node e : grid.getChildren()) {
             c.set(Calendar.DAY_OF_MONTH, i);
             try {
                 ((AnchorPane) e).getChildren().clear();
@@ -153,28 +180,35 @@ public class RoomReservationMenu implements Initializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    public void DateOnCalendar(Event event) throws IOException {
+    public void dateOnCalendar(Event event) throws IOException {
         String str = event.getSource().toString();
         AnchorPane e = (AnchorPane) event.getSource();
-        String CurrentDate = " ";
+        String currentDate = " ";
         if (!(e.getChildren().isEmpty())) {
-            CurrentDate = e.getChildren().toString();
-            String[] CurDate = CurrentDate.split("text=");
+            currentDate = e.getChildren().toString();
+            String[] curDate = currentDate.split("text=");
             //System.out.println(CurrentDate);
-            CurrentDate = CurDate[1];
-            CurrentDate = CurrentDate.substring(1, 3);
-            String[] CurDat = CurrentDate.split("\"");
-            CurrentDate = CurDat[0];
+            currentDate = curDate[1];
+            currentDate = currentDate.substring(1, 3);
+            String[] curDat = currentDate.split("\"");
+            currentDate = curDat[0];
             //CurrentDate = CurrentDate.replaceAll(" \" ", " ");
             // System.out.println(CurrentDate);
         } else {
-            CurrentDate = "32";
+            currentDate = "32";
         }
 
-        FDay = Integer.parseInt(CurrentDate);
+        FDay = Integer.parseInt(currentDate);
 
-        if (FDay == 32) return;
+        if (FDay == 32) {
+            return;
+        }
         // System.out.println(FDay);
 
 
@@ -208,7 +242,7 @@ public class RoomReservationMenu implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        MonthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+        monthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
 
         Calendar defaultCalendar = Calendar.getInstance();
 
@@ -268,7 +302,7 @@ public class RoomReservationMenu implements Initializable {
             }
         }
 
-        MonthChoice.setValue(defMon);
+        monthChoice.setValue(defMon);
 
         int flag = 0;
         int i = 1;
@@ -278,7 +312,7 @@ public class RoomReservationMenu implements Initializable {
         int days = yearMon.lengthOfMonth();
         int day = 1;
 
-        for (Node e : Grid.getChildren()) {
+        for (Node e : grid.getChildren()) {
             defaultCalendar.set(Calendar.DAY_OF_MONTH, i);
             try {
                 ((AnchorPane) e).getChildren().clear();
@@ -325,6 +359,3 @@ public class RoomReservationMenu implements Initializable {
         }
     }
 }
-
-
-
