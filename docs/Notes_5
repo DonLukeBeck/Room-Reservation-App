@@ -1,0 +1,11 @@
+CTA:
+- Reserve 1 month ahead max
+- Implement a logout method
+- Add filtering method to be able to find rooms according to
+- Calendar view for user reservations overview
+- Custom entry in calendar in reservations overview
+- Calendar view should start with current year and month, and can search for another time if need be
+
+TA:
+- Could have endpoint for admin to upload picture but is a lot of work. Having photos are not necessary.
+- Keep hardcoded placeholder photos for now and if we have time once everything else is done we can do it then. Can use free photo hosting servie like imgur.
