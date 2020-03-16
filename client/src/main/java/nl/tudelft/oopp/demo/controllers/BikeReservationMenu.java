@@ -92,14 +92,6 @@ public class BikeReservationMenu implements Initializable {
         Stage stage1 = (Stage) reserveScene.getScene().getWindow();
         stage1.close();
 
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainReservationMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 
     /**

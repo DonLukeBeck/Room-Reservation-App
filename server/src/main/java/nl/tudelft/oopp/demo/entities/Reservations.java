@@ -2,7 +2,10 @@ package nl.tudelft.oopp.demo.entities;
 
 import java.sql.Date;
 import java.sql.Time;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
 
@@ -28,7 +31,6 @@ public class Reservations {
 
     public Reservations() {
     }
-
 
 
     public int getId() {

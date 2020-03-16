@@ -23,11 +23,9 @@ import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class SignUpController {
 
-    ServerCommunication con = new ServerCommunication();
-
     @FXML
     public javafx.scene.control.Button button3;
-
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private TextField user;
 
@@ -79,7 +77,7 @@ public class SignUpController {
             System.out.println(buildings.get(i).getClosingHours());
             System.out.println(buildings.get(i).getNumberOf_Rooms());
         }
-        System.out.println("******************");
+        System.out.println("******************Rooms");
         //Printing all rooms from database
         List<Rooms> rooms = con.getRooms();
         for (int i = 0; i < rooms.size(); i++) {
@@ -102,7 +100,7 @@ public class SignUpController {
         }
 
         if (check) {
-           boolean signUp =  con.signUp(username, firstPass, role);
+            boolean signUp = con.signUp(username, firstPass, role);
         } else {
             System.out.println("Pass do not match!");
             Label text = new Label("Passwords do not match!");

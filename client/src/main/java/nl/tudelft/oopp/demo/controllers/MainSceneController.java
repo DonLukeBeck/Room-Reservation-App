@@ -73,7 +73,6 @@ public class MainSceneController {
                 return;
             } else if (userLogged.getRole().equals("student")) {
                 //redirect to student page
-
                 Stage stage1 = (Stage) button1.getScene().getWindow();
                 stage1.close();
 
@@ -85,6 +84,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
+                return;
             } else {
                 //redirect to teacher page
                 return;

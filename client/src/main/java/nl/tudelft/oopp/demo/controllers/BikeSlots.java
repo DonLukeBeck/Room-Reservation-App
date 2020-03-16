@@ -217,7 +217,9 @@ public class BikeSlots implements Initializable {
         String[] closing = closingtime.split(":");
         double start = Integer.parseInt(opening[0]);
         double end = Integer.parseInt(closing[0]);
-
+        if (end < 6) {
+            end = end + 24;
+        }
         if (opening[1].equals("30")) {
             start = start + 0.5;
         }

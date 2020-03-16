@@ -1,10 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import java.util.List;
-import nl.tudelft.oopp.demo.entities.RegisterNewUser;
 import nl.tudelft.oopp.demo.entities.Reservations;
-import nl.tudelft.oopp.demo.entities.Users;
 import nl.tudelft.oopp.demo.repositories.ReservationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

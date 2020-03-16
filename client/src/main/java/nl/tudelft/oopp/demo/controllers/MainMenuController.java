@@ -13,8 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +24,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
+import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class MainMenuController implements Initializable {
     private static String id;
@@ -46,20 +46,92 @@ public class MainMenuController implements Initializable {
     @FXML
     private AnchorPane filterPane;
 
-    /**
-     * Method to get the ID.
-     * @return ID
-     */
+    @FXML
+    private Button openFilter;
+
+    @FXML
+    private ComboBox buildingID;
+    @FXML
+    private ComboBox buildingID1;
+    @FXML
+    private ComboBox buildingID2;
+    @FXML
+    private ComboBox filterSlot;
+    @FXML
+    private ComboBox filterSlot1;
+    @FXML
+    private TextField filterCapacity;
+    @FXML
+    private ComboBox filterFood;
+    @FXML
+    private DatePicker filterDate;
+    @FXML
+    private DatePicker filterDate1;
+    @FXML
+    private DatePicker filterDate2;
+
     public static String getId() {
         return id;
     }
 
-    /**
-     * Method for campus map to pop up.
-     * @param event Clicking on 'Campus Map'
-     * @throws IOException
-     */
-    public void campusMap(Event event) throws IOException {
+    public void openFilter(Event event) {
+        filterPane.setVisible(true);
+    }
+
+    public void closeFilter(Event event) {
+        filterPane.setVisible(false);
+    }
+
+    public void loadFilter() {
+        int j = 0;
+        List<Buildings> listGetBuildings = null;
+        try {
+            listGetBuildings = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        j = 0;
+        String[] listAllBuildings = new String[listGetBuildings.size()];
+        for (Buildings t : listGetBuildings) {
+            listAllBuildings[j] = "" + t.getBuilding_number();
+            j++;
+        }
+
+        HelperController h = new HelperController();
+
+        buildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
+        //buildingID.setValue("All");
+        buildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
+        //buildingID1.setValue("All");
+        buildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
+        //buildingID2.setValue("All");
+        filterSlot.setItems(FXCollections.observableArrayList(h.getAllTimeSlots()));
+        //filterSlot.setValue("All");
+        filterSlot1.setItems(FXCollections.observableArrayList(h.getAllTimeSlots()));
+        //filterSlot1.setValue("All");
+    }
+
+    public void searchRoom() throws IOException {
+        System.out.println(buildingID.getValue());
+        System.out.println(filterCapacity.getText());
+        System.out.println(filterSlot.getValue());
+        System.out.println(filterDate.getValue());
+        List<Buildings> buildings = con.getBuildings();
+        List<Rooms> rooms = con.getRooms();
+        List<Rooms> allSuitableRooms = new ArrayList<>();
+    }
+
+    public void searchBike() {
+        System.out.println(buildingID1.getValue());
+        System.out.println(filterSlot1.getValue());
+    }
+
+    public void searchFood() {
+        System.out.println(buildingID2.getValue());
+        System.out.println(filterFood.getValue());
+    }
+
+    public void CampusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);
@@ -91,7 +163,11 @@ public class MainMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Buildings> buildingsList = new ArrayList<>();
+
+        loadFilter();
+
         filterPane.setVisible(false);
+
         int layoutY = 220;
 
         try {

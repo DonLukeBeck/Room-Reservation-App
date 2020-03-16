@@ -21,6 +21,7 @@ public class ServerCommunication {
 
     /**
      * Create new user.
+     *
      * @param user net_id
      * @param pass password from the user
      * @return true if new user is created, false if not.
@@ -93,6 +94,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves building list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -119,6 +121,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves rooms list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -143,8 +146,10 @@ public class ServerCommunication {
         return roomsJsonList;
     }
 
+
     /**
      * Retrieves reservations list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -172,6 +177,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves menus list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -198,6 +204,7 @@ public class ServerCommunication {
 
     /**
      * Retrieves dishes list from the server.
+     *
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
@@ -224,6 +231,7 @@ public class ServerCommunication {
 
     /**
      * Create new user.
+     *
      * @return true if new user is created, false if not.
      */
     public boolean reservation(String userReserving, String timeSlot, String date, int buildingReserved, String room) {
@@ -252,4 +260,53 @@ public class ServerCommunication {
         }
     }
 
+    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity , int roomCapacity) {
+
+        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\""+ buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity +  "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
+        System.out.println(body);
+        try {
+            boolean bool = this.webClient.post().uri("/addBuilding")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Building added");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
+
+        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\""+ buildingID + "\"}";
+        System.out.println(body);
+        try {
+            boolean bool = this.webClient.post().uri("/addRoom")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Room added");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }
