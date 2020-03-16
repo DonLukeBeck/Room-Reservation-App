@@ -17,6 +17,8 @@ Note taker:     {}\
 - Cleanup branches and merge into master
 - Implement adding personal events to the schedule
 - Start creating restrictions on reservations
+- Simplify long methods with helper methods to lower complexity
+- Minimize code duplication
 
 # Any other business
 *If anybody has something that should be discussed but came up with that after the agenda was finalized (in point 2), he/she should bring that up now so that it can be discussed after all.*
@@ -24,7 +26,6 @@ Note taker:     {}\
 # Questions
 *If there are any questions, now is the time to ask them.*
 - How does the coronavirus situation affect how we are going to be graded?
-- 
 
 # Closing
 *Now you can start working on the project. Good luck!*
