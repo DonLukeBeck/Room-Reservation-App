@@ -23,6 +23,11 @@ public class ReservationsController {
         return reservationsRepository.findAll();
     }
 
+    /**
+     *
+     * @param reservation
+     * @return
+     */
     @PostMapping("/postReservation") // Map ONLY POST Requests
     public @ResponseBody
     boolean register(@RequestBody Reservations reservation) {

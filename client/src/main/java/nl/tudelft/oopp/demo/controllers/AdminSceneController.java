@@ -13,7 +13,7 @@ public class AdminSceneController {
     @FXML
     private AnchorPane mainScreen;
 
-    /***
+    /**
      * Method to get ID.
      * @return The id
      */
@@ -21,7 +21,7 @@ public class AdminSceneController {
         return id;
     }
 
-    /***
+    /**
      *
      * @param event
      * @throws IOException

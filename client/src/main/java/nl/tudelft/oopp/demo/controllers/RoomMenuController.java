@@ -38,7 +38,7 @@ public class RoomMenuController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private javafx.scene.control.Button ReserveScene;
+    private javafx.scene.control.Button reserveScene;
 
     public static String getId() {
         return room_id;
@@ -116,7 +116,7 @@ public class RoomMenuController implements Initializable {
                 cap.setLayoutX(390);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label roomId1 = new Label(rooms.get(j).getRoom_id());
+                Label roomId1 = new Label(rooms.get(j).getRoomId());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(390);
@@ -163,7 +163,7 @@ public class RoomMenuController implements Initializable {
                 cap.setLayoutX(676);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label roomId1 = new Label(rooms.get(j).getRoom_id());
+                Label roomId1 = new Label(rooms.get(j).getRoomId());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(676);
@@ -208,7 +208,7 @@ public class RoomMenuController implements Initializable {
                 cap.setLayoutX(104);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label roomId1 = new Label(rooms.get(j).getRoom_id());
+                Label roomId1 = new Label(rooms.get(j).getRoomId());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(104);
@@ -242,7 +242,7 @@ public class RoomMenuController implements Initializable {
     }
 
     @FXML
-    private javafx.scene.control.Button reserveScene;
+    private javafx.scene.control.Button ReserveScene;
 
     /**
      *Method to go back to previous page.
@@ -274,7 +274,7 @@ public class RoomMenuController implements Initializable {
 
         int roomIndex = Integer.parseInt(temp2);
 
-        room_id = rooms.get(roomIndex).getRoom_id();
+        room_id = rooms.get(roomIndex).getRoomId();
 
         String buildingId = MainMenuController.getId().substring(1);
 

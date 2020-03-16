@@ -91,7 +91,7 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     /**
-     *Method for campus map to pop up
+     *Method for campus map to pop up.
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -107,7 +107,7 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     /**
-     *Method to go back to previous page
+     *Method to go back to previous page.
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */

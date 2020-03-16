@@ -193,7 +193,7 @@ public class FoodSlots implements Initializable {
         List<Reservations> allSuitableRes = new ArrayList<>();
 
         for (Reservations e : allReservations) {
-            if (e.getDate().toString().equals(date) && e.getRoom_reserved() != null && e.getRoom_reserved().equals(room)) {
+            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
                 allSuitableRes.add(e);
             }
         }

@@ -126,6 +126,11 @@ public class AdminController implements Initializable {
         helperController.loadNextScene("/MainAdminScene.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void addBuilding(Event event) throws IOException {
         String bikeCapacity = addBuildingBikes.getText();
         Label exception = new Label();
@@ -189,6 +194,11 @@ public class AdminController implements Initializable {
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void addRoom(Event event) throws IOException {
         Label exception = new Label();
 

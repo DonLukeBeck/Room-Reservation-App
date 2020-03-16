@@ -9,7 +9,7 @@ public class Rooms {
 
     private String type;
 
-    private int associated_building;
+    private int associatedBuilding;
 
     public Rooms() {
     }
@@ -68,7 +68,7 @@ public class Rooms {
      * @return Room Building
      */
     public int getAssociatedBuilding() {
-        return associated_building;
+        return associatedBuilding;
     }
 
     /**

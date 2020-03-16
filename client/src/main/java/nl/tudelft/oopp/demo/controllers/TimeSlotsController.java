@@ -204,7 +204,7 @@ public class TimeSlotsController implements Initializable {
         String[] closing = closingtime.split(":");
         double start = Integer.parseInt(opening[0]);
         double end = Integer.parseInt(closing[0]);
-        if(end < 6){
+        if (end < 6) {
             end = end + 24;
         }
 

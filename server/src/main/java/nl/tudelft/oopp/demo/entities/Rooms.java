@@ -13,7 +13,7 @@ public class Rooms {
 
     private String type;
 
-    private int associated_building;
+    private int associatedBuilding;
 
     public Rooms() {
     }
@@ -44,10 +44,10 @@ public class Rooms {
     }
 
     public int getAssociated_building() {
-        return associated_building;
+        return associatedBuilding;
     }
 
-    public void setAssociated_building(int associated_building) {
-        this.associated_building = associated_building;
+    public void setAssociated_building(int associatedBuilding) {
+        this.associatedBuilding = associatedBuilding;
     }
 }

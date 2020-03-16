@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,6 +83,9 @@ public class MainMenuController implements Initializable {
         filterPane.setVisible(false);
     }
 
+    /**
+     *
+     */
     public void loadFilter() {
         int j = 0;
         List<Buildings> listGetBuildings = null;
@@ -111,6 +115,10 @@ public class MainMenuController implements Initializable {
         //filterSlot1.setValue("All");
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void searchRoom() throws IOException {
         System.out.println(buildingID.getValue());
         System.out.println(filterCapacity.getText());
@@ -131,7 +139,12 @@ public class MainMenuController implements Initializable {
         System.out.println(filterFood.getValue());
     }
 
-    public void CampusMap(Event event) throws IOException {
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
+    public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
         loader.setLocation(xmlUrl);

@@ -23,13 +23,18 @@ public class RoomsController {
         return roomsRepository.findAll();
     }
 
+    /**
+     *
+     * @param room
+     * @return
+     */
     @PostMapping("/addRoom") // Map ONLY POST Requests
     public @ResponseBody
     boolean addRoom(@RequestBody Rooms room) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
-            if (!roomsRepository.findRoomsByRoomId(room.getRoom_id()).getRoom_id().isEmpty()) {
+            if (!roomsRepository.findRoomsByRoomId(room.getRoomId()).getRoomId().isEmpty()) {
                 return false;
             }
             return false;
@@ -38,7 +43,7 @@ public class RoomsController {
             System.out.println(room.getAssociated_building());
             newRoom.setAssociated_building(room.getAssociated_building());
             newRoom.setCapacity(room.getCapacity());
-            newRoom.setRoom_id(room.getRoom_id());
+            newRoom.setRoomId(room.getRoomId());
             newRoom.setType(room.getType());
             roomsRepository.save(newRoom);
             return true;

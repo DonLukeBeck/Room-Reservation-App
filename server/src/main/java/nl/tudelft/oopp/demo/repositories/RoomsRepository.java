@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RoomsRepository extends JpaRepository<Rooms, Long> {
     @Query(value = "SELECT * FROM rooms WHERE room_id = ?1 LIMIT 1", nativeQuery = true)
-    Rooms findRoomsByRoomId(String room_id);
+    Rooms findRoomsByRoomId(String roomId);
 }

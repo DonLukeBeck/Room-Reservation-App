@@ -196,7 +196,7 @@ public class BikeSlots implements Initializable {
 
         List<Reservations> reservationOnChosenDate = new ArrayList<>();
         for (Reservations e : reservations) {
-            if (e.getDate().toString().equals(date) && e.getBike_reserved() != 0) {
+            if (e.getDate().toString().equals(date) && e.getBikeReserved() != 0) {
                 reservationOnChosenDate.add(e);
             }
         }
