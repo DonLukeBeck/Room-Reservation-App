@@ -72,7 +72,7 @@ public class SignUpController {
             System.out.println(buildings.get(i).getClosing_hours());
             System.out.println(buildings.get(i).getNumber_of_rooms());
         }
-        System.out.println("******************");
+        System.out.println("******************Rooms");
         //Printing all rooms from database
         List<Rooms> rooms = con.getRooms();
         for (int i = 0; i < rooms.size(); i++) {

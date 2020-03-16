@@ -173,6 +173,9 @@ public class TimeSlotsController implements Initializable {
         String[] closing = closingtime.split(":");
         double start = Integer.parseInt(opening[0]);
         double end = Integer.parseInt(closing[0]);
+        if(end < 6){
+            end = end + 24;
+        }
 
         if (opening[1].equals("30")) {
             start = start + 0.5;
@@ -181,7 +184,6 @@ public class TimeSlotsController implements Initializable {
         if (closing[1].equals("30")) {
             end = end + 0.5;
         }
-
         for (Node k : slots.getChildren()) {
             if (k instanceof Rectangle) {
                 String str = k.toString();

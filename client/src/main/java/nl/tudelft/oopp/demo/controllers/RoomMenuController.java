@@ -52,14 +52,16 @@ public class RoomMenuController implements Initializable {
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);
 
-        List<Rooms> allrooms = null;
+        List<Rooms> allrooms = new ArrayList<>();
         try {
             allrooms = con.getRooms();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Working");
         rooms = new ArrayList<>();
         for (int i = 0; i < allrooms.size(); i++) {
+            System.out.println("Working2");
             if (allrooms.get(i).getAssociatedBuilding() == builId) {
                 rooms.add(allrooms.get(i));
             }

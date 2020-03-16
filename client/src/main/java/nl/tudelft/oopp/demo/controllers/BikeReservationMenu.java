@@ -66,17 +66,9 @@ public class BikeReservationMenu implements Initializable {
     }
 
     public void GoBack(Event event) throws IOException {
-        Stage stage1 = (Stage) ReserveScene.getScene().getWindow();
-        stage1.close();
+        HelperController help = new HelperController();
+        help.loadNextScene("/MainReservationMenu.fxml", mainScreen);
 
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainReservationMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
     }
 
     @FXML

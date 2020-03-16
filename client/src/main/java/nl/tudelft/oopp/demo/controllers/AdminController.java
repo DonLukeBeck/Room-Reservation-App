@@ -8,8 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
@@ -64,7 +68,7 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         String[] list = new String[48];
         int j = 0;
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i <= 23; i++) {
             if (i < 10) {
                 list[j] = "0" + i + ":00";
                 j++;
@@ -163,6 +167,8 @@ public class AdminController implements Initializable {
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
         con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ":00", buildingClose + ":00", imageUrl, bikes, 0);
+        HelperController h = new HelperController();
+        h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
     public void addRoom(Event event) throws IOException {
@@ -212,5 +218,8 @@ public class AdminController implements Initializable {
         System.out.println(building);
         System.out.println(roomType.getValue());
         con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
+
+        HelperController h = new HelperController();
+        h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 }
