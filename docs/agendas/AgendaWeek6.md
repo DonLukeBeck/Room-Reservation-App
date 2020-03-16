@@ -1,7 +1,7 @@
 ## Agenda Week 6
 
 Date:           {16/03/2020}\
-Main focus:     {}\
+Main focus:     {Seeing how we are progressing and adjusting accordingly}\
 Note taker:     {}\
 
 # Opening
