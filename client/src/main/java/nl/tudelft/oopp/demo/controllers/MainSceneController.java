@@ -2,7 +2,6 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +28,8 @@ public class MainSceneController {
     private PasswordField pass;
 
     /**
-     *Method to get User.
+     * Method to get User.
+     *
      * @return User
      */
     public static String getUser() {
@@ -37,7 +37,6 @@ public class MainSceneController {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      * @throws InterruptedException
@@ -84,6 +83,20 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.show();
+            } else if (userLogged.getRole().equals("teacher")) {
+                //redirect to student page
+                Stage stage1 = (Stage) button1.getScene().getWindow();
+                stage1.close();
+
+                FXMLLoader loader = new FXMLLoader();
+                URL xmlUrl = getClass().getResource("/MainMenu.fxml");
+                loader.setLocation(xmlUrl);
+                Parent root = loader.load();
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
                 return;
             } else {
                 //redirect to teacher page
@@ -97,7 +110,6 @@ public class MainSceneController {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      * @throws InterruptedException

@@ -21,7 +21,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#CampusMap" onMouseClicked="#CampusMap" onMouseDragged="#CampusMap" text="- Campus map" textFill="WHITE">
+                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#campusMap" onMouseClicked="#campusMap" onMouseDragged="#campusMap" text="- Campus map" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -49,7 +49,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold Italic" size="14.0" />
                     </font>
@@ -77,14 +77,14 @@
                 <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <Button layoutX="942.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#Calendarr" prefHeight="31.0" prefWidth="77.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-background-radius: 8; -fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2;" text="Search">
+        <Button layoutX="942.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#calendarr" prefHeight="31.0" prefWidth="77.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-background-radius: 8; -fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-border-width: 2;" text="Search">
             <font>
                 <Font name="System Bold Italic" size="14.0" />
             </font>
             <effect>
                 <ColorAdjust contrast="0.06" />
             </effect></Button>
-        <GridPane fx:id="Grid" gridLinesVisible="true" layoutX="335.0" layoutY="35.0" prefHeight="889.0" prefWidth="610.0" rotate="90.0" style="-fx-background-color: #e6faff;">
+        <GridPane fx:id="grid" gridLinesVisible="true" layoutX="335.0" layoutY="35.0" prefHeight="889.0" prefWidth="610.0" rotate="90.0" style="-fx-background-color: #e6faff;">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -103,47 +103,47 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <AnchorPane fx:id="Mon" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
-                <AnchorPane fx:id="Tue" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
-                <AnchorPane fx:id="Wed" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
-                <AnchorPane fx:id="Thu" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
-                <AnchorPane fx:id="Fri" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
-                <AnchorPane fx:id="Sat" onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                <AnchorPane fx:id="Sun" onMouseClicked="#DateOnCalendar" prefHeight="102.0" prefWidth="50.0" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                <AnchorPane onMouseClicked="#DateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <AnchorPane fx:id="Mon" onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                <AnchorPane fx:id="Tue" onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
+                <AnchorPane fx:id="Wed" onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                <AnchorPane fx:id="Thu" onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+                <AnchorPane fx:id="Fri" onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                <AnchorPane fx:id="Sat" onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                <AnchorPane fx:id="Sun" onMouseClicked="#dateOnCalendar" prefHeight="102.0" prefWidth="50.0" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             </children>
         </GridPane>
         <Label layoutX="347.0" layoutY="140.0" prefHeight="27.0" prefWidth="74.0" text="Tuesday">
@@ -176,7 +176,7 @@
                 <Font name="System Bold Italic" size="18.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="MonthChoice" layoutX="766.0" layoutY="93.0" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-background-radius: 8; -fx-border-width: 2.5; -fx-border-radius: 8;" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="monthChoice" layoutX="766.0" layoutY="93.0" prefHeight="26.0" prefWidth="126.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #00A6D6; -fx-background-radius: 8; -fx-border-width: 2.5; -fx-border-radius: 8;" stylesheets="@style/style.css" />
         <Label layoutX="695.0" layoutY="96.0" text="Month: ">
             <font>
                 <Font name="Comic Sans MS Bold Italic" size="18.0" />

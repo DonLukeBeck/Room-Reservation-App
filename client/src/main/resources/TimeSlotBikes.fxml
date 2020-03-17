@@ -22,7 +22,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#CampusMap" onMouseClicked="#CampusMap" onMouseDragged="#CampusMap" text="- Campus map" textFill="WHITE">
+                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#campusMap" onMouseClicked="#campusMap" onMouseDragged="#campusMap" text="- Campus map" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -60,7 +60,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#GoBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
+                <Button fx:id="ReserveScene" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="38.0" prefWidth="108.0" style="-fx-background-color: #00A6D6; -fx-border-radius: 10; -fx-background-radius: 10;" text="&lt;&lt; Go Back" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold Italic" size="14.0" />
                     </font>
