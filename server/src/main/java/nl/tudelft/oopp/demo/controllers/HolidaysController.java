@@ -1,24 +1,24 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
-import nl.tudelft.oopp.demo.entities.Menus;
-import nl.tudelft.oopp.demo.repositories.MenusRepository;
+import nl.tudelft.oopp.demo.entities.Holidays;
+import nl.tudelft.oopp.demo.repositories.HolidaysRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // This means that this class is a Controller
-public class MenusController {
+public class HolidaysController {
 
     @Autowired
-    private MenusRepository menusRepository;
+    private HolidaysRepository holidaysRepository;
 
-    @GetMapping("/allMenus")
+    @GetMapping("/allHolidays")
     public @ResponseBody
-    List<Menus> getAllMenus() {
-        // This returns a JSON or XML with the menus
-        return menusRepository.findAll();
+    List<Holidays> getAllHolidays() {
+        // This returns a JSON or XML with the holidays
+        return holidaysRepository.findAll();
     }
 
 }

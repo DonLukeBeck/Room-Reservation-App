@@ -4,7 +4,6 @@ import nl.tudelft.oopp.demo.views.MainSceneDisplay;
 
 public class MainApp {
     /**
-     *
      * @param args
      */
     public static void main(String[] args) {

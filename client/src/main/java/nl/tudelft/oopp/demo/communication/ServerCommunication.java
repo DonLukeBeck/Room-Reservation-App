@@ -1,10 +1,8 @@
 package nl.tudelft.oopp.demo.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.util.List;
-
 import nl.tudelft.oopp.demo.entities.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -52,7 +50,6 @@ public class ServerCommunication {
     }
 
     /**
-     *
      * @param user
      * @param pass
      * @return
@@ -203,6 +200,33 @@ public class ServerCommunication {
     }
 
     /**
+     * Retrieves holidays list from the server.
+     *
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public List<Holidays> getHolidays() throws IOException {
+        String jsonString = this.webClient.get().uri("/allHolidays")
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Holidays> holidaysJsonList = mapper.readValue(jsonString, new com.fasterxml.jackson.core.type.TypeReference<List<Holidays>>() {
+        });
+
+        return holidaysJsonList;
+    }
+
+    /**
      * Retrieves dishes list from the server.
      *
      * @return the body of a get request to the server.
@@ -261,7 +285,6 @@ public class ServerCommunication {
     }
 
     /**
-     *
      * @param buildingID
      * @param buildingName
      * @param buildingOpen
@@ -271,9 +294,9 @@ public class ServerCommunication {
      * @param roomCapacity
      * @return
      */
-    public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity, int roomCapacity) {
+    public boolean addBuildingAdmin(int buildingID, String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity, int roomCapacity) {
 
-        String body = "{\"buildingNumber\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"openingHours\":\"" + buildingOpen + "\",\"closingHours\":\"" + buildingClose + "\",\"numberOfRooms\":\"" + roomCapacity +  "\",\"numberOfBikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
+        String body = "{\"buildingNumber\":\"" + buildingID + "\",\"name\":\"" + buildingName + "\",\"openingHours\":\"" + buildingOpen + "\",\"closingHours\":\"" + buildingClose + "\",\"numberOfRooms\":\"" + roomCapacity + "\",\"numberOfBikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addBuilding")
@@ -297,7 +320,6 @@ public class ServerCommunication {
     }
 
     /**
-     *
      * @param roomID
      * @param roomCap
      * @param buildingID
@@ -306,7 +328,7 @@ public class ServerCommunication {
      */
     public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
 
-        String body = "{\"roomId\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
+        String body = "{\"roomId\":\"" + roomID + "\",\"capacity\":\"" + roomCap + "\",\"type\":\"" + roomType + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addRoom")

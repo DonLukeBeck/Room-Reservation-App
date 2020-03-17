@@ -26,7 +26,8 @@ public class Reservations {
 
 
     /**
-     *Method to get the Reservation ID.
+     * Method to get the Reservation ID.
+     *
      * @return Reservation ID
      */
     public int getId() {
@@ -34,7 +35,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the Reservation ID.
+     * Method to set the Reservation ID.
+     *
      * @param id Reservation ID
      */
     public void setId(int id) {
@@ -42,7 +44,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the Timeslot of the reservation.
+     * Method to get the Timeslot of the reservation.
+     *
      * @return Reservation timeslot
      */
     public Time getTimeslot() {
@@ -50,7 +53,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the Timeslot of the reservation.
+     * Method to set the Timeslot of the reservation.
+     *
      * @param timeslot Reservation timeslot
      */
     public void setTimeslot(Time timeslot) {
@@ -58,7 +62,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the reservation Date.
+     * Method to get the reservation Date.
+     *
      * @return Reservation Date
      */
     public Date getDate() {
@@ -66,7 +71,8 @@ public class Reservations {
     }
 
     /**
-     *Method ot set the reservation Date.
+     * Method ot set the reservation Date.
+     *
      * @param date Reservation Date
      */
     public void setDate(Date date) {
@@ -74,7 +80,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the User making the reservation.
+     * Method to get the User making the reservation.
+     *
      * @return User Reserving
      */
     public String getUserReserving() {
@@ -82,7 +89,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the User making the reservation.
+     * Method to set the User making the reservation.
+     *
      * @param userReserving User Reserving
      */
     public void setUser_reserving(String userReserving) {
@@ -90,7 +98,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the room associated with the reservation.
+     * Method to get the room associated with the reservation.
+     *
      * @return Room Reserved
      */
     public String getRoomReserved() {
@@ -98,7 +107,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the room reserved by the reservation.
+     * Method to set the room reserved by the reservation.
+     *
      * @param roomReserved Room Reserved
      */
     public void setRoomReserved(String roomReserved) {
@@ -106,7 +116,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the bike that is associated with the reservation.
+     * Method to get the bike that is associated with the reservation.
+     *
      * @return
      */
     public int getBikeReserved() {
@@ -114,7 +125,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the bike associated with the Reservation.
+     * Method to set the bike associated with the Reservation.
+     *
      * @param bikeReserved Bike Reserved
      */
     public void setBikeReserved(int bikeReserved) {
@@ -122,7 +134,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the Dish associated with the reservation.
+     * Method to get the Dish associated with the reservation.
+     *
      * @return Dish Ordered
      */
     public String getDishOrdered() {
@@ -130,7 +143,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the Dish associated with the reservation.
+     * Method to set the Dish associated with the reservation.
+     *
      * @param dishOrdered Dish Ordered
      */
     public void setDishOrdered(String dishOrdered) {
@@ -138,7 +152,8 @@ public class Reservations {
     }
 
     /**
-     *Method to get the Building associated with the reservation.
+     * Method to get the Building associated with the reservation.
+     *
      * @return Associated Building
      */
     public int getBuilding_reserved() {
@@ -146,7 +161,8 @@ public class Reservations {
     }
 
     /**
-     *Method to set the Building associated with the reservation.
+     * Method to set the Building associated with the reservation.
+     *
      * @param buildingReserved Associated Building
      */
     public void setBuildingReserved(int buildingReserved) {

@@ -19,14 +19,13 @@ public class RoomsController {
     @GetMapping("/allRooms")
     public @ResponseBody
     List<Rooms> getAllRooms() {
-        // This returns a JSON or XML with the buildings
+        // This returns a JSON or XML with the rooms
         return roomsRepository.findAll();
     }
 
-    /**
-     *
-     * @param room
-     * @return
+    /** Adds a room, inserted by the admin, to the database.
+     * @param room - room to be added to the database
+     * @return true if room successfully added, false otherwise
      */
     @PostMapping("/addRoom") // Map ONLY POST Requests
     public @ResponseBody

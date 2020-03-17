@@ -24,9 +24,10 @@ public class ReservationsController {
     }
 
     /**
+     * Adds a reservation to the database.
      *
-     * @param reservation
-     * @return
+     * @param reservation - reservation to be added to the database
+     * @return true when the reservation is saved
      */
     @PostMapping("/postReservation") // Map ONLY POST Requests
     public @ResponseBody
@@ -40,12 +41,6 @@ public class ReservationsController {
         newReservation.setUserReserving(reservation.getUserReserving());
         newReservation.setRoomReserved(reservation.getRoomReserved());
         newReservation.setBuildingReserved(reservation.getBuildingReserved());
-
-        System.out.println(newReservation.getId());
-        System.out.println(newReservation.getUserReserving());
-        System.out.println(newReservation.getRoomReserved());
-        System.out.println(newReservation.getTimeslot());
-        System.out.println(newReservation.getDate());
 
         reservationsRepository.save(newReservation);
         return true;

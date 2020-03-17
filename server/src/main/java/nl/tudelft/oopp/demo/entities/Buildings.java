@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.demo.entities;
 
 import java.sql.Time;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -28,17 +27,25 @@ public class Buildings {
 
     /**
      * Method to get Building Number.
+     *
      * @return Building Number
      */
-    public int getBuildingNumber() { return buildingNumber; }
+    public int getBuildingNumber() {
+        return buildingNumber;
+    }
+
     /**
      * Method to set Building Number.
+     *
      * @param buildingNumber Number to be set to the building
      */
-    public void setBuildingNumber(int buildingNumber) { this.buildingNumber = buildingNumber; }
+    public void setBuildingNumber(int buildingNumber) {
+        this.buildingNumber = buildingNumber;
+    }
 
     /**
      * Method to get Name of a Building.
+     *
      * @return Building Name
      */
     public String getName() {
@@ -47,6 +54,7 @@ public class Buildings {
 
     /**
      * Mehtod to set Building Name.
+     *
      * @param name Buidling Name
      */
     public void setName(String name) {
@@ -55,6 +63,7 @@ public class Buildings {
 
     /**
      * Method to get Opening Hours of a Building.
+     *
      * @return Building Opening Hours
      */
     public Time getOpeningHours() {
@@ -63,6 +72,7 @@ public class Buildings {
 
     /**
      * Method to set Building Opening Hours.
+     *
      * @param openingHours Building Opening Hours
      */
     public void setOpeningHours(Time openingHours) {
@@ -71,6 +81,7 @@ public class Buildings {
 
     /**
      * Method to get Building Closing Hours.
+     *
      * @return Building Closing Hours
      */
     public Time getClosingHours() {
@@ -79,6 +90,7 @@ public class Buildings {
 
     /**
      * Method to set Building Closing Hours.
+     *
      * @param closingHours Closing Hours of a Building
      */
     public void setClosingHours(Time closingHours) {
@@ -86,7 +98,8 @@ public class Buildings {
     }
 
     /**
-     *Method to get the number of rooms in a Building.
+     * Method to get the number of rooms in a Building.
+     *
      * @return Number of rooms in Building
      */
     public int getNumberOfRooms() {
@@ -94,7 +107,8 @@ public class Buildings {
     }
 
     /**
-     *Method to set Number of Rooms in a Building.
+     * Method to set Number of Rooms in a Building.
+     *
      * @param numberOfRooms Number of rooms in a building
      */
     public void setNumberOfRooms(int numberOfRooms) {
@@ -102,7 +116,8 @@ public class Buildings {
     }
 
     /**
-     *Method to get the number of bikes associated with a Building.
+     * Method to get the number of bikes associated with a Building.
+     *
      * @return Number of Bikes associated with the Building
      */
     public int getNumberOfBikes() {
@@ -110,7 +125,8 @@ public class Buildings {
     }
 
     /**
-     *Method to set the number of bikes asssociated with a Building.
+     * Method to set the number of bikes asssociated with a Building.
+     *
      * @param numberOfBikes Number of bikes associated to the building
      */
     public void setNumberOfBikes(int numberOfBikes) {
@@ -118,7 +134,8 @@ public class Buildings {
     }
 
     /**
-     *Method to get the URL of the Building Image.
+     * Method to get the URL of the Building Image.
+     *
      * @return URL of Building Image
      */
     public String getUrl() {
@@ -126,7 +143,8 @@ public class Buildings {
     }
 
     /**
-     *Method to set the URL of the Building Image.
+     * Method to set the URL of the Building Image.
+     *
      * @param url URL of building image
      */
     public void setUrl(String url) {

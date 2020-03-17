@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
-
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.repositories.BuildingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,10 @@ public class BuildingsController {
     }
 
     /**
+     * Adds a building, inserted by the admin, in the database.
      *
-     * @param building
-     * @return
+     * @param building - building to be inserted in database
+     * @return true if it's added, false if it's already in the database or it has an invalid id
      */
     @PostMapping("/addBuilding") // Map ONLY POST Requests
     public @ResponseBody
@@ -35,7 +35,8 @@ public class BuildingsController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
-            if (buildingsRepository.findBuildingsByBuildingNumber(building.getBuildingNumber()).getBuildingNumber() > 0) {
+            if (buildingsRepository.findBuildingsByBuildingNumber(building.getBuildingNumber())
+                    .getBuildingNumber() > 0) {
                 return false;
             }
             return false;

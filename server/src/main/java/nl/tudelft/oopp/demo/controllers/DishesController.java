@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import java.util.List;
-
 import nl.tudelft.oopp.demo.entities.Dishes;
 import nl.tudelft.oopp.demo.repositories.DishesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class DishesController {
     @GetMapping("/allDishes")
     public @ResponseBody
     List<Dishes> getAllDishes() {
-        // This returns a JSON or XML with the buildings
+        // This returns a JSON or XML with the dishes
         return dishesRepository.findAll();
     }
 

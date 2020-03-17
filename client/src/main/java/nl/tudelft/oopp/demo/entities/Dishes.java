@@ -15,7 +15,8 @@ public class Dishes {
     }
 
     /**
-     *Method to return Dish Name.
+     * Method to return Dish Name.
+     *
      * @return Dish Name
      */
     public String getName() {
@@ -23,7 +24,8 @@ public class Dishes {
     }
 
     /**
-     *Method to set Dish Name.
+     * Method to set Dish Name.
+     *
      * @param name Dish Name
      */
     public void setName(String name) {
@@ -31,7 +33,8 @@ public class Dishes {
     }
 
     /**
-     *Method to get the price of a dish.
+     * Method to get the price of a dish.
+     *
      * @return Dish Price
      */
     public int getPrice() {
@@ -39,7 +42,8 @@ public class Dishes {
     }
 
     /**
-     *Method to set the price of a dish.
+     * Method to set the price of a dish.
+     *
      * @param price Dish Price
      */
     public void setPrice(int price) {
@@ -47,7 +51,8 @@ public class Dishes {
     }
 
     /**
-     *Method to get Vegan boolean.
+     * Method to get Vegan boolean.
+     *
      * @return Vegan Boolean
      */
     public int getVegan() {
@@ -55,7 +60,8 @@ public class Dishes {
     }
 
     /**
-     *Method to set Vegan Boolean.
+     * Method to set Vegan Boolean.
+     *
      * @param vegan Vegan Boolean
      */
     public void setVegan(int vegan) {
@@ -63,7 +69,8 @@ public class Dishes {
     }
 
     /**
-     *Method to get the Menu the dish is part of.
+     * Method to get the Menu the dish is part of.
+     *
      * @return Associated Menu
      */
     public String getMenuAssociated() {
@@ -71,7 +78,8 @@ public class Dishes {
     }
 
     /**
-     *Method to set the menu a dish is part of.
+     * Method to set the menu a dish is part of.
+     *
      * @param menuAssociated Associated Menu
      */
     public void setMenuAssociated(String menuAssociated) {
