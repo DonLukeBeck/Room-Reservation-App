@@ -11,7 +11,13 @@ import javafx.stage.Stage;
 public class MainSceneDisplay extends Application {
 
     /**
-     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    /**
      * @param primaryStage
      * @throws IOException
      */
@@ -24,13 +30,5 @@ public class MainSceneDisplay extends Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 }

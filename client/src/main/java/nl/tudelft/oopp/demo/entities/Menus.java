@@ -12,6 +12,7 @@ public class Menus {
 
     /**
      * Method to get the place to which a menu is delivered.
+     *
      * @return Menu Delivery Place
      */
     public String getDeliveryPlace() {
@@ -20,6 +21,7 @@ public class Menus {
 
     /**
      * Method to set the place at which the menu is delivered.
+     *
      * @param deliveryPlace Menu Delivery Place
      */
     public void setDeliveryPlace(String deliveryPlace) {
@@ -27,7 +29,8 @@ public class Menus {
     }
 
     /**
-     *Method to get the building with which the menu is associated.
+     * Method to get the building with which the menu is associated.
+     *
      * @return Associated Building
      */
     public int getBuilding() {
@@ -35,7 +38,8 @@ public class Menus {
     }
 
     /**
-     *Method to set the building with which the menu is associated.
+     * Method to set the building with which the menu is associated.
+     *
      * @param building Associated Building
      */
     public void setBuilding(int building) {

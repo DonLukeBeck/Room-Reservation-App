@@ -20,9 +20,11 @@ public class UsersController {
     private UsersRepository usersRepository;
 
     /**
+     * Registers a new user to the database.
      *
-     * @param user
-     * @return
+     * @param user - user to be registered
+     * @return - true if user is added to the database,
+     *         - false if there's already an user with the same netid
      */
     @PostMapping("/registerNewUser") // Map ONLY POST Requests
     public @ResponseBody
@@ -46,9 +48,10 @@ public class UsersController {
     }
 
     /**
+     * Verifies if the user is in the database.
      *
-     * @param user
-     * @return
+     * @param user - user to be verified
+     * @return an empty string if authentication fails, the netid otherwise
      */
     @PostMapping("/loginUser") // Map ONLY POST Requests
     public @ResponseBody
@@ -56,8 +59,10 @@ public class UsersController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
-            Users foundUser = usersRepository.findUserByNetidAndPass(user.getNetid(), user.getPassword());
-            String userJson =  "{\"netid\":\"" + foundUser.getNetid() + "\",\"role\":\"" + foundUser.getRole() + "\"}";
+            Users foundUser = usersRepository
+                    .findUserByNetidAndPass(user.getNetid(), user.getPassword());
+            String userJson = "{\"netid\":\"" + foundUser.getNetid()
+                    + "\",\"role\":\"" + foundUser.getRole() + "\"}";
             return userJson;
         } catch (NullPointerException e) {
             return "";
