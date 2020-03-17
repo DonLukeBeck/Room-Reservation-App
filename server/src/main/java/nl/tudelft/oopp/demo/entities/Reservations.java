@@ -20,7 +20,6 @@ public class Reservations {
 
     private Date date;
 
-
     private int buildingReserved;
 
     private String roomReserved;
@@ -57,44 +56,43 @@ public class Reservations {
         this.date = date;
     }
 
-
-    public String getUser_reserving() {
+    public String getUserReserving() {
         return userReserving;
     }
 
-    public void setUser_reserving(String userReserving) {
+    public void setUserReserving(String userReserving) {
         this.userReserving = userReserving;
     }
 
-    public String getRoom_reserved() {
-        return roomReserved;
-    }
-
-    public void setRoom_reserved(String roomReserved) {
-        this.roomReserved = roomReserved;
-    }
-
-    public int getBike_reserved() {
-        return bikeReserved;
-    }
-
-    public void setBike_reserved(int bikeReserved) {
-        this.bikeReserved = bikeReserved;
-    }
-
-    public String getDish_ordered() {
-        return dishOrdered;
-    }
-
-    public void setDish_ordered(String dishOrdered) {
-        this.dishOrdered = dishOrdered;
-    }
-
-    public int getBuilding_reserved() {
+    public int getBuildingReserved() {
         return buildingReserved;
     }
 
-    public void setBuilding_reserved(int buildingReserved) {
+    public void setBuildingReserved(int buildingReserved) {
         this.buildingReserved = buildingReserved;
+    }
+
+    public String getRoomReserved() {
+        return roomReserved;
+    }
+
+    public void setRoomReserved(String roomReserved) {
+        this.roomReserved = roomReserved;
+    }
+
+    public int getBikeReserved() {
+        return bikeReserved;
+    }
+
+    public void setBikeReserved(int bikeReserved) {
+        this.bikeReserved = bikeReserved;
+    }
+
+    public String getDishOrdered() {
+        return dishOrdered;
+    }
+
+    public void setDishOrdered(String dishOrdered) {
+        this.dishOrdered = dishOrdered;
     }
 }

@@ -35,13 +35,13 @@ public class BuildingsController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
-            if (buildingsRepository.findBuildingsByBuildingNumber(building.getBuilding_number()).getBuilding_number() > 0) {
+            if (buildingsRepository.findBuildingsByBuildingNumber(building.getBuildingNumber()).getBuildingNumber() > 0) {
                 return false;
             }
             return false;
         } catch (NullPointerException e) {
             Buildings newBuilding = new Buildings();
-            newBuilding.setBuildingNumber(building.getBuilding_number());
+            newBuilding.setBuildingNumber(building.getBuildingNumber());
             newBuilding.setClosingHours(building.getClosingHours());
             newBuilding.setName(building.getName());
             newBuilding.setOpeningHours(building.getOpeningHours());

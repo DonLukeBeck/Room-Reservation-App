@@ -237,7 +237,7 @@ public class ServerCommunication {
     public boolean reservation(String userReserving, String timeSlot, String date, int buildingReserved, String room) {
         System.out.println(userReserving);
         System.out.println(room);
-        String body = "{\"user_reserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"building_reserved\":\"" + buildingReserved + "\",\"room_reserved\":\"" + room + "\"}";
+        String body = "{\"userReserving\":\"" + userReserving + "\",\"timeslot\":\"" + timeSlot + "\",\"date\":\"" + date + "\",\"buildingReserved\":\"" + buildingReserved + "\",\"roomReserved\":\"" + room + "\"}";
 
         try {
             boolean bool = this.webClient.post().uri("/postReservation")
@@ -273,7 +273,7 @@ public class ServerCommunication {
      */
     public boolean addBuildingAdmin(int buildingID,String buildingName, String buildingOpen, String buildingClose, String imageUrl, int bikeCapacity, int roomCapacity) {
 
-        String body = "{\"building_number\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"opening_hours\":\"" + buildingOpen + "\",\"closing_hours\":\"" + buildingClose + "\",\"number_of_rooms\":\"" + roomCapacity +  "\",\"number_of_bikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
+        String body = "{\"buildingNumber\":\"" + buildingID + "\",\"name\":\"" +  buildingName + "\",\"openingHours\":\"" + buildingOpen + "\",\"closingHours\":\"" + buildingClose + "\",\"numberOfRooms\":\"" + roomCapacity +  "\",\"numberOfBikes\":\"" + bikeCapacity + "\",\"url\":\"" + imageUrl + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addBuilding")
@@ -306,7 +306,7 @@ public class ServerCommunication {
      */
     public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
 
-        String body = "{\"room_id\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associated_building\":\"" + buildingID + "\"}";
+        String body = "{\"roomId\":\"" + roomID + "\",\"capacity\":\"" +  roomCap + "\",\"type\":\"" + roomType + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
         System.out.println(body);
         try {
             boolean bool = this.webClient.post().uri("/addRoom")

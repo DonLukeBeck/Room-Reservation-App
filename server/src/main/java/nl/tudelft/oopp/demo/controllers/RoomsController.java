@@ -40,8 +40,8 @@ public class RoomsController {
             return false;
         } catch (NullPointerException e) {
             Rooms newRoom = new Rooms();
-            System.out.println(room.getAssociated_building());
-            newRoom.setAssociated_building(room.getAssociated_building());
+            System.out.println(room.getAssociatedBuilding());
+            newRoom.setAssociatedBuilding(room.getAssociatedBuilding());
             newRoom.setCapacity(room.getCapacity());
             newRoom.setRoomId(room.getRoomId());
             newRoom.setType(room.getType());

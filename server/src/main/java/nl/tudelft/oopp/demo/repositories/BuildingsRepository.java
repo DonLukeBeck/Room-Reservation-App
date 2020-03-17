@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 // CRUD refers Create, Read, Update, Delete
 
 public interface BuildingsRepository extends JpaRepository<Buildings, Long> {
-    @Query(value = "SELECT * FROM buildings WHERE building_number = ?1 LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM Buildings WHERE buildingNumber = ?1 LIMIT 1", nativeQuery = true)
     Buildings findBuildingsByBuildingNumber(int buildingNumber);
 }

@@ -37,13 +37,13 @@ public class ReservationsController {
         Reservations newReservation = new Reservations();
         newReservation.setDate(reservation.getDate());
         newReservation.setTimeslot(reservation.getTimeslot());
-        newReservation.setUser_reserving(reservation.getUser_reserving());
-        newReservation.setRoom_reserved(reservation.getRoom_reserved());
-        newReservation.setBuilding_reserved(reservation.getBuilding_reserved());
+        newReservation.setUserReserving(reservation.getUserReserving());
+        newReservation.setRoomReserved(reservation.getRoomReserved());
+        newReservation.setBuildingReserved(reservation.getBuildingReserved());
 
         System.out.println(newReservation.getId());
-        System.out.println(newReservation.getUser_reserving());
-        System.out.println(newReservation.getRoom_reserved());
+        System.out.println(newReservation.getUserReserving());
+        System.out.println(newReservation.getRoomReserved());
         System.out.println(newReservation.getTimeslot());
         System.out.println(newReservation.getDate());
 

@@ -30,17 +30,12 @@ public class Buildings {
      * Method to get Building Number.
      * @return Building Number
      */
-    public int getBuilding_number() {
-        return buildingNumber;
-    }
-
+    public int getBuildingNumber() { return buildingNumber; }
     /**
      * Method to set Building Number.
      * @param buildingNumber Number to be set to the building
      */
-    public void setBuildingNumber(int buildingNumber) {
-        this.buildingNumber = buildingNumber;
-    }
+    public void setBuildingNumber(int buildingNumber) { this.buildingNumber = buildingNumber; }
 
     /**
      * Method to get Name of a Building.

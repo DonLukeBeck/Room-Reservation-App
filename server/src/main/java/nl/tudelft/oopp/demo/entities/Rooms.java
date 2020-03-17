@@ -43,11 +43,7 @@ public class Rooms {
         this.type = type;
     }
 
-    public int getAssociated_building() {
-        return associatedBuilding;
-    }
+    public int getAssociatedBuilding() { return associatedBuilding; }
 
-    public void setAssociated_building(int associatedBuilding) {
-        this.associatedBuilding = associatedBuilding;
-    }
+    public void setAssociatedBuilding(int associatedBuilding) { this.associatedBuilding = associatedBuilding; }
 }
