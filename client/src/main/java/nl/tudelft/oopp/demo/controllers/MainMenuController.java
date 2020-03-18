@@ -450,4 +450,18 @@ public class MainMenuController implements Initializable {
             }
         }
     }
+
+    public void userPage(Event event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/UserPage.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+        stage1.close();
+    }
 }

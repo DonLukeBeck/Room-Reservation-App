@@ -73,6 +73,7 @@ public class ServerCommunication {
                 userLogged = mapper.readValue(userJson, Users.class);
                 System.out.println(userLogged.getNetid());
                 System.out.println(userLogged.getRole());
+                Users.user = userLogged;
                 return userLogged;
             } else {
                 System.out.println("Authentication failed");
