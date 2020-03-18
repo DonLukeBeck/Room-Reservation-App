@@ -89,8 +89,8 @@ public class BikeReservationMenu implements Initializable {
      * @throws IOException
      */
     public void goBack(Event event) throws IOException {
-        Stage stage1 = (Stage) reserveScene.getScene().getWindow();
-        stage1.close();
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
 
     }
 

@@ -251,7 +251,7 @@ public class RoomMenuController implements Initializable {
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/MainMenu.fxml", mainScreen);
+        helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
     /**
