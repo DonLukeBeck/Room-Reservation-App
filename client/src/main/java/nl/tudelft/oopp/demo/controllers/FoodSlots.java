@@ -95,19 +95,19 @@ public class FoodSlots implements Initializable {
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
         room = RoomMenuController.getId();
-        int checkDate = RoomReservationMenu.getDay();
-        int checkMonth = RoomReservationMenu.getMonth() + 1;
-        String formatDate = checkDate + "";
-        String formatMonth = checkMonth + "";
-
-        if (checkDate < 10) {
-            formatDate = "0" + checkDate;
-        }
-        if (checkMonth < 10) {
-            formatMonth = "0" + checkMonth;
-        }
-
-        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
+//        int checkDate = RoomReservationMenu.getDay();
+//        int checkMonth = RoomReservationMenu.getMonth() + 1;
+//        String formatDate = checkDate + "";
+//        String formatMonth = checkMonth + "";
+//
+//        if (checkDate < 10) {
+//            formatDate = "0" + checkDate;
+//        }
+//        if (checkMonth < 10) {
+//            formatMonth = "0" + checkMonth;
+//        }
+//
+//        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
 
 
         Rectangle slot = (Rectangle) event.getSource();
@@ -176,7 +176,7 @@ public class FoodSlots implements Initializable {
         }
 
         room = RoomMenuController.getId();
-        int checkDate = RoomReservationMenu.getDay();
+        /* int checkDate = RoomReservationMenu.getDay();
         int checkMonth = RoomReservationMenu.getMonth() + 1;
         String formatDate = checkDate + "";
         String formatMonth = checkMonth + "";
@@ -189,7 +189,7 @@ public class FoodSlots implements Initializable {
         }
 
         date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
-
+        */
         List<Reservations> allSuitableRes = new ArrayList<>();
 
         for (Reservations e : allReservations) {
@@ -259,6 +259,6 @@ public class FoodSlots implements Initializable {
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
+        helperController.loadNextScene("/FoodMenu.fxml", mainScreen);
     }
 }

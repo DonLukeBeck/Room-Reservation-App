@@ -278,6 +278,6 @@ public class ReservationFoodController implements Initializable {
         String buildingId = MainMenuController.getId().substring(1);
 
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
+        helperController.loadNextScene("/FoodMenu.fxml", mainScreen);
     }
 }
