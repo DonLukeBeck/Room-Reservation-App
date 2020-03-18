@@ -7,7 +7,10 @@ public class Users {
 
     private String role = "";
 
+    public static Users user;
+
     public Users() {
+
     }
 
     /**

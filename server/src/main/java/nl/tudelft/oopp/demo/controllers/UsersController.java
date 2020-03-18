@@ -1,5 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import nl.tudelft.oopp.demo.entities.LoginUser;
 import nl.tudelft.oopp.demo.entities.RegisterNewUser;
@@ -28,7 +31,7 @@ public class UsersController {
      */
     @PostMapping("/registerNewUser") // Map ONLY POST Requests
     public @ResponseBody
-    boolean register(@RequestBody RegisterNewUser user) {
+    boolean register(@RequestBody RegisterNewUser user) throws NoSuchAlgorithmException {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
@@ -39,7 +42,7 @@ public class UsersController {
         } catch (NullPointerException e) {
             Users newUser = new Users();
             newUser.setNetid(user.getNetid());
-            newUser.setPassword(user.getPassword());
+            newUser.setPassword(hashPassword(user.getPassword()));
             newUser.setRole(user.getRole());
             usersRepository.save(newUser);
             return true;
@@ -55,14 +58,17 @@ public class UsersController {
      */
     @PostMapping("/loginUser") // Map ONLY POST Requests
     public @ResponseBody
-    String login(@RequestBody LoginUser user) {
+    String login(@RequestBody LoginUser user) throws NoSuchAlgorithmException {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+
+        String hashedPassword = hashPassword(user.getPassword());
+
         try {
             Users foundUser = usersRepository
-                    .findUserByNetidAndPass(user.getNetid(), user.getPassword());
-            String userJson = "{\"netid\":\"" + foundUser.getNetid()
-                    + "\",\"role\":\"" + foundUser.getRole() + "\"}";
+                    .findUserByNetidAndPass(user.getNetid(), hashedPassword);
+            String userJson =  "{\"netid\":\"" + foundUser.getNetid() +
+                    "\",\"role\":\"" + foundUser.getRole() + "\"}";
             return userJson;
         } catch (NullPointerException e) {
             return "";
@@ -74,6 +80,40 @@ public class UsersController {
     List<Users> getAllUsers() {
         // This returns a JSON or XML with the users
         return usersRepository.findAll();
+    }
+
+    /**
+     * Hashes a password.
+     *
+     * @param password: plain text password
+     * @return the hashed password
+     * @throws NoSuchAlgorithmException
+     */
+    public static String hashPassword(String password) throws NoSuchAlgorithmException {
+        //hash password in SHA-256 into a byte array
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] passwordHash = digest.digest(
+                password.getBytes(StandardCharsets.UTF_8));
+        //transform byte arrays into strings
+        String hashedPassword = bytesToHex(passwordHash);
+        return hashedPassword;
+    }
+
+    /**
+     * Helper function to turn bytes to hexadecimal.
+     * @param hash : the byte array to be converted.
+     * @return the string.
+     */
+    private static String bytesToHex(byte[] hash) {
+        StringBuffer hexString = new StringBuffer();
+        for (int i = 0; i < hash.length; i++) {
+            String hex = Integer.toHexString(0xff & hash[i]);
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 
 }
