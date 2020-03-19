@@ -32,8 +32,22 @@ public class UserPage {
         changePasswordLabel.setText("changed pwd (TO BE IMPLEMENTED)");
     }
     
+    public void openSchedule(Event e) throws IOException {
+        return;
+    }
 
-    public void goBack(Event event) throws IOException {
+    public void campusMap(Event e) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void goBack(Event e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/MainMenu.fxml");
         loader.setLocation(xmlUrl);
