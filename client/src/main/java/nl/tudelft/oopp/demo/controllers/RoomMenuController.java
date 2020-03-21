@@ -37,15 +37,12 @@ public class RoomMenuController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
-    @FXML
-    private javafx.scene.control.Button reserveScene;
 
     public static String getId() {
         return room_id;
     }
 
     /**
-     *
      * @param location
      * @param resources
      */
@@ -73,6 +70,7 @@ public class RoomMenuController implements Initializable {
         }
 
         System.out.println("running");
+
         for (int j = 0; j < rooms.size(); j++) {
             Rectangle last = null;
             String id1 = "";
@@ -84,149 +82,85 @@ public class RoomMenuController implements Initializable {
             }
 
             if (id1.contains("A")) {
-                Rectangle box = new Rectangle(188, 136);
+                Rectangle box = addBoxToScrollPane(344, last.layoutYProperty().getValue(), "B" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(344);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue());
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("B" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        roomChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
+                addLabelToScrollPane(394, box.layoutYProperty().getValue() + 11, "Room ID:");
 
-                Label roomId = new Label("Room ID:");
-                pane1.getChildren().add(roomId);
-                roomId.setLayoutY(box.layoutYProperty().getValue() + 11);
-                roomId.setLayoutX(394);
-                roomId.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(390, box.layoutYProperty().getValue() + 70, "Capacity:");
 
-                Label cap = new Label("Capacity:");
-                pane1.getChildren().add(cap);
-                cap.setLayoutY(box.layoutYProperty().getValue() + 70);
-                cap.setLayoutX(390);
-                cap.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(390, box.layoutYProperty().getValue() + 40,
+                        rooms.get(j).getRoomId());
 
-                Label roomId1 = new Label(rooms.get(j).getRoomId());
-                pane1.getChildren().add(roomId1);
-                roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                roomId1.setLayoutX(390);
-                roomId1.setFont(Font.font("Arial Rounded MT Bold", 20));
-
-                Label cap1 = new Label(rooms.get(j).getCapacity() + "");
-                pane1.getChildren().add(cap1);
-                cap1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                cap1.setLayoutX(422);
-                cap1.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(422, box.layoutYProperty().getValue() + 100,
+                        rooms.get(j).getCapacity() + "");
 
 
             }
             if (id1.contains("B")) {
-                Rectangle box = new Rectangle(188, 136);
+                Rectangle box = addBoxToScrollPane(630, last.layoutYProperty().getValue(), "C" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(630);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue());
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("C" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        roomChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
+                addLabelToScrollPane(680, box.layoutYProperty().getValue() + 11, "Room ID:");
 
-                Label roomId = new Label("Room ID:");
-                pane1.getChildren().add(roomId);
-                roomId.setLayoutY(box.layoutYProperty().getValue() + 11);
-                roomId.setLayoutX(680);
-                roomId.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(676, box.layoutYProperty().getValue() + 70, "Capacity:");
 
-                Label cap = new Label("Capacity:");
-                pane1.getChildren().add(cap);
-                cap.setLayoutY(box.layoutYProperty().getValue() + 70);
-                cap.setLayoutX(676);
-                cap.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(676, box.layoutYProperty().getValue() + 40,
+                        rooms.get(j).getRoomId());
 
-                Label roomId1 = new Label(rooms.get(j).getRoomId());
-                pane1.getChildren().add(roomId1);
-                roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                roomId1.setLayoutX(676);
-                roomId1.setFont(Font.font("Arial Rounded MT Bold", 18));
-
-                Label cap1 = new Label(rooms.get(j).getCapacity() + "");
-                pane1.getChildren().add(cap1);
-                cap1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                cap1.setLayoutX(708);
-                cap1.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(708, box.layoutYProperty().getValue() + 100,
+                        rooms.get(j).getCapacity() + "");
             }
             if (id1.contains("C")) {
-                Rectangle box = new Rectangle(188, 136);
+                Rectangle box = addBoxToScrollPane(58,
+                        last.layoutYProperty().getValue() + 176, "A" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(58);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue() + 176);
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("A" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        roomChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
+                addLabelToScrollPane(108, box.layoutYProperty().getValue() + 11, "Room ID:");
 
-                Label roomId = new Label("Room ID:");
-                pane1.getChildren().add(roomId);
-                roomId.setLayoutY(box.layoutYProperty().getValue() + 11);
-                roomId.setLayoutX(108.0);
-                roomId.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(104, box.layoutYProperty().getValue() + 70, "Capacity:");
 
-                Label cap = new Label("Capacity:");
-                pane1.getChildren().add(cap);
-                cap.setLayoutY(box.layoutYProperty().getValue() + 70);
-                cap.setLayoutX(104);
-                cap.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(104, box.layoutYProperty().getValue() + 40,
+                        rooms.get(j).getRoomId());
 
-                Label roomId1 = new Label(rooms.get(j).getRoomId());
-                pane1.getChildren().add(roomId1);
-                roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                roomId1.setLayoutX(104);
-                roomId1.setFont(Font.font("Arial Rounded MT Bold", 18));
-
-                Label cap1 = new Label(rooms.get(j).getCapacity() + "");
-                pane1.getChildren().add(cap1);
-                cap1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                cap1.setLayoutX(136);
-                cap1.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getCapacity() + "");
             }
 
         }
 
     }
 
+    public void addLabelToScrollPane(double layoutX, double layoutY, String text) {
+        Label label = new Label(text);
+        pane1.getChildren().add(label);
+        label.setLayoutY(layoutY);
+        label.setLayoutX(layoutX);
+        label.setFont(Font.font("Arial Rounded MT Bold", 18));
+    }
+
+    public Rectangle addBoxToScrollPane(double layoutX, double layoutY, String id) {
+        Rectangle box = new Rectangle(188, 136);
+
+        box.arcHeightProperty().setValue(30.0);
+        box.arcWidthProperty().setValue(30.0);
+        box.layoutXProperty().setValue(layoutX);
+        box.layoutYProperty().setValue(layoutY);
+        box.fillProperty().setValue(Color.valueOf("white"));
+        box.setStroke(Color.valueOf("#00A6D6"));
+        box.strokeWidthProperty().setValue(2);
+        box.setVisible(true);
+        box.setId(id);
+        box.setOnMouseClicked(event -> {
+            try {
+                roomChosen(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        pane1.getChildren().add(box);
+        return box;
+    }
+
     /**
      * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -241,11 +175,9 @@ public class RoomMenuController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private javafx.scene.control.Button ReserveScene;
-
     /**
-     *Method to go back to previous page.
+     * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
@@ -255,7 +187,6 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -270,7 +201,7 @@ public class RoomMenuController implements Initializable {
         }
         String[] arrId = newTemp.split("=");
         String temp2 = arrId[1];
-        temp2 = temp2.substring(1,temp2.length() - 1);
+        temp2 = temp2.substring(1, temp2.length() - 1);
 
         int roomIndex = Integer.parseInt(temp2);
 
