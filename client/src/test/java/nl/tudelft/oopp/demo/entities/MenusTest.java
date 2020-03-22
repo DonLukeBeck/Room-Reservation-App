@@ -1,10 +1,10 @@
 package nl.tudelft.oopp.demo.entities;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class MenusTest {
 
@@ -17,7 +17,7 @@ public class MenusTest {
 
     @Test
     public void constructorTest() {
-    assertNotNull(m1);
+        assertNotNull(m1);
     }
 
     @Test

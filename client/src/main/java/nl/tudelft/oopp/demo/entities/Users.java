@@ -11,7 +11,7 @@ public class Users {
 
 
     /**
-     * Constructor for Users
+     * Constructor for Users.
      * @param netid Unique user netID
      * @param role User Role
      */

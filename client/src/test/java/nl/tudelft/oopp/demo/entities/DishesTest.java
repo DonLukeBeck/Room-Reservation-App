@@ -1,10 +1,10 @@
 package nl.tudelft.oopp.demo.entities;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class DishesTest {
 
@@ -12,7 +12,7 @@ public class DishesTest {
 
     @BeforeEach
     public void setup() {
-    d1 = new Dishes("dish1", 10, 1, "Menu1");
+        d1 = new Dishes("dish1", 10, 1, "Menu1");
     }
 
     @Test
@@ -54,12 +54,12 @@ public class DishesTest {
     }
 
     @Test
-    public void getMenuAssociatedTest(){
+    public void getMenuAssociatedTest() {
         assertEquals("Menu1", d1.getMenuAssociated());
     }
 
     @Test
-    public void setMenuAssociatedTest(){
+    public void setMenuAssociatedTest() {
         d1.setMenuAssociated("Menu2");
         assertEquals("Menu2", d1.getMenuAssociated());
     }

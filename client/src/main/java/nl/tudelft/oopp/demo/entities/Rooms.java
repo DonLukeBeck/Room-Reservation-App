@@ -12,7 +12,7 @@ public class Rooms {
     private int associatedBuilding;
 
     /**
-     * Rooms Constructor
+     * Rooms Constructor.
      * @param roomId Unique Room ID
      * @param capacity Room capacity
      * @param type Type of Room

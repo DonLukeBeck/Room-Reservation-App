@@ -12,7 +12,7 @@ public class Dishes {
     private String menuAssociated;
 
     /**
-     * Constructor for dishes
+     * Constructor for dishes.
      * @param name Dish Name
      * @param price Dish Price
      * @param vegan Whether the dish is vegan or not

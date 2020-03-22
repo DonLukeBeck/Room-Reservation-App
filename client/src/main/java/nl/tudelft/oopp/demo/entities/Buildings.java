@@ -19,7 +19,7 @@ public class Buildings {
     private String url;
 
     /**
-     * Buildings Constructor
+     * Buildings Constructor.
      * @param buildingNumber Unique number of the building
      * @param name Building Name
      * @param openingHours Opening Hour for the building
@@ -28,7 +28,8 @@ public class Buildings {
      * @param numberOfBikes Number of bikes associated with the building
      * @param url URL of the building picture
      */
-    public Buildings(int buildingNumber, String name, Time openingHours, Time closingHours, int numberOfRooms, int numberOfBikes, String url) {
+    public Buildings(int buildingNumber, String name, Time openingHours, Time closingHours,
+                     int numberOfRooms, int numberOfBikes, String url) {
         this.buildingNumber = buildingNumber;
         this.name = name;
         this.openingHours = openingHours;

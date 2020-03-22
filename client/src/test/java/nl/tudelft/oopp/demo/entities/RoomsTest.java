@@ -1,18 +1,18 @@
 package nl.tudelft.oopp.demo.entities;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class RoomsTest {
 
     private Rooms room1;
 
     @BeforeEach
-    public void setup(){
-    room1 = new Rooms("Auditorium", 300, "Lecture Hall", 36);
+    public void setup() {
+        room1 = new Rooms("Auditorium", 300, "Lecture Hall", 36);
     }
 
     @Test
@@ -48,18 +48,18 @@ public class RoomsTest {
     }
 
     @Test
-    public void setTypeTest(){
+    public void setTypeTest() {
         room1.setType("Exam Hall");
         assertEquals("Exam Hall", room1.getType());
     }
 
     @Test
-    public void getAssociatedBuildingTest(){
+    public void getAssociatedBuildingTest() {
         assertEquals(36, room1.getAssociatedBuilding());
     }
 
     @Test
-    public void setAssociatedBuildingTest(){
+    public void setAssociatedBuildingTest() {
         room1.setAssociatedBuilding(42);
         assertEquals(42, room1.getAssociatedBuilding());
     }

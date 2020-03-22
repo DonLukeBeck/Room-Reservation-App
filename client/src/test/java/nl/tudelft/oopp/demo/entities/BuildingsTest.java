@@ -1,14 +1,14 @@
 package nl.tudelft.oopp.demo.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.sql.Time;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
-
-import java.sql.Time;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BuildingsTest {
 
@@ -102,7 +102,7 @@ public class BuildingsTest {
     }
 
     @Test
-    public void setUrlTest(){
+    public void setUrlTest() {
         b1.setUrl("b1.org");
         assertEquals("b1.org", b1.getUrl());
     }

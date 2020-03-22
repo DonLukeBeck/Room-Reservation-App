@@ -1,13 +1,13 @@
 package nl.tudelft.oopp.demo.entities;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.sql.Date;
 import java.sql.Time;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ReservationsTest {
 
@@ -28,7 +28,7 @@ public class ReservationsTest {
 
     @Test
     public void constructorTest() {
-    assertNotNull(r1);
+        assertNotNull(r1);
     }
 
     @Test
@@ -110,11 +110,11 @@ public class ReservationsTest {
 
     @Test
     public void getBuildingReservedTest() {
-    assertEquals(1, r1.getBuilding_reserved());
+        assertEquals(1, r1.getBuilding_reserved());
     }
 
     @Test
-    public void setBuildingReservedTest(){
+    public void setBuildingReservedTest() {
         r1.setBuildingReserved(42);
         assertEquals(42, r1.getBuilding_reserved());
     }
