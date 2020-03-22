@@ -15,14 +15,13 @@ public class Users {
      * @param netid Unique user netID
      * @param role User Role
      */
-    /*public Users(String netid, String role) {
+    public Users(String netid, String role) {
         this.netid = netid;
         this.role = role;
     }
-    */
 
-    public Users() {
-    }
+    //public Users() {
+    //}
 
     /**
      * Method to get the NetID of a User.
