@@ -12,7 +12,11 @@ public class Holidays {
 
     private String comments;
 
-    public Holidays() {
+    public Holidays(int holidaysID, Date startDate, Date endDate, String comments) {
+        this.holidaysID = holidaysID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.comments = comments;
     }
 
     public String getComments() {

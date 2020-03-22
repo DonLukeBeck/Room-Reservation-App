@@ -21,9 +21,27 @@ public class Reservations {
 
     private String dishOrdered;
 
-    public Reservations() {
+    /**
+     * Reservations Constructor
+     * @param id
+     * @param userReserving
+     * @param timeslot
+     * @param date
+     * @param buildingReserved
+     * @param roomReserved
+     * @param bikeReserved
+     * @param dishOrdered
+     */
+    public Reservations(int id, String userReserving, Time timeslot, Date date, int buildingReserved, String roomReserved, int bikeReserved, String dishOrdered) {
+        this.id = id;
+        this.userReserving = userReserving;
+        this.timeslot = timeslot;
+        this.date = date;
+        this.buildingReserved = buildingReserved;
+        this.roomReserved = roomReserved;
+        this.bikeReserved = bikeReserved;
+        this.dishOrdered = dishOrdered;
     }
-
 
     /**
      * Method to get the Reservation ID.
