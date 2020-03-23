@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +32,7 @@ public class CompletedReservationController implements Initializable {
 
     /**
      * Method to get Name.
+     *
      * @return Name
      */
     public String getName() {
@@ -40,7 +40,6 @@ public class CompletedReservationController implements Initializable {
     }
 
     /**
-     *
      * @param location
      * @param resources
      */
@@ -55,12 +54,8 @@ public class CompletedReservationController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Label builId = new Label(TimeSlotsController.getBuilding());
-        builId.setFont(Font.font("Arial Rounded MT Bold", 24));
-        builId.layoutYProperty().setValue(400);
-        builId.layoutXProperty().setValue(390);
-        builId.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(builId);
+
+        addText(390, 400, TimeSlotsController.getBuilding());
 
         for (Buildings e : list) {
             if (e.getBuilding_number() == Integer.parseInt(TimeSlotsController.getBuilding())) {
@@ -69,37 +64,26 @@ public class CompletedReservationController implements Initializable {
             }
         }
         String[] nameA = name.split("\\(");
-        Label builname = new Label(nameA[0]);
-        pane.getChildren().add(builname);
-        builname.layoutYProperty().setValue(470);
-        builname.layoutXProperty().setValue(440);
-        builname.setFont(Font.font("Arial Rounded MT Bold", 22));
-        builname.textFillProperty().setValue(Color.valueOf("#ffc500"));
 
-        Label roomId = new Label(TimeSlotsController.getRoom());
-        roomId.layoutYProperty().setValue(540);
-        roomId.layoutXProperty().setValue(370);
-        roomId.setFont(Font.font("Arial Rounded MT Bold", 24));
-        roomId.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(roomId);
+        addText(440, 470, nameA[0]);
+        addText(370, 540, TimeSlotsController.getRoom());
+        addText(330, 610, TimeSlotsController.getDate());
+        addText(380, 680, TimeSlotsController.getTimeslot());
 
-        Label date = new Label(TimeSlotsController.getDate());
-        date.layoutYProperty().setValue(610);
-        date.layoutXProperty().setValue(330);
-        date.setFont(Font.font("Arial Rounded MT Bold", 24));
-        date.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(date);
+    }
 
-        Label timeslot = new Label(TimeSlotsController.getTimeslot());
-        timeslot.layoutYProperty().setValue(680);
-        timeslot.layoutXProperty().setValue(380);
-        timeslot.setFont(Font.font("Arial Rounded MT Bold", 24));
-        timeslot.textFillProperty().setValue(Color.valueOf("#ffc600"));
-        pane.getChildren().add(timeslot);
+    public void addText(double layoutX, double layoutY, String text) {
+        Label label = new Label(text);
+        label.layoutYProperty().setValue(layoutY);
+        label.layoutXProperty().setValue(layoutX);
+        label.setFont(Font.font("Arial Rounded MT Bold", 24));
+        label.textFillProperty().setValue(Color.valueOf("#ffc600"));
+        pane.getChildren().add(label);
     }
 
     /**
      * Method to pop up campus map.
+     *
      * @param event Clicking on campus map button
      * @throws IOException
      */
@@ -115,7 +99,8 @@ public class CompletedReservationController implements Initializable {
     }
 
     /**
-     *Method to go back to main menu.
+     * Method to go back to main menu.
+     *
      * @param event
      * @throws IOException
      */
