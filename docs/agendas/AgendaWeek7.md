@@ -13,6 +13,7 @@ Note taker:     {}\
 # Points of action
 *The items below are things you should look into after the first meeting. During the meeting you can divide (some of) the work between the team members, so that everybody has something to do afterwards.*
 - Work on testing our code
+- Implement restrictions on reservations
 
 # Any other business
 *If anybody has something that should be discussed but came up with that after the agenda was finalized (in point 2), he/she should bring that up now so that it can be discussed after all.*
