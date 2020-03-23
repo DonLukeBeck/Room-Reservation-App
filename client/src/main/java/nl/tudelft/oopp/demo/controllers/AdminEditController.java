@@ -21,8 +21,7 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 
-@SuppressWarnings("checkstyle:Indentation")
-public class AdminController implements Initializable {
+public class AdminEditController implements Initializable {
     ServerCommunication con = new ServerCommunication();
 
     @FXML
@@ -40,8 +39,6 @@ public class AdminController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
     @FXML
-    private TextField addBuildingID;
-    @FXML
     private TextField addBuildingName;
     @FXML
     private TextField addBuildingUrl;
@@ -55,16 +52,6 @@ public class AdminController implements Initializable {
     private ChoiceBox listBuildingID;
     @FXML
     private ChoiceBox roomType;
-
-    /**
-     * @param event
-     * @throws IOException
-     */
-    public void goToAdminAdd(ActionEvent event) throws IOException {
-
-        HelperController helper = new HelperController();
-        helper.loadNextScene("/AdminView.fxml", mainScreen);
-    }
 
     /***
      *
@@ -124,7 +111,7 @@ public class AdminController implements Initializable {
      * @param event
      * @throws IOException
      */
-    public void addBuilding(Event event) throws IOException {
+    public void editBuilding(Event event) throws IOException {
         String bikeCapacity = addBuildingBikes.getText();
         Label exception = new Label();
 
@@ -135,27 +122,20 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (addBuildingID.getText().isBlank() || addBuildingName.getText().isBlank()
-                || addBuildingUrl.getText().isBlank() || addBuildingUrl.getText().isBlank()) {
+        if (addBuildingName.getText().isBlank() || addBuildingUrl.getText().isBlank()
+                || addBuildingBikes.getText().isBlank()) {
+
             addException(45, 120, "Fill all fields!", exception);
             return;
         }
 
-        int buildingID = 0;
-        try {
-            buildingID = Integer.parseInt(addBuildingID.getText());
-        } catch (Exception e) {
-            addException(45, 120, "Only numbers are allowed for building ID!", exception);
-
-            return;
-
-        }
 
         int bikes = 0;
         try {
             bikes = Integer.parseInt(bikeCapacity);
         } catch (Exception e) {
             addException(45, 120, "Only numbers are allowed for bike capacity!", exception);
+
             return;
 
         }
@@ -164,13 +144,12 @@ public class AdminController implements Initializable {
         String buildingOpen = listOpen.getValue().toString();
         String buildingClose = listClose.getValue().toString();
         System.out.println(buildingName);
-        System.out.println(buildingID);
         System.out.println(imageUrl);
         System.out.println(bikes);
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
-        con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ""
-                + ":00", buildingClose + ":00", imageUrl, bikes, 0);
+        //con.addBuildingAdmin(buildingID, buildingName, buildingOpen + "" +
+        // ":00", buildingClose + ":00", imageUrl, bikes, 0);
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
@@ -179,7 +158,7 @@ public class AdminController implements Initializable {
      * @param event
      * @throws IOException
      */
-    public void addRoom(Event event) throws IOException {
+    public void editRoom(Event event) throws IOException {
         Label exception = new Label();
 
         mainScreen.getChildren().add(exception);
@@ -189,8 +168,10 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (roomID.getText().isBlank() || roomCapacity.getText().isBlank()) {
+        if (roomCapacity.getText().isBlank()) {
             addException(670, 120, "Fill all fields!", exception);
+
+
             return;
         }
         if (listBuildingID.getValue().toString().equals("Choose building")) {
@@ -210,7 +191,7 @@ public class AdminController implements Initializable {
         System.out.println(roomCap);
         System.out.println(building);
         System.out.println(roomType.getValue());
-        con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
+        //con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
