@@ -13,8 +13,6 @@ public class Dishes {
 
     private int vegan;
 
-    private String menuAssociated;
-
     public Dishes() {
     }
 
@@ -42,11 +40,4 @@ public class Dishes {
         this.vegan = vegan;
     }
 
-    public String getMenuAssociated() {
-        return menuAssociated;
-    }
-
-    public void setMenuAssociated(String menuAssociated) {
-        this.menuAssociated = menuAssociated;
-    }
 }

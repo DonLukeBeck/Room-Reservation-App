@@ -233,6 +233,40 @@ public class ServerCommunication {
     }
 
     /**
+     * Retrieves menus list from the server.
+     *
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public List<Dishes> getMenusByBuilding(int buildingNumber) throws IOException {
+        String jsonString = this.webClient.get().uri("/MenusByBuilding?bnr="
+                + buildingNumber)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Dishes> dishesJsonList = mapper
+                .readValue(jsonString, new com
+                        .fasterxml
+                        .jackson
+                        .core
+                        .type
+                        .TypeReference<List<Dishes>>() {});
+
+
+        return dishesJsonList;
+    }
+
+    /**
      * Retrieves holidays list from the server.
      *
      * @return the body of a get request to the server.

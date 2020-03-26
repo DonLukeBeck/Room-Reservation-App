@@ -13,8 +13,8 @@ class MenusTest {
     @BeforeEach
     public void setup() {
         m1 = new Menus();
-        m1.setDeliveryPlace("Menu1Location");
-        m1.setBuilding(1);
+        m1.setDishName("burger");
+        m1.setBuildingNumber(1);
     }
 
     @Test
@@ -23,25 +23,25 @@ class MenusTest {
     }
 
     @Test
-    public void getDeliveryPlaceTest() {
-        assertEquals("Menu1Location", m1.getDeliveryPlace());
+    public void getDishNameTest() {
+        assertEquals("burger", m1.getDishName());
     }
 
     @Test
-    public void setDeliveryPlaceTest() {
-        m1.setDeliveryPlace("testSetDeliveryPlace");
-        assertEquals("testSetDeliveryPlace", m1.getDeliveryPlace());
+    public void setDishNameTest() {
+        m1.setDishName("testSetDishName");
+        assertEquals("testSetDishName", m1.getDishName());
     }
 
     @Test
     public void getMenuBuildingTest() {
-        assertEquals(1, m1.getBuilding());
+        assertEquals(1, m1.getBuildingNumber());
     }
 
     @Test
     public void setMenuBuildingTest() {
-        m1.setBuilding(2);
-        assertEquals(2, m1.getBuilding());
+        m1.setBuildingNumber(2);
+        assertEquals(2, m1.getBuildingNumber());
     }
 
 }

@@ -76,27 +76,29 @@ public class FoodMenuController implements Initializable {
 
         List<Dishes> allDishes = new ArrayList<>();
         List<Menus> allMenus = new ArrayList<>();
+        List<Dishes> menusByBuilding = new ArrayList<>();
 
         try {
             allDishes = con.getDishes();
             allMenus = con.getMenus();
+            menusByBuilding = con.getMenusByBuilding(builId);
         }   catch (IOException e) {
             e.printStackTrace();
         }
-
+/*
         dishes = new ArrayList<>();
 
         for (int i = 0; i < allDishes.size(); i++) {
             for (int j = 0; j < allMenus.size(); j++) {
-                if (allDishes.get(i).getMenuAssociated().equals(allMenus.get(j).getDeliveryPlace())) {
-                    if (allMenus.get(j).getBuilding() == builId) {
+                if (allDishes.get(i).getName().equals(allMenus.get(j).getDishName())) {
+                    if (allMenus.get(j).getBuildingNumber() == builId) {
                         dishes.add(allDishes.get(i));
                     }
                 }
             }
         }
-
-        for (int j = 0; j < dishes.size(); j++) {
+*/
+        for (int j = 0; j < menusByBuilding.size(); j++) {
             Rectangle last = null;
             String id1 = "";
             for (Node e : pane1.getChildren()) {
@@ -139,13 +141,13 @@ public class FoodMenuController implements Initializable {
                 cap.setLayoutX(390);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label roomId1 = new Label(dishes.get(j).getName());
+                Label roomId1 = new Label(menusByBuilding.get(j).getName());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(390);
                 roomId1.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label cap1 = new Label(dishes.get(j).getPrice() + "");
+                Label cap1 = new Label(menusByBuilding.get(j).getPrice() + "");
                 pane1.getChildren().add(cap1);
                 cap1.setLayoutY(box.layoutYProperty().getValue() + 100);
                 cap1.setLayoutX(422);
@@ -186,13 +188,13 @@ public class FoodMenuController implements Initializable {
                 cap.setLayoutX(676);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label roomId1 = new Label(dishes.get(j).getName());
+                Label roomId1 = new Label(menusByBuilding.get(j).getName());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(676);
                 roomId1.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label cap1 = new Label(dishes.get(j).getPrice() + "");
+                Label cap1 = new Label(menusByBuilding.get(j).getPrice() + "");
                 pane1.getChildren().add(cap1);
                 cap1.setLayoutY(box.layoutYProperty().getValue() + 100);
                 cap1.setLayoutX(708);
@@ -231,13 +233,13 @@ public class FoodMenuController implements Initializable {
                 cap.setLayoutX(104);
                 cap.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label roomId1 = new Label(dishes.get(j).getName());
+                Label roomId1 = new Label(menusByBuilding.get(j).getName());
                 pane1.getChildren().add(roomId1);
                 roomId1.setLayoutY(box.layoutYProperty().getValue() + 40);
                 roomId1.setLayoutX(104);
                 roomId1.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label cap1 = new Label(dishes.get(j).getPrice() + "");
+                Label cap1 = new Label(menusByBuilding.get(j).getPrice() + "");
                 pane1.getChildren().add(cap1);
                 cap1.setLayoutY(box.layoutYProperty().getValue() + 100);
                 cap1.setLayoutX(136);

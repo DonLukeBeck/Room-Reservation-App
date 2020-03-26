@@ -9,8 +9,6 @@ public class Dishes {
 
     private int vegan;
 
-    private String menuAssociated;
-
     public Dishes() {
     }
 
@@ -68,21 +66,4 @@ public class Dishes {
         this.vegan = vegan;
     }
 
-    /**
-     * Method to get the Menu the dish is part of.
-     *
-     * @return Associated Menu
-     */
-    public String getMenuAssociated() {
-        return menuAssociated;
-    }
-
-    /**
-     * Method to set the menu a dish is part of.
-     *
-     * @param menuAssociated Associated Menu
-     */
-    public void setMenuAssociated(String menuAssociated) {
-        this.menuAssociated = menuAssociated;
-    }
 }
