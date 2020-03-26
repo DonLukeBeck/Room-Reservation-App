@@ -115,7 +115,7 @@ public class AdminEditController implements Initializable {
         }
         j = 0;
         String[] listAllRooms = new String[listGetRooms.size()];
-        for(Rooms r : listGetRooms) {
+        for (Rooms r : listGetRooms) {
             listAllRooms[j] = "" + r.getRoomId();
             j++;
         }
@@ -173,7 +173,7 @@ public class AdminEditController implements Initializable {
         String[] listAllBuildings = new String[listGetBuildings.size()];
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
-            if(t.getBuilding_number() == Integer.parseInt(b)) {
+            if (t.getBuilding_number() == Integer.parseInt(b)) {
                 bikes = t.getNumber_of_bikes();
             }
             j++;
@@ -222,7 +222,7 @@ public class AdminEditController implements Initializable {
                 ((Label) e).setText(" ");
             }
         }
-        if (listRoomsID.getValue().toString().equals("Choose room")){
+        if (listRoomsID.getValue().toString().equals("Choose room")) {
             exception.setText("Choose room!");
             exception.setLayoutY(120);
             exception.setLayoutX(670);

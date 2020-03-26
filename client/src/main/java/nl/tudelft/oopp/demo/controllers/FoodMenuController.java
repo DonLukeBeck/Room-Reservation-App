@@ -270,6 +270,7 @@ public class FoodMenuController implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/TimeSlotFood.fxml", mainScreen);
     }
+
     /**
      * Method to go back to previous page.
      * @param event Clicking on 'Go Back"

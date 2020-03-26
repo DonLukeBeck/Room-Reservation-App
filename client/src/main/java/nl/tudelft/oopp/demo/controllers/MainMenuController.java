@@ -133,7 +133,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Opening image of the campus map
+     * Opening image of the campus map.
      *
      * @param event
      * @throws IOException
@@ -150,8 +150,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Opens the fxml of the next scene on click
-     *
+     * Opens the fxml of the next scene on click.
      * @param event
      * @param buildingNumber
      * @throws IOException
@@ -258,8 +257,7 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     * Loading all needed scene controllers when the fxml is loaded
-     *
+     * Loading all needed scene controllers when the fxml is loaded.
      * @param location
      * @param resources
      */
