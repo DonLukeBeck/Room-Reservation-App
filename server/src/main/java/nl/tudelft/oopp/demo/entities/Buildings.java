@@ -22,9 +22,8 @@ public class Buildings {
 
     private String url;
 
-    //public Buildings() {
-    //}
-
+    public Buildings() {
+    }
 
     /**
      * Method to get Building Number.

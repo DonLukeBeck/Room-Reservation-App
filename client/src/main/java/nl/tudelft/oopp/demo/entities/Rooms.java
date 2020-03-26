@@ -11,18 +11,7 @@ public class Rooms {
 
     private int associatedBuilding;
 
-    /**
-     * Rooms Constructor.
-     * @param roomId Unique Room ID
-     * @param capacity Room capacity
-     * @param type Type of Room
-     * @param associatedBuilding Building in which room is located
-     */
-    public Rooms(String roomId, int capacity, String type, int associatedBuilding) {
-        this.roomId = roomId;
-        this.capacity = capacity;
-        this.type = type;
-        this.associatedBuilding = associatedBuilding;
+    public Rooms() {
     }
 
     /**

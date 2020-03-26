@@ -9,18 +9,8 @@ public class Users {
 
     public static Users user;
 
-
-    /**
-     * Constructor for Users.
-     * @param netid Unique user netID
-     * @param role User Role
-     */
-    public Users(String netid, String role) {
-        this.netid = netid;
-        this.role = role;
-    }
-
     public Users() {
+
     }
 
     /**
