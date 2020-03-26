@@ -20,8 +20,8 @@ public class Users {
         this.role = role;
     }
 
-    public Users() {
-    }
+    //public Users() {
+    //}
 
     /**
      * Method to get the NetID of a User.
