@@ -124,13 +124,32 @@ public class RoomReservationMenu implements Initializable {
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
     }
 
+    public void clearAllDates() {
+        for (Node k : grid.getChildren()) {
+            try {
+                ((AnchorPane) k).getChildren().clear();
+                BorderWidths border = new BorderWidths(0, 0, 0, 0);
+                ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
+                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
+            } catch (Exception idc) {
+                System.out.println("Meaningless error");
+            }
+
+        }
+    }
+
     public void addDatesOnCalendar(Calendar c, int lengthOfMonth) {
         int flag = 0;
         int i = 1;
         int days = lengthOfMonth;
         int day = 1;
 
+        clearAllDates();
+
         for (Node e : grid.getChildren()) {
+            if (days == 1) {
+                return;
+            }
 
             c.set(Calendar.DAY_OF_MONTH, i);
             try {
@@ -147,7 +166,7 @@ public class RoomReservationMenu implements Initializable {
             if (flag == 0) {
                 if (e.getId().equals(time)) {
                     flag++;
-                    addText(e, 5, 135, day + "");
+                    addText(e, 5, 115, day + "");
 
                     if (day == DayNow && Fmonth == MonthNow) {
                         addBorderToTheChosenDate(e);
@@ -228,7 +247,8 @@ public class RoomReservationMenu implements Initializable {
             currentDate = findCurrentDate(e);
 
         } else {
-            currentDate = "32";
+            //currentDate = "32";
+            return;
         }
 
         FDay = Integer.parseInt(currentDate);

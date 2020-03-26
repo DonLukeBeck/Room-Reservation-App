@@ -65,11 +65,25 @@ public class CompletedReservationController implements Initializable {
         }
         String[] nameA = name.split("\\(");
 
-        addText(440, 470, nameA[0]);
+        addText(440, 470, nameInProperFormat(nameA[0]));
         addText(370, 540, TimeSlotsController.getRoom());
         addText(330, 610, TimeSlotsController.getDate());
         addText(380, 680, TimeSlotsController.getTimeslot());
 
+    }
+
+    public String nameInProperFormat(String name) {
+        String result = "";
+        if (name.toCharArray().length > 50) {
+            for (char a : name.toCharArray()) {
+                if (Character.isUpperCase(a)) {
+                    result = result + a;
+                }
+            }
+        } else {
+            result = name;
+        }
+        return result;
     }
 
     public void addText(double layoutX, double layoutY, String text) {
@@ -77,7 +91,7 @@ public class CompletedReservationController implements Initializable {
         label.layoutYProperty().setValue(layoutY);
         label.layoutXProperty().setValue(layoutX);
         label.setFont(Font.font("Arial Rounded MT Bold", 24));
-        label.textFillProperty().setValue(Color.valueOf("#ffc600"));
+        label.textFillProperty().setValue(Color.valueOf("black"));
         pane.getChildren().add(label);
     }
 
