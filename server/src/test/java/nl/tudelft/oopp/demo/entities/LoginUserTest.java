@@ -9,6 +9,9 @@ public class LoginUserTest {
 
     private LoginUser lu1;
 
+    /**
+     * Method to be executed before each test, creates a user and assigns values.
+     */
     @BeforeEach
     public void setup() {
         lu1 = new LoginUser();

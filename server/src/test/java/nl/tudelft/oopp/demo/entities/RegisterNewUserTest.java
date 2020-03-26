@@ -9,6 +9,9 @@ public class RegisterNewUserTest {
 
     private RegisterNewUser ru1;
 
+    /**
+     * Method to create a User and assign variables.
+     */
     @BeforeEach
     public void setup() {
         ru1 = new RegisterNewUser();
