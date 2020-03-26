@@ -67,8 +67,8 @@ public class UsersController {
         try {
             Users foundUser = usersRepository
                     .findUserByNetidAndPass(user.getNetid(), hashedPassword);
-            String userJson =  "{\"netid\":\"" + foundUser.getNetid() +
-                    "\",\"role\":\"" + foundUser.getRole() + "\"}";
+            String userJson =  "{\"netid\":\"" + foundUser.getNetid()
+                    + "\",\"role\":\"" + foundUser.getRole() + "\"}";
             return userJson;
         } catch (NullPointerException e) {
             return "";
@@ -85,9 +85,9 @@ public class UsersController {
     /**
      * Hashes a password.
      *
-     * @param password: plain text password
+     * @param password : plain text password
      * @return the hashed password
-     * @throws NoSuchAlgorithmException
+     * @throws NoSuchAlgorithmException if hashing algorithm is not found
      */
     public static String hashPassword(String password) throws NoSuchAlgorithmException {
         //hash password in SHA-256 into a byte array

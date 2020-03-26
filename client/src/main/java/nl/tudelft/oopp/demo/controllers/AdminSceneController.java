@@ -31,4 +31,10 @@ public class AdminSceneController {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/AdminView.fxml", mainScreen);
     }
+
+    public void goToEditPage(ActionEvent event) throws IOException {
+
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/AdminEditView.fxml", mainScreen);
+    }
 }

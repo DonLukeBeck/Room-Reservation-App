@@ -21,9 +21,29 @@ public class Reservations {
 
     private String dishOrdered;
 
-    public Reservations() {
+    /**
+     * Reservations Constructor.
+     * @param id Unique ID for each reservation
+     * @param userReserving User making the reservation
+     * @param timeslot Timeslot of the reservation
+     * @param date Date of the reservation
+     * @param buildingReserved Building associated with the reservation
+     * @param roomReserved Room reserved by reservation (if applicable)
+     * @param bikeReserved Bike reserved by reservation (if applicable)
+     * @param dishOrdered Dish ordered by reservation (if applicable)
+     */
+    public Reservations(int id, String userReserving, Time timeslot, Date date,
+                        int buildingReserved, String roomReserved, int bikeReserved,
+                        String dishOrdered) {
+        this.id = id;
+        this.userReserving = userReserving;
+        this.timeslot = timeslot;
+        this.date = date;
+        this.buildingReserved = buildingReserved;
+        this.roomReserved = roomReserved;
+        this.bikeReserved = bikeReserved;
+        this.dishOrdered = dishOrdered;
     }
-
 
     /**
      * Method to get the Reservation ID.

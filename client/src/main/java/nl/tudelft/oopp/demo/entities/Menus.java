@@ -7,7 +7,14 @@ public class Menus {
 
     private int building;
 
-    public Menus() {
+    /**
+     * Menus constructor.
+     * @param deliveryPlace Menu delivery place
+     * @param building Building menu is associated with
+     */
+    public Menus(String deliveryPlace, int building) {
+        this.deliveryPlace = deliveryPlace;
+        this.building = building;
     }
 
     /**

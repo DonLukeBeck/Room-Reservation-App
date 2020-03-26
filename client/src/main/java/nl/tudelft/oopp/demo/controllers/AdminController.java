@@ -156,12 +156,8 @@ public class AdminController implements Initializable {
         try {
             buildingID = Integer.parseInt(addBuildingID.getText());
         } catch (Exception e) {
-            exception.setText("Only numbers are allowed for building ID!");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
+            addException(45, 120, "Only numbers are allowed for building ID!", exception);
+
             return;
 
         }
@@ -170,12 +166,7 @@ public class AdminController implements Initializable {
         try {
             bikes = Integer.parseInt(bikeCapacity);
         } catch (Exception e) {
-            exception.setText("Only numbers are allowed for bike capacity!");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
+            addException(45, 120, "Only numbers are allowed for bike capacity!", exception);
             return;
 
         }
@@ -189,13 +180,13 @@ public class AdminController implements Initializable {
         System.out.println(bikes);
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
-        con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ":00", buildingClose + ":00", imageUrl, bikes, 0);
+        con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ""
+                + ":00", buildingClose + ":00", imageUrl, bikes, 0);
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -210,21 +201,11 @@ public class AdminController implements Initializable {
         }
 
         if (roomID.getText().isBlank() || roomCapacity.getText().isBlank()) {
-            exception.setText("Fill all fields!");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
+            addException(670, 120, "Fill all fields!", exception);
             return;
         }
         if (listBuildingID.getValue().toString().equals("Choose building")) {
-            exception.setText("Choose building!");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
+            addException(670, 120, "Choose building!", exception);
             return;
         }
 
@@ -232,12 +213,7 @@ public class AdminController implements Initializable {
         try {
             roomCap = Integer.parseInt(roomCapacity.getText());
         } catch (Exception e) {
-            exception.setText("Only numbers are allowed for room capacity!");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
+            addException(670, 120, "Only numbers are allowed for room capacity!", exception);
             return;
         }
         int building = Integer.parseInt(listBuildingID.getValue().toString());
@@ -249,5 +225,14 @@ public class AdminController implements Initializable {
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
+    }
+
+    public void addException(double layoutX, double layoutY, String text, Label exception) {
+        exception.setText(text);
+        exception.setLayoutY(layoutY);
+        exception.setLayoutX(layoutX);
+        exception.setTextFill(Color.valueOf("red"));
+        exception.setFont(Font.font(20));
+        exception.setId("Exception");
     }
 }

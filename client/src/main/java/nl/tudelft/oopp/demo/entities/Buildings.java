@@ -18,8 +18,28 @@ public class Buildings {
 
     private String url;
 
-    public Buildings() {
+    /**
+     * Buildings Constructor.
+     * @param buildingNumber Unique number of the building
+     * @param name Building Name
+     * @param openingHours Opening Hour for the building
+     * @param closingHours Closing Hour of the building
+     * @param numberOfRooms Number of rooms in the building
+     * @param numberOfBikes Number of bikes associated with the building
+     * @param url URL of the building picture
+     */
+    public Buildings(int buildingNumber, String name, Time openingHours, Time closingHours,
+                     int numberOfRooms, int numberOfBikes, String url) {
+        this.buildingNumber = buildingNumber;
+        this.name = name;
+        this.openingHours = openingHours;
+        this.closingHours = closingHours;
+        this.numberOfRooms = numberOfRooms;
+        this.numberOfBikes = numberOfBikes;
+        this.url = url;
     }
+
+
 
     /**
      * Method to get Building Number.

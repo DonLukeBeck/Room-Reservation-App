@@ -11,7 +11,18 @@ public class Dishes {
 
     private String menuAssociated;
 
-    public Dishes() {
+    /**
+     * Constructor for dishes.
+     * @param name Dish Name
+     * @param price Dish Price
+     * @param vegan Whether the dish is vegan or not
+     * @param menuAssociated Menu dish is associated with
+     */
+    public Dishes(String name, int price, int vegan, String menuAssociated) {
+        this.name = name;
+        this.price = price;
+        this.vegan = vegan;
+        this.menuAssociated = menuAssociated;
     }
 
     /**
