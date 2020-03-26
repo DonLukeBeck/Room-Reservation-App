@@ -66,7 +66,7 @@ public class ServerCommunication {
     public Users logIn(String user, String pass) {
 
         String body = "{\"netid\":\"" + user + "\",\"password\":\"" + pass + "\"}";
-        Users userLogged = new Users(user, pass);
+        Users userLogged = new Users();
         try {
             String userJson = this.webClient.post().uri("/loginUser")
                     .contentType(MediaType.APPLICATION_JSON)

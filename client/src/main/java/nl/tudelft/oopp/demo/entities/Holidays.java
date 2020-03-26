@@ -12,18 +12,7 @@ public class Holidays {
 
     private String comments;
 
-    /**
-     * Constructor for holidays.
-     * @param holidaysID Unique ID for each holiday
-     * @param startDate Holiday starting date
-     * @param endDate Holiday end date
-     * @param comments Any comments regarding the holiday
-     */
-    public Holidays(int holidaysID, Date startDate, Date endDate, String comments) {
-        this.holidaysID = holidaysID;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.comments = comments;
+    public Holidays() {
     }
 
     public String getComments() {
