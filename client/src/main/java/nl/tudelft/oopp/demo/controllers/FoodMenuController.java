@@ -80,12 +80,15 @@ public class FoodMenuController implements Initializable {
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);
 
-        List<Dishes> allDishes = new ArrayList<>();
+        //List<Dishes> allDishes = new ArrayList<>();
+
         List<Menus> allMenus = new ArrayList<>();
         List<Dishes> menusByBuilding = new ArrayList<>();
 
         try {
-            allDishes = con.getDishes();
+            //allDishes = con.getDishes();
+
+            dishes = con.getDishes();
             allMenus = con.getMenus();
             menusByBuilding = con.getMenusByBuilding(builId);
         }   catch (IOException e) {
@@ -115,7 +118,7 @@ public class FoodMenuController implements Initializable {
             }
 
             if (id1.contains("A")) {
-                Rectangle box = new Rectangle(188, 136);
+                Rectangle box = new Rectangle(240, 136);
 
                 box.arcHeightProperty().setValue(30.0);
                 box.arcWidthProperty().setValue(30.0);
@@ -166,7 +169,7 @@ public class FoodMenuController implements Initializable {
 
             }
             if (id1.contains("B")) {
-                Rectangle box = new Rectangle(188, 136);
+                Rectangle box = new Rectangle(240, 136);
 
                 box.arcHeightProperty().setValue(30.0);
                 box.arcWidthProperty().setValue(30.0);
@@ -214,7 +217,7 @@ public class FoodMenuController implements Initializable {
                 price1.setFont(Font.font("Arial Rounded MT Bold", 20));
             }
             if (id1.contains("C")) {
-                Rectangle box = new Rectangle(188, 136);
+                Rectangle box = new Rectangle(240, 136);
 
                 box.arcHeightProperty().setValue(30.0);
                 box.arcWidthProperty().setValue(30.0);
@@ -267,7 +270,6 @@ public class FoodMenuController implements Initializable {
 
 
     public void dishChosen(Event event) throws IOException {
-        System.out.println("dishChosen event");
         String str = event.getSource().toString();
         String[] temp = str.split(" ");
         String newTemp = "";
@@ -279,9 +281,7 @@ public class FoodMenuController implements Initializable {
         String[] arrId = newTemp.split("=");
         String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
-
         int dishIndex = Integer.parseInt(temp2);
-
         dishesName = dishes.get(dishIndex).getName();
 
         String buildingId = MainMenuController.getId().substring(1);
@@ -297,6 +297,6 @@ public class FoodMenuController implements Initializable {
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationFood.fxml", mainScreen);
+        helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 }

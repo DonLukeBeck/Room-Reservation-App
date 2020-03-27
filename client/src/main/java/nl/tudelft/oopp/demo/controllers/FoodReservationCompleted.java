@@ -68,6 +68,7 @@ public class FoodReservationCompleted implements Initializable {
         builname.layoutYProperty().setValue(470);
         builname.layoutXProperty().setValue(440);
         builname.setFont(Font.font("Arial Rounded MT Bold", 24));
+        builname.textFillProperty().setValue(Color.valueOf("ffc500"));
 
         Label date = new Label(FoodSlots.getDate());
         date.layoutYProperty().setValue(540);
