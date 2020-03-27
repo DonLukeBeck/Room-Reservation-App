@@ -61,7 +61,7 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Label fx:id="sc" contentDisplay="CENTER" layoutX="392.0" layoutY="288.0" prefHeight="51.0" prefWidth="496.0" text="Your reservation is complete!" textAlignment="CENTER" textFill="#2dc26b">
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="392.0" layoutY="260.0" prefHeight="51.0" prefWidth="496.0" text="Your reservation is complete!" textAlignment="CENTER" textFill="#2dc26b">
             <font>
                 <Font name="Comic Sans MS" size="36.0" />
             </font>
@@ -94,6 +94,11 @@
       <Label layoutX="254.0" layoutY="680.0" prefHeight="28.0" prefWidth="67.0" text="Dish:">
          <font>
             <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="335.0" layoutY="320.0" text="Please pick up your dish at the designated time slot" textFill="#2dc26b">
+         <font>
+            <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
       </Label>
     </children>
