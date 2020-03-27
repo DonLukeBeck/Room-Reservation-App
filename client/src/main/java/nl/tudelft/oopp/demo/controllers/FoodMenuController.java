@@ -135,31 +135,32 @@ public class FoodMenuController implements Initializable {
                 });
                 pane1.getChildren().add(box);
 
-                Label dishId = new Label("Name:");
+                Label dishId = new Label("Dish:");
+                if (menusByBuilding.get(j).getVegan() == 1) {
+                    dishId = new Label("(vegan) Dish:");
+                }
                 pane1.getChildren().add(dishId);
                 dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(390);
+                dishId.setLayoutX(350);
                 dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
                 Label price = new Label("Price: ");
                 pane1.getChildren().add(price);
                 price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(390);
+                price.setLayoutX(350);
                 price.setFont(Font.font("Arial Rounded MT Bold", 18));
 
                 Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId1 = new Label(menusByBuilding.get(j).getName() +" (vegan)");
-                }
+
                 pane1.getChildren().add(dishId1);
                 dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(390);
+                dishId1.setLayoutX(370);
                 dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
 
                 Label price1 = new Label( menusByBuilding.get(j).getPrice() + ".00");
                 pane1.getChildren().add(price1);
                 price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(420);
+                price1.setLayoutX(370);
                 price1.setFont(Font.font("Arial Rounded MT Bold", 20));
 
 
@@ -185,31 +186,31 @@ public class FoodMenuController implements Initializable {
                 });
                 pane1.getChildren().add(box);
 
-                Label dishId = new Label("Name:");
+                Label dishId = new Label("Dish:");
+                if (menusByBuilding.get(j).getVegan() == 1) {
+                    dishId = new Label("(vegan) Dish:");
+                }
                 pane1.getChildren().add(dishId);
                 dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(680);
+                dishId.setLayoutX(640);
                 dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
                 Label price = new Label("Price: ");
                 pane1.getChildren().add(price);
                 price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(680);
+                price.setLayoutX(640);
                 price.setFont(Font.font("Arial Rounded MT Bold", 18));
 
                 Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId1 = new Label(menusByBuilding.get(j).getName() +" (vegan)");
-                }
                 pane1.getChildren().add(dishId1);
                 dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(680);
+                dishId1.setLayoutX(660);
                 dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
 
                 Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
                 pane1.getChildren().add(price1);
                 price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(710);
+                price1.setLayoutX(660);
                 price1.setFont(Font.font("Arial Rounded MT Bold", 20));
             }
             if (id1.contains("C")) {
@@ -233,31 +234,31 @@ public class FoodMenuController implements Initializable {
                 });
                 pane1.getChildren().add(box);
 
-                Label dishId = new Label("Name:");
+                Label dishId = new Label("Dish:");
+                if (menusByBuilding.get(j).getVegan() == 1) {
+                    dishId = new Label("(vegan) Dish:");
+                }
                 pane1.getChildren().add(dishId);
                 dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(105.0);
+                dishId.setLayoutX(65);
                 dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
                 Label price = new Label("Price:");
                 pane1.getChildren().add(price);
                 price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(105);
+                price.setLayoutX(65);
                 price.setFont(Font.font("Arial Rounded MT Bold", 18));
 
                 Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId1 = new Label(menusByBuilding.get(j).getName() +" (vegan)");
-                }
                 pane1.getChildren().add(dishId1);
                 dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(105);
+                dishId1.setLayoutX(85);
                 dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
 
                 Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
                 pane1.getChildren().add(price1);
                 price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(135);
+                price1.setLayoutX(85);
                 price1.setFont(Font.font("Arial Rounded MT Bold", 20));
             }
 
