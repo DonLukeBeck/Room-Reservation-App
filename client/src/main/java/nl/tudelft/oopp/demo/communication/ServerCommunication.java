@@ -156,7 +156,7 @@ public class ServerCommunication {
      * @return the body of a get request to the server.
      * @throws Exception if communication with the server fails.
      */
-    public List<Dishes> getMenusByBuilding(int buildingNumber) throws IOException {
+    public List<Dishes> getMenuByBuilding(int buildingNumber) throws IOException {
         String jsonString = this.webClient.get().uri("/MenusByBuilding?bnr="
                 + buildingNumber)
                 .retrieve()

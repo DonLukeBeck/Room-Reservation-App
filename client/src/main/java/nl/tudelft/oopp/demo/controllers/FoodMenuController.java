@@ -84,7 +84,7 @@ public class FoodMenuController implements Initializable {
 
             dishes = con.getDishes();
             allMenus = con.getMenus();
-            menusByBuilding = con.getMenusByBuilding(builId);
+            menusByBuilding = con.getMenuByBuilding(builId);
         } catch (IOException e) {
             e.printStackTrace();
         }

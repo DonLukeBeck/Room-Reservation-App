@@ -94,20 +94,25 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        j = 0;
-        String[] listAllBuildings = new String[listGetBuildings.size()];
+
+        String[] listAllBuildings = new String[listGetBuildings.size() + 1];
+        listAllBuildings[0]="Select building";
+        j = 1;
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
             j++;
         }
-        listOpen.setValue("07:00");
-        listClose.setValue("23:30");
-        roomType.setValue("Student");
-        listBuildingID.setValue("Choose building");
+
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
-        roomType.setItems(FXCollections.observableArrayList("Study hall", "Exam hall"));
+        roomType.setItems(FXCollections.observableArrayList("Select type","Study hall", "Exam hall"));
+
+        listOpen.setValue("07:00");
+        listClose.setValue("23:30");
+        roomType.setValue("Select type");
+        listBuildingID.setValue("Select building");
+
     }
 
     /***
@@ -144,6 +149,27 @@ public class AdminController implements Initializable {
             exception.setId("Exception");
             return;
         }
+
+        if (listBuildingID.getValue().toString().equals("Select building")) {
+            exception.setText("Please select building.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        if (roomType.getValue().toString().equals("Select type")) {
+            exception.setText("Please select room type.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
 
         int buildingID = 0;
         try {

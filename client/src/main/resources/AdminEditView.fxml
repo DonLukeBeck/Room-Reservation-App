@@ -18,7 +18,7 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Label layoutX="62.0" layoutY="160.0" prefHeight="35.0" prefWidth="192.0" text="Select Building N.">
+        <Label layoutX="62.0" layoutY="160.0" prefHeight="35.0" prefWidth="255.0" text="Select Building Number">
             <font>
                 <Font size="24.0" />
             </font></Label>
