@@ -3,11 +3,9 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
@@ -29,7 +27,7 @@ public class FoodSlots implements Initializable {
     private static String room;
     private static String date;
     private static String timeslot;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
 
     @FXML
     private AnchorPane slots;
@@ -41,7 +39,8 @@ public class FoodSlots implements Initializable {
     private AnchorPane mainScreen;
 
     /**
-     *Method to get building.
+     * Method to get building.
+     *
      * @return Building
      */
     public static String getBuilding() {
@@ -49,7 +48,8 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *Method to get Room.
+     * Method to get Room.
+     *
      * @return Room
      */
     public static String getRoom() {
@@ -57,7 +57,8 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *Method to get Date.
+     * Method to get Date.
+     *
      * @return Date
      */
     public static String getDate() {
@@ -65,7 +66,8 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *Method to get Timeslot.
+     * Method to get Timeslot.
+     *
      * @return Timeslot
      */
     public static String getTimeslot() {
@@ -73,7 +75,8 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *Method to pop up campus map.
+     * Method to pop up campus map.
+     *
      * @param event Clicking on 'campus map'
      * @throws IOException
      */
@@ -89,7 +92,6 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -147,7 +149,6 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *
      * @param location
      * @param resources
      */
@@ -257,7 +258,8 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     *Method to go back.
+     * Method to go back.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */

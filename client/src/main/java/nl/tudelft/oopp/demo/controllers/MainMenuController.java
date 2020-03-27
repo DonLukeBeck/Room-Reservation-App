@@ -151,6 +151,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Opens the fxml of the next scene on click.
+     *
      * @param event
      * @param buildingNumber
      * @throws IOException
@@ -258,6 +259,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Loading all needed scene controllers when the fxml is loaded.
+     *
      * @param location
      * @param resources
      */

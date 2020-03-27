@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +21,8 @@ public class HelperController {
     ServerCommunication con = new ServerCommunication();
 
     /**
-     *Method to get all timeslots.
+     * Method to get all timeslots.
+     *
      * @return List of all timeslots
      */
     public String[] getAllTimeSlots() {
@@ -45,7 +45,6 @@ public class HelperController {
     }
 
     /**
-     *
      * @param path
      * @param scene1
      * @throws IOException
@@ -63,7 +62,6 @@ public class HelperController {
     }
 
     /**
-     *
      * @param sidePane
      */
     public void loadSidePane(Pane sidePane) {

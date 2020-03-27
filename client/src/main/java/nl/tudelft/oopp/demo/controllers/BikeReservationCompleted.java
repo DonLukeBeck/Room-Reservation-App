@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -91,7 +90,8 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     /**
-     *Method for campus map to pop up.
+     * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -107,7 +107,8 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     /**
-     *Method to go back to previous page.
+     * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */

@@ -2,7 +2,6 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +33,6 @@ public class UserPage {
 
 
     /**
-     *
      * @param event
      * @throws IOException
      */

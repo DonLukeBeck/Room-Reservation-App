@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import nl.tudelft.oopp.demo.entities.Rooms;
@@ -25,7 +25,7 @@ public class SignUpController {
 
     @FXML
     public javafx.scene.control.Button button3;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
     @FXML
     private TextField user;
 

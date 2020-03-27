@@ -3,8 +3,9 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.*;
-
+import java.util.Calendar;
+import java.util.Date;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -18,8 +19,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
-import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class BikeReservationMenu implements Initializable {
     private static int Fmonth;
@@ -45,7 +44,6 @@ public class BikeReservationMenu implements Initializable {
     private Pane sidePane;
 
     /**
-     *
      * @return
      */
     public static int getMonth() {
@@ -54,6 +52,7 @@ public class BikeReservationMenu implements Initializable {
 
     /**
      * Method to get the Year.
+     *
      * @return The year
      */
     public static int getYear() {
@@ -62,6 +61,7 @@ public class BikeReservationMenu implements Initializable {
 
     /**
      * Method to get the day.
+     *
      * @return The day
      */
     public static int getDay() {
@@ -69,7 +69,8 @@ public class BikeReservationMenu implements Initializable {
     }
 
     /**
-     *Method for 'campus map' button.
+     * Method for 'campus map' button.
+     *
      * @param event Event that triggers the campus map pop-up, in this case clicking on campus map
      * @throws IOException
      */
@@ -85,7 +86,8 @@ public class BikeReservationMenu implements Initializable {
     }
 
     /**
-     *Method for 'go back' button.
+     * Method for 'go back' button.
+     *
      * @param event Clicking on the go back button
      * @throws IOException
      */

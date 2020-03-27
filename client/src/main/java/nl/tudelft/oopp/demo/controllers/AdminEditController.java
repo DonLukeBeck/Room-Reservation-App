@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -21,13 +17,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class AdminEditController implements Initializable {
-    ServerCommunication con = new ServerCommunication();
+    AdminServerCommunication con = new AdminServerCommunication();
 
     @FXML
     private javafx.scene.control.Button add;
@@ -63,7 +58,6 @@ public class AdminEditController implements Initializable {
     private ChoiceBox listBuildingID1;
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -146,7 +140,6 @@ public class AdminEditController implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -173,9 +166,9 @@ public class AdminEditController implements Initializable {
         String[] listAllBuildings = new String[listGetBuildings.size()];
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
-            if (t.getBuilding_number() == Integer.parseInt(b)) {
+            /*if (t.getBuilding_number() == Integer.parseInt(b)) {
                 bikes = t.getNumber_of_bikes();
-            }
+            }*/
             j++;
         }
 
@@ -192,7 +185,7 @@ public class AdminEditController implements Initializable {
             return;
 
         }
-        int buildingID = Integer.parseInt(listBuildingID1.getId());
+        // int buildingID = Integer.parseInt(listBuildingID1.getId());
         String buildingName = editBuildingName.getText();
         String imageUrl = editBuildingUrl.getText();
         String buildingOpen = listOpen.getValue().toString();
@@ -203,13 +196,14 @@ public class AdminEditController implements Initializable {
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
 
+        //I need the building id (that comes from Select Building N.) so that i can create a function to update the changes in the database
+        //con.editBuildingAdmin(buildingID, buildingName, buildingOpen, buildingClose, imageUrl, bikes, 0);
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -269,7 +263,8 @@ public class AdminEditController implements Initializable {
         System.out.println(listBuildingID.getValue().toString());
         System.out.println(roomType.getValue());
 
-
+        //same as buildingId, i ll need the roomID
+        //con.editRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }

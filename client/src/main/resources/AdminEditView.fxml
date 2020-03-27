@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminController">
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminEditController">
     <children>
         <ImageView fitHeight="112.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../build/resources/main/images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Button fx:id="editBuilding" defaultButton="true" layoutX="380.0" layoutY="703.0" mnemonicParsing="false" onAction="#addBuilding" prefHeight="46.0" prefWidth="218.0" text="Edit Building">
+        <Button fx:id="editBuilding" defaultButton="true" layoutX="380.0" layoutY="703.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="46.0" prefWidth="218.0" text="Edit Building">
             <font>
                 <Font size="24.0" />
             </font>
@@ -58,7 +58,7 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <Button defaultButton="true" layoutX="1017.0" layoutY="703.0" mnemonicParsing="false" onAction="#addRoom" prefHeight="46.0" prefWidth="218.0" text="Edit Room">
+        <Button defaultButton="true" layoutX="1017.0" layoutY="703.0" mnemonicParsing="false" onAction="#editRoom" prefHeight="46.0" prefWidth="218.0" text="Edit Room">
             <font>
                 <Font size="24.0" />
             </font>
@@ -83,7 +83,7 @@
         <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
         <ComboBox fx:id="listClose" layoutX="293.0" layoutY="437.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
         <ChoiceBox fx:id="roomType" layoutX="829.0" layoutY="553.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listRoomsID" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listBuildingID1" layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listBuildingID1" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listRoomsID" layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
     </children>
 </AnchorPane>

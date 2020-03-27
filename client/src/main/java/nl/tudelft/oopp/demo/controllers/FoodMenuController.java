@@ -2,12 +2,9 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,15 +20,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
-import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Dishes;
 import nl.tudelft.oopp.demo.entities.Menus;
-import nl.tudelft.oopp.demo.entities.Reservations;
 
 public class FoodMenuController implements Initializable {
     public static List<Dishes> dishes;
     private static String dishesName;
-
+    ServerCommunication con = new ServerCommunication();
     @FXML
     private javafx.scene.control.ScrollPane scene1;
     @FXML
@@ -45,19 +40,18 @@ public class FoodMenuController implements Initializable {
     @FXML
     private Pane sidePane;
 
-
-
-    ServerCommunication con = new ServerCommunication();
-
     /**
      * Method for getting dish
      *
      * @return dish
      */
-    public static String getDishesName() {  return dishesName;  }
+    public static String getDishesName() {
+        return dishesName;
+    }
 
     /**
      * Method to pop up campus map.
+     *
      * @param event Clicking on 'campus map'
      * @throws IOException
      */
@@ -91,7 +85,7 @@ public class FoodMenuController implements Initializable {
             dishes = con.getDishes();
             allMenus = con.getMenus();
             menusByBuilding = con.getMenusByBuilding(builId);
-        }   catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 /*
@@ -160,7 +154,7 @@ public class FoodMenuController implements Initializable {
                 dishId1.setLayoutX(370);
                 dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
 
-                Label price1 = new Label( menusByBuilding.get(j).getPrice() + ".00");
+                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
                 pane1.getChildren().add(price1);
                 price1.setLayoutY(box.layoutYProperty().getValue() + 100);
                 price1.setLayoutX(370);
@@ -292,6 +286,7 @@ public class FoodMenuController implements Initializable {
 
     /**
      * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back"
      * @throws IOException
      */

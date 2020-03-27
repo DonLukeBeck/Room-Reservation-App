@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -21,14 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 
 @SuppressWarnings("checkstyle:Indentation")
 public class AdminController implements Initializable {
-    ServerCommunication con = new ServerCommunication();
+    AdminServerCommunication con = new AdminServerCommunication();
 
     @FXML
     private javafx.scene.control.Button add;
@@ -62,7 +57,6 @@ public class AdminController implements Initializable {
     private ChoiceBox roomType;
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -127,7 +121,6 @@ public class AdminController implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */

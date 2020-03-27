@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
@@ -28,7 +28,7 @@ public class TimeSlotsController implements Initializable {
     private static String room;
     private static String date;
     private static String timeslot;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
 
     @FXML
     private AnchorPane slots;

@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +41,7 @@ public class ReservationFoodController implements Initializable {
 
     /**
      * Method to get Room ID.
+     *
      * @return Room ID
      */
     public static String getId() {
@@ -49,7 +49,6 @@ public class ReservationFoodController implements Initializable {
     }
 
     /**
-     *
      * @param location
      * @param resources
      */
@@ -229,6 +228,7 @@ public class ReservationFoodController implements Initializable {
 
     /**
      * Method for the campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -245,6 +245,7 @@ public class ReservationFoodController implements Initializable {
 
     /**
      * Method to return to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
@@ -254,7 +255,6 @@ public class ReservationFoodController implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
