@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -94,7 +95,14 @@ public class FoodSlots implements Initializable {
      */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
-        room = RoomMenuController.getId();
+        room = null;
+
+        Calendar defaultCalendar = Calendar.getInstance();
+
+        int currentYear = defaultCalendar.get(Calendar.YEAR);
+        int currentMonth = defaultCalendar.get(Calendar.MONTH);
+        int currentDay = defaultCalendar.get(Calendar.DAY_OF_MONTH);
+
 //        int checkDate = RoomReservationMenu.getDay();
 //        int checkMonth = RoomReservationMenu.getMonth() + 1;
 //        String formatDate = checkDate + "";
@@ -106,8 +114,8 @@ public class FoodSlots implements Initializable {
 //        if (checkMonth < 10) {
 //            formatMonth = "0" + checkMonth;
 //        }
-//
-//        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
+
+        date = currentYear + "-" + currentMonth + "-" + currentDay;
 
 
         Rectangle slot = (Rectangle) event.getSource();
@@ -130,10 +138,12 @@ public class FoodSlots implements Initializable {
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
 
+        String dishName = FoodMenuController.getDishesName();
+
         con.reservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building), room);
 
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
+        helperController.loadNextScene("/CompleteFoodReservation.fxml", mainScreen);
     }
 
     /**
@@ -190,13 +200,15 @@ public class FoodSlots implements Initializable {
 
         date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
         */
-        List<Reservations> allSuitableRes = new ArrayList<>();
 
-        for (Reservations e : allReservations) {
-            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
-                allSuitableRes.add(e);
-            }
-        }
+//
+//        List<Reservations> allSuitableRes = new ArrayList<>();
+//
+//        for (Reservations e : allReservations) {
+//            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
+//                allSuitableRes.add(e);
+//            }
+//        }
 
         String opentime = open.toString().substring(0, 5);
         String closingtime = closed.toString().substring(0, 5);
@@ -239,14 +251,6 @@ public class FoodSlots implements Initializable {
                 if (hours < start || hours >= end) {
                     ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
                     k.disableProperty().setValue(true);
-                }
-                if (!allSuitableRes.isEmpty()) {
-                    for (Reservations t : allSuitableRes) {
-                        if (t.getTimeslot().toString().substring(0, 5).equals(firsttime[0])) {
-                            ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
-                            k.disableProperty().setValue(true);
-                        }
-                    }
                 }
             }
         }

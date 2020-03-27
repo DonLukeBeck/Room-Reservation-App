@@ -86,7 +86,7 @@ public class MainReservationMenuController implements Initializable {
      */
     public void goToFood(Event event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationFood.fxml", mainScreen);
+        helperController.loadNextScene("/FoodMenu.fxml", mainScreen);
     }
 
     /**
