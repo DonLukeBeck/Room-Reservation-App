@@ -50,20 +50,6 @@ public class MainSceneController {
         String password = pass.getText();
 
         Users userLogged = con.logIn(user, password);
-        if (user.equals("admin")) {
-            Stage stage1 = (Stage) button1.getScene().getWindow();
-            stage1.close();
-
-            FXMLLoader loader = new FXMLLoader();
-            URL xmlUrl = getClass().getResource("/MainAdminScene.fxml");
-            loader.setLocation(xmlUrl);
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-            return;
-        }
 
         // verify if user is logged in
         if (!userLogged.getNetid().isEmpty()) {

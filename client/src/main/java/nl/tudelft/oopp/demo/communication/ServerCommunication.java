@@ -82,6 +82,40 @@ public class ServerCommunication {
         return roomsJsonList;
     }
 
+    /**
+     * Retrieves the rooms from a specified building.
+     *
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public List<Rooms> getRoomsByBuilding(int buildingNumber) throws IOException {
+        String jsonString = this.webClient.get().uri("/RoomsByBuilding?bnr="
+                + buildingNumber)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Rooms> roomsJsonList = mapper
+                .readValue(jsonString, new com
+                        .fasterxml
+                        .jackson
+                        .core
+                        .type
+                        .TypeReference<List<Rooms>>() {});
+        
+        return roomsJsonList;
+    }
+
+
 
     /**
      * Retrieves reservations list from the server.

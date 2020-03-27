@@ -52,6 +52,31 @@ public class BuildingsController {
             buildingsRepository.save(newBuilding);
             return true;
         }
+    }
+
+    /**
+     * Edits a building from the database.
+     *
+     * @param building - building to be edited in database
+     * @return true if it's edited, false if it has an invalid id
+     */
+    @PostMapping("/editBuilding") // Map ONLY POST Requests
+    public @ResponseBody
+    boolean editBuilding(@RequestBody Buildings building) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        try {
+            Buildings existingBuilding = buildingsRepository.findBuildingsByBuildingNumber(building.getBuildingNumber());
+            existingBuilding.setName(building.getName());
+            existingBuilding.setOpeningHours(building.getOpeningHours());
+            existingBuilding.setClosingHours(building.getClosingHours());
+            existingBuilding.setNumberOfBikes(building.getNumberOfBikes());
+            existingBuilding.setUrl(building.getUrl());
+            buildingsRepository.save(existingBuilding);
+            return true;
+        } catch (NullPointerException e) {
+            return false;
+        }
 
     }
 

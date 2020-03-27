@@ -198,7 +198,9 @@ public class AdminEditController implements Initializable {
             return;
         }
 
-        con.editBuildingAdmin(buildingID, buildingName, buildingOpen, buildingClose, imageUrl, bikes, 0);
+        con.editBuildingAdmin(buildingID, buildingName, buildingOpen+ ""
+                + ":00", buildingClose+ ""
+                + ":00", imageUrl, bikes, 0);
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminEditView.fxml", mainScreen);

@@ -85,7 +85,7 @@ public class AdminServerCommunication extends ServerCommunication {
 
         System.out.println(body);
         try {
-            boolean bool = super.webClient.post().uri("/addBuilding")
+            boolean bool = super.webClient.post().uri("/editBuilding")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
@@ -159,7 +159,7 @@ public class AdminServerCommunication extends ServerCommunication {
                 + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
         System.out.println(body);
         try {
-            boolean bool = super.webClient.post().uri("/addRoom")
+            boolean bool = super.webClient.post().uri("/editRoom")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
