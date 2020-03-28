@@ -75,7 +75,6 @@ public class SignUpController {
             System.out.println(buildings.get(i).getName());
             System.out.println(buildings.get(i).getOpeningHours());
             System.out.println(buildings.get(i).getClosingHours());
-            System.out.println(buildings.get(i).getNumberOf_Rooms());
         }
         System.out.println("******************Rooms");
         //Printing all rooms from database

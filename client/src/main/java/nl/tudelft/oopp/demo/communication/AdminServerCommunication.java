@@ -22,7 +22,6 @@ public class AdminServerCommunication extends ServerCommunication {
      * @param buildingClose building Closing Hours
      * @param imageUrl      imageUrl
      * @param bikeCapacity  bikeCapacity
-     * @param roomCapacity  roomCapacity
      * @return true if building successfully added, false otherwise.
      */
     public boolean addBuildingAdmin(int buildingID,
@@ -30,14 +29,12 @@ public class AdminServerCommunication extends ServerCommunication {
                                     String buildingOpen,
                                     String buildingClose,
                                     String imageUrl,
-                                    int bikeCapacity,
-                                    int roomCapacity) {
+                                    int bikeCapacity) {
 
         String body = "{\"buildingNumber\":\"" + buildingID
                 + "\",\"name\":\"" + buildingName
                 + "\",\"openingHours\":\"" + buildingOpen
                 + "\",\"closingHours\":\"" + buildingClose
-                + "\",\"numberOfRooms\":\"" + roomCapacity
                 + "\",\"numberOfBikes\":\"" + bikeCapacity
                 + "\",\"url\":\"" + imageUrl + "\"}";
 
@@ -72,7 +69,6 @@ public class AdminServerCommunication extends ServerCommunication {
      * @param buildingClose building Closing Hours
      * @param imageUrl      imageUrl
      * @param bikeCapacity  bikeCapacity
-     * @param roomCapacity  roomCapacity
      * @return true if building successfully edited, false otherwise.
      */
     public boolean editBuildingAdmin(int buildingID,
@@ -80,14 +76,12 @@ public class AdminServerCommunication extends ServerCommunication {
                                     String buildingOpen,
                                     String buildingClose,
                                     String imageUrl,
-                                    int bikeCapacity,
-                                    int roomCapacity) {
+                                    int bikeCapacity) {
 
         String body = "{\"buildingNumber\":\"" + buildingID
                 + "\",\"name\":\"" + buildingName
                 + "\",\"openingHours\":\"" + buildingOpen
                 + "\",\"closingHours\":\"" + buildingClose
-                + "\",\"numberOfRooms\":\"" + roomCapacity
                 + "\",\"numberOfBikes\":\"" + bikeCapacity
                 + "\",\"url\":\"" + imageUrl + "\"}";
 

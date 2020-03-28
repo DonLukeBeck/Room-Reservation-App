@@ -50,7 +50,6 @@ public class BuildingsController {
             newBuilding.setName(building.getName());
             newBuilding.setOpeningHours(building.getOpeningHours());
             newBuilding.setNumberOfBikes(building.getNumberOfBikes());
-            newBuilding.setNumberOfRooms(building.getNumberOfRooms());
             newBuilding.setUrl(building.getUrl());
             buildingsRepository.save(newBuilding);
             return true;

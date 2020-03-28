@@ -200,7 +200,7 @@ public class AdminController implements Initializable {
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
         con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ""
-                + ":00", buildingClose + ":00", imageUrl, bikes, 0);
+                + ":00", buildingClose + ":00", imageUrl, bikes);
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
