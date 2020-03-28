@@ -92,7 +92,7 @@ public class RoomMenuController implements Initializable {
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(422, box.layoutYProperty().getValue() + 100,
-                        rooms.get(j).getCapacity() + "");
+                        rooms.get(j).getChairs() + "");
 
 
             }
@@ -107,7 +107,7 @@ public class RoomMenuController implements Initializable {
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(708, box.layoutYProperty().getValue() + 100,
-                        rooms.get(j).getCapacity() + "");
+                        rooms.get(j).getChairs() + "");
             }
             if (id1.contains("C")) {
                 Rectangle box = addBoxToScrollPane(58,
@@ -120,7 +120,7 @@ public class RoomMenuController implements Initializable {
                 addLabelToScrollPane(104, box.layoutYProperty().getValue() + 40,
                         rooms.get(j).getRoomId());
 
-                addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getCapacity() + "");
+                addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getChairs() + "");
             }
 
         }

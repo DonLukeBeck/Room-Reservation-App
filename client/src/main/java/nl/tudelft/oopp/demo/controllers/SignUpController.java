@@ -81,7 +81,7 @@ public class SignUpController {
         List<Rooms> rooms = con.getRooms();
         for (int i = 0; i < rooms.size(); i++) {
             System.out.println(rooms.get(i).getRoomId());
-            System.out.println(rooms.get(i).getCapacity());
+            System.out.println(rooms.get(i).getChairs());
             System.out.println(rooms.get(i).getType());
             System.out.println(rooms.get(i).getAssociatedBuilding());
         }

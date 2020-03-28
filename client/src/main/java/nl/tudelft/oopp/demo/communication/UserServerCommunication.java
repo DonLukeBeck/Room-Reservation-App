@@ -94,10 +94,10 @@ public class UserServerCommunication extends ServerCommunication {
      * @return true if reservation is created, false if not.
      */
     public boolean roomReservation(String userReserving,
-                               String timeSlot,
-                               String date,
-                               int buildingReserved,
-                               String room) {
+                                   String timeSlot,
+                                   String date,
+                                   int buildingReserved,
+                                   String room) {
 
         System.out.println(userReserving);
         System.out.println(room);
@@ -137,9 +137,9 @@ public class UserServerCommunication extends ServerCommunication {
      * @return true if reservation is created, false if not.
      */
     public boolean bikeReservation(String userReserving,
-                               String timeSlot,
-                               String date,
-                               int buildingReserved) {
+                                   String timeSlot,
+                                   String date,
+                                   int buildingReserved) {
 
         System.out.println(userReserving);
         String body = "{\"userReserving\":\""
@@ -179,10 +179,10 @@ public class UserServerCommunication extends ServerCommunication {
      * @return true if reservation is created, false if not.
      */
     public boolean foodReservation(String userReserving,
-                               String timeSlot,
-                               String date,
-                               int buildingReserved,
-                               String dishOrdered) {
+                                   String timeSlot,
+                                   String date,
+                                   int buildingReserved,
+                                   String dishOrdered) {
 
         System.out.println(userReserving);
         String body = "{\"userReserving\":\""

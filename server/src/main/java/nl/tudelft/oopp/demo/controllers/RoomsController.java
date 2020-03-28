@@ -42,9 +42,11 @@ public class RoomsController {
             return false;
         } catch (NullPointerException e) {
             Rooms newRoom = new Rooms();
-            System.out.println(room.getAssociatedBuilding());
             newRoom.setAssociatedBuilding(room.getAssociatedBuilding());
-            newRoom.setCapacity(room.getCapacity());
+            newRoom.setChairs(room.getChairs());
+            newRoom.setWhiteboards(room.getWhiteboards());
+            newRoom.setComputers(room.getComputers());
+            newRoom.setTables(room.getTables());
             newRoom.setRoomId(room.getRoomId());
             newRoom.setType(room.getType());
             roomsRepository.save(newRoom);
@@ -63,7 +65,10 @@ public class RoomsController {
         // @RequestParam means it is a parameter from the GET or POST request
         try {
             if (roomsRepository.updateExistingRoom(room.getRoomId(),
-                    room.getCapacity(),
+                    room.getChairs(),
+                    room.getWhiteboards(),
+                    room.getTables(),
+                    room.getComputers(),
                     room.getType(),
                     oldRoomId)) {
                 return true;
