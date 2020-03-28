@@ -54,9 +54,9 @@ public class RoomsController {
         }
     }
 
-    /** Adds a room, inserted by the admin, to the database.
-     * @param room - room to be added to the database
-     * @return true if room successfully added, false otherwise
+    /** Edits a room, inserted by the admin, in the database.
+     * @param room - room to be edited in the database
+     * @return true if room successfully edited, false otherwise
      */
     @RequestMapping("/editRoom") // Map ONLY POST Requests
     public @ResponseBody
@@ -64,14 +64,6 @@ public class RoomsController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
-            System.out.println(oldRoomId);
-            System.out.println(room.getRoomId());
-            System.out.println(room.getChairs());
-            System.out.println(room.getAssociatedBuilding());
-            System.out.println(room.getComputers());
-            System.out.println(room.getWhiteboards());
-            System.out.println(room.getType());
-            System.out.println(room.getTables());
             if (roomsRepository.updateExistingRoom(room.getRoomId(),
                     room.getChairs(),
                     room.getWhiteboards(),

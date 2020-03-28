@@ -35,7 +35,6 @@ public class AdminServerCommunication extends ServerCommunication {
                 + "\",\"numberOfBikes\":\"" + bikeCapacity
                 + "\",\"url\":\"" + imageUrl + "\"}";
 
-        System.out.println(body);
         try {
             boolean bool = super.webClient.post().uri("/addBuilding")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -82,7 +81,6 @@ public class AdminServerCommunication extends ServerCommunication {
                 + "\",\"numberOfBikes\":\"" + bikeCapacity
                 + "\",\"url\":\"" + imageUrl + "\"}";
 
-        System.out.println(body);
         try {
             boolean bool = super.webClient.post().uri("/editBuilding")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -149,16 +147,21 @@ public class AdminServerCommunication extends ServerCommunication {
      * @param roomType   roomType
      * @return true if room successfully added, false otherwise.
      */
-    public boolean addRoomAdmin(String roomID, int roomCap, int whiteboards, int tables, int computers, int buildingID, String roomType) {
+    public boolean addRoomAdmin(String roomID,
+                                int roomCap,
+                                int whiteboards,
+                                int tables,
+                                int computers,
+                                int buildingID,
+                                String roomType) {
 
         String body = "{\"roomId\":\"" + roomID
                 + "\",\"chairs\":\"" + roomCap
                 + "\",\"whiteboards\":\"" + whiteboards
-                +"\",\"tables\":\"" + tables
-                +"\",\"computers\":\"" + computers
+                + "\",\"tables\":\"" + tables
+                + "\",\"computers\":\"" + computers
                 + "\",\"type\":\"" + roomType
                 + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
-        System.out.println(body);
         try {
             boolean bool = super.webClient.post().uri("/addRoom")
                     .contentType(MediaType.APPLICATION_JSON)
@@ -187,7 +190,7 @@ public class AdminServerCommunication extends ServerCommunication {
      * @param chairs    chairs
      * @param buildingID buildingID
      * @param roomType   roomType
-     * @return true if building successfully edited, false otherwise.
+     * @return true if room successfully edited, false otherwise.
      */
     public boolean editRoomAdmin(String roomID,
                                  int chairs,
@@ -201,11 +204,10 @@ public class AdminServerCommunication extends ServerCommunication {
         String body = "{\"roomId\":\"" + roomID
                 + "\",\"chairs\":\"" + chairs
                 + "\",\"whiteboards\":\"" + whiteboards
-                +"\",\"tables\":\"" + tables
-                +"\",\"computers\":\"" + computers
+                + "\",\"tables\":\"" + tables
+                + "\",\"computers\":\"" + computers
                 + "\",\"type\":\"" + roomType
                 + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
-        System.out.println(body);
         try {
             boolean bool = super.webClient.post().uri("/editRoom?oldRoomId=" + oldRoomId)
                     .contentType(MediaType.APPLICATION_JSON)
@@ -234,6 +236,7 @@ public class AdminServerCommunication extends ServerCommunication {
      * @return true if room successfully deleted, false otherwise.
      */
     public boolean deleteRoomAdmin(String roomId) throws IOException {
+
         try {
             boolean bool = this.webClient.get().uri("/deleteRoom?roomId="
                     + roomId)
@@ -249,7 +252,7 @@ public class AdminServerCommunication extends ServerCommunication {
                     .bodyToMono(Boolean.class)
                     .block();
             if (bool) {
-                System.out.println("Building deleted");
+                System.out.println("Room deleted");
                 return true;
             } else {
                 System.out.println("failed");
@@ -261,4 +264,112 @@ public class AdminServerCommunication extends ServerCommunication {
         }
     }
 
+    //CRUD for Dishes
+
+    /**
+     * Adds the given dish to the database.
+     *
+     * @param name name
+     * @param price price
+     * @param vegan vegan
+     * @return true if dish successfully added, false otherwise.
+     */
+    public boolean addDishAdmin(String name, int price, int vegan) {
+
+        String body = "{\"name\":\"" + name
+                + "\",\"price\":\"" + price
+                + "\",\"vegan\":\"" + vegan + "\"}";
+
+        try {
+            boolean bool = super.webClient.post().uri("/addDish")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Dish added");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Edits the given dish.
+     *
+     * @param name name
+     * @param price price
+     * @param vegan vegan
+     * @return true if dish successfully edited, false otherwise.
+     */
+    public boolean editDishAdmin(String name, int price, int vegan, String oldDishName) {
+
+        String body = "{\"name\":\"" + name
+                + "\",\"price\":\"" + price
+                + "\",\"vegan\":\"" + vegan + "\"}";
+
+        try {
+            boolean bool = super.webClient.post().uri("/editDish?oldDishName=" + oldDishName)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Dish edited");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Deletes a dish.
+     *
+     * @param name name
+     * @return true if dish successfully deleted, false otherwise.
+     */
+    public boolean deleteDishAdmin(String name) throws IOException {
+        try {
+            boolean bool = this.webClient.get().uri("/deleteDish?name="
+                    + name)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, response -> {
+                        System.out.println("4xx error");
+                        return Mono.error(new RuntimeException("4xx"));
+                    })
+                    .onStatus(HttpStatus::is5xxServerError, response -> {
+                        System.out.println("5xx error");
+                        return Mono.error(new RuntimeException("5xx"));
+                    })
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Dish deleted");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    //CRUD for Menus
+    //CRUD for Holidays
 }
