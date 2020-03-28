@@ -75,12 +75,21 @@
         </Label>
         <ChoiceBox fx:id="listRoomsID" layoutX="1012.0" layoutY="206.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
         
+<<<<<<< HEAD
         <ComboBox fx:id="listOpen" layoutX="354.0" layoutY="355.0" prefWidth="150.0" stylesheets="@style/style.css" />
         <ComboBox fx:id="listClose" layoutX="354.0" layoutY="430.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
         <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="656.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
       <ChoiceBox fx:id="listBuildingID1" layoutX="354.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
       <ChoiceBox fx:id="listBuildingID2" layoutX="1012.0" layoutY="130.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
       <Label layoutX="675.0" layoutY="275.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
+=======
+        <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ComboBox fx:id="listClose" layoutX="296.0" layoutY="438.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="roomType" layoutX="816.0" layoutY="689.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listBuildingID1" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listBuildingID2" layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <Label layoutX="667.0" layoutY="337.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
+>>>>>>> 3adae4fc058be27571acb5b175751fdd94128b0e
          <font>
             <Font size="24.0" />
          </font>
