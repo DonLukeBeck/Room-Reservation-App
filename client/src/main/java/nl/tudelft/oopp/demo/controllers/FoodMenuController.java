@@ -98,6 +98,12 @@ public class FoodMenuController implements Initializable {
             }
         }
 */
+
+        if (menusByBuilding.isEmpty()) {
+            EmptyMenu();
+            return;
+        }
+
         for (int j = 0; j < menusByBuilding.size(); j++) {
             Rectangle last = null;
             String id1 = "";
@@ -292,4 +298,16 @@ public class FoodMenuController implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
+
+    public void EmptyMenu() {
+        Label noDishes = new Label("No dishes are available for this building");
+        noDishes.setFont(Font.font("Arial Rounded MT Bold", 24));
+        pane1.getChildren().add(noDishes);
+
+        Label noDishes2 = new Label("Please choose a different building");
+        noDishes2.setFont(Font.font("Arial Rounded MT Bold", 24));
+        pane1.getChildren().add(noDishes2);
+        noDishes2.setLayoutY(noDishes.layoutYProperty().getValue() + 40);
+    }
+
 }
