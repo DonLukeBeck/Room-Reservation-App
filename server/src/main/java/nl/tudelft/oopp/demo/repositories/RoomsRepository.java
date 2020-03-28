@@ -10,6 +10,16 @@ import org.springframework.data.jpa.repository.Query;
 public interface RoomsRepository extends JpaRepository<Rooms, Long> {
     @Query(value = "SELECT * FROM Rooms WHERE roomId = ?1 LIMIT 1", nativeQuery = true)
     Rooms findRoomsByRoomId(String roomId);
-    @Query(value = "SELECT * FROM Rooms WHERE associatedBuildin = ?1", nativeQuery = true)
+
+    @Query(value = "SELECT * FROM Rooms WHERE associatedBuilding = ?1", nativeQuery = true)
     List<Rooms> findRoomsByBuildingId(int buildingId);
+
+    @Query(value = "UPDATE Rooms "
+            + "SET roomdId = ?1, capacity = ?2, type = ?3 "
+            + "WHERE roomId =?4", nativeQuery = true)
+    boolean updateExistingRoom(String newRoomId, int newCapacity, String newType, String oldRoomId);
+
+    @Query(value = "DELETE FROM Rooms WHERE roomdId = ?1", nativeQuery = true)
+    boolean deleteRoomByRoomID(String roomId);
+
 }

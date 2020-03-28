@@ -22,7 +22,7 @@ public class DishesController {
         return dishesRepository.findAll();
     }
 
-    @GetMapping("/MenusByBuilding")
+    @GetMapping("/menusByBuilding")
     public @ResponseBody
     List<Dishes> getMenusByBuilding(@RequestParam int bnr) {
         // This returns a JSON or XML with the menus

@@ -9,4 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface BuildingsRepository extends JpaRepository<Buildings, Long> {
     @Query(value = "SELECT * FROM Buildings WHERE buildingNumber = ?1 LIMIT 1", nativeQuery = true)
     Buildings findBuildingsByBuildingNumber(int buildingNumber);
+
+    @Query(value = "DELETE FROM Buildings WHERE buildingNumber = ?1", nativeQuery = true)
+    boolean deleteBuildingByBuildingNumber(int buildingNumber);
+
 }

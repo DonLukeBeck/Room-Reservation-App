@@ -1,9 +1,17 @@
 package nl.tudelft.oopp.demo.communication;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.List;
+import nl.tudelft.oopp.demo.entities.Rooms;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
+import reactor.core.publisher.Mono;
 
 public class AdminServerCommunication extends ServerCommunication {
+
+    //CRUD for Buildings
 
     /**
      * Adds the given building to the database.
@@ -106,13 +114,49 @@ public class AdminServerCommunication extends ServerCommunication {
     }
 
     /**
+     * Deletes a building.
+     *
+     * @param buildingNumber buildingID
+     * @return true if building successfully removed, false otherwise.
+     */
+    public boolean deleteBuildingAdmin(int buildingNumber) throws IOException {
+        try {
+            boolean bool = this.webClient.get().uri("/deleteBuilding?bnr="
+                    + buildingNumber)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, response -> {
+                        System.out.println("4xx error");
+                        return Mono.error(new RuntimeException("4xx"));
+                    })
+                    .onStatus(HttpStatus::is5xxServerError, response -> {
+                        System.out.println("5xx error");
+                        return Mono.error(new RuntimeException("5xx"));
+                    })
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Building deleted");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    //CRUD for Rooms
+
+    /**
      * Adds the given room to the database.
      *
      * @param roomID     roomID
      * @param roomCap    roomCap
      * @param buildingID buildingID
      * @param roomType   roomType
-     * @return true if building successfully added, false otherwise.
+     * @return true if room successfully added, false otherwise.
      */
     public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
 
@@ -151,7 +195,11 @@ public class AdminServerCommunication extends ServerCommunication {
      * @param roomType   roomType
      * @return true if building successfully edited, false otherwise.
      */
-    public boolean editRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
+    public boolean editRoomAdmin(String roomID,
+                                 int roomCap,
+                                 int buildingID,
+                                 String roomType,
+                                 String oldRoomId) {
 
         String body = "{\"roomId\":\"" + roomID
                 + "\",\"capacity\":\"" + roomCap
@@ -159,7 +207,7 @@ public class AdminServerCommunication extends ServerCommunication {
                 + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
         System.out.println(body);
         try {
-            boolean bool = super.webClient.post().uri("/editRoom")
+            boolean bool = super.webClient.post().uri("/editRoom?oldRoomId=" + oldRoomId)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
@@ -179,6 +227,38 @@ public class AdminServerCommunication extends ServerCommunication {
         }
     }
 
-
+    /**
+     * Deletes a room.
+     *
+     * @param roomId roomID
+     * @return true if room successfully deleted, false otherwise.
+     */
+    public boolean deleteRoomAdmin(String roomId) throws IOException {
+        try {
+            boolean bool = this.webClient.get().uri("/deleteRoom?roomId="
+                    + roomId)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, response -> {
+                        System.out.println("4xx error");
+                        return Mono.error(new RuntimeException("4xx"));
+                    })
+                    .onStatus(HttpStatus::is5xxServerError, response -> {
+                        System.out.println("5xx error");
+                        return Mono.error(new RuntimeException("5xx"));
+                    })
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Building deleted");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 
 }

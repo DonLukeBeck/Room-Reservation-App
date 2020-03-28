@@ -89,7 +89,7 @@ public class ServerCommunication {
      * @throws Exception if communication with the server fails.
      */
     public List<Rooms> getRoomsByBuilding(int buildingNumber) throws IOException {
-        String jsonString = this.webClient.get().uri("/RoomsByBuilding?bnr="
+        String jsonString = this.webClient.get().uri("/roomsByBuilding?bnr="
                 + buildingNumber)
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, response -> {
@@ -191,7 +191,7 @@ public class ServerCommunication {
      * @throws Exception if communication with the server fails.
      */
     public List<Dishes> getMenuByBuilding(int buildingNumber) throws IOException {
-        String jsonString = this.webClient.get().uri("/MenusByBuilding?bnr="
+        String jsonString = this.webClient.get().uri("/menusByBuilding?bnr="
                 + buildingNumber)
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, response -> {
