@@ -352,6 +352,8 @@ public class AdminEditController implements Initializable {
         System.out.println(listComputers.getValue().toString());
         System.out.println(roomType.getValue().toString());
 
+        con.editRoomAdmin(editRoomID.getText(), roomCap, 0, 0, 0, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
+        //con.editRoomAdmin(newRoomId,capacity,);
 
         con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listWhiteBoards.getValue().toString()), Integer.parseInt(listTables.getValue().toString()), Integer.parseInt(listComputers.getValue().toString()),Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
 

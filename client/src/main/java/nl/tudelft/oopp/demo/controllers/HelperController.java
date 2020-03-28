@@ -58,6 +58,7 @@ public class HelperController {
         Parent root = loader.load();
 
         stage1.setScene(new Scene(root));
+        stage1.setTitle("Room Reservation App");
         stage1.show();
     }
 

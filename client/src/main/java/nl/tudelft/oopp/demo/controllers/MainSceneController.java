@@ -68,6 +68,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
                 return;
             } else if (userLogged.getRole().equals("student")) {
@@ -82,6 +83,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
             } else if (userLogged.getRole().equals("teacher")) {
                 //redirect to student page
@@ -95,6 +97,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
 
                 return;
@@ -125,6 +128,7 @@ public class MainSceneController {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.show();
     }
 
