@@ -51,8 +51,8 @@
       </Label>
 
 
-      <ComboBox fx:id="listOpen" layoutX="355.0" layoutY="341.0" prefWidth="150.0" stylesheets="@style/style.css" />
-      <ComboBox fx:id="listClose" layoutX="355.0" layoutY="418.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
+      <ComboBox fx:id="listOpen" layoutX="355.0" layoutY="341.0" prefHeight="25.0" prefWidth="218.0" stylesheets="@style/style.css" />
+      <ComboBox fx:id="listClose" layoutX="355.0" layoutY="418.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
 
 
@@ -72,14 +72,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="roomID" layoutX="1012.0" layoutY="165.0" prefHeight="6.0" prefWidth="218.0" />
+      <TextField fx:id="roomID" layoutX="1017.0" layoutY="160.0" prefHeight="6.0" prefWidth="218.0" />
 
       <Label layoutX="675.0" layoutY="230.0" prefHeight="38.0" prefWidth="218.0" text="Building ID:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="listBuildingID" layoutX="1012.0" layoutY="235.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listBuildingID" layoutX="1017.0" layoutY="236.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
 
       <Label layoutX="675.0" layoutY="305.0" prefHeight="35.0" prefWidth="228.0" text="Number of chairs:">
@@ -87,28 +87,28 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberChairs" layoutX="1012.0" layoutY="310.0" prefHeight="26.0" prefWidth="218.0" />
+      <TextField fx:id="numberChairs" layoutX="1017.0" layoutY="310.0" prefHeight="26.0" prefWidth="218.0" />
 
       <Label layoutX="675.0" layoutY="380.0" prefHeight="35.0" prefWidth="255.0" text="Number of whiteboards">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberWhiteboards" layoutX="1017.0" layoutY="385.0" prefHeight="26.0" prefWidth="104.0" />
+      <TextField fx:id="numberWhiteboards" layoutX="1017.0" layoutY="385.0" prefHeight="26.0" prefWidth="218.0" />
 
       <Label layoutX="675.0" layoutY="455.0" prefHeight="35.0" prefWidth="228.0" text="Number of tables">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberTables" layoutX="1017.0" layoutY="450.0" prefHeight="26.0" prefWidth="104.0" />
+      <TextField fx:id="numberTables" layoutX="1017.0" layoutY="450.0" prefHeight="26.0" prefWidth="218.0" />
 
       <Label layoutX="675.0" layoutY="530.0" prefHeight="35.0" prefWidth="255.0" text="Number of computers">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="numberComputers" layoutX="1017.0" layoutY="535.0" prefHeight="26.0" prefWidth="104.0" />
+      <TextField fx:id="numberComputers" layoutX="1017.0" layoutY="535.0" prefHeight="26.0" prefWidth="218.0" />
 
 
       <Label layoutX="675.0" layoutY="605.0" prefHeight="38.0" prefWidth="68.0" text="Type:">
@@ -116,7 +116,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="610.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="610.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
       <Button defaultButton="true" layoutX="1017.0" layoutY="703.0" mnemonicParsing="false" onAction="#addRoom" prefHeight="46.0" prefWidth="218.0" text="Add Room">
          <font>

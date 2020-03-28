@@ -52,7 +52,7 @@ public class AdminController implements Initializable {
     @FXML
     private TextField numberChairs;
     @FXML
-    private TextField numberWhiteBoards;
+    private TextField numberWhiteboards;
     @FXML
     private TextField numberTables;
     @FXML
@@ -243,7 +243,7 @@ public class AdminController implements Initializable {
         }
 
         int building = Integer.parseInt(listBuildingID.getValue().toString());
-        int roomWhiteboards = Integer.parseInt(numberWhiteBoards.getText());
+        int roomWhiteboards = Integer.parseInt(numberWhiteboards.getText());
         int roomTables = Integer.parseInt(numberTables.getText());
         int roomComputers = Integer.parseInt(numberComputers.getText());
 

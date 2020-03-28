@@ -64,13 +64,21 @@ public class RoomsController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
+            System.out.println(oldRoomId);
+            System.out.println(room.getRoomId());
+            System.out.println(room.getChairs());
+            System.out.println(room.getAssociatedBuilding());
+            System.out.println(room.getComputers());
+            System.out.println(room.getWhiteboards());
+            System.out.println(room.getType());
+            System.out.println(room.getTables());
             if (roomsRepository.updateExistingRoom(room.getRoomId(),
                     room.getChairs(),
                     room.getWhiteboards(),
                     room.getTables(),
                     room.getComputers(),
                     room.getType(),
-                    oldRoomId)) {
+                    oldRoomId) == 1) {
                 return true;
             }
             return false;
