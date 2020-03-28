@@ -142,7 +142,7 @@ public class FoodSlots implements Initializable {
 
         String dishName = FoodMenuController.getDishesName();
 
-        con.reservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building), room);
+        con.foodReservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building), dishName);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationFoodCompleted.fxml", mainScreen);

@@ -2,6 +2,8 @@ package nl.tudelft.oopp.demo.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Dishes;
@@ -282,4 +284,30 @@ public class ServerCommunication {
 
         return dishesJsonList;
     }
+
+    /**
+     * Checks whether bikes are available in building.
+     *
+     * @return true if there are available bikes, false otherwise
+     * @throws Exception if communication with the server fails.
+     */
+    public boolean getAvailableBikes(int buildingNumber, Date date, Time timeslot) {
+        boolean bool = this.webClient.get()
+                .uri("/getAvailableBikes?buildingNumber=" + buildingNumber
+                + " &date=" + date
+                + "&timeslot=" + timeslot)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(boolean.class)
+                .block();
+        return bool;
+    }
+
 }

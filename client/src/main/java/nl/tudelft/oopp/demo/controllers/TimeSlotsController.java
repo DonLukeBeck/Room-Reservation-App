@@ -139,7 +139,7 @@ public class TimeSlotsController implements Initializable {
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
 
-        con.reservation(MainSceneController.getUser(), timeslot + ":00",
+        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
                 date, Integer.parseInt(building), room);
 
         HelperController helperController = new HelperController();

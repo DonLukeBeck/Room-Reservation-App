@@ -84,7 +84,7 @@ public class UserServerCommunication extends ServerCommunication {
     }
 
     /**
-     * Create new user reservation.
+     * Create new user room reservation.
      *
      * @param userReserving    The user reserving
      * @param timeSlot         The time slot
@@ -93,7 +93,7 @@ public class UserServerCommunication extends ServerCommunication {
      * @param room             The room reserved
      * @return true if reservation is created, false if not.
      */
-    public boolean reservation(String userReserving,
+    public boolean roomReservation(String userReserving,
                                String timeSlot,
                                String date,
                                int buildingReserved,
@@ -107,7 +107,7 @@ public class UserServerCommunication extends ServerCommunication {
                 + buildingReserved + "\",\"roomReserved\":\"" + room + "\"}";
 
         try {
-            boolean bool = this.webClient.post().uri("/postReservation")
+            boolean bool = this.webClient.post().uri("/postRoomReservation")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
@@ -116,6 +116,90 @@ public class UserServerCommunication extends ServerCommunication {
                     .block();
             if (bool) {
                 System.out.println("Room reserved");
+                return true;
+            } else {
+                System.out.println("Reservation failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Create new user bike reservation.
+     *
+     * @param userReserving    The user reserving
+     * @param timeSlot         The time slot
+     * @param date             Date of reseervation
+     * @param buildingReserved Building reserved in
+     * @return true if reservation is created, false if not.
+     */
+    public boolean bikeReservation(String userReserving,
+                               String timeSlot,
+                               String date,
+                               int buildingReserved) {
+
+        System.out.println(userReserving);
+        String body = "{\"userReserving\":\""
+                + userReserving + "\",\"timeslot\":\""
+                + timeSlot + "\",\"date\":\"" + date + "\",\"buildingReserved\":\""
+                + buildingReserved + "\"}";
+
+        try {
+            boolean bool = this.webClient.post().uri("/postBikeReservation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Bike reserved");
+                return true;
+            } else {
+                System.out.println("Reservation failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Create new user food reservation.
+     *
+     * @param userReserving    The user reserving
+     * @param timeSlot         The time slot
+     * @param date             Date of reseervation
+     * @param buildingReserved Building reserved in
+     * @param dishOrdered      The dish ordered
+     * @return true if reservation is created, false if not.
+     */
+    public boolean foodReservation(String userReserving,
+                               String timeSlot,
+                               String date,
+                               int buildingReserved,
+                               String dishOrdered) {
+
+        System.out.println(userReserving);
+        String body = "{\"userReserving\":\""
+                + userReserving + "\",\"timeslot\":\""
+                + timeSlot + "\",\"date\":\"" + date + "\",\"buildingReserved\":\""
+                + buildingReserved + "\",\"dishOrdered\":\"" + dishOrdered + "\"}";
+
+        try {
+            boolean bool = this.webClient.post().uri("/postRoomReservation")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Food reserved");
                 return true;
             } else {
                 System.out.println("Reservation failed");
