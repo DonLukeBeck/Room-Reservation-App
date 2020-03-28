@@ -75,7 +75,7 @@
         <ChoiceBox fx:id="listRoomID" layoutX="672.0" layoutY="291.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
         
         <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ComboBox fx:id="listClose" layoutX="296.0" layoutY="218.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ComboBox fx:id="listClose" layoutX="296.0" layoutY="438.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
         <ChoiceBox fx:id="roomType" layoutX="816.0" layoutY="689.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
       <ChoiceBox fx:id="listBuildingID1" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
       <ChoiceBox fx:id="listBuildingID2" layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
