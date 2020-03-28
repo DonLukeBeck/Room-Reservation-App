@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminEditController">
     <children>
         <ImageView fitHeight="112.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
@@ -72,7 +73,7 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="listRoomID" layoutX="672.0" layoutY="291.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="listRoomsID" layoutX="672.0" layoutY="291.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
         
         <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
         <ComboBox fx:id="listClose" layoutX="296.0" layoutY="438.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
