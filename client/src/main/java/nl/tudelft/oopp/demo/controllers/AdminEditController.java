@@ -306,7 +306,7 @@ public class AdminEditController implements Initializable {
 
         for(Rooms r : listGetRooms){
             if(Integer.parseInt(r.getRoomId()) == room){
-                roomCapacity.setText(Integer.toString(r.getCapacity()));
+                roomCapacity.setText(Integer.toString(r.getChairs()));
             }
         }
 
@@ -331,7 +331,7 @@ public class AdminEditController implements Initializable {
         System.out.println(roomType.getValue().toString());
 
 
-        con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
+        //con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);

@@ -240,7 +240,7 @@ public class AdminController implements Initializable {
         System.out.println(roomCap);
         System.out.println(building);
         System.out.println(roomType.getValue());
-        con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
+        //con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);

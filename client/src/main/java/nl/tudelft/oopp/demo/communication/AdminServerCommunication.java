@@ -1,9 +1,6 @@
 package nl.tudelft.oopp.demo.communication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.List;
-import nl.tudelft.oopp.demo.entities.Rooms;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -72,11 +69,11 @@ public class AdminServerCommunication extends ServerCommunication {
      * @return true if building successfully edited, false otherwise.
      */
     public boolean editBuildingAdmin(int buildingID,
-                                    String buildingName,
-                                    String buildingOpen,
-                                    String buildingClose,
-                                    String imageUrl,
-                                    int bikeCapacity) {
+                                     String buildingName,
+                                     String buildingOpen,
+                                     String buildingClose,
+                                     String imageUrl,
+                                     int bikeCapacity) {
 
         String body = "{\"buildingNumber\":\"" + buildingID
                 + "\",\"name\":\"" + buildingName
@@ -152,10 +149,13 @@ public class AdminServerCommunication extends ServerCommunication {
      * @param roomType   roomType
      * @return true if room successfully added, false otherwise.
      */
-    public boolean addRoomAdmin(String roomID, int roomCap, int buildingID, String roomType) {
+    public boolean addRoomAdmin(String roomID, int roomCap, int whiteboards, int tables, int computers, int buildingID, String roomType) {
 
         String body = "{\"roomId\":\"" + roomID
-                + "\",\"capacity\":\"" + roomCap
+                + "\",\"chairs\":\"" + roomCap
+                + "\",\"whiteboards\":\"" + whiteboards
+                +"\",\"tables\":\"" + tables
+                +"\",\"computers\":\"" + computers
                 + "\",\"type\":\"" + roomType
                 + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
         System.out.println(body);
@@ -191,12 +191,18 @@ public class AdminServerCommunication extends ServerCommunication {
      */
     public boolean editRoomAdmin(String roomID,
                                  int roomCap,
+                                 int whiteboards,
+                                 int tables,
+                                 int computers,
                                  int buildingID,
                                  String roomType,
                                  String oldRoomId) {
 
         String body = "{\"roomId\":\"" + roomID
-                + "\",\"capacity\":\"" + roomCap
+                + "\",\"chairs\":\"" + roomCap
+                + "\",\"whiteboards\":\"" + whiteboards
+                +"\",\"tables\":\"" + tables
+                +"\",\"computers\":\"" + computers
                 + "\",\"type\":\"" + roomType
                 + "\",\"associatedBuilding\":\"" + buildingID + "\"}";
         System.out.println(body);

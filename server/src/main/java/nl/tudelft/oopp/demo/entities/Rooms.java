@@ -9,9 +9,15 @@ public class Rooms {
     @Id
     private String roomId;
 
-    private int capacity;
-
     private String type;
+
+    private int chairs;
+
+    private int whiteboards;
+
+    private int tables;
+
+    private int computers;
 
     private int associatedBuilding;
 
@@ -27,12 +33,12 @@ public class Rooms {
         this.roomId = roomId;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getChairs() {
+        return chairs;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setChairs(int capacity) {
+        this.chairs = capacity;
     }
 
     public String getType() {
@@ -49,5 +55,29 @@ public class Rooms {
 
     public void setAssociatedBuilding(int associatedBuilding) {
         this.associatedBuilding = associatedBuilding;
+    }
+
+    public int getWhiteboards() {
+        return whiteboards;
+    }
+
+    public void setWhiteboards(int whiteboards) {
+        this.whiteboards = whiteboards;
+    }
+
+    public int getTables() {
+        return tables;
+    }
+
+    public void setTables(int tables) {
+        this.tables = tables;
+    }
+
+    public int getComputers() {
+        return computers;
+    }
+
+    public void setComputers(int computers) {
+        this.computers = computers;
     }
 }

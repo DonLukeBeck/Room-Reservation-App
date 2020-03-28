@@ -15,7 +15,7 @@ class RoomsTest {
         room1 = new Rooms();
         room1.setAssociatedBuilding(36);
         room1.setRoomId("Auditorium");
-        room1.setCapacity(300);
+        room1.setChairs(300);
         room1.setType("Lecture Hall");
     }
 
@@ -37,13 +37,13 @@ class RoomsTest {
 
     @Test
     public void getCapacityTest() {
-        assertEquals(300, room1.getCapacity());
+        assertEquals(300, room1.getChairs());
     }
 
     @Test
     public void setCapacityTest() {
-        room1.setCapacity(500);
-        assertEquals(500, room1.getCapacity());
+        room1.setChairs(500);
+        assertEquals(500, room1.getChairs());
     }
 
     @Test

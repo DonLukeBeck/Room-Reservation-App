@@ -20,6 +20,8 @@ public class ServerCommunication {
     private String baseUrl = "http://localhost:8080";
     protected WebClient webClient = WebClient.create(baseUrl);
 
+    //Get methods for all entities in database
+
     /**
      * Retrieves building list from the server.
      *
@@ -46,7 +48,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Buildings>>() {});
+                        .TypeReference<List<Buildings>>() {
+                });
 
         return buildingsJsonList;
     }
@@ -78,7 +81,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Rooms>>() {});
+                        .TypeReference<List<Rooms>>() {
+                });
 
 
         return roomsJsonList;
@@ -112,11 +116,11 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Rooms>>() {});
-        
+                        .TypeReference<List<Rooms>>() {
+                });
+
         return roomsJsonList;
     }
-
 
 
     /**
@@ -146,7 +150,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Reservations>>() {});
+                        .TypeReference<List<Reservations>>() {
+                });
 
 
         return reservationsJsonList;
@@ -180,7 +185,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Menus>>() {});
+                        .TypeReference<List<Menus>>() {
+                });
 
 
         return menusJsonList;
@@ -214,7 +220,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Dishes>>() {});
+                        .TypeReference<List<Dishes>>() {
+                });
 
 
         return dishesJsonList;
@@ -247,7 +254,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Holidays>>() {});
+                        .TypeReference<List<Holidays>>() {
+                });
 
         return holidaysJsonList;
     }
@@ -279,7 +287,8 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Dishes>>() {});
+                        .TypeReference<List<Dishes>>() {
+                });
 
 
         return dishesJsonList;
@@ -294,8 +303,8 @@ public class ServerCommunication {
     public boolean getAvailableBikes(int buildingNumber, Date date, Time timeslot) {
         boolean bool = this.webClient.get()
                 .uri("/getAvailableBikes?buildingNumber=" + buildingNumber
-                + " &date=" + date
-                + "&timeslot=" + timeslot)
+                        + " &date=" + date
+                        + "&timeslot=" + timeslot)
                 .retrieve()
                 .onStatus(HttpStatus::is4xxClientError, response -> {
                     System.out.println("4xx error");

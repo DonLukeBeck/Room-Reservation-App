@@ -15,9 +15,9 @@ public interface RoomsRepository extends JpaRepository<Rooms, Long> {
     List<Rooms> findRoomsByBuildingId(int buildingId);
 
     @Query(value = "UPDATE Rooms "
-            + "SET roomdId = ?1, capacity = ?2, type = ?3 "
-            + "WHERE roomId =?4", nativeQuery = true)
-    boolean updateExistingRoom(String newRoomId, int newCapacity, String newType, String oldRoomId);
+            + "SET roomdId = ?1, chairs = ?2, whiteboards = ?3, tables = ?4, computers = ?5, type = ?6 "
+            + "WHERE roomId =?7", nativeQuery = true)
+    boolean updateExistingRoom(String newRoomId, int newChairs, int newWhiteboards, int newTables, int newComputers, String newType, String oldRoomId);
 
     @Query(value = "DELETE FROM Rooms WHERE roomdId = ?1", nativeQuery = true)
     boolean deleteRoomByRoomID(String roomId);
