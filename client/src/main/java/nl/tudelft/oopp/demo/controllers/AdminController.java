@@ -50,7 +50,13 @@ public class AdminController implements Initializable {
     @FXML
     private TextField roomID;
     @FXML
-    private TextField roomCapacity;
+    private TextField numberChairs;
+    @FXML
+    private TextField numberWhiteBoards;
+    @FXML
+    private TextField numberTables;
+    @FXML
+    private TextField numberComputers;
     @FXML
     private ChoiceBox listBuildingID;
     @FXML
@@ -219,7 +225,7 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (roomID.getText().isBlank() || roomCapacity.getText().isBlank()) {
+        if (roomID.getText().isBlank() || numberChairs.getText().isBlank()) {
             addException(670, 120, "Fill all fields!", exception);
             return;
         }
@@ -230,17 +236,23 @@ public class AdminController implements Initializable {
 
         int roomCap = 0;
         try {
-            roomCap = Integer.parseInt(roomCapacity.getText());
+            roomCap = Integer.parseInt(numberChairs.getText());
         } catch (Exception e) {
-            addException(670, 120, "Only numbers are allowed for room capacity!", exception);
+            addException(670, 120, "Only numbers are allowed for number of chairs!", exception);
             return;
         }
+
         int building = Integer.parseInt(listBuildingID.getValue().toString());
+        int roomWhiteboards = Integer.parseInt(numberWhiteBoards.getText());
+        int roomTables = Integer.parseInt(numberTables.getText());
+        int roomComputers = Integer.parseInt(numberComputers.getText());
+
         System.out.println(roomID.getText());
         System.out.println(roomCap);
         System.out.println(building);
         System.out.println(roomType.getValue());
-        //con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
+
+        con.addRoomAdmin(roomID.getText(), roomCap, roomWhiteboards, roomTables, roomComputers, building, roomType.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);

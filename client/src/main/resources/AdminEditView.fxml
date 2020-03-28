@@ -21,103 +21,117 @@
         <Label layoutX="55.0" layoutY="200.0" prefHeight="35.0" prefWidth="255.0" text="Select Building Number">
             <font>
                 <Font size="24.0" />
-            </font></Label>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="listBuildingID1" layoutX="354.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+
         <Label layoutX="55.0" layoutY="275.0" prefHeight="35.0" prefWidth="237.0" text="New Building Name:">
             <font>
                 <Font size="24.0" />
-            </font></Label>
+            </font>
+        </Label>
         <TextField fx:id="editBuildingName" layoutX="354.0" layoutY="275.0" prefHeight="26.0" prefWidth="218.0" />
+
         <Label layoutX="55.0" layoutY="350.0" prefHeight="35.0" prefWidth="218.0" text="New Opening Hour:">
             <font>
                 <Font size="24.0" />
-            </font></Label>
+            </font>
+        </Label>
+        <ComboBox fx:id="listOpen" layoutX="354.0" layoutY="355.0" prefWidth="150.0" stylesheets="@style/style.css" />
+
         <Label layoutX="55.0" layoutY="425.0" text="New Closing Hour:">
             <font>
                 <Font size="24.0" />
             </font></Label>
-        <TextField fx:id="editBuildingUrl" layoutX="354.0" layoutY="508.0" prefHeight="26.0" prefWidth="218.0" />
-        <Separator layoutX="637.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" style="-fx-background-color: black;" />
-        <Label layoutX="675.0" layoutY="125.0" prefHeight="35.0" prefWidth="238.0" text="Select Room Building">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Label layoutX="675.0" layoutY="350.0" prefHeight="35.0" prefWidth="228.0" text="Number of chairs:">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Label layoutX="675.0" layoutY="650.0" prefHeight="38.0" prefWidth="130.0" text="New Type:">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Label layoutX="675.0" layoutY="200.0" prefHeight="38.0" prefWidth="218.0" text="Select room ID">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Button defaultButton="true" layoutX="1017.0" layoutY="720.0" mnemonicParsing="false" onAction="#editRoom" prefHeight="46.0" prefWidth="218.0" text="Edit Room">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
-        <TextField fx:id="editBuildingBikes" layoutX="354.0" layoutY="581.0" prefHeight="26.0" prefWidth="218.0" />
-        <Label layoutX="55.0" layoutY="575.0" prefHeight="38.0" prefWidth="218.0" text="New Bike capacity:">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
+        <ComboBox fx:id="listClose" layoutX="354.0" layoutY="430.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
+
         <Label layoutX="55.0" layoutY="500.0" prefHeight="38.0" prefWidth="218.0" text="URL of image:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="listRoomsID" layoutX="1012.0" layoutY="206.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-        
-<<<<<<< HEAD
-        <ComboBox fx:id="listOpen" layoutX="354.0" layoutY="355.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ComboBox fx:id="listClose" layoutX="354.0" layoutY="430.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="656.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listBuildingID1" layoutX="354.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listBuildingID2" layoutX="1012.0" layoutY="130.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-      <Label layoutX="675.0" layoutY="275.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
-=======
-        <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ComboBox fx:id="listClose" layoutX="296.0" layoutY="438.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ChoiceBox fx:id="roomType" layoutX="816.0" layoutY="689.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listBuildingID1" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listBuildingID2" layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-      <Label layoutX="667.0" layoutY="337.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
->>>>>>> 3adae4fc058be27571acb5b175751fdd94128b0e
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="editRoomID" layoutX="1012.0" layoutY="280.0" prefHeight="26.0" prefWidth="218.0" />
+        <TextField fx:id="editBuildingUrl" layoutX="354.0" layoutY="508.0" prefHeight="26.0" prefWidth="218.0" />
+
+        <Label layoutX="55.0" layoutY="575.0" prefHeight="38.0" prefWidth="218.0" text="New Bike capacity:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="editBuildingBikes" layoutX="354.0" layoutY="581.0" prefHeight="26.0" prefWidth="218.0" />
+
+
+
+        <Separator layoutX="637.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" style="-fx-background-color: black;" />
+
+
+
+
         <JFXButton fx:id="goBack" layoutX="1114.0" layoutY="43.0" onAction="#goBack" prefHeight="51.0" prefWidth="119.0" style="-fx-background-radius: 8; -fx-border-color: grey; -fx-border-width: 2.5; -fx-border-radius: 8;" text="Go Back">
             <font>
                 <Font name="Arial Rounded MT Bold" size="20.0" />
             </font>
         </JFXButton>
-      <Label layoutX="675.0" layoutY="500.0" prefHeight="35.0" prefWidth="228.0" text="Number of tables">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-        <TextField fx:id="numberTables" layoutX="1017.0" layoutY="495.0" prefHeight="26.0" prefWidth="104.0" />
-      <Label layoutX="675.0" layoutY="425.0" prefHeight="35.0" prefWidth="255.0" text="Number of whiteboards">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-        <TextField fx:id="numberWhiteboards" layoutX="1017.0" layoutY="430.0" prefHeight="26.0" prefWidth="104.0" />
-      <Label layoutX="675.0" layoutY="575.0" prefHeight="35.0" prefWidth="255.0" text="Number of computers">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="numberComputers" layoutX="1017.0" layoutY="580.0" prefHeight="26.0" prefWidth="104.0" />
+
+        <Label layoutX="675.0" layoutY="125.0" prefHeight="35.0" prefWidth="238.0" text="Select Room Building">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <ChoiceBox fx:id="listBuildingID2" layoutX="1012.0" layoutY="130.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+
+        <Label layoutX="675.0" layoutY="200.0" prefHeight="38.0" prefWidth="218.0" text="Select room ID">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <ChoiceBox fx:id="listRoomsID" layoutX="1012.0" layoutY="206.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+
+        <Label layoutX="675.0" layoutY="275.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="editRoomID" layoutX="1012.0" layoutY="280.0" prefHeight="26.0" prefWidth="218.0" />
+
+        <Label layoutX="675.0" layoutY="350.0" prefHeight="35.0" prefWidth="228.0" text="Number of chairs:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
       <TextField fx:id="numberChairs" layoutX="1012.0" layoutY="355.0" prefHeight="26.0" prefWidth="218.0" />
+
+        <Label layoutX="675.0" layoutY="425.0" prefHeight="35.0" prefWidth="255.0" text="Number of whiteboards">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="numberWhiteboards" layoutX="1017.0" layoutY="430.0" prefHeight="26.0" prefWidth="104.0" />
+
+        <Label layoutX="675.0" layoutY="500.0" prefHeight="35.0" prefWidth="228.0" text="Number of tables">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="numberTables" layoutX="1017.0" layoutY="495.0" prefHeight="26.0" prefWidth="104.0" />
+
+        <Label layoutX="675.0" layoutY="575.0" prefHeight="35.0" prefWidth="255.0" text="Number of computers">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="numberComputers" layoutX="1017.0" layoutY="580.0" prefHeight="26.0" prefWidth="104.0" />
+
+        <Label layoutX="675.0" layoutY="650.0" prefHeight="38.0" prefWidth="130.0" text="New Type:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="656.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
+
+        <Button defaultButton="true" layoutX="1017.0" layoutY="720.0" mnemonicParsing="false" onAction="#editRoom" prefHeight="46.0" prefWidth="218.0" text="Edit Room">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

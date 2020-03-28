@@ -168,12 +168,9 @@ public class AdminEditController implements Initializable {
      */
     public void editBuilding(Event event) throws IOException {
 
-
-
-
         int buildingID = Integer.parseInt(listBuildingID1.getValue().toString());
 
-        List<Buildings> listGetBuildings = null;
+        /*List<Buildings> listGetBuildings = null;
         try {
             listGetBuildings = con.getBuildings();
         } catch (IOException e) {
@@ -188,7 +185,11 @@ public class AdminEditController implements Initializable {
 
             }
         }
+
+         */
+
         String bikeCapacity = editBuildingBikes.getText();
+
         Label exception = new Label();
 
         mainScreen.getChildren().add(exception);
@@ -216,16 +217,17 @@ public class AdminEditController implements Initializable {
 
 
         String buildingName = editBuildingName.getText();
-
         String imageUrl = editBuildingUrl.getText();
         String buildingOpen = listOpen.getValue().toString();
         String buildingClose = listClose.getValue().toString();
 
-        System.out.println(buildingName);
+        /*System.out.println(buildingName);
         System.out.println(imageUrl);
         System.out.println(bikes);
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
+
+         */
 
         if (listBuildingID1.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
