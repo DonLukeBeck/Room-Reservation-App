@@ -48,8 +48,6 @@ public class AdminEditController implements Initializable {
     @FXML
     private TextField editRoomID;
     @FXML
-    private TextField roomCapacity;
-    @FXML
     private ChoiceBox listBuildingID;
     @FXML
     private ChoiceBox roomType;
@@ -59,6 +57,14 @@ public class AdminEditController implements Initializable {
     private ChoiceBox listBuildingID1;
     @FXML
     private ChoiceBox listBuildingID2;
+    @FXML
+    private ChoiceBox listTables;
+    @FXML
+    private ChoiceBox listComputers;
+    @FXML
+    private ChoiceBox listWhiteBoards;
+    @FXML
+    private TextField numberChairs;
 
 
     /**
@@ -124,12 +130,15 @@ public class AdminEditController implements Initializable {
 
 
 
+
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listRoomsID.setItems(FXCollections.observableArrayList(listAllRooms));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
+
+
 
 
         roomType.setItems(FXCollections.observableArrayList("Select type","Study hall", "Exam hall"));
@@ -304,15 +313,25 @@ public class AdminEditController implements Initializable {
 
         editRoomID.setText(Integer.toString(room));
 
+        String[] list2 = new String[100];
+        int j = 0;
+        for(int i = 0; i< list2.length;i++){
+            list2[i] = Integer.toString(j);
+            j++;
+        }
+
         for(Rooms r : listGetRooms){
             if(Integer.parseInt(r.getRoomId()) == room){
-                roomCapacity.setText(Integer.toString(r.getChairs()));
+                numberChairs.setText(Integer.toString(r.getChairs()));
+                listComputers.setItems(FXCollections.observableArrayList(list2));
+                listWhiteBoards.setItems(FXCollections.observableArrayList(list2));
+                listTables.setItems(FXCollections.observableArrayList(list2));
             }
         }
 
         int roomCap = 0;
         try {
-            roomCap = Integer.parseInt(roomCapacity.getText());
+            roomCap = Integer.parseInt(numberChairs.getText());
         } catch (Exception e) {
             exception.setText("Only numbers are allowed for room capacity!");
             exception.setLayoutY(120);
@@ -328,10 +347,13 @@ public class AdminEditController implements Initializable {
         System.out.println(listBuildingID2.getValue().toString());
         System.out.println(editRoomID.getText());
         System.out.println(roomCap);
+        System.out.println(listTables.getValue().toString());
+        System.out.println(listWhiteBoards.getValue().toString());
+        System.out.println(listComputers.getValue().toString());
         System.out.println(roomType.getValue().toString());
 
 
-        //con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
+        con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listWhiteBoards.getValue().toString()), Integer.parseInt(listTables.getValue().toString()), Integer.parseInt(listComputers.getValue().toString()),Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
