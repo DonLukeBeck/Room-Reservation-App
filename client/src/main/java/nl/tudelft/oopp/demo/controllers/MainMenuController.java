@@ -301,7 +301,7 @@ public class MainMenuController implements Initializable {
                 changeInPosition = 0;
             }
 
-            addLabelSidePane(56, layoutY + 28, buildingName);
+            addLabelSidePane(56, layoutY + 28, "-"+buildingName);
             layoutY = layoutY + 28;
 
             for (Node e : pane1.getChildren()) {

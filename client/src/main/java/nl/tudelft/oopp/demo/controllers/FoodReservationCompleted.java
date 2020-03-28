@@ -62,7 +62,7 @@ public class FoodReservationCompleted implements Initializable {
             }
         }
         String[] nameA = name.split("\\(");
-        Label builname = new Label(nameA[0]);
+        Label builname = new Label(nameInProperFormat(nameA[0]));
         pane.getChildren().add(builname);
         builname.layoutYProperty().setValue(470);
         builname.layoutXProperty().setValue(440);
@@ -91,6 +91,20 @@ public class FoodReservationCompleted implements Initializable {
         pane.getChildren().add(orderedDish);
     }
 
+    public String nameInProperFormat(String name) {
+        String result = "";
+        if (name.toCharArray().length > 50) {
+            for (char a : name.toCharArray()) {
+                if (Character.isUpperCase(a)) {
+                    result = result + a;
+                }
+            }
+        } else {
+            result = name;
+        }
+        return result;
+    }
+
     /**
      *Method for campus map to pop up.
      * @param event Clicking on 'Campus Map'
@@ -116,4 +130,6 @@ public class FoodReservationCompleted implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);
     }
+
+
 }
