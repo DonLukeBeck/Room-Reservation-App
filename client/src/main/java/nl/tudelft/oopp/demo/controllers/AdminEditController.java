@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -128,17 +130,11 @@ public class AdminEditController implements Initializable {
         }
 
 
-
-
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listRoomsID.setItems(FXCollections.observableArrayList(listAllRooms));
-        //listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
-
-
-
 
         roomType.setItems(FXCollections.observableArrayList("Select type","Study hall", "Exam hall"));
 
@@ -146,9 +142,34 @@ public class AdminEditController implements Initializable {
         listClose.setValue("23:30");
         roomType.setValue("Select type");
         listRoomsID.setValue("Select room");
-        //listBuildingID.setValue("Select building");
         listBuildingID1.setValue("Select building");
         listBuildingID2.setValue("Select building");
+
+        listBuildingID1.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            //if the item of the list is changed
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                try {
+                    Buildings selectedBuilding = con.getBuildingByName(Integer.parseInt(listAllBuildings[(int)newValue]));
+                    editBuildingName.setText(selectedBuilding.getName());
+                    String openingHour="";
+                    for(int i = 0; i < 5; i++){
+                        openingHour = openingHour +  selectedBuilding.getOpeningHours().toString().charAt(i);
+                    }
+                    listOpen.setValue(openingHour);
+                    String closingHour="";
+                    for(int i = 0; i < 5; i++){
+                        closingHour = closingHour +  selectedBuilding.getClosingHours().toString().charAt(i);
+                    }
+                    listClose.setValue(closingHour);
+                    editBuildingUrl.setText(selectedBuilding.getUrl());
+                    editBuildingBikes.setText(Integer.toString(selectedBuilding.getNumber_of_bikes()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("No selected building");
+                }
+            }
+        });
 
     }
 
@@ -170,23 +191,6 @@ public class AdminEditController implements Initializable {
 
         int buildingID = Integer.parseInt(listBuildingID1.getValue().toString());
 
-        /*List<Buildings> listGetBuildings = null;
-        try {
-            listGetBuildings = con.getBuildings();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for(Buildings b : listGetBuildings){
-            if(b.getBuilding_number() == buildingID){
-                editBuildingName.setText(b.getName());
-                editBuildingUrl.setText(b.getUrl());
-                editBuildingBikes.setText(Integer.toString(b.getNumber_of_bikes()));
-
-            }
-        }
-
-         */
 
         String bikeCapacity = editBuildingBikes.getText();
 
@@ -215,19 +219,10 @@ public class AdminEditController implements Initializable {
             }
         }
 
-
         String buildingName = editBuildingName.getText();
         String imageUrl = editBuildingUrl.getText();
         String buildingOpen = listOpen.getValue().toString();
         String buildingClose = listClose.getValue().toString();
-
-        /*System.out.println(buildingName);
-        System.out.println(imageUrl);
-        System.out.println(bikes);
-        System.out.println(buildingOpen);
-        System.out.println(buildingClose);
-
-         */
 
         if (listBuildingID1.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
@@ -299,7 +294,14 @@ public class AdminEditController implements Initializable {
         String newRoomType = roomType.getValue().toString();
         String oldRoomId = listRoomsID.getValue().toString();
 
-        con.editRoomAdmin(roomID, roomChairs, roomWhiteboards, roomTables, roomComputers, roomBuildingID, newRoomType, oldRoomId);
+        con.editRoomAdmin(roomID,
+                roomChairs,
+                roomWhiteboards,
+                roomTables,
+                roomComputers,
+                roomBuildingID,
+                newRoomType,
+                oldRoomId);
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);

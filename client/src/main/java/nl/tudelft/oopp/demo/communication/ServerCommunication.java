@@ -55,6 +55,38 @@ public class ServerCommunication {
     }
 
     /**
+     * Retrieves building from the server.
+     *
+     * @return the body of a get request to the server.
+     * @throws Exception if communication with the server fails.
+     */
+    public Buildings getBuildingByName(int buildingNumber) throws IOException {
+        String jsonString = this.webClient.get()
+                .uri("/buildingByName?buildingNumber=" + buildingNumber)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+        ObjectMapper mapper = new ObjectMapper();
+        Buildings buildingsJsonList = mapper
+                .readValue(jsonString, new com.fasterxml
+                        .jackson
+                        .core
+                        .type
+                        .TypeReference<Buildings>() {
+                });
+
+        return buildingsJsonList;
+    }
+
+    /**
      * Retrieves rooms list from the server.
      *
      * @return the body of a get request to the server.

@@ -26,6 +26,13 @@ public class BuildingsController {
         return buildingsRepository.findAll();
     }
 
+    @GetMapping("/buildingByName")
+    public @ResponseBody
+    Buildings getBuildingByName(int buildingNumber) {
+        // This returns a JSON or XML with the buildings
+        return buildingsRepository.findBuildingsByBuildingNumber(buildingNumber);
+    }
+
     /**
      * Adds a building, inserted by the admin, in the database.
      *
