@@ -185,6 +185,7 @@ public class BikeReservationMenu implements Initializable {
                 if (e.getId().equals(time)) {
                     if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
                         e.setStyle("-fx-background-color: #a5ee6e");
+                        addText(e, 30, 68, "Holiday");
                         e.disableProperty().setValue(true);
                         holiday.remove(0);
                     }
@@ -201,6 +202,7 @@ public class BikeReservationMenu implements Initializable {
             } else {
                 if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
                     e.setStyle("-fx-background-color: #a5ee6e");
+                    addText(e, 30, 68, "Holiday");
                     e.disableProperty().setValue(true);
                     holiday.remove(0);
                 }
