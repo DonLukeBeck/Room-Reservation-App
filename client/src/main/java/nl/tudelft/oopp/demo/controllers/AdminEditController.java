@@ -330,11 +330,8 @@ public class AdminEditController implements Initializable {
         System.out.println(roomCap);
         System.out.println(roomType.getValue().toString());
 
-<<<<<<< HEAD
+
         con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
-=======
-        //con.editRoomAdmin(newRoomId,capacity,);
->>>>>>> 4bf912923410bd84545818e2f7ed9b279a431688
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
