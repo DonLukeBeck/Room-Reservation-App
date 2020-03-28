@@ -47,8 +47,8 @@ public class AdminEditController implements Initializable {
     private TextField editBuildingBikes;
     @FXML
     private TextField editRoomID;
-    @FXML
-    private ChoiceBox listBuildingID;
+    //@FXML
+    //private ChoiceBox listBuildingID;
     @FXML
     private ChoiceBox roomType;
     @FXML
@@ -134,7 +134,7 @@ public class AdminEditController implements Initializable {
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listRoomsID.setItems(FXCollections.observableArrayList(listAllRooms));
-        listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
+        //listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
 
@@ -147,7 +147,7 @@ public class AdminEditController implements Initializable {
         listClose.setValue("23:30");
         roomType.setValue("Select type");
         listRoomsID.setValue("Select room");
-        listBuildingID.setValue("Select building");
+        //listBuildingID.setValue("Select building");
         listBuildingID1.setValue("Select building");
         listBuildingID2.setValue("Select building");
 
@@ -290,7 +290,7 @@ public class AdminEditController implements Initializable {
         }
 
 
-        int building = Integer.parseInt(listBuildingID.getValue().toString());
+        int building = Integer.parseInt(listBuildingID2.getValue().toString());
 
 
         List<Rooms> listGetRooms = null;
