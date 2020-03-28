@@ -47,8 +47,14 @@ public class AdminEditController implements Initializable {
     private TextField editBuildingBikes;
     @FXML
     private TextField editRoomID;
-    //@FXML
-    //private ChoiceBox listBuildingID;
+    @FXML
+    private TextField numberTables;
+    @FXML
+    private TextField numberComputers;
+    @FXML
+    private TextField numberWhiteBoards;
+    @FXML
+    private TextField numberChairs;
     @FXML
     private ChoiceBox roomType;
     @FXML
@@ -57,14 +63,7 @@ public class AdminEditController implements Initializable {
     private ChoiceBox listBuildingID1;
     @FXML
     private ChoiceBox listBuildingID2;
-    @FXML
-    private ChoiceBox listTables;
-    @FXML
-    private ChoiceBox listComputers;
-    @FXML
-    private ChoiceBox listWhiteBoards;
-    @FXML
-    private TextField numberChairs;
+
 
 
     /**
@@ -289,73 +288,16 @@ public class AdminEditController implements Initializable {
             return;
         }
 
+        String roomID = listRoomsID.getValue().toString();
+        int roomChairs = Integer.parseInt(numberChairs.getText());
+        int roomWhiteboards = Integer.parseInt(numberWhiteBoards.getText());
+        int roomTables = Integer.parseInt(numberTables.getText());
+        int roomComputers = Integer.parseInt(numberComputers.getText());
+        int roomBuildingID= Integer.parseInt(listBuildingID2.getValue().toString());
+        String newRoomType = roomType.getValue().toString();
+        String oldRoomId = listRoomsID.getValue().toString();
 
-        int building = Integer.parseInt(listBuildingID2.getValue().toString());
-
-
-        List<Rooms> listGetRooms = null;
-        try {
-            listGetRooms= con.getRooms();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for(Rooms b : listGetRooms){
-            if(b.getAssociatedBuilding() != building){
-                listGetRooms.remove(b);
-
-            }
-        }
-
-        listRoomsID.setItems((ObservableList) listGetRooms);
-
-        int room = Integer.parseInt(listRoomsID.getValue().toString());
-
-        editRoomID.setText(Integer.toString(room));
-
-        String[] list2 = new String[100];
-        int j = 0;
-        for(int i = 0; i< list2.length;i++){
-            list2[i] = Integer.toString(j);
-            j++;
-        }
-
-        for(Rooms r : listGetRooms){
-            if(Integer.parseInt(r.getRoomId()) == room){
-                numberChairs.setText(Integer.toString(r.getChairs()));
-                listComputers.setItems(FXCollections.observableArrayList(list2));
-                listWhiteBoards.setItems(FXCollections.observableArrayList(list2));
-                listTables.setItems(FXCollections.observableArrayList(list2));
-            }
-        }
-
-        int roomCap = 0;
-        try {
-            roomCap = Integer.parseInt(numberChairs.getText());
-        } catch (Exception e) {
-            exception.setText("Only numbers are allowed for room capacity!");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
-            return;
-        }
-
-
-
-        System.out.println(listBuildingID2.getValue().toString());
-        System.out.println(editRoomID.getText());
-        System.out.println(roomCap);
-        System.out.println(listTables.getValue().toString());
-        System.out.println(listWhiteBoards.getValue().toString());
-        System.out.println(listComputers.getValue().toString());
-        System.out.println(roomType.getValue().toString());
-
-        con.editRoomAdmin(editRoomID.getText(), roomCap, 0, 0, 0, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
-        //con.editRoomAdmin(newRoomId,capacity,);
-
-        con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listWhiteBoards.getValue().toString()), Integer.parseInt(listTables.getValue().toString()), Integer.parseInt(listComputers.getValue().toString()),Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
+        con.editRoomAdmin(roomID, roomChairs, roomWhiteboards, roomTables, roomComputers, roomBuildingID, newRoomType, oldRoomId);
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);

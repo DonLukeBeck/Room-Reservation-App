@@ -184,13 +184,13 @@ public class AdminServerCommunication extends ServerCommunication {
      * Edits the given room.
      *
      * @param roomID     roomID
-     * @param roomCap    roomCap
+     * @param chairs    chairs
      * @param buildingID buildingID
      * @param roomType   roomType
      * @return true if building successfully edited, false otherwise.
      */
     public boolean editRoomAdmin(String roomID,
-                                 int roomCap,
+                                 int chairs,
                                  int whiteboards,
                                  int tables,
                                  int computers,
@@ -199,7 +199,7 @@ public class AdminServerCommunication extends ServerCommunication {
                                  String oldRoomId) {
 
         String body = "{\"roomId\":\"" + roomID
-                + "\",\"chairs\":\"" + roomCap
+                + "\",\"chairs\":\"" + chairs
                 + "\",\"whiteboards\":\"" + whiteboards
                 +"\",\"tables\":\"" + tables
                 +"\",\"computers\":\"" + computers
