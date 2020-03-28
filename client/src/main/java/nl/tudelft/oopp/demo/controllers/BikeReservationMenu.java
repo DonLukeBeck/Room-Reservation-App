@@ -3,9 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -19,6 +17,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.entities.Holidays;
 
 public class BikeReservationMenu implements Initializable {
     private static int Fmonth;
@@ -28,6 +28,7 @@ public class BikeReservationMenu implements Initializable {
     private static int DayNow;
     public String reservationDate;
     HelperController helper = new HelperController();
+    ServerCommunication con = new ServerCommunication();
 
     @FXML
     private ChoiceBox monthChoice;
@@ -146,8 +147,22 @@ public class BikeReservationMenu implements Initializable {
         int i = 1;
         int days = lengthOfMonth;
         int day = 1;
+        int hasHoliday = 0;
 
         clearAllDates();
+
+        List<Integer> holiday = null;
+        try {
+            holiday = holidays(Fmonth, days);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (holiday == null || holiday.isEmpty()) {
+            hasHoliday = 0;
+        } else {
+            hasHoliday = 1;
+        }
+
 
         for (Node e : grid.getChildren()) {
             if (days == 1) {
@@ -168,6 +183,11 @@ public class BikeReservationMenu implements Initializable {
             String time = time1[0];
             if (flag == 0) {
                 if (e.getId().equals(time)) {
+                    if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
+                        e.setStyle("-fx-background-color: #a5ee6e");
+                        e.disableProperty().setValue(true);
+                        holiday.remove(0);
+                    }
                     flag++;
                     addText(e, 5, 115, day + "");
 
@@ -179,6 +199,11 @@ public class BikeReservationMenu implements Initializable {
                     day++;
                 }
             } else {
+                if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
+                    e.setStyle("-fx-background-color: #a5ee6e");
+                    e.disableProperty().setValue(true);
+                    holiday.remove(0);
+                }
                 addText(e, 5, 115, day + "");
                 days--;
                 if (days > 0) {
@@ -276,6 +301,50 @@ public class BikeReservationMenu implements Initializable {
         reservationDate = date1.toString();
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/TimeSlotBikes.fxml", mainScreen);
+    }
+
+    public List<Integer> holidays(int month, int monLen) throws IOException {
+        List<Holidays> list = con.getHolidays();
+
+        List<Integer> holidaysForMonth = new ArrayList<>();
+        List<Integer> allHolidayDates = new ArrayList<>();
+
+        for (Holidays e : list) {
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(e.getStartDate());
+
+            if (month == startDate.get(Calendar.MONTH)) {
+                int startDay = startDate.get(Calendar.DAY_OF_MONTH) - 1;
+                System.out.println(startDay);
+                holidaysForMonth.add(startDay);
+
+                Calendar endDate = Calendar.getInstance();
+                endDate.setTime(e.getEndDate());
+
+                if (endDate.get(Calendar.MONTH) == startDate.get(Calendar.MONTH)) {
+                    int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
+                    System.out.println(endDay);
+                    holidaysForMonth.add(endDay);
+                } else {
+                    holidaysForMonth.add(monLen);
+                }
+            }
+        }
+
+        for (int i = 0; i < holidaysForMonth.size(); i++) {
+            int j = holidaysForMonth.get(i);
+            while (j <= holidaysForMonth.get(i + 1)) {
+                allHolidayDates.add(j);
+                j++;
+            }
+            i++;
+        }
+
+        if (allHolidayDates.isEmpty()) {
+            return null;
+        } else {
+            return allHolidayDates;
+        }
     }
 
 
