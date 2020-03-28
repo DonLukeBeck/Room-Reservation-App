@@ -26,6 +26,8 @@ import nl.tudelft.oopp.demo.entities.Menus;
 public class FoodMenuController implements Initializable {
     public static List<Dishes> dishes;
     private static String dishesName;
+    public static List<Dishes> menusByBuilding;
+
     ServerCommunication con = new ServerCommunication();
     @FXML
     private javafx.scene.control.ScrollPane scene1;
@@ -74,14 +76,9 @@ public class FoodMenuController implements Initializable {
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);
 
-        //List<Dishes> allDishes = new ArrayList<>();
-
         List<Menus> allMenus = new ArrayList<>();
-        List<Dishes> menusByBuilding = new ArrayList<>();
 
         try {
-            //allDishes = con.getDishes();
-
             dishes = con.getDishes();
             allMenus = con.getMenus();
             menusByBuilding = con.getMenuByBuilding(builId);
@@ -276,8 +273,9 @@ public class FoodMenuController implements Initializable {
         String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
         int dishIndex = Integer.parseInt(temp2);
-        dishesName = dishes.get(dishIndex).getName();
+        dishesName = menusByBuilding.get(dishIndex).getName();
 
+        System.out.println(dishesName);
         String buildingId = MainMenuController.getId().substring(1);
 
         HelperController helperController = new HelperController();
