@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -45,7 +46,7 @@ public class AdminEditController implements Initializable {
     @FXML
     private TextField editBuildingBikes;
     @FXML
-    private TextField roomID;
+    private TextField editRoomID;
     @FXML
     private TextField roomCapacity;
     @FXML
@@ -56,6 +57,9 @@ public class AdminEditController implements Initializable {
     private ChoiceBox listRoomsID;
     @FXML
     private ChoiceBox listBuildingID1;
+    @FXML
+    private ChoiceBox listBuildingID2;
+
 
     /**
      * @param event
@@ -125,6 +129,9 @@ public class AdminEditController implements Initializable {
         listRoomsID.setItems(FXCollections.observableArrayList(listAllRooms));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
+        listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
+
+
         roomType.setItems(FXCollections.observableArrayList("Select type","Study hall", "Exam hall"));
 
         listOpen.setValue("07:00");
@@ -133,6 +140,8 @@ public class AdminEditController implements Initializable {
         listRoomsID.setValue("Select room");
         listBuildingID.setValue("Select building");
         listBuildingID1.setValue("Select building");
+        listBuildingID2.setValue("Select building");
+
     }
 
     /***
@@ -150,6 +159,27 @@ public class AdminEditController implements Initializable {
      * @throws IOException
      */
     public void editBuilding(Event event) throws IOException {
+
+
+
+
+        int buildingID = Integer.parseInt(listBuildingID1.getValue().toString());
+
+        List<Buildings> listGetBuildings = null;
+        try {
+            listGetBuildings = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(Buildings b : listGetBuildings){
+            if(b.getBuilding_number() == buildingID){
+                editBuildingName.setText(b.getName());
+                editBuildingUrl.setText(b.getUrl());
+                editBuildingBikes.setText(Integer.toString(b.getNumber_of_bikes()));
+
+            }
+        }
         String bikeCapacity = editBuildingBikes.getText();
         Label exception = new Label();
 
@@ -176,8 +206,9 @@ public class AdminEditController implements Initializable {
             }
         }
 
-        int buildingID = Integer.parseInt(listBuildingID1.getValue().toString());
+
         String buildingName = editBuildingName.getText();
+
         String imageUrl = editBuildingUrl.getText();
         String buildingOpen = listOpen.getValue().toString();
         String buildingClose = listClose.getValue().toString();
@@ -229,16 +260,7 @@ public class AdminEditController implements Initializable {
             return;
         }
 
-        if (roomCapacity.getText().isBlank()) {
-            exception.setText("Please enter new room capacity.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
-            return;
-        }
-        if (listBuildingID.getValue().toString().equals("Select building")) {
+        if (listBuildingID2.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -258,6 +280,36 @@ public class AdminEditController implements Initializable {
             return;
         }
 
+
+        int building = Integer.parseInt(listBuildingID.getValue().toString());
+
+
+        List<Rooms> listGetRooms = null;
+        try {
+            listGetRooms= con.getRooms();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for(Rooms b : listGetRooms){
+            if(b.getAssociatedBuilding() != building){
+                listGetRooms.remove(b);
+
+            }
+        }
+
+        listRoomsID.setItems((ObservableList) listGetRooms);
+
+        int room = Integer.parseInt(listRoomsID.getValue().toString());
+
+        editRoomID.setText(Integer.toString(room));
+
+        for(Rooms r : listGetRooms){
+            if(Integer.parseInt(r.getRoomId()) == room){
+                roomCapacity.setText(Integer.toString(r.getCapacity()));
+            }
+        }
+
         int roomCap = 0;
         try {
             roomCap = Integer.parseInt(roomCapacity.getText());
@@ -270,13 +322,15 @@ public class AdminEditController implements Initializable {
             exception.setId("Exception");
             return;
         }
-        int building = Integer.parseInt(listBuildingID.getValue().toString());
-        System.out.println(listRoomsID.getValue().toString());
-        System.out.println(roomCap);
-        System.out.println(listBuildingID.getValue().toString());
-        System.out.println(roomType.getValue());
 
-        //con.editRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString(), );
+
+
+        System.out.println(listBuildingID2.getValue().toString());
+        System.out.println(editRoomID.getText());
+        System.out.println(roomCap);
+        System.out.println(roomType.getValue().toString());
+
+        con.editRoomAdmin(editRoomID.getText(), roomCap, Integer.parseInt(listBuildingID2.getValue().toString()), roomType.getValue().toString(), listRoomsID.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);

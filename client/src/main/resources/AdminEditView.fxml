@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -13,7 +12,7 @@
                 <Image url="@../../../build/resources/main/images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Button fx:id="editBuilding" defaultButton="true" layoutX="380.0" layoutY="703.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="46.0" prefWidth="218.0" text="Edit Building">
+        <Button fx:id="editBuilding" defaultButton="true" layoutX="380.0" layoutY="703.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="51.0" prefWidth="218.0" text="Edit Building">
             <font>
                 <Font size="24.0" />
             </font>
@@ -37,23 +36,23 @@
             </font></Label>
         <TextField fx:id="editBuildingUrl" layoutX="58.0" layoutY="546.0" prefHeight="26.0" prefWidth="218.0" />
         <Separator layoutX="637.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" style="-fx-background-color: black;" />
-        <Label layoutX="672.0" layoutY="159.0" prefHeight="35.0" prefWidth="192.0" text="Select Room N.">
+        <Label layoutX="672.0" layoutY="159.0" prefHeight="35.0" prefWidth="238.0" text="Select Room Building">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Label layoutX="672.0" layoutY="296.0" prefHeight="35.0" prefWidth="228.0" text="New Room capacity:">
+        <Label layoutX="667.0" layoutY="415.0" prefHeight="35.0" prefWidth="228.0" text="New Room capacity:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="roomCapacity" layoutX="672.0" layoutY="337.0" prefHeight="26.0" prefWidth="218.0" />
+        <TextField fx:id="roomCapacity" layoutX="662.0" layoutY="464.0" prefHeight="26.0" prefWidth="218.0" />
         <Label layoutX="674.0" layoutY="547.0" prefHeight="38.0" prefWidth="130.0" text="New Type:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Label layoutX="672.0" layoutY="419.0" prefHeight="38.0" prefWidth="218.0" text="New Building:">
+        <Label layoutX="672.0" layoutY="244.0" prefHeight="38.0" prefWidth="218.0" text="Select room ID">
             <font>
                 <Font size="24.0" />
             </font>
@@ -74,16 +73,23 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="listBuildingID" layoutX="674.0" layoutY="476.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+        <ChoiceBox  fx:id="listRoomID" layoutX="672.0" layoutY="291.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+        
+        <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ComboBox fx:id="listClose" layoutX="296.0" layoutY="218.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="roomType" layoutX="829.0" layoutY="553.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listBuildingID1" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <ChoiceBox fx:id="listBuildingID2"  layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+      <Label layoutX="667.0" layoutY="337.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField  fx:id="editRoomID" layoutX="662.0" layoutY="387.0" prefHeight="26.0" prefWidth="218.0" />
         <JFXButton fx:id="goBack" layoutX="1114.0" layoutY="43.0" onAction="#goBack" prefHeight="51.0" prefWidth="119.0" style="-fx-background-radius: 8; -fx-border-color: grey; -fx-border-width: 2.5; -fx-border-radius: 8;" text="Go Back">
             <font>
                 <Font name="Arial Rounded MT Bold" size="20.0" />
             </font>
         </JFXButton>
-        <ComboBox fx:id="listOpen" layoutX="57.0" layoutY="438.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ComboBox fx:id="listClose" layoutX="293.0" layoutY="437.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
-        <ChoiceBox fx:id="roomType" layoutX="829.0" layoutY="553.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listBuildingID1" layoutX="62.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
-      <ChoiceBox fx:id="listRoomsID" layoutX="672.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
     </children>
 </AnchorPane>
