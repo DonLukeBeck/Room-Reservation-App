@@ -191,7 +191,7 @@ public class UserServerCommunication extends ServerCommunication {
                 + buildingReserved + "\",\"dishOrdered\":\"" + dishOrdered + "\"}";
 
         try {
-            boolean bool = this.webClient.post().uri("/postRoomReservation")
+            boolean bool = this.webClient.post().uri("/postFoodReservation")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)

@@ -371,5 +371,108 @@ public class AdminServerCommunication extends ServerCommunication {
     }
 
     //CRUD for Menus
+
+    /**
+     * Adds the given menu to the database.
+     *
+     * @param buildingNumber Number of building
+     * @param dishName Name of dish
+     * @return true if menu successfully added, false otherwise.
+     */
+    public boolean addMenuAdmin(int buildingNumber, String dishName) {
+
+        String body = "{\"buildingNumber\":\"" + buildingNumber
+                + "\",\"dishName\":\"" + dishName + "\"}";
+
+        try {
+            boolean bool = super.webClient.post().uri("/addMenu")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Menu added");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Edits the given menu in the database.
+     *
+     * @param buildingNumber Number of building
+     * @param newDishName Name of new dish
+     * @param oldDishName Name of previous dish
+     * @return true if menu successfully edited, false otherwise.
+     */
+    public boolean editMenuAdmin(int buildingNumber, String newDishName, String oldDishName) {
+
+        String body = "{\"buildingNumber\":\"" + buildingNumber
+                + "\",\"dishName\":\"" + newDishName + "\"}";
+
+        try {
+            boolean bool = super.webClient.post().uri("/editMenu?oldDishName=" + oldDishName)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Menu edited");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Deletes a menu from the building.
+     *
+     * @param buildingNumber Number of building
+     * @param name name of dish
+     * @return true if menu successfully deleted, false otherwise.
+     */
+    public boolean deleteMenuAdmin(int buildingNumber, String name) throws IOException {
+        try {
+            boolean bool = this.webClient.get().uri("/deleteMenu?buildingNumber="
+                    + buildingNumber + "&dishName=" + name)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, response -> {
+                        System.out.println("4xx error");
+                        return Mono.error(new RuntimeException("4xx"));
+                    })
+                    .onStatus(HttpStatus::is5xxServerError, response -> {
+                        System.out.println("5xx error");
+                        return Mono.error(new RuntimeException("5xx"));
+                    })
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Menu deleted");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
     //CRUD for Holidays
 }
