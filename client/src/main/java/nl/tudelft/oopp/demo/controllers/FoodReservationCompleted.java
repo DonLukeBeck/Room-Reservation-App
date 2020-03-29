@@ -30,6 +30,8 @@ public class FoodReservationCompleted implements Initializable {
     private Button scene;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     public String getName() {
         return name;
@@ -40,6 +42,7 @@ public class FoodReservationCompleted implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helperController = new HelperController();
         helperController.loadSidePane(sidePane);
+        addRole();
 
         List<Buildings> buildingsList = null;
 
@@ -121,6 +124,10 @@ public class FoodReservationCompleted implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**

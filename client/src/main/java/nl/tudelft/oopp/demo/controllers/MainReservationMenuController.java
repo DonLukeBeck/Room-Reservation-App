@@ -32,6 +32,8 @@ public class MainReservationMenuController implements Initializable {
     private AnchorPane mainScreen;
     @FXML
     private javafx.scene.control.Button reserveScene;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method for campus map to pop up.
@@ -105,6 +107,9 @@ public class MainReservationMenuController implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/FoodMenu.fxml", mainScreen);
     }
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
 
     /**
      * @param location
@@ -112,6 +117,7 @@ public class MainReservationMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         List<Buildings> buildings = new ArrayList<>();
         try {
             buildings = con.getBuildings();

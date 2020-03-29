@@ -38,6 +38,8 @@ public class RoomMenuController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     public static String getId() {
         return room_id;
@@ -50,6 +52,7 @@ public class RoomMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
+        addRole();
         helper.loadSidePane(sidePane);
 
         List<Rooms> allrooms = new ArrayList<>();
@@ -135,6 +138,9 @@ public class RoomMenuController implements Initializable {
 
         }
 
+    }
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     public void paneExit(Event event) throws IOException {

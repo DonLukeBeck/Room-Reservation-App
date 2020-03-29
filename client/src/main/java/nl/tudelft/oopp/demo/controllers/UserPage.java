@@ -22,6 +22,8 @@ public class UserPage {
     private javafx.scene.control.Label changePasswordLabel;
 
 
+
+
     public void initialize() {
         netIdLabel.setText(Users.user.getNetid());
         roleLabel.setText(Users.user.getRole());

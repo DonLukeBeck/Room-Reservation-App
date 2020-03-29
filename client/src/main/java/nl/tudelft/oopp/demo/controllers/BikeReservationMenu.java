@@ -40,9 +40,10 @@ public class BikeReservationMenu implements Initializable {
     private GridPane grid;
     @FXML
     private AnchorPane mainScreen;
-
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      * @return
@@ -106,6 +107,9 @@ public class BikeReservationMenu implements Initializable {
     }
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
+    }
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     public int getMonthFromSearch() {
@@ -361,6 +365,7 @@ public class BikeReservationMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList(allMonths));

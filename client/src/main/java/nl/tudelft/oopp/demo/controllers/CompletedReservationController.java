@@ -32,6 +32,8 @@ public class CompletedReservationController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get Name.
@@ -48,6 +50,7 @@ public class CompletedReservationController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         List<Buildings> list = null;
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
@@ -85,6 +88,10 @@ public class CompletedReservationController implements Initializable {
 
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(pane);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     public String nameInProperFormat(String name) {

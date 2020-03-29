@@ -43,6 +43,8 @@ public class FoodMenuController implements Initializable {
     private Rectangle rect1;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method for getting dish
@@ -69,12 +71,15 @@ public class FoodMenuController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
-
+        addRole();
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);
 

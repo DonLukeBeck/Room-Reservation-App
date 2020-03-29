@@ -15,6 +15,11 @@ import nl.tudelft.oopp.demo.entities.Users;
 
 public class MainSceneController {
     private static String user;
+    private static String role;
+    public static String getRole(){
+        return role;
+    }
+
     UserServerCommunication con = new UserServerCommunication();
     @FXML
     private javafx.scene.control.Button button1;
@@ -26,6 +31,7 @@ public class MainSceneController {
 
     @FXML
     private PasswordField pass;
+
 
     /**
      * Method to get User.
@@ -50,6 +56,7 @@ public class MainSceneController {
         String password = pass.getText();
 
         Users userLogged = con.logIn(user, password);
+        role = userLogged.getRole();
 
         // verify if user is logged in
         if (!userLogged.getNetid().isEmpty()) {

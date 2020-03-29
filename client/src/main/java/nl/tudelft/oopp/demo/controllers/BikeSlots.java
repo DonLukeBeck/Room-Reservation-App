@@ -42,6 +42,8 @@ public class BikeSlots implements Initializable {
     private javafx.scene.control.Button reserveScene;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to return building.
@@ -78,6 +80,9 @@ public class BikeSlots implements Initializable {
     }
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
+    }
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
@@ -138,6 +143,7 @@ public class BikeSlots implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
+        addRole();
 
         int checkDate = BikeReservationMenu.getDay();
         int checkMonth = BikeReservationMenu.getMonth() + 1;

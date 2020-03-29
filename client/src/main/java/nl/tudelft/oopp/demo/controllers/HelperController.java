@@ -93,6 +93,14 @@ public class HelperController {
         stage1.show();
     }
 
+    public void addRole(Pane pane, String role) {
+        Label label = new Label(role);
+        label.setLayoutX(88);
+        label.setLayoutY(52);
+        label.setFont(Font.font("System", FontWeight.BOLD, 16));
+        pane.getChildren().add(label);
+    }
+
     /**
      * @param sidePane
      */

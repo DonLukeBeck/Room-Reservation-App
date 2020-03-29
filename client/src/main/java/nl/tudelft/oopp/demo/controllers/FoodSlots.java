@@ -38,6 +38,8 @@ public class FoodSlots implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get building.
@@ -157,6 +159,9 @@ public class FoodSlots implements Initializable {
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
 
     /**
      * @param location
@@ -164,7 +169,7 @@ public class FoodSlots implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        addRole();
         List<Buildings> list = null;
 
         HelperController helper = new HelperController();

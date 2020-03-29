@@ -28,9 +28,10 @@ public class BikeReservationCompleted implements Initializable {
     private AnchorPane pane;
     @FXML
     private Button scene;
-
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     public String getName() {
         return name;
@@ -43,6 +44,7 @@ public class BikeReservationCompleted implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
 
@@ -90,6 +92,10 @@ public class BikeReservationCompleted implements Initializable {
         pane.getChildren().add(timeslot);
     }
 
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
      * Method for campus map to pop up.
      *
@@ -117,12 +123,15 @@ public class BikeReservationCompleted implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);
     }
+
     public void paneExit(Event event) throws IOException {
         helper.exit(pane);
     }
-    public void paneLogOut(Event event) throws  IOException {
+
+    public void paneLogOut(Event event) throws IOException {
         helper.logOut(pane);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(pane);
     }

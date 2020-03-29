@@ -56,6 +56,8 @@ public class MainMenuController implements Initializable {
     private CheckBox filterWhiteboards;
     @FXML
     private CheckBox filterComputers;
+    @FXML
+    private Pane rightPane;
 
     public static boolean getFilter() {
         return filter;
@@ -88,11 +90,17 @@ public class MainMenuController implements Initializable {
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
-    public void paneLogOut(Event event) throws  IOException {
+
+    public void paneLogOut(Event event) throws IOException {
         helper.logOut(mainScreen);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
@@ -330,6 +338,7 @@ public class MainMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         setFilter(false);
         List<Buildings> buildingsList = new ArrayList<>();
 

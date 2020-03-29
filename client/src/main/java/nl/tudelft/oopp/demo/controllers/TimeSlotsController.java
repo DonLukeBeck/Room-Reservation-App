@@ -39,6 +39,8 @@ public class TimeSlotsController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get Building.
@@ -74,6 +76,10 @@ public class TimeSlotsController implements Initializable {
      */
     public static String getTimeslot() {
         return timeslot;
+    }
+
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
@@ -238,7 +244,7 @@ public class TimeSlotsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        addRole();
         List<Buildings> list = null;
 
         HelperController helper = new HelperController();

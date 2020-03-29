@@ -38,6 +38,8 @@ public class RoomReservationMenu implements Initializable {
     private GridPane grid;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get Month.
@@ -81,6 +83,9 @@ public class RoomReservationMenu implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
@@ -357,6 +362,7 @@ public class RoomReservationMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList(allMonths));
