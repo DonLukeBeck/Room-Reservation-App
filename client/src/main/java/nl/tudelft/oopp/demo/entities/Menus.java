@@ -3,9 +3,9 @@ package nl.tudelft.oopp.demo.entities;
 
 public class Menus {
 
-    private String deliveryPlace;
+    private int buildingNumber;
 
-    private int building;
+    private String dishName;
 
     public Menus() {
     }
@@ -15,17 +15,17 @@ public class Menus {
      *
      * @return Menu Delivery Place
      */
-    public String getDeliveryPlace() {
-        return deliveryPlace;
+    public String getDishName() {
+        return dishName;
     }
 
     /**
      * Method to set the place at which the menu is delivered.
      *
-     * @param deliveryPlace Menu Delivery Place
+     * @param dishName Menu Delivery Place
      */
-    public void setDeliveryPlace(String deliveryPlace) {
-        this.deliveryPlace = deliveryPlace;
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 
     /**
@@ -33,16 +33,16 @@ public class Menus {
      *
      * @return Associated Building
      */
-    public int getBuilding() {
-        return building;
+    public int getBuildingNumber() {
+        return buildingNumber;
     }
 
     /**
      * Method to set the building with which the menu is associated.
      *
-     * @param building Associated Building
+     * @param buildingNumber Associated Building
      */
-    public void setBuilding(int building) {
-        this.building = building;
+    public void setBuildingNumber(int buildingNumber) {
+        this.buildingNumber = buildingNumber;
     }
 }

@@ -13,15 +13,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
-import nl.tudelft.oopp.demo.entities.Buildings;
+import nl.tudelft.oopp.demo.entities.Holidays;
 
 public class RoomReservationMenu implements Initializable {
     private static int Fmonth;
@@ -33,12 +30,10 @@ public class RoomReservationMenu implements Initializable {
     ServerCommunication con = new ServerCommunication();
     @FXML
     AnchorPane mainScreen;
+    HelperController helper = new HelperController();
     @FXML
     private ChoiceBox monthChoice;
-    @FXML
-    private javafx.scene.control.Button reserveScene;
-    @FXML
-    private AnchorPane mon;
+
     @FXML
     private GridPane grid;
     @FXML
@@ -46,6 +41,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to get Month.
+     *
      * @return Month
      */
     public static int getMonth() {
@@ -54,6 +50,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to get year.
+     *
      * @return Year
      */
     public static int getYear() {
@@ -62,6 +59,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to get Day.
+     *
      * @return Day
      */
     public static int getDay() {
@@ -70,6 +68,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -86,6 +85,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
@@ -94,43 +94,81 @@ public class RoomReservationMenu implements Initializable {
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
-    /**
-     *
-     * @param event
-     * @throws IOException
-     */
-    @FXML
-    private void calendarSearch(Event event) throws IOException {
-        int i = 1;
-        int flag = 0;
-        String[] months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    public int getMonthFromSearch() {
+        String[] months = new String[]{"January", "February", "March", "April", "May", "June", ""
+                + "July", "August", "September", "October", "November", "December"};
         int monIndex = -1;
-        // System.out.println(MonthChoice.getValue());
         for (int j = 0; j < months.length; j++) {
             if (monthChoice.getValue().equals(months[j])) {
                 monIndex = j;
             }
         }
-        int yearIndex = 2020;
+        return monIndex;
+    }
 
-        Fyear = yearIndex;
-        Fmonth = monIndex;
+    public void addText(Node e, double layoutX, double layoutY, String text) {
+        Text day = new Text(text);
+        day.setX(layoutX);
+        day.setY(layoutY);
+        day.setRotate(-90);
+        if (e instanceof AnchorPane) {
+            ((AnchorPane) e).getChildren().add(day);
+        }
 
-        Calendar c = Calendar.getInstance();
-        yearIndex = c.get(Calendar.YEAR);
+    }
 
-        c.set(Calendar.YEAR, yearIndex);
-        c.set(Calendar.MONTH, monIndex);
+    public void addBorderToTheChosenDate(Node e) {
+        BorderWidths border = new BorderWidths(5, 5, 5, 5);
+        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
+    }
 
-        YearMonth yearMon = YearMonth.of(yearIndex, monIndex + 1);
-        int days = yearMon.lengthOfMonth();
+    public void clearAllDates() {
+        for (Node k : grid.getChildren()) {
+            try {
+                ((AnchorPane) k).getChildren().clear();
+                BorderWidths border = new BorderWidths(0, 0, 0, 0);
+                ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
+                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
+            } catch (Exception idc) {
+                System.out.println("Meaningless error");
+            }
+
+        }
+    }
+
+    public void addDatesOnCalendar(Calendar c, int lengthOfMonth) {
+        int flag = 0;
+        int i = 1;
+        int days = lengthOfMonth;
         int day = 1;
+        int hasHoliday = 0;
 
+        clearAllDates();
+
+        List<Integer> holiday = null;
+        try {
+            holiday = holidays(Fmonth, days);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (holiday == null || holiday.isEmpty()) {
+            hasHoliday = 0;
+        } else {
+            hasHoliday = 1;
+        }
 
         for (Node e : grid.getChildren()) {
+            if (days == 1) {
+                return;
+            }
+
             c.set(Calendar.DAY_OF_MONTH, i);
             try {
                 ((AnchorPane) e).getChildren().clear();
+                BorderWidths border = new BorderWidths(0, 0, 0, 0);
+                ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
+                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
             } catch (Exception idc) {
                 System.out.println("Meaningless error");
             }
@@ -140,40 +178,35 @@ public class RoomReservationMenu implements Initializable {
             if (flag == 0) {
                 if (e.getId().equals(time)) {
                     flag++;
-                    Text text = new Text(day + "");
-                    text.setX(5);
-                    text.setY(115);
-                    text.setRotate(-90);
+                    if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
+                        e.setStyle("-fx-background-color: #a5ee6e");
+                        addText(e, 30, 68, "Holiday");
+                        e.disableProperty().setValue(true);
+                        holiday.remove(0);
+                    }
+                    addText(e, 5, 115, day + "");
+
+                    if (day == DayNow && Fmonth == MonthNow) {
+                        addBorderToTheChosenDate(e);
+                    }
 
                     i++;
-                    if (day == DayNow && Fmonth == MonthNow) {
-                        System.out.println("Here");
-                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
-                    } else {
-                        BorderWidths bor = new BorderWidths(0, 0, 0, 0);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
-                    }
-                    ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }
             } else {
-                Text text = new Text(day + "");
-                text.setX(5);
-                text.setY(115);
-                text.setRotate(-90);
-                i++;
+                if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
+                    e.setStyle("-fx-background-color: #a5ee6e");
+                    addText(e, 30, 68, "Holiday");
+                    e.disableProperty().setValue(true);
+                    holiday.remove(0);
+                }
+                addText(e, 5, 115, day + "");
                 days--;
                 if (days > 0) {
                     if (day == DayNow && Fmonth == MonthNow) {
-                        System.out.println("Here");
-                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
-                    } else {
-                        BorderWidths bor = new BorderWidths(0, 0, 0, 0);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+
+                        addBorderToTheChosenDate(e);
                     }
-                    ((AnchorPane) e).getChildren().add(text);
                     day++;
                 }
             }
@@ -181,27 +214,65 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    private void calendarSearch(Event event) throws IOException {
+        int flag = 0;
+        int yearIndex = 2020;
+
+        Fyear = yearIndex;
+        Fmonth = getMonthFromSearch();
+
+        Calendar c = Calendar.getInstance();
+        yearIndex = c.get(Calendar.YEAR);
+
+        c.set(Calendar.YEAR, yearIndex);
+        c.set(Calendar.MONTH, Fmonth);
+
+        YearMonth yearMon = YearMonth.of(yearIndex, Fmonth + 1);
+
+        int days = yearMon.lengthOfMonth();
+        addDatesOnCalendar(c, days);
+    }
+
+    public String findCurrentDate(AnchorPane e) {
+        String currentDate = " ";
+        currentDate = e.getChildren().toString();
+        String[] curDate = currentDate.split("text=");
+        currentDate = curDate[1];
+        currentDate = currentDate.substring(1, 3);
+        String[] curDat = currentDate.split("\"");
+        currentDate = curDat[0];
+        return currentDate;
+    }
+
+    public void openAlert() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/PreviousDateAlert.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    /**
      * @param event
      * @throws IOException
      */
     @FXML
     public void dateOnCalendar(Event event) throws IOException {
-        String str = event.getSource().toString();
         AnchorPane e = (AnchorPane) event.getSource();
         String currentDate = " ";
         if (!(e.getChildren().isEmpty())) {
-            currentDate = e.getChildren().toString();
-            String[] curDate = currentDate.split("text=");
-            //System.out.println(CurrentDate);
-            currentDate = curDate[1];
-            currentDate = currentDate.substring(1, 3);
-            String[] curDat = currentDate.split("\"");
-            currentDate = curDat[0];
-            //CurrentDate = CurrentDate.replaceAll(" \" ", " ");
-            // System.out.println(CurrentDate);
+            currentDate = findCurrentDate(e);
+
         } else {
-            currentDate = "32";
+            //currentDate = "32";
+            return;
         }
 
         FDay = Integer.parseInt(currentDate);
@@ -209,28 +280,17 @@ public class RoomReservationMenu implements Initializable {
         if (FDay == 32) {
             return;
         }
-        // System.out.println(FDay);
 
-
-        //Date date = new GregorianCalendar(Fyear, Fmonth, FDay).getTime();
         Calendar check = Calendar.getInstance();
         check.set(Calendar.MONTH, Fmonth);
         check.set(Calendar.YEAR, Fyear);
         check.set(Calendar.DAY_OF_MONTH, FDay);
-        //System.out.println(check.toString());
         Date date1 = check.getTime();
         Calendar now = Calendar.getInstance();
         Date now1 = now.getTime();
 
         if (date1.before(now1)) {
-            FXMLLoader loader = new FXMLLoader();
-            URL xmlUrl = getClass().getResource("/PreviousDateAlert.fxml");
-            loader.setLocation(xmlUrl);
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            openAlert();
             return;
         }
 
@@ -239,49 +299,59 @@ public class RoomReservationMenu implements Initializable {
         helperController.loadNextScene("/TimeSlots.fxml", mainScreen);
     }
 
+    public List<Integer> holidays(int month, int monLen) throws IOException {
+        List<Holidays> list = con.getHolidays();
+
+        List<Integer> holidaysForMonth = new ArrayList<>();
+        List<Integer> allHolidayDates = new ArrayList<>();
+
+        for (Holidays e : list) {
+            Calendar startDate = Calendar.getInstance();
+            startDate.setTime(e.getStartDate());
+
+            if (month == startDate.get(Calendar.MONTH)) {
+                int startDay = startDate.get(Calendar.DAY_OF_MONTH) - 1;
+                System.out.println(startDay);
+                holidaysForMonth.add(startDay);
+
+                Calendar endDate = Calendar.getInstance();
+                endDate.setTime(e.getEndDate());
+
+                if (endDate.get(Calendar.MONTH) == startDate.get(Calendar.MONTH)) {
+                    int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
+                    System.out.println(endDay);
+                    holidaysForMonth.add(endDay);
+                } else {
+                    holidaysForMonth.add(monLen);
+                }
+            }
+        }
+
+        for (int i = 0; i < holidaysForMonth.size(); i++) {
+            int j = holidaysForMonth.get(i);
+            while (j <= holidaysForMonth.get(i + 1)) {
+                allHolidayDates.add(j);
+                j++;
+            }
+            i++;
+        }
+
+        if (allHolidayDates.isEmpty()) {
+            return null;
+        } else {
+            return allHolidayDates;
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        monthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+        String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", ""
+                + "July", "August", "September", "October", "November", "December"};
+        monthChoice.setItems(FXCollections.observableArrayList(allMonths));
 
         Calendar defaultCalendar = Calendar.getInstance();
 
-        List<Buildings> buildingsList = new ArrayList<>();
-        int layoutY = 220;
-        try {
-            buildingsList = con.getBuildings();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (Buildings e : buildingsList) {
-            int capsCount = 0;
-            int changeInPosition = 0;
-            String buildingName = "";
-            for (Character a : e.getName().toCharArray()) {
-                if (a.equals('(')) {
-                    break;
-                }
-                if (Character.isUpperCase(a)) {
-                    capsCount++;
-                    buildingName = buildingName + a;
-                }
-            }
-            if (capsCount == 1 || capsCount == 0) {
-                buildingName = e.getName();
-                changeInPosition = 40;
-            } else {
-                buildingName = "Faculty of " + buildingName;
-            }
-
-            Label sideBuilding = new Label("-" + buildingName);
-            sideBuilding.setLayoutX(56);
-            sideBuilding.setLayoutY(layoutY + 28);
-            sideBuilding.setFont(Font.font("System", FontWeight.BOLD, 14));
-            sideBuilding.setTextFill(Color.valueOf("white"));
-            layoutY = layoutY + 28;
-            sidePane.getChildren().add(sideBuilding);
-        }
+        helper.loadSidePane(sidePane);
 
         int year = defaultCalendar.get(Calendar.YEAR);
         int month = defaultCalendar.get(Calendar.MONTH);
@@ -304,58 +374,11 @@ public class RoomReservationMenu implements Initializable {
 
         monthChoice.setValue(defMon);
 
-        int flag = 0;
-        int i = 1;
 
         YearMonth yearMon = YearMonth.of(year, month + 1);
 
         int days = yearMon.lengthOfMonth();
-        int day = 1;
 
-        for (Node e : grid.getChildren()) {
-            defaultCalendar.set(Calendar.DAY_OF_MONTH, i);
-            try {
-                ((AnchorPane) e).getChildren().clear();
-            } catch (Exception idc) {
-                System.out.println("Meaningless error");
-            }
-
-
-            String[] time1 = (defaultCalendar.getTime() + "").split(" ");
-            String time = time1[0];
-            if (flag == 0) {
-                if (e.getId().equals(time)) {
-                    flag++;
-                    Text text = new Text(day + "");
-                    text.setX(5);
-                    text.setY(115);
-                    text.setRotate(-90);
-                    if (day == day1) {
-                        System.out.println("Here");
-                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
-                    }
-                    i++;
-                    ((AnchorPane) e).getChildren().add(text);
-                    day++;
-                }
-            } else {
-                Text text = new Text(day + "");
-                text.setX(5);
-                text.setY(115);
-                text.setRotate(-90);
-                i++;
-                days--;
-                if (days > 0) {
-                    if (day == day1) {
-                        BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
-                    }
-
-                    ((AnchorPane) e).getChildren().add(text);
-                    day++;
-                }
-            }
-        }
+        addDatesOnCalendar(defaultCalendar, days);
     }
 }

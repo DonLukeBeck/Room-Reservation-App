@@ -6,7 +6,6 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,6 +44,7 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method to return building.
+     *
      * @return Building
      */
     public static String getBuilding() {
@@ -53,6 +53,7 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method to return Date.
+     *
      * @return Date
      */
     public static String getDate() {
@@ -61,6 +62,7 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method to get the timeslot.
+     *
      * @return Timeslot
      */
     public static String getTimeslot() {
@@ -69,6 +71,7 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method for campus map to pop up.
+     *
      * @param event Clicking on campus map
      * @throws IOException
      */
@@ -84,7 +87,6 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -309,6 +311,7 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method for go back button.
+     *
      * @param event Clicking on go back
      * @throws IOException
      */

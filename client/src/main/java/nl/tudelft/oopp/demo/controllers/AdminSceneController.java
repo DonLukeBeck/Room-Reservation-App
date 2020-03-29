@@ -15,6 +15,7 @@ public class AdminSceneController {
 
     /**
      * Method to get ID.
+     *
      * @return The id
      */
     public static String getId() {
@@ -22,7 +23,6 @@ public class AdminSceneController {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -30,5 +30,15 @@ public class AdminSceneController {
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/AdminView.fxml", mainScreen);
+    }
+
+    /**
+     * @param event
+     * @throws IOException
+     */
+    public void goToEditPage(ActionEvent event) throws IOException {
+
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
 }

@@ -1,5 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+import java.net.URL;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,9 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Users;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class UserPage {
 
@@ -47,7 +46,11 @@ public class UserPage {
         stage.show();
     }
 
-    public void goBack(Event e) throws IOException {
+    /**
+     * @param event
+     * @throws IOException
+     */
+    public void goBack(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/MainMenu.fxml");
         loader.setLocation(xmlUrl);

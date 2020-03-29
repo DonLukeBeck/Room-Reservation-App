@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +67,7 @@ public class BikeReservationCompleted implements Initializable {
             }
         }
         String[] nameA = name.split("\\(");
-        Label builname = new Label(nameA[0]);
+        Label builname = new Label(nameInProperFormat(nameA[0]));
         pane.getChildren().add(builname);
         builname.layoutYProperty().setValue(470);
         builname.layoutXProperty().setValue(440);
@@ -91,7 +90,8 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     /**
-     *Method for campus map to pop up.
+     * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -107,12 +107,26 @@ public class BikeReservationCompleted implements Initializable {
     }
 
     /**
-     *Method to go back to previous page.
+     * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);
+    }
+    public String nameInProperFormat(String name) {
+        String result = "";
+        if (name.toCharArray().length > 50) {
+            for (char a : name.toCharArray()) {
+                if (Character.isUpperCase(a)) {
+                    result = result + a;
+                }
+            }
+        } else {
+            result = name;
+        }
+        return result;
     }
 }

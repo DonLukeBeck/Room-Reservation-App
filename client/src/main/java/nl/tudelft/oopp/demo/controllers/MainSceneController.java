@@ -10,12 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Users;
 
 public class MainSceneController {
     private static String user;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
     @FXML
     private javafx.scene.control.Button button1;
     @FXML
@@ -68,6 +68,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
                 return;
             } else if (userLogged.getRole().equals("student")) {
@@ -82,6 +83,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
             } else if (userLogged.getRole().equals("teacher")) {
                 //redirect to student page
@@ -95,6 +97,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
 
                 return;
@@ -125,6 +128,7 @@ public class MainSceneController {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.show();
     }
 

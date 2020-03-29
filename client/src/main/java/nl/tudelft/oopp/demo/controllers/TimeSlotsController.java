@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
@@ -28,7 +28,7 @@ public class TimeSlotsController implements Initializable {
     private static String room;
     private static String date;
     private static String timeslot;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
 
     @FXML
     private AnchorPane slots;
@@ -41,6 +41,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Method to get Building.
+     *
      * @return Building
      */
     public static String getBuilding() {
@@ -49,6 +50,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Method to get Room.
+     *
      * @return Room
      */
     public static String getRoom() {
@@ -57,6 +59,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Method to get Date.
+     *
      * @return Date
      */
     public static String getDate() {
@@ -65,6 +68,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Method to get Timeslot.
+     *
      * @return Timeslot
      */
     public static String getTimeslot() {
@@ -73,6 +77,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Method to pop up campus map.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -87,8 +92,22 @@ public class TimeSlotsController implements Initializable {
         stage.show();
     }
 
+    public String getTimeSlotFromID(String str) {
+        String[] temp = str.split(" ");
+        String newTemp = "";
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i].contains("id=")) {
+                newTemp = temp[i];
+            }
+        }
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
+        temp2 = temp2.substring(1, temp2.length() - 1);
+        timeslot = temp2.replace('A', ':');
+        return timeslot;
+    }
+
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -117,27 +136,90 @@ public class TimeSlotsController implements Initializable {
             slot.fillProperty().setValue(Color.valueOf("#ffc500"));
         }
 
-        String str = event.getSource().toString();
-        String[] temp = str.split(" ");
-        String newTemp = "";
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i].contains("id=")) {
-                newTemp = temp[i];
-            }
-        }
-        String[] arrId = newTemp.split("=");
-        String temp2 = arrId[1];
-        temp2 = temp2.substring(1, temp2.length() - 1);
-        timeslot = temp2.replace('A', ':');
+        timeslot = getTimeSlotFromID(event.getSource().toString());
 
-        con.reservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building), room);
+
+        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
+                date, Integer.parseInt(building), room);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
+    public void disableNotSuitableSlots(List<Reservations> allSuitableRes,
+                                        double start, double end) {
+
+        for (Node k : slots.getChildren()) {
+            if (k instanceof Rectangle) {
+                String time = getTimeSlotFromID(k.toString());
+                String[] firstTime = time.split(" ");
+                String[] seperateHandM = firstTime[0].split(":");
+                double hours = Integer.parseInt(seperateHandM[0]);
+
+                if (seperateHandM[1].equals("30")) {
+                    hours = hours + 0.5;
+                }
+                if (hours < start || hours >= end) {
+                    ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
+                    k.disableProperty().setValue(true);
+                }
+                if (!allSuitableRes.isEmpty()) {
+                    for (Reservations t : allSuitableRes) {
+                        if (t.getTimeslot().toString().substring(0, 5).equals(firstTime[0])) {
+                            ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
+                            k.disableProperty().setValue(true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public String returnDateInSuitableFormat() {
+        int checkDate = RoomReservationMenu.getDay();
+        int checkMonth = RoomReservationMenu.getMonth() + 1;
+        String formatDate = checkDate + "";
+        String formatMonth = checkMonth + "";
+
+        if (checkDate < 10) {
+            formatDate = "0" + checkDate;
+        }
+        if (checkMonth < 10) {
+            formatMonth = "0" + checkMonth;
+        }
+
+        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
+        return date;
+    }
+
+    public double[] getEndAndStart(Time open, Time closed) {
+        String openTime = open.toString().substring(0, 5);
+        String closingTime = closed.toString().substring(0, 5);
+        String[] opening = openTime.split(":");
+        String[] closing = closingTime.split(":");
+        double start = Integer.parseInt(opening[0]);
+        double end = Integer.parseInt(closing[0]);
+        if (end < 6) {
+            end = end + 24;
+        }
+
+        if (opening[1].equals("30")) {
+            start = start + 0.5;
+        }
+
+        if (closing[1].equals("30")) {
+            end = end + 0.5;
+        }
+
+        double[] endAndStart = new double[2];
+        endAndStart[0] = end;
+        endAndStart[1] = start;
+
+        return endAndStart;
+    }
+
+
     /**
-     *
      * @param location
      * @param resources
      */
@@ -176,88 +258,28 @@ public class TimeSlotsController implements Initializable {
         }
 
         room = RoomMenuController.getId();
-        int checkDate = RoomReservationMenu.getDay();
-        int checkMonth = RoomReservationMenu.getMonth() + 1;
-        String formatDate = checkDate + "";
-        String formatMonth = checkMonth + "";
 
-        if (checkDate < 10) {
-            formatDate = "0" + checkDate;
-        }
-        if (checkMonth < 10) {
-            formatMonth = "0" + checkMonth;
-        }
-
-        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
+        date = returnDateInSuitableFormat();
 
         List<Reservations> allSuitableRes = new ArrayList<>();
 
         for (Reservations e : allReservations) {
-            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
+            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null
+                    && e.getRoomReserved().equals(room)) {
                 allSuitableRes.add(e);
             }
         }
 
-        String opentime = open.toString().substring(0, 5);
-        String closingtime = closed.toString().substring(0, 5);
-        String[] opening = opentime.split(":");
-        String[] closing = closingtime.split(":");
-        double start = Integer.parseInt(opening[0]);
-        double end = Integer.parseInt(closing[0]);
-        if (end < 6) {
-            end = end + 24;
-        }
+        double[] endAndStart = getEndAndStart(open, closed);
 
-        if (opening[1].equals("30")) {
-            start = start + 0.5;
-        }
-
-        if (closing[1].equals("30")) {
-            end = end + 0.5;
-        }
-        for (Node k : slots.getChildren()) {
-            if (k instanceof Rectangle) {
-                String str = k.toString();
-                String[] temp = str.split(" ");
-                String newTemp = "";
-                for (int i = 0; i < temp.length; i++) {
-                    if (temp[i].contains("id=")) {
-                        newTemp = temp[i];
-                        break;
-                    }
-                }
-                String[] arrId = newTemp.split("=");
-                String temp2 = arrId[1];
-                temp2 = temp2.substring(1, temp2.length() - 1);
-                String time = temp2.replace('A', ':');
-
-                String[] firsttime = time.split(" ");
-                String[] seperateHandM = firsttime[0].split(":");
-                double hours = Integer.parseInt(seperateHandM[0]);
-
-                if (seperateHandM[1].equals("30")) {
-                    hours = hours + 0.5;
-                }
-                if (hours < start || hours >= end) {
-                    ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
-                    k.disableProperty().setValue(true);
-                }
-                if (!allSuitableRes.isEmpty()) {
-                    for (Reservations t : allSuitableRes) {
-                        if (t.getTimeslot().toString().substring(0, 5).equals(firsttime[0])) {
-                            ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
-                            k.disableProperty().setValue(true);
-                        }
-                    }
-                }
-            }
-        }
+        disableNotSuitableSlots(allSuitableRes, endAndStart[1], endAndStart[0]);
     }
 
     /**
      * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException on error in loading
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();

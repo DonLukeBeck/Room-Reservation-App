@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +34,7 @@ public class MainReservationMenuController implements Initializable {
 
     /**
      * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -51,6 +51,7 @@ public class MainReservationMenuController implements Initializable {
 
     /**
      * Method to go to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
@@ -60,7 +61,8 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     *Method to go to room reservation.
+     * Method to go to room reservation.
+     *
      * @param event Clicking on 'Rooms'
      * @throws IOException
      */
@@ -70,7 +72,8 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     *Method to go to bike reservation.
+     * Method to go to bike reservation.
+     *
      * @param event Clicking on 'Bikes'
      * @throws IOException
      */
@@ -80,17 +83,17 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     *Method to go to food reservation.
+     * Method to go to food reservation.
+     *
      * @param event Clicking on 'Food'
      * @throws IOException
      */
     public void goToFood(Event event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationFood.fxml", mainScreen);
+        helperController.loadNextScene("/FoodMenu.fxml", mainScreen);
     }
 
     /**
-     *
      * @param location
      * @param resources
      */
