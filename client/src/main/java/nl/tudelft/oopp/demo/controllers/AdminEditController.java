@@ -108,7 +108,7 @@ public class AdminEditController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] listAllBuildings = new String[listGetBuildings.size()+1];
+        String[] listAllBuildings = new String[listGetBuildings.size() + 1];
         listAllBuildings[0] = "Select building";
         j = 1;
         for (Buildings t : listGetBuildings) {
@@ -121,7 +121,7 @@ public class AdminEditController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] listAllRooms = new String[listGetRooms.size()+1];
+        String[] listAllRooms = new String[listGetRooms.size() + 1];
         listAllRooms[0] = "Select room";
         j = 1;
         for (Rooms r : listGetRooms) {
@@ -136,41 +136,53 @@ public class AdminEditController implements Initializable {
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
 
-        roomType.setItems(FXCollections.observableArrayList("Select type","Study hall", "Exam hall"));
-
+        roomType
+                .setItems(FXCollections.observableArrayList("Select type",
+                        "Study hall",
+                        "Exam hall"));
         listOpen.setValue("07:00");
         listClose.setValue("23:30");
         roomType.setValue("Select type");
         listRoomsID.setValue("Select room");
         listBuildingID1.setValue("Select building");
         listBuildingID2.setValue("Select building");
-
-        listBuildingID1.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            //if the item of the list is changed
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                try {
-                    Buildings selectedBuilding = con.getBuildingByName(Integer.parseInt(listAllBuildings[(int)newValue]));
-                    editBuildingName.setText(selectedBuilding.getName());
-                    String openingHour="";
-                    for(int i = 0; i < 5; i++){
-                        openingHour = openingHour +  selectedBuilding.getOpeningHours().toString().charAt(i);
+        listBuildingID1.getSelectionModel()
+                .selectedIndexProperty()
+                .addListener(new ChangeListener<Number>() {
+                    //if the item of the list is changed
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue,
+                                        Number newValue) {
+                        try {
+                            Buildings selectedBuilding = con
+                                    .getBuildingByName(Integer
+                                            .parseInt(listAllBuildings[(int)newValue]));
+                            editBuildingName.setText(selectedBuilding.getName());
+                            String openingHour = "";
+                            for (int i = 0; i < 5; i++) {
+                                openingHour = openingHour +  selectedBuilding
+                                        .getOpeningHours().toString().charAt(i);
+                            }
+                            listOpen.setValue(openingHour);
+                            String closingHour = "";
+                            for (int i = 0; i < 5; i++) {
+                                closingHour = closingHour
+                                        + selectedBuilding
+                                        .getClosingHours().toString().charAt(i);
+                            }
+                            listClose.setValue(closingHour);
+                            editBuildingUrl.setText(selectedBuilding.getUrl());
+                            editBuildingBikes
+                                    .setText(Integer
+                                            .toString(selectedBuilding
+                                                    .getNumber_of_bikes()));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("No selected building");
+                        }
                     }
-                    listOpen.setValue(openingHour);
-                    String closingHour="";
-                    for(int i = 0; i < 5; i++){
-                        closingHour = closingHour +  selectedBuilding.getClosingHours().toString().charAt(i);
-                    }
-                    listClose.setValue(closingHour);
-                    editBuildingUrl.setText(selectedBuilding.getUrl());
-                    editBuildingBikes.setText(Integer.toString(selectedBuilding.getNumber_of_bikes()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("No selected building");
-                }
-            }
-        });
-
+                });
     }
 
     /***
@@ -189,11 +201,7 @@ public class AdminEditController implements Initializable {
      */
     public void editBuilding(Event event) throws IOException {
 
-        int buildingID = Integer.parseInt(listBuildingID1.getValue().toString());
-
-
         String bikeCapacity = editBuildingBikes.getText();
-
         Label exception = new Label();
 
         mainScreen.getChildren().add(exception);
@@ -204,7 +212,7 @@ public class AdminEditController implements Initializable {
         }
 
         int bikes = 0;
-        if(!bikeCapacity.isEmpty()) {
+        if (!bikeCapacity.isEmpty()) {
             try {
                 bikes = Integer.parseInt(bikeCapacity);
             } catch (Exception e) {
@@ -234,8 +242,10 @@ public class AdminEditController implements Initializable {
             return;
         }
 
-        con.editBuildingAdmin(buildingID, buildingName, buildingOpen+ ""
-                + ":00", buildingClose+ ""
+        int buildingID = Integer.parseInt(listBuildingID1.getValue().toString());
+
+        con.editBuildingAdmin(buildingID, buildingName, buildingOpen + ""
+                + ":00", buildingClose + ""
                 + ":00", imageUrl, bikes);
 
         HelperController h = new HelperController();
@@ -290,7 +300,7 @@ public class AdminEditController implements Initializable {
         int roomWhiteboards = Integer.parseInt(numberWhiteboards.getText());
         int roomTables = Integer.parseInt(numberTables.getText());
         int roomComputers = Integer.parseInt(numberComputers.getText());
-        int roomBuildingID= Integer.parseInt(listBuildingID2.getValue().toString());
+        int roomBuildingID = Integer.parseInt(listBuildingID2.getValue().toString());
         String newRoomType = roomType.getValue().toString();
         String oldRoomId = listRoomsID.getValue().toString();
 

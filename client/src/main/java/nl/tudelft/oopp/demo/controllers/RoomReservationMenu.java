@@ -94,6 +94,18 @@ public class RoomReservationMenu implements Initializable {
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
     public int getMonthFromSearch() {
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};

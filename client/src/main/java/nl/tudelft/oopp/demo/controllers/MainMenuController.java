@@ -28,9 +28,12 @@ import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class MainMenuController implements Initializable {
     private static String id;
+    private static boolean filter = false;
+    private static List<Rooms> filterRooms;
 
     ServerCommunication con = new ServerCommunication();
     HelperController helper = new HelperController();
+
     @FXML
     private ScrollPane scene1;
     @FXML
@@ -42,38 +45,54 @@ public class MainMenuController implements Initializable {
     @FXML
     private AnchorPane filterPane;
     @FXML
-    private Button openFilter;
-    @FXML
     private ComboBox buildingID;
-    @FXML
-    private ComboBox buildingID1;
-    @FXML
-    private ComboBox buildingID2;
-    @FXML
-    private ComboBox filterSlot;
-    @FXML
-    private ComboBox filterSlot1;
     @FXML
     private TextField filterCapacity;
     @FXML
-    private ComboBox filterFood;
+    private ComboBox filterRoomType;
     @FXML
-    private DatePicker filterDate;
+    private CheckBox filterTables;
     @FXML
-    private DatePicker filterDate1;
+    private CheckBox filterWhiteboards;
     @FXML
-    private DatePicker filterDate2;
+    private CheckBox filterComputers;
+
+    public static boolean getFilter() {
+        return filter;
+    }
+
+    public static void setFilter(boolean f) {
+        filter = f;
+    }
+
+    public static List<Rooms> getFilterRooms() {
+        return filterRooms;
+    }
 
     public static String getId() {
         return id;
     }
 
     public void openFilter(Event event) {
-        filterPane.setVisible(true);
+        if (filterPane.isVisible()) {
+            filterPane.setVisible(false);
+        } else {
+            filterPane.setVisible(true);
+        }
     }
 
     public void closeFilter(Event event) {
         filterPane.setVisible(false);
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     /**
@@ -87,7 +106,6 @@ public class MainMenuController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        j = 0;
         String[] listAllBuildings = new String[listGetBuildings.size()];
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
@@ -95,15 +113,8 @@ public class MainMenuController implements Initializable {
         }
 
         buildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
-        //buildingID.setValue("All");
-        buildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
-        //buildingID1.setValue("All");
-        buildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
-        //buildingID2.setValue("All");
-        filterSlot.setItems(FXCollections.observableArrayList(helper.getAllTimeSlots()));
-        //filterSlot.setValue("All");
-        filterSlot1.setItems(FXCollections.observableArrayList(helper.getAllTimeSlots()));
-        //filterSlot1.setValue("All");
+
+        filterRoomType.setItems(FXCollections.observableArrayList("Exam Hall", "Study Hall"));
     }
 
     /**
@@ -113,24 +124,78 @@ public class MainMenuController implements Initializable {
      * @throws IOException
      */
     public void searchRoom() throws IOException {
-        System.out.println(buildingID.getValue());
-        System.out.println(filterCapacity.getText());
-        System.out.println(filterSlot.getValue());
-        System.out.println(filterDate.getValue());
-        List<Buildings> buildings = con.getBuildings();
-        List<Rooms> rooms = con.getRooms();
-        List<Rooms> allSuitableRooms = new ArrayList<>();
+        int building = 1000;
+        try {
+            building = Integer.parseInt(buildingID.getValue().toString());
+            //System.out.println(building);
+        } catch (Exception r) {
+            System.out.println("No building");
+        }
+        System.out.println("works");
+        List<Rooms> allRooms = con.getRooms();
+        List<Rooms> suitableRooms = new ArrayList<>();
+
+        for (Rooms t : allRooms) {
+            if (building == 1000) {
+                suitableRooms.add(t);
+            }
+            if (t.getAssociatedBuilding() == building) {
+                suitableRooms.add(t);
+            }
+        }
+
+        int capacity = 0;
+        if (!filterCapacity.getText().isBlank()) {
+            try {
+                capacity = Integer.parseInt(filterCapacity.getText());
+            } catch (Exception k) {
+                System.out.println("NAN");
+                capacity = 0;
+            }
+        }
+
+        int minComp = 0;
+        int minBoards = 0;
+        int minTables = 0;
+
+        boolean computers = filterComputers.isSelected();
+        boolean whiteboards = filterWhiteboards.isSelected();
+        boolean tables = filterTables.isSelected();
+
+        if (computers) {
+            minComp++;
+        }
+        if (whiteboards) {
+            minBoards++;
+        }
+        if (tables) {
+            minTables++;
+        }
+
+        String type = "";
+        if (filterRoomType.getValue() != null) {
+            type = filterRoomType.getValue().toString();
+        } else {
+            System.out.println(type);
+            type = "Study hall";
+        }
+
+        List<Rooms> result = new ArrayList<>();
+
+        for (Rooms e : suitableRooms) {
+            if (e.getComputers() >= minComp && e.getWhiteboards() >= minBoards
+                    && e.getTables() >= minTables
+                    && e.getChairs() >= capacity && e.getType().equals(type)) {
+
+                result.add(e);
+                System.out.println(e.getRoomId());
+            }
+        }
+        filterRooms = result;
+        setFilter(true);
+        helper.loadNextScene("/RoomMenu.fxml", mainScreen);
     }
 
-    public void searchBike() {
-        System.out.println(buildingID1.getValue());
-        System.out.println(filterSlot1.getValue());
-    }
-
-    public void searchFood() {
-        System.out.println(buildingID2.getValue());
-        System.out.println(filterFood.getValue());
-    }
 
     /**
      * Opening image of the campus map.
@@ -265,6 +330,7 @@ public class MainMenuController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setFilter(false);
         List<Buildings> buildingsList = new ArrayList<>();
 
         loadFilter();
@@ -301,7 +367,7 @@ public class MainMenuController implements Initializable {
                 changeInPosition = 0;
             }
 
-            addLabelSidePane(56, layoutY + 28, "-"+buildingName);
+            addLabelSidePane(56, layoutY + 28, "-" + buildingName);
             layoutY = layoutY + 28;
 
             for (Node e : pane1.getChildren()) {

@@ -23,12 +23,15 @@ import nl.tudelft.oopp.demo.entities.Buildings;
 public class CompletedReservationController implements Initializable {
     private static String name;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane;
     @FXML
     private Button scene;
     @FXML
     private Pane sidePane;
+    @FXML
+    private AnchorPane mainScreen;
 
     /**
      * Method to get Name.
@@ -70,6 +73,18 @@ public class CompletedReservationController implements Initializable {
         addText(330, 610, TimeSlotsController.getDate());
         addText(380, 680, TimeSlotsController.getTimeslot());
 
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(pane);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(pane);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(pane);
     }
 
     public String nameInProperFormat(String name) {

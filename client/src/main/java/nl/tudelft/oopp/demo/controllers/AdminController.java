@@ -62,7 +62,7 @@ public class AdminController implements Initializable {
     @FXML
     private ChoiceBox roomType;
 
-    /**
+    /** Sends user to admin add page.
      * @param event
      * @throws IOException
      */
@@ -102,7 +102,7 @@ public class AdminController implements Initializable {
         }
 
         String[] listAllBuildings = new String[listGetBuildings.size() + 1];
-        listAllBuildings[0]="Select building";
+        listAllBuildings[0] = "Select building";
         j = 1;
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
@@ -112,7 +112,8 @@ public class AdminController implements Initializable {
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
-        roomType.setItems(FXCollections.observableArrayList("Select type","Study hall", "Exam hall"));
+        roomType.setItems(FXCollections
+                .observableArrayList("Select type","Study hall", "Exam hall"));
 
         listOpen.setValue("07:00");
         listClose.setValue("23:30");
@@ -146,7 +147,11 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (addBuildingID.getText().isBlank() || addBuildingName.getText().isBlank() || addBuildingUrl.getText().isBlank() || addBuildingUrl.getText().isBlank()) {
+        if (addBuildingID
+                .getText().isBlank() || addBuildingName
+                .getText().isBlank() || addBuildingUrl
+                .getText().isBlank() || addBuildingUrl
+                .getText().isBlank()) {
             exception.setText("Fill all fields!");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
@@ -247,17 +252,25 @@ public class AdminController implements Initializable {
         int roomTables = Integer.parseInt(numberTables.getText());
         int roomComputers = Integer.parseInt(numberComputers.getText());
 
-        System.out.println(roomID.getText());
-        System.out.println(roomCap);
-        System.out.println(building);
-        System.out.println(roomType.getValue());
-
-        con.addRoomAdmin(roomID.getText(), roomCap, roomWhiteboards, roomTables, roomComputers, building, roomType.getValue().toString());
+        con.addRoomAdmin(roomID.getText(),
+                roomCap,
+                roomWhiteboards,
+                roomTables,
+                roomComputers,
+                building,
+                roomType.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
+    /**
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     * @param exception
+     * @throws IOException
+     */
     public void addException(double layoutX, double layoutY, String text, Label exception) {
         exception.setText(text);
         exception.setLayoutY(layoutY);

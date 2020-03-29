@@ -24,6 +24,7 @@ import nl.tudelft.oopp.demo.entities.Buildings;
 public class MainReservationMenuController implements Initializable {
 
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
 
     @FXML
     private Pane sidePane;
@@ -80,6 +81,18 @@ public class MainReservationMenuController implements Initializable {
     public void goToBikes(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     /**
