@@ -107,17 +107,17 @@ public class FoodSlots implements Initializable {
 
 //        int checkDate = RoomReservationMenu.getDay();
 //        int checkMonth = RoomReservationMenu.getMonth() + 1;
-//        String formatDate = checkDate + "";
-//        String formatMonth = checkMonth + "";
-//
-//        if (checkDate < 10) {
-//            formatDate = "0" + checkDate;
-//        }
-//        if (checkMonth < 10) {
-//            formatMonth = "0" + checkMonth;
-//        }
+        String formatDate = currentDay + "";
+        String formatMonth = currentMonth + "";
 
-        date = currentYear + "-" + currentMonth + "-" + currentDay;
+        if (currentDay < 10) {
+            formatDate = "0" + currentDay;
+        }
+        if (currentMonth < 10) {
+            formatMonth = "0" + currentMonth;
+        }
+
+        date = currentYear + "-" + formatMonth + "-" + formatDate;
 
 
         Rectangle slot = (Rectangle) event.getSource();
