@@ -168,4 +168,28 @@ public class Reservations {
     public void setBuildingReserved(int buildingReserved) {
         this.buildingReserved = buildingReserved;
     }
+
+    /**
+     * Get a nice String representation: useful for calendar view.
+     * @return
+     */
+    public String getNiceString() {
+        String res = "";
+        res += timeslot;
+        res += ": ";
+        String reservationType = "";
+        try {
+            reservationType = roomReserved;
+            reservationType = "Room";
+        } catch(NullPointerException e) {
+            try {
+                reservationType = dishOrdered;
+                reservationType = "Dish";
+            } catch(NullPointerException ex) {
+                reservationType = "Bike";
+            }
+        }
+        res += " " + reservationType + " ordered in building " + buildingReserved;
+        return res;
+    }
 }

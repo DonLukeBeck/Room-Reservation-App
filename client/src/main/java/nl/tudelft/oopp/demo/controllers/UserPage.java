@@ -24,7 +24,6 @@ public class UserPage {
     @FXML
     private AnchorPane mainScreen;
 
-
     public void initialize() {
         netIdLabel.setText(Users.user.getNetid());
         roleLabel.setText(Users.user.getRole());
