@@ -1,21 +1,21 @@
 package nl.tudelft.oopp.demo.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 import java.sql.Time;
 
+@Entity
 public class UserEvent {
 
+    @Id
     private int id;
     private Date date;
     private Time time;
     private String user;
     private String description;
 
-    public UserEvent(String user, Time time, Date date, String description) {
-        this.user = user;
-        this.time = time;
-        this.date = date;
-        this.description = description;
+    public UserEvent() {
     }
 
     public int getId() {
