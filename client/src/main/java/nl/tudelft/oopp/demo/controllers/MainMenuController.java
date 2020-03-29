@@ -122,7 +122,7 @@ public class MainMenuController implements Initializable {
 
         buildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
 
-        filterRoomType.setItems(FXCollections.observableArrayList("Exam Hall", "Study Hall"));
+        filterRoomType.setItems(FXCollections.observableArrayList("Exam hall", "Study hall"));
     }
 
     /**
@@ -187,7 +187,7 @@ public class MainMenuController implements Initializable {
             System.out.println(type);
             type = "Study hall";
         }
-
+        System.out.println(type);
         List<Rooms> result = new ArrayList<>();
 
         for (Rooms e : suitableRooms) {
