@@ -112,10 +112,7 @@
             <AnchorPane fx:id="Sun" onMouseClicked="#dateOnCalendar" prefHeight="102.0" prefWidth="50.0" />
             <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <Label layoutX="30.0" layoutY="57.0" rotate="-90.0" text="Holiday" />
-               </children></AnchorPane>
+            <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <AnchorPane onMouseClicked="#dateOnCalendar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

@@ -51,9 +51,6 @@ public class RoomMenuController implements Initializable {
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
 
-        String buildingId = MainMenuController.getId();
-        int builId = Integer.parseInt(buildingId);
-
         List<Rooms> allrooms = new ArrayList<>();
         try {
             allrooms = con.getRooms();
@@ -61,15 +58,23 @@ public class RoomMenuController implements Initializable {
             e.printStackTrace();
         }
         System.out.println("Working");
-        rooms = new ArrayList<>();
-        for (int i = 0; i < allrooms.size(); i++) {
-            System.out.println("Working2");
-            if (allrooms.get(i).getAssociatedBuilding() == builId) {
-                rooms.add(allrooms.get(i));
+        if (!MainMenuController.getFilter()) {
+            String buildingId = MainMenuController.getId();
+            int builId = Integer.parseInt(buildingId);
+            rooms = new ArrayList<>();
+            for (int i = 0; i < allrooms.size(); i++) {
+                System.out.println("Working2");
+                if (allrooms.get(i).getAssociatedBuilding() == builId) {
+                    rooms.add(allrooms.get(i));
+                }
             }
+        } else {
+            rooms = MainMenuController.getFilterRooms();
         }
-
         System.out.println("running");
+        if(rooms.isEmpty()){
+            System.out.println("No Rooms");
+        }
 
         for (int j = 0; j < rooms.size(); j++) {
             Rectangle last = null;
@@ -182,8 +187,9 @@ public class RoomMenuController implements Initializable {
      * @throws IOException
      */
     public void goBack(Event event) throws IOException {
+        MainMenuController.setFilter(false);
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
+        helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
 
     /**
