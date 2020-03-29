@@ -3,7 +3,7 @@ package nl.tudelft.oopp.demo.entities;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Reservations {
+public class Reservations implements Comparable<Reservations> {
 
     private int id;
 
@@ -191,5 +191,10 @@ public class Reservations {
         }
         res += " " + reservationType + " ordered in building " + buildingReserved;
         return res;
+    }
+
+    @Override
+    public int compareTo(Reservations o) {
+        return (int) Math.signum(date.getTime() - o.date.getTime());
     }
 }

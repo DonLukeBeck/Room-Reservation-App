@@ -1,9 +1,16 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +32,8 @@ public class UserScheduleDayView {
         String dateString = getDateString();
         dateLabel.setText(dateString);
         String reservationsString = getReservationsString();
-        Text t = new Text(reservationsString);
-        scrollPane.setContent(t);
+        Text reservationsText = new Text(reservationsString);
+        scrollPane.setContent(reservationsText);
     }
 
     /**
@@ -125,5 +132,20 @@ public class UserScheduleDayView {
 
     public void setReservations(List<Reservations> reservations) {
         this.reservations = reservations;
+    }
+
+    public void addPersonalEvent() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/AddPersonalEvent.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+        AddPersonalEvent controller = loader.<AddPersonalEvent>getController();
+        controller.setDay(day);
+        controller.setMonth(month);
+        controller.setYear(year);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

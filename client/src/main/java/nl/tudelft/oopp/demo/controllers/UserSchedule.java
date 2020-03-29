@@ -374,13 +374,6 @@ public class UserSchedule implements Initializable {
         dateString += day;
 
         for (Reservations r : reservations) {
-            /*
-            if (day == 22) {
-                System.out.println(day + "==" + r.getDate().getDay() + " " + (day == r.getDate().getDay()));
-                System.out.println(month + "==" + r.getDate().getMonth() + " " + (month == r.getDate().getMonth()));
-                System.out.println(year + "==" + r.getDate().getYear() + " " + (year == r.getDate().getYear()));
-            }*/
-
             if (r.getDate().toString().equals(dateString)) {
                 filteredReservations.add(r);
             }
@@ -391,6 +384,7 @@ public class UserSchedule implements Initializable {
             printReservations(filteredReservations);
         }
 
+        Collections.sort(filteredReservations);
         return filteredReservations;
     }
 
