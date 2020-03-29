@@ -28,6 +28,7 @@ public class FoodSlots implements Initializable {
     private static String date;
     private static String timeslot;
     UserServerCommunication con = new UserServerCommunication();
+    HelperController helper = new HelperController();
 
     @FXML
     private AnchorPane slots;
@@ -146,6 +147,15 @@ public class FoodSlots implements Initializable {
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationFoodCompleted.fxml", mainScreen);
+    }
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     /**

@@ -15,19 +15,19 @@
                 <Font name="Comic Sans MS" size="40.0" />
             </font>
         </Label>
-        <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
+        <Pane fx:id="rightPane" layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
             <children>
-                <Label layoutX="14.0" layoutY="425.0" text="Go to:" textFill="WHITE">
+                <Label layoutX="11.0" layoutY="386.0" text="Go to:" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="37.0" layoutY="454.0" onDragDetected="#campusMap" onMouseClicked="#campusMap" onMouseDragged="#campusMap" text="- Campus map" textFill="WHITE">
+                <Label layoutX="34.0" layoutY="415.0" onDragDetected="#campusMap" onMouseClicked="#campusMap" text="- Campus map" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="37.0" layoutY="483.0" text="- Contacts" textFill="WHITE">
+                <Label layoutX="34.0" layoutY="444.0" text="- Contacts" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -37,6 +37,31 @@
                         <Image url="@images/Icon_User.png" />
                     </image>
                 </ImageView>
+                <Label layoutX="34.0" layoutY="475.0" prefHeight="20.0" prefWidth="95.0" text="- Resources" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <Label fx:id="logOut" layoutX="13.0" layoutY="175.0" onMouseClicked="#paneLogOut" prefHeight="25.0" prefWidth="86.0" text="Log Out" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="exit" layoutX="13.0" layoutY="225.0" onMouseClicked="#paneExit" prefHeight="25.0" prefWidth="86.0" text="Exit" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="userProfile" layoutX="13.0" layoutY="125.0" onMouseClicked="#paneUserProfile" prefHeight="25.0" prefWidth="108.0" text="User Profile" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="96.0" layoutY="27.0" prefHeight="25.0" prefWidth="51.0" text="Role:">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
             </children></Pane>
         <Pane fx:id="sidePane" layoutX="-2.0" prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
             <children>

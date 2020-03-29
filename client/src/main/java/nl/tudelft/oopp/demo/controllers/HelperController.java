@@ -62,6 +62,37 @@ public class HelperController {
         stage1.show();
     }
 
+    public void exit(AnchorPane scene1) throws IOException {
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+        stage1.close();
+    }
+
+    public void logOut(AnchorPane scene1) throws IOException {
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        stage1.setScene(new Scene(root));
+        stage1.setTitle("Room Reservation App");
+        stage1.show();
+    }
+
+    public void userProfile(AnchorPane scene1) throws IOException {
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/UserPage.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        stage1.setScene(new Scene(root));
+        stage1.setTitle("Room Reservation App");
+        stage1.show();
+    }
+
     /**
      * @param sidePane
      */

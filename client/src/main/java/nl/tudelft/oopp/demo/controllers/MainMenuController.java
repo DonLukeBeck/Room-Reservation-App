@@ -85,6 +85,16 @@ public class MainMenuController implements Initializable {
         filterPane.setVisible(false);
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
     /**
      * Loads all scene controllers related to the filer.
      */

@@ -27,6 +27,7 @@ public class RoomMenuController implements Initializable {
     public static List<Rooms> rooms;
     private static String room_id;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane1;
     @FXML
@@ -72,7 +73,7 @@ public class RoomMenuController implements Initializable {
             rooms = MainMenuController.getFilterRooms();
         }
         System.out.println("running");
-        if(rooms.isEmpty()){
+        if (rooms.isEmpty()) {
             System.out.println("No Rooms");
         }
 
@@ -99,7 +100,7 @@ public class RoomMenuController implements Initializable {
                 addLabelToScrollPane(422, box.layoutYProperty().getValue() + 100,
                         rooms.get(j).getChairs() + "");
 
-
+                addBoxButton(344, last.layoutYProperty().getValue(), "B" + j);
             }
             if (id1.contains("B")) {
                 Rectangle box = addBoxToScrollPane(630, last.layoutYProperty().getValue(), "C" + j);
@@ -113,6 +114,8 @@ public class RoomMenuController implements Initializable {
 
                 addLabelToScrollPane(708, box.layoutYProperty().getValue() + 100,
                         rooms.get(j).getChairs() + "");
+
+                addBoxButton(630, last.layoutYProperty().getValue(), "C" + j);
             }
             if (id1.contains("C")) {
                 Rectangle box = addBoxToScrollPane(58,
@@ -126,10 +129,24 @@ public class RoomMenuController implements Initializable {
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getChairs() + "");
+                addBoxButton(58,
+                        last.layoutYProperty().getValue() + 176, "A" + j);
             }
 
         }
 
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     public void addLabelToScrollPane(double layoutX, double layoutY, String text) {
@@ -161,6 +178,25 @@ public class RoomMenuController implements Initializable {
         });
         pane1.getChildren().add(box);
         return box;
+    }
+
+    public void addBoxButton(double layoutX, double layoutY, String id) {
+        Rectangle box = new Rectangle(188, 136);
+
+        box.arcHeightProperty().setValue(30.0);
+        box.arcWidthProperty().setValue(30.0);
+        box.layoutXProperty().setValue(layoutX);
+        box.layoutYProperty().setValue(layoutY);
+        box.fillProperty().setValue(Color.valueOf("transparent"));
+        box.setId(id);
+        box.setOnMouseClicked(event -> {
+            try {
+                roomChosen(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        pane1.getChildren().add(box);
     }
 
     /**

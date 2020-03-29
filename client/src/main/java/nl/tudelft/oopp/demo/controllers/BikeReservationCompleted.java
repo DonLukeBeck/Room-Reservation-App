@@ -23,6 +23,7 @@ import nl.tudelft.oopp.demo.entities.Buildings;
 public class BikeReservationCompleted implements Initializable {
     private static String name;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane;
     @FXML
@@ -116,6 +117,16 @@ public class BikeReservationCompleted implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);
     }
+    public void paneExit(Event event) throws IOException {
+        helper.exit(pane);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(pane);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(pane);
+    }
+
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {

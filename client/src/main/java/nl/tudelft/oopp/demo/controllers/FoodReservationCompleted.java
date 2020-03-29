@@ -21,7 +21,9 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class FoodReservationCompleted implements Initializable {
+    private static String name;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane;
     @FXML
@@ -29,14 +31,13 @@ public class FoodReservationCompleted implements Initializable {
     @FXML
     private Pane sidePane;
 
-    private static String name;
-
-
-    public String getName() {   return name;    }
+    public String getName() {
+        return name;
+    }
 
 
     @Override
-    public void initialize (URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
         HelperController helperController = new HelperController();
         helperController.loadSidePane(sidePane);
 
@@ -44,7 +45,7 @@ public class FoodReservationCompleted implements Initializable {
 
         try {
             buildingsList = con.getBuildings();
-        }   catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -106,7 +107,8 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
-     *Method for campus map to pop up.
+     * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException
      */
@@ -122,7 +124,8 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
-     *Method to go back to previous page.
+     * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException
      */
@@ -131,5 +134,15 @@ public class FoodReservationCompleted implements Initializable {
         helperController.loadNextScene("/MainMenu.fxml", pane);
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(pane);
+    }
 
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(pane);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(pane);
+    }
 }

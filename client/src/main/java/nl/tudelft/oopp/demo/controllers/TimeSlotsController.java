@@ -29,6 +29,7 @@ public class TimeSlotsController implements Initializable {
     private static String date;
     private static String timeslot;
     UserServerCommunication con = new UserServerCommunication();
+    HelperController helper = new HelperController();
 
     @FXML
     private AnchorPane slots;
@@ -105,6 +106,18 @@ public class TimeSlotsController implements Initializable {
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
         return timeslot;
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     /**

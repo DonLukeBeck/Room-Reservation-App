@@ -29,6 +29,8 @@ public class FoodMenuController implements Initializable {
     public static List<Dishes> menusByBuilding;
 
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
+
     @FXML
     private javafx.scene.control.ScrollPane scene1;
     @FXML
@@ -265,6 +267,15 @@ public class FoodMenuController implements Initializable {
         }
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
 
     public void dishChosen(Event event) throws IOException {
         String str = event.getSource().toString();
