@@ -1,5 +1,12 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.repositories.BuildingsRepository;
 import org.junit.jupiter.api.Test;
@@ -8,15 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class BuildingsControllerTest {
@@ -32,6 +30,7 @@ public class BuildingsControllerTest {
     private Buildings b1;
     private Buildings b2;
     private Time t1;
+    private Time t2;
 
 
     @Test
@@ -51,18 +50,45 @@ public class BuildingsControllerTest {
     }
 
     @Test
-    public void addBuildingTest() {
-       /* b1.setName("test");
-        b1.setBuildingNumber(0);
-        b1.setUrl("test.org");
-        b1.setNumberOfBikes(100);
-        b1.setNumberOfRooms(10);
-        b1.setOpeningHours(t1);
-        b1.setClosingHours(t1);
-        */
-        buildingsController.addBuilding(b1);
-        List<Buildings> list = new ArrayList<>(buildingsController.getAllBuildings());
+    public void addBuildingTrueTest() {
+        b1 = new Buildings();
+
+        assertTrue(buildingsController.addBuilding(b1));
+    }
+    /*
+    @Test
+    public void addBuildingFalseTest() {
+        b2 = new Buildings();
+
+        //when(buildingsRepository.save(b2)).thenReturn();
+
+        buildingsController.addBuilding(b2);
+        List<Buildings> actual = buildingsController.getAllBuildings();
+        List<Buildings> expected = new ArrayList<>(List.of(b2));
+        assertEquals(expected, actual);
+        //buildingsRepository.save(b2);
+        //assertFalse(buildingsController.addBuilding(b2));
 
     }
+
+    @Test
+    public void addBuildingContentTest() {
+        b1 = new Buildings();
+        b1.setBuildingNumber(1);
+        b1.setClosingHours(t2);
+        b1.setOpeningHours(t1);
+        b1.setNumberOfRooms(10);
+        b1.setNumberOfBikes(100);
+        b1.setName("Building");
+        b1.setUrl("building.org");
+
+        buildingsController.addBuilding(b1);
+        List<Buildings> actual = buildingsController.getAllBuildings();
+        List<Buildings> expected = buildingsRepository.findAll();
+        System.out.println(actual);
+        System.out.println(expected);
+
+    }
+*/
 
 }
