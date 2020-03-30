@@ -47,11 +47,11 @@ public class ReservationsControllerTest {
 
         assertEquals(repo, actual);
     }
-
+    /*
     @Test
     public void registerReservationTrueTest() {
         r1 = new Reservations();
         assertTrue(reservationsController.register(r1));
     }
-
+    */
 }
