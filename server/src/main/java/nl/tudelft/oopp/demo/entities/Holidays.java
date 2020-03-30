@@ -2,12 +2,15 @@ package nl.tudelft.oopp.demo.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
 
 public class Holidays {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int holidaysID;
 
     private Date startDate;
