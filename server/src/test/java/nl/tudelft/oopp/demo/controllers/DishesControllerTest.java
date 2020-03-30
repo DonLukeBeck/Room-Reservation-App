@@ -1,6 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -40,6 +40,60 @@ public class DishesControllerTest {
         List<Dishes> actual = dishesController.getAllDishes();
 
         assertEquals(repo, actual);
+    }
+
+    @Test
+    public void getMenusByBuildingTest() {
+        d1 = new Dishes();
+        dishesRepository.save(d1);
+
+        List<Dishes> repo = new ArrayList<>(List.of(d1));
+
+        when(dishesRepository.findAllByBuildingNumber(1)).thenReturn(repo);
+
+        List<Dishes> actual = dishesController.getMenusByBuilding(1);
+        assertEquals(repo, actual);
+    }
+
+    @Test
+    public void addDishTrueTest() {
+        d1 = new Dishes();
+        assertTrue(dishesController.addDish(d1));
+    }
+
+    @Test
+    public void addDishFalseTest() {
+        d1 = new Dishes();
+        d1.setName("Dish1");
+
+        dishesRepository.save(d1);
+
+        when(dishesRepository.findDishesByName(d1.getName())).thenReturn(d1);
+
+        assertFalse(dishesController.addDish(d1));
+    }
+
+    @Test
+    public void deleteDishTest() {
+        d1 = new Dishes();
+       assertFalse(dishesController.deleteDish(d1.getName()));
+    }
+
+    @Test
+    public void editDishFalseTest() {
+        d1 = new Dishes();
+        assertFalse(dishesController.editDish(d1, "dish"));
+    }
+
+    @Test
+    public void editDishTrueTest() {
+        d1 = new Dishes();
+
+        dishesRepository.save(d1);
+
+        when(dishesRepository.updateExistingDish(d1.getName(), d1.getPrice(), d1.getVegan(), d1.getName())).thenReturn(1);
+        assertTrue(dishesController.editDish(d1, d1.getName()));
+
     }
 
 }

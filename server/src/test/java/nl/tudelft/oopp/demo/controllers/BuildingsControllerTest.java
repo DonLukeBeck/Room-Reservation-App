@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.sql.Time;
@@ -51,6 +50,19 @@ public class BuildingsControllerTest {
     public void addBuildingTrueTest() {
         b1 = new Buildings();
         assertTrue(buildingsController.addBuilding(b1));
+    }
+
+    @Test
+    public void deleteBuildingTrueTest () {
+        b1 = new Buildings();
+        buildingsRepository.save(b1);
+        assertTrue(buildingsController.deleteBuilding(b1.getBuildingNumber()));
+    }
+
+    @Test
+    public void editBuildingFalseTest() {
+        b1 = new Buildings();
+        assertFalse(buildingsController.editBuilding(b1));
     }
 
 }

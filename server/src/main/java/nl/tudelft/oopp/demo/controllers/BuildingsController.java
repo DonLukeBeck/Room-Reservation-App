@@ -91,7 +91,6 @@ public class BuildingsController {
 
     /**
      * Deletes a building from the database.
-     *
      * @param buildingNumber - building to be deleted from database
      * @return true if it's deleted, false if it has an invalid id
      */
