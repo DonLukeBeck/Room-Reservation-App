@@ -39,11 +39,13 @@ public class RoomsController {
             return false;
         } catch (NullPointerException e) {
             Rooms newRoom = new Rooms();
+
             System.out.println(room.getAssociatedBuilding());
             newRoom.setAssociatedBuilding(room.getAssociatedBuilding());
             newRoom.setCapacity(room.getCapacity());
             newRoom.setRoomId(room.getRoomId());
             newRoom.setType(room.getType());
+
             roomsRepository.save(newRoom);
             return true;
         }

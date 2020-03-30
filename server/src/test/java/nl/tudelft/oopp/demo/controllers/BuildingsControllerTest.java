@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.sql.Time;
@@ -14,12 +15,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.web.servlet.MockMvc;
 
 @ExtendWith(MockitoExtension.class)
 public class BuildingsControllerTest {
-
-    private MockMvc mvc;
 
     @Mock
     private BuildingsRepository buildingsRepository;
@@ -52,43 +50,7 @@ public class BuildingsControllerTest {
     @Test
     public void addBuildingTrueTest() {
         b1 = new Buildings();
-
         assertTrue(buildingsController.addBuilding(b1));
     }
-    /*
-    @Test
-    public void addBuildingFalseTest() {
-        b2 = new Buildings();
-
-        //when(buildingsRepository.save(b2)).thenReturn();
-
-        buildingsController.addBuilding(b2);
-        List<Buildings> actual = buildingsController.getAllBuildings();
-        List<Buildings> expected = new ArrayList<>(List.of(b2));
-        assertEquals(expected, actual);
-        //buildingsRepository.save(b2);
-        //assertFalse(buildingsController.addBuilding(b2));
-
-    }
-
-    @Test
-    public void addBuildingContentTest() {
-        b1 = new Buildings();
-        b1.setBuildingNumber(1);
-        b1.setClosingHours(t2);
-        b1.setOpeningHours(t1);
-        b1.setNumberOfRooms(10);
-        b1.setNumberOfBikes(100);
-        b1.setName("Building");
-        b1.setUrl("building.org");
-
-        buildingsController.addBuilding(b1);
-        List<Buildings> actual = buildingsController.getAllBuildings();
-        List<Buildings> expected = buildingsRepository.findAll();
-        System.out.println(actual);
-        System.out.println(expected);
-
-    }
-*/
 
 }

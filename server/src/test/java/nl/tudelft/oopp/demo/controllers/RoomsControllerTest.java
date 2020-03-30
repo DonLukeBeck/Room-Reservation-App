@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -48,31 +49,5 @@ public class RoomsControllerTest {
         r1 = new Rooms();
         assertTrue(roomsController.addRoom(r1));
     }
-
-    /*
-    @Test
-    public void addRoomFalseTest() {
-        r1 = new Rooms();
-        roomsController.addRoom(r1);
-        assertFalse(roomsController.addRoom(r1));
-    }
-
-    @Test
-    public void addRoomTest() {
-        r1 = new Rooms();
-        r1.setAssociatedBuilding(1);
-        r1.setRoomId("Room");
-        r1.setCapacity(1);
-        r1.setType("Lecture Hall");
-
-        roomsController.addRoom(r1);
-
-        List<Rooms> actual = roomsController.getAllRooms();
-        List<Rooms> expected = new ArrayList<>(List.of(r1));
-
-        assertEquals(expected, actual);
-
-    }
-     */
 
 }
