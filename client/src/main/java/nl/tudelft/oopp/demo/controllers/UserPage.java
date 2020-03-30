@@ -8,10 +8,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Users;
 
 public class UserPage {
+    HelperController helper = new HelperController();
 
     @FXML
     private javafx.scene.control.Button scene1;
@@ -23,6 +25,8 @@ public class UserPage {
     private javafx.scene.control.Label changePasswordLabel;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
 
 
@@ -30,6 +34,21 @@ public class UserPage {
         netIdLabel.setText(Users.user.getNetid());
         roleLabel.setText(Users.user.getRole());
     }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+
 
     public void changePassword(Event e) {
         changePasswordLabel.setText("changed pwd (TO BE IMPLEMENTED)");
