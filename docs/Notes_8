@@ -1,1 +1,5 @@
-- 
+- Don't have to test everything, test the logic outside of the GUI
+- Need to reach 50-60% coverage for the test
+- We should get feedback on the report by thursday
+- Deadline to submit code is next Monday, so everything must be done by then, and merged into master
+- Merge into master ASAP as there will be merge conflicts to solve
