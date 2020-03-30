@@ -14,6 +14,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.validation.constraints.Null;
+
 @ExtendWith(MockitoExtension.class)
 public class DishesControllerTest {
 
@@ -74,6 +76,16 @@ public class DishesControllerTest {
     }
 
     @Test
+    public void addDishFalseCase2Test() {
+        d1 = new Dishes();
+        d1.setName("");
+
+        when(dishesRepository.findDishesByName(d1.getName())).thenReturn(d1);
+
+        assertFalse(dishesController.addDish(d1));
+    }
+
+    @Test
     public void deleteDishTest() {
         d1 = new Dishes();
        assertFalse(dishesController.deleteDish(d1.getName()));
@@ -83,6 +95,15 @@ public class DishesControllerTest {
     public void editDishFalseTest() {
         d1 = new Dishes();
         assertFalse(dishesController.editDish(d1, "dish"));
+    }
+
+    @Test
+    public void editDishFalseCase2Test() {
+        d1 = new Dishes();
+
+        when(dishesRepository.updateExistingDish(d1.getName(), d1.getPrice(), d1.getVegan(), d1.getName())).thenThrow(NullPointerException.class);
+
+        assertFalse(dishesController.editDish(d1, d1.getName()));
     }
 
     @Test
