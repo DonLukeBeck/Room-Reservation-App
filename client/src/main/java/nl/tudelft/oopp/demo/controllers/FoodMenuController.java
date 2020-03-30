@@ -83,28 +83,12 @@ public class FoodMenuController implements Initializable {
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);
 
-        List<Menus> allMenus = new ArrayList<>();
-
         try {
             dishes = con.getDishes();
-            allMenus = con.getMenus();
             menusByBuilding = con.getMenuByBuilding(builId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-/*
-        dishes = new ArrayList<>();
-
-        for (int i = 0; i < allDishes.size(); i++) {
-            for (int j = 0; j < allMenus.size(); j++) {
-                if (allDishes.get(i).getName().equals(allMenus.get(j).getDishName())) {
-                    if (allMenus.get(j).getBuildingNumber() == builId) {
-                        dishes.add(allDishes.get(i));
-                    }
-                }
-            }
-        }
-*/
 
         if (menusByBuilding.isEmpty()) {
             EmptyMenu();
@@ -122,155 +106,53 @@ public class FoodMenuController implements Initializable {
             }
 
             if (id1.contains("A")) {
-                Rectangle box = new Rectangle(240, 136);
+                Rectangle box = addBoxToScrollPane(340, last.layoutYProperty().getValue(), "B" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(340);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue());
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("B" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        dishChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
-
-                Label dishId = new Label("Dish:");
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId = new Label("(vegan) Dish:");
+                    addLabelToScrollPane(350, box.layoutYProperty().getValue() + 10, "(vegan) Dish:", 18);
+                } else {
+                    addLabelToScrollPane(350, box.layoutYProperty().getValue() + 10, "Dish:", 18);
                 }
-                pane1.getChildren().add(dishId);
-                dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(350);
-                dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label price = new Label("Price: ");
-                pane1.getChildren().add(price);
-                price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(350);
-                price.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(350, box.layoutYProperty().getValue() + 70, "Price: ", 18);
 
-                Label dishId1 = new Label(menusByBuilding.get(j).getName());
+                addLabelToScrollPane(370, box.layoutYProperty().getValue() + 40, menusByBuilding.get(j).getName(), 20);
 
-                pane1.getChildren().add(dishId1);
-                dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(370);
-                dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
-
-                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
-                pane1.getChildren().add(price1);
-                price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(370);
-                price1.setFont(Font.font("Arial Rounded MT Bold", 20));
-
-
+                addLabelToScrollPane(370, box.layoutYProperty().getValue() + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
             if (id1.contains("B")) {
-                Rectangle box = new Rectangle(240, 136);
+                Rectangle box = addBoxToScrollPane(625, last.layoutYProperty().getValue(), "C" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(625);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue());
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("C" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        dishChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
-
-                Label dishId = new Label("Dish:");
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId = new Label("(vegan) Dish:");
+                    addLabelToScrollPane(640, box.layoutYProperty().getValue() + 10, "(vegan) Dish:", 18);
+                } else {
+                    addLabelToScrollPane(640, box.layoutYProperty().getValue() + 10, "Dish:", 18);
                 }
-                pane1.getChildren().add(dishId);
-                dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(640);
-                dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label price = new Label("Price: ");
-                pane1.getChildren().add(price);
-                price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(640);
-                price.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(640, box.layoutYProperty().getValue() + 70, "Price: ", 18);
 
-                Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                pane1.getChildren().add(dishId1);
-                dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(660);
-                dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(660, box.layoutYProperty().getValue() + 40, menusByBuilding.get(j).getName(), 20);
 
-                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
-                pane1.getChildren().add(price1);
-                price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(660);
-                price1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(660, box.layoutYProperty().getValue() + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
             if (id1.contains("C")) {
-                Rectangle box = new Rectangle(240, 136);
+                Rectangle box = addBoxToScrollPane(55, last.layoutYProperty().getValue() + 176, "A" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(55);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue() + 176);
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("A" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        dishChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
-
-                Label dishId = new Label("Dish:");
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId = new Label("(vegan) Dish:");
+                    addLabelToScrollPane(65, box.layoutYProperty().getValue() + 10, "(vegan) Dish:", 18);
+                } else {
+                    addLabelToScrollPane(65, box.layoutYProperty().getValue() + 10, "Dish:", 18);
                 }
-                pane1.getChildren().add(dishId);
-                dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(65);
-                dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label price = new Label("Price:");
-                pane1.getChildren().add(price);
-                price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(65);
-                price.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(65, box.layoutYProperty().getValue() + 70, "Price: ", 18);
 
-                Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                pane1.getChildren().add(dishId1);
-                dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(85);
-                dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(85, box.layoutYProperty().getValue() + 40, menusByBuilding.get(j).getName(), 20);
 
-                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
-                pane1.getChildren().add(price1);
-                price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(85);
-                price1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(85, box.layoutYProperty().getValue() + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
-
         }
     }
+
 
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
@@ -281,9 +163,49 @@ public class FoodMenuController implements Initializable {
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+    public void addLabelToScrollPane(double layoutX, double layoutY, String text, int size) {
+        Label label = new Label(text);
+        pane1.getChildren().add(label);
+        label.setLayoutY(layoutY);
+        label.setLayoutX(layoutX);
+        label.setFont(Font.font("Arial Rounded MT Bold", size));
+    }
+
+    public Rectangle addBoxToScrollPane(double layoutX, double layoutY, String id) {
+        Rectangle box = new Rectangle(240, 136);
+
+        box.arcHeightProperty().setValue(30.0);
+        box.arcWidthProperty().setValue(30.0);
+        box.layoutXProperty().setValue(layoutX);
+        box.layoutYProperty().setValue(layoutY);
+        box.fillProperty().setValue(Color.valueOf("white"));
+        box.setStroke(Color.valueOf("#00A6D6"));
+        box.strokeWidthProperty().setValue(2);
+        box.setVisible(true);
+        box.setId(id);
+        box.setOnMouseClicked(event -> {
+            try {
+                dishChosen(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        pane1.getChildren().add(box);
+        return box;
+
+    }
 
     public void dishChosen(Event event) throws IOException {
         String str = event.getSource().toString();
+        dishesName = getDishName(str);
+
+        String buildingId = MainMenuController.getId().substring(1);
+
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/TimeSlotFood.fxml", mainScreen);
+    }
+
+    public String getDishName(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
         for (int i = 0; i < temp.length; i++) {
@@ -294,14 +216,9 @@ public class FoodMenuController implements Initializable {
         String[] arrId = newTemp.split("=");
         String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
+
         int dishIndex = Integer.parseInt(temp2);
-        dishesName = menusByBuilding.get(dishIndex).getName();
-
-        System.out.println(dishesName);
-        String buildingId = MainMenuController.getId().substring(1);
-
-        HelperController helperController = new HelperController();
-        helperController.loadNextScene("/TimeSlotFood.fxml", mainScreen);
+        return menusByBuilding.get(dishIndex).getName();
     }
 
     /**
@@ -325,5 +242,4 @@ public class FoodMenuController implements Initializable {
         pane1.getChildren().add(noDishes2);
         noDishes2.setLayoutY(noDishes.layoutYProperty().getValue() + 40);
     }
-
 }
