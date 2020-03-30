@@ -80,6 +80,8 @@ public class RoomMenuController implements Initializable {
             System.out.println("No Rooms");
         }
 
+        rooms = roomShownByRole(rooms);
+
         for (int j = 0; j < rooms.size(); j++) {
             Rectangle last = null;
             String id1 = "";
@@ -139,7 +141,21 @@ public class RoomMenuController implements Initializable {
         }
 
     }
-    public void addRole(){
+
+    public List<Rooms> roomShownByRole(List<Rooms> list) {
+        String user = MainSceneController.getRole();
+        List<Rooms> result = new ArrayList<>();
+        for (Rooms e : list) {
+            if (user.equals("teacher")) {
+                result.add(e);
+            } else if (e.getType().equals("Study hall") && user.equals("student")) {
+                result.add(e);
+            }
+        }
+        return result;
+    }
+
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
