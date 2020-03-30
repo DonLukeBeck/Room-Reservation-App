@@ -51,48 +51,31 @@ public class FoodReservationCompleted implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Label builId = new Label(FoodSlots.getBuilding());
-        builId.setFont(Font.font("Arial Rounded MT Bold", 24));
-        builId.layoutYProperty().setValue(400);
-        builId.layoutXProperty().setValue(390);
-        builId.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(builId);
+        addLabelToPane(405, 400, FoodSlots.getBuilding());
 
         for (Buildings e : buildingsList) {
             if (e.getBuilding_number() == Integer.parseInt(FoodSlots.getBuilding())) {
                 name = e.getName();
-                System.out.println(name);
             }
         }
         String[] nameA = name.split("\\(");
-        Label builname = new Label(nameInProperFormat(nameA[0]));
-        pane.getChildren().add(builname);
-        builname.layoutYProperty().setValue(470);
-        builname.layoutXProperty().setValue(440);
-        builname.setFont(Font.font("Arial Rounded MT Bold", 24));
-        builname.textFillProperty().setValue(Color.valueOf("ffc500"));
+        addLabelToPane(445, 470, nameInProperFormat(nameA[0]));
 
-        Label date = new Label(FoodSlots.getDate());
-        date.layoutYProperty().setValue(540);
-        date.layoutXProperty().setValue(345);
-        date.setFont(Font.font("Arial Rounded MT Bold", 24));
-        date.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(date);
+        addLabelToPane(345 , 540, FoodSlots.getDate());
 
-        Label timeslot = new Label(FoodSlots.getTimeslot());
-        timeslot.layoutYProperty().setValue(610);
-        timeslot.layoutXProperty().setValue(390);
-        timeslot.setFont(Font.font("Arial Rounded MT Bold", 24));
-        timeslot.textFillProperty().setValue(Color.valueOf("#ffc600"));
-        pane.getChildren().add(timeslot);
+        addLabelToPane(390, 610, FoodSlots.getTimeslot());
 
-        Label orderedDish = new Label(FoodMenuController.getDishesName());
-        orderedDish.layoutYProperty().setValue(680);
-        orderedDish.layoutXProperty().setValue(345);
-        orderedDish.setFont(Font.font("Arial Rounded MT Bold", 24));
-        orderedDish.textFillProperty().setValue(Color.valueOf("ffc600"));
-        pane.getChildren().add(orderedDish);
+        addLabelToPane(345, 680, FoodMenuController.getDishesName());
+
+    }
+
+    public void addLabelToPane(double layoutX, double layoutY, String text) {
+        Label label = new Label(text);
+        label.setLayoutY(layoutY);
+        label.setLayoutX(layoutX);
+        label.setFont(Font.font("Arial Rounded MT Bold", 24));
+        label.textFillProperty().setValue(Color.valueOf("#ffc500"));
+        pane.getChildren().add(label);
     }
 
     public String nameInProperFormat(String name) {
@@ -126,7 +109,7 @@ public class FoodReservationCompleted implements Initializable {
         stage.show();
     }
 
-    public void addRole(){
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
