@@ -16,8 +16,6 @@ public class Buildings {
 
     private Time closingHours;
 
-    private int numberOfRooms;
-
     private int numberOfBikes;
 
     private String url;
@@ -95,24 +93,6 @@ public class Buildings {
      */
     public void setClosingHours(Time closingHours) {
         this.closingHours = closingHours;
-    }
-
-    /**
-     * Method to get the number of rooms in a Building.
-     *
-     * @return Number of rooms in Building
-     */
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    /**
-     * Method to set Number of Rooms in a Building.
-     *
-     * @param numberOfRooms Number of rooms in a building
-     */
-    public void setNumberOfRooms(int numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
     }
 
     /**

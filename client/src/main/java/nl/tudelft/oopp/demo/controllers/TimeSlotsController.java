@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
@@ -28,7 +28,8 @@ public class TimeSlotsController implements Initializable {
     private static String room;
     private static String date;
     private static String timeslot;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
+    HelperController helper = new HelperController();
 
     @FXML
     private AnchorPane slots;
@@ -38,6 +39,8 @@ public class TimeSlotsController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get Building.
@@ -75,6 +78,10 @@ public class TimeSlotsController implements Initializable {
         return timeslot;
     }
 
+    public void addRole(){
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
      * Method to pop up campus map.
      *
@@ -105,6 +112,18 @@ public class TimeSlotsController implements Initializable {
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
         return timeslot;
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     /**
@@ -138,8 +157,7 @@ public class TimeSlotsController implements Initializable {
 
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
-
-        con.reservation(MainSceneController.getUser(), timeslot + ":00",
+        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
                 date, Integer.parseInt(building), room);
 
         HelperController helperController = new HelperController();
@@ -225,7 +243,7 @@ public class TimeSlotsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        addRole();
         List<Buildings> list = null;
 
         HelperController helper = new HelperController();

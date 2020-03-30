@@ -15,7 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import nl.tudelft.oopp.demo.entities.Rooms;
@@ -25,7 +25,7 @@ public class SignUpController {
 
     @FXML
     public javafx.scene.control.Button button3;
-    ServerCommunication con = new ServerCommunication();
+    UserServerCommunication con = new UserServerCommunication();
     @FXML
     private TextField user;
 
@@ -75,14 +75,13 @@ public class SignUpController {
             System.out.println(buildings.get(i).getName());
             System.out.println(buildings.get(i).getOpeningHours());
             System.out.println(buildings.get(i).getClosingHours());
-            System.out.println(buildings.get(i).getNumberOf_Rooms());
         }
         System.out.println("******************Rooms");
         //Printing all rooms from database
         List<Rooms> rooms = con.getRooms();
         for (int i = 0; i < rooms.size(); i++) {
             System.out.println(rooms.get(i).getRoomId());
-            System.out.println(rooms.get(i).getCapacity());
+            System.out.println(rooms.get(i).getChairs());
             System.out.println(rooms.get(i).getType());
             System.out.println(rooms.get(i).getAssociatedBuilding());
         }

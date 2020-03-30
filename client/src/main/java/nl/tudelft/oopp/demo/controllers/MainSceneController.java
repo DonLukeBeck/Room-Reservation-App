@@ -10,12 +10,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Users;
 
 public class MainSceneController {
     private static String user;
-    ServerCommunication con = new ServerCommunication();
+    private static String role;
+    public static String getRole(){
+        return role;
+    }
+
+    UserServerCommunication con = new UserServerCommunication();
     @FXML
     private javafx.scene.control.Button button1;
     @FXML
@@ -26,6 +31,7 @@ public class MainSceneController {
 
     @FXML
     private PasswordField pass;
+
 
     /**
      * Method to get User.
@@ -50,20 +56,7 @@ public class MainSceneController {
         String password = pass.getText();
 
         Users userLogged = con.logIn(user, password);
-        if (user.equals("admin")) {
-            Stage stage1 = (Stage) button1.getScene().getWindow();
-            stage1.close();
-
-            FXMLLoader loader = new FXMLLoader();
-            URL xmlUrl = getClass().getResource("/MainAdminScene.fxml");
-            loader.setLocation(xmlUrl);
-            Parent root = loader.load();
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-            return;
-        }
+        role = userLogged.getRole();
 
         // verify if user is logged in
         if (!userLogged.getNetid().isEmpty()) {
@@ -82,6 +75,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
                 return;
             } else if (userLogged.getRole().equals("student")) {
@@ -96,6 +90,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
             } else if (userLogged.getRole().equals("teacher")) {
                 //redirect to student page
@@ -109,6 +104,7 @@ public class MainSceneController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Room Reservation App");
                 stage.show();
 
                 return;
@@ -139,6 +135,7 @@ public class MainSceneController {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.show();
     }
 
