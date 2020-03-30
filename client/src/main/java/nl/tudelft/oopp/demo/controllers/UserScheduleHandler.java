@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Reservations;
+import nl.tudelft.oopp.demo.entities.UserEvent;
 
 import java.beans.EventHandler;
 import java.io.IOException;
@@ -18,12 +19,14 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
     private int month;
     private int year;
     private List<Reservations> reservations;
+    private List<UserEvent> userEvents;
 
-    public UserScheduleHandler(int day, int month, int year, List<Reservations> reservations) {
+    public UserScheduleHandler(int day, int month, int year, List<Reservations> reservations, List<UserEvent> userEvents) {
         this.day = day;
         this.month = month;
         this.year = year;
         this.reservations = reservations;
+        this.userEvents = userEvents;
     }
 
     public int getDay() {
@@ -56,6 +59,14 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
 
     public void setReservations(List<Reservations> reservations) {
         this.reservations = reservations;
+    }
+
+    public List<UserEvent> getUserEvents() {
+        return userEvents;
+    }
+
+    public void setUserEvents(List<UserEvent> userEvents) {
+        this.userEvents = userEvents;
     }
 
     @Override

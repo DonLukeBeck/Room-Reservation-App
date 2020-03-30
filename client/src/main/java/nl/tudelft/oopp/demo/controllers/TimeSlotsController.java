@@ -151,7 +151,6 @@ public class TimeSlotsController implements Initializable {
 
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
-
         con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
                 date, Integer.parseInt(building), room);
 

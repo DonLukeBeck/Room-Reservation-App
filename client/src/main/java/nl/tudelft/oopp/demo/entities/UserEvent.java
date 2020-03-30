@@ -3,7 +3,7 @@ package nl.tudelft.oopp.demo.entities;
 import java.sql.Date;
 import java.sql.Time;
 
-public class UserEvent {
+public class UserEvent implements Comparable<UserEvent> {
 
     private int id;
     private Date date;
@@ -56,5 +56,10 @@ public class UserEvent {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public int compareTo(UserEvent o) {
+        return (int) Math.signum(date.getTime() - o.date.getTime());
     }
 }

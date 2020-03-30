@@ -206,7 +206,7 @@ public class ServerCommunication {
                         .jackson
                         .core
                         .type
-                        .TypeReference<List<Reservations>>() {
+                        .TypeReference<List<UserEvent>>() {
                 });
 
 

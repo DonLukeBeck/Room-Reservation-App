@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
+import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.entities.Users;
 
 public class UserSchedule implements Initializable {
@@ -33,8 +34,6 @@ public class UserSchedule implements Initializable {
     ServerCommunication con = new ServerCommunication();
     @FXML
     private ChoiceBox monthChoice;
-    @FXML
-    private javafx.scene.control.Button scene1;
     @FXML
     private AnchorPane mon;
     @FXML
@@ -99,7 +98,7 @@ public class UserSchedule implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
 
-        Stage stage1 = (Stage) scene1.getScene().getWindow();
+        Stage stage1 = (Stage) monthChoice.getScene().getWindow();
         stage1.close();
     }
 
@@ -136,6 +135,7 @@ public class UserSchedule implements Initializable {
         int day = 1;
 
         List<Reservations> reservationsUser = findReservations(Users.user);
+        List<UserEvent> userEvents = findUserEvents(Users.user);
 
         for (Node e : grid.getChildren()) {
             c.set(Calendar.DAY_OF_MONTH, i);
@@ -167,11 +167,12 @@ public class UserSchedule implements Initializable {
                     ((AnchorPane) e).getChildren().add(text);
                     //get all events for today
                     List<Reservations> reservationsToday = findReservations(day, Fmonth, Fyear, reservationsUser);
-                    Text events = new Text(reservationsToday.size() + " events");
+                    List<UserEvent> userEventsToday = findUserEvents(day, Fmonth, Fyear, userEvents);
+                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth, Fyear, reservationsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth, Fyear, reservationsToday, userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -195,11 +196,12 @@ public class UserSchedule implements Initializable {
 
                     //get all events for today
                     List<Reservations> reservationsToday = findReservations(day, Fmonth, Fyear, reservationsUser);
-                    Text events = new Text(reservationsToday.size() + " events");
+                    List<UserEvent> userEventsToday = findUserEvents(day, Fmonth, Fyear, userEvents);
+                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth, Fyear, reservationsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth, Fyear, reservationsToday, userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -220,7 +222,7 @@ public class UserSchedule implements Initializable {
         Calendar defaultCalendar = Calendar.getInstance();
 
         List<Reservations> reservationsUser = findReservations(Users.user);
-        //printReservations(reservationsUser);
+        List<UserEvent> userEvents = findUserEvents(Users.user);
 
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
@@ -289,11 +291,12 @@ public class UserSchedule implements Initializable {
 
                     //get all events for today
                     List<Reservations> reservationsToday = findReservations(day, month, year, reservationsUser);
-                    Text events = new Text(reservationsToday.size() + " events");
+                    List<UserEvent> userEventsToday = findUserEvents(day, month, year, userEvents);
+                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday, userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -314,11 +317,12 @@ public class UserSchedule implements Initializable {
 
                     //get all events for today
                     List<Reservations> reservationsToday = findReservations(day, month, year, reservationsUser);
-                    Text events = new Text(reservationsToday.size() + " events");
+                    List<UserEvent> userEventsToday = findUserEvents(day, month, year, userEvents);
+                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday, userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -388,6 +392,50 @@ public class UserSchedule implements Initializable {
         return filteredReservations;
     }
 
+    public List<UserEvent> findUserEvents(Users user) {
+        List<UserEvent> list = new ArrayList<>();
+        try {
+            list = con.getUserEvents();
+        } catch (IOException e) {
+            System.out.println("got an IOException when trying to retrieve user events.");
+            return list;
+        }
+        System.out.println("retrieved events correctly");
+        List<UserEvent> filteredEvents = new ArrayList<>();
+        for (UserEvent e : list) {
+            if (e.getUser().equals(user.getNetid())) {
+                filteredEvents.add(e);
+            }
+        }
+        return filteredEvents;
+    }
+
+    public List<UserEvent> findUserEvents(int day, int month, int year, List<UserEvent> events) {
+        List<UserEvent> filteredEvents = new ArrayList<>();
+
+        String dateString = "";
+        dateString += year;
+        dateString += "-";
+        if (month < 9) {
+            dateString += "0";
+        }
+        dateString += month + 1;
+        dateString += "-";
+        if (day < 10) {
+            dateString += "0";
+        }
+        dateString += day;
+
+        for (UserEvent e : events) {
+            if (e.getDate().toString().equals(dateString)) {
+                filteredEvents.add(e);
+            }
+        }
+
+        Collections.sort(filteredEvents);
+        return filteredEvents;
+    }
+
     public void printReservations(List<Reservations> reservations) {
         for (Reservations r : reservations) {
             System.out.println(r.getUserReserving() + " reserved " +
@@ -416,7 +464,7 @@ public class UserSchedule implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
 
-        Stage stage1 = (Stage) scene1.getScene().getWindow();
+        Stage stage1 = (Stage) monthChoice.getScene().getWindow();
         stage1.close();
     }
 }
