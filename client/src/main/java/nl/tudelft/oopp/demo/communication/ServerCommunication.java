@@ -5,12 +5,8 @@ import java.io.IOException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
-import nl.tudelft.oopp.demo.entities.Buildings;
-import nl.tudelft.oopp.demo.entities.Dishes;
-import nl.tudelft.oopp.demo.entities.Holidays;
-import nl.tudelft.oopp.demo.entities.Menus;
-import nl.tudelft.oopp.demo.entities.Reservations;
-import nl.tudelft.oopp.demo.entities.Rooms;
+
+import nl.tudelft.oopp.demo.entities.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -187,6 +183,34 @@ public class ServerCommunication {
 
 
         return reservationsJsonList;
+    }
+
+    public List<UserEvent> getUserEvents() throws IOException {
+        String jsonString = this.webClient.get().uri("/allPersonalEvents")
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    System.out.println("4xx error");
+                    return Mono.error(new RuntimeException("4xx"));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    System.out.println("5xx error");
+                    return Mono.error(new RuntimeException("5xx"));
+                })
+                .bodyToMono(String.class)
+                .block();
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<UserEvent> userEventsJsonList = mapper
+                .readValue(jsonString, new com
+                        .fasterxml
+                        .jackson
+                        .core
+                        .type
+                        .TypeReference<List<UserEvent>>() {
+                });
+
+
+        return userEventsJsonList;
     }
 
 

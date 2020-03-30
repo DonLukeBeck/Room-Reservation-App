@@ -210,4 +210,34 @@ public class UserServerCommunication extends ServerCommunication {
             return false;
         }
     }
+
+    public boolean addUserEvent(String user,
+                                   String timeSlot,
+                                   String date,
+                                   String description) {
+        String body = "{\"user\":\""
+                + user + "\",\"time\":\""
+                + timeSlot + "\",\"date\":\"" + date + "\",\"description\":\""
+                + description + "\"}";
+
+        try {
+            boolean bool = this.webClient.post().uri("/postUserEvent")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromObject(body))
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Personal event added");
+                return true;
+            } else {
+                System.out.println("Adding personal event failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }

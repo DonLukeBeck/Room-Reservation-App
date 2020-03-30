@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Users;
 
@@ -20,7 +21,8 @@ public class UserPage {
     private javafx.scene.control.Label roleLabel;
     @FXML
     private javafx.scene.control.Label changePasswordLabel;
-
+    @FXML
+    private AnchorPane mainScreen;
 
 
 
@@ -33,6 +35,21 @@ public class UserPage {
         changePasswordLabel.setText("changed pwd (TO BE IMPLEMENTED)");
     }
 
+    public void openSchedule(Event e) throws IOException {
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/UserSchedule.fxml", mainScreen);
+    }
+
+    public void campusMap(Event e) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
     /**
      * @param event
