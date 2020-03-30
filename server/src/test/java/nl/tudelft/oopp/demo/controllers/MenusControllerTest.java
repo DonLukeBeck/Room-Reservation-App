@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -69,7 +71,8 @@ public class MenusControllerTest {
     public void editMenuTrueTest() {
         m1 = new Menus();
 
-        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(), "d1")).thenReturn(1);
+        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(),
+                "d1")).thenReturn(1);
         assertTrue(menusController.editMenu(m1, "d1"));
     }
 
@@ -77,7 +80,8 @@ public class MenusControllerTest {
     public void editMenuFalseTest() {
         m1 = new Menus();
 
-        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(), "d1")).thenReturn(2);
+        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(),
+                "d1")).thenReturn(2);
         assertFalse(menusController.editMenu(m1, "d1"));
     }
 
@@ -85,7 +89,8 @@ public class MenusControllerTest {
     public void editMenuFalseCase2Test() {
         m1 = new Menus();
 
-        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(), "d1")).thenThrow(NullPointerException.class);
+        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(),
+                "d1")).thenThrow(NullPointerException.class);
         assertFalse(menusController.editMenu(m1, "d1"));
     }
 

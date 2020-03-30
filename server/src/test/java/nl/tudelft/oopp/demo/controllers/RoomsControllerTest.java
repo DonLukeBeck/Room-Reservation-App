@@ -1,7 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyChar;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -91,7 +92,8 @@ public class RoomsControllerTest {
         r1 = new Rooms();
 
         when(roomsRepository.updateExistingRoom(r1.getRoomId(), r1.getChairs(), r1.getWhiteboards(),
-                r1.getTables(), r1.getComputers(), r1.getType(), r1.getRoomId())).thenThrow(NullPointerException.class);
+                r1.getTables(), r1.getComputers(), r1.getType(),
+                r1.getRoomId())).thenThrow(NullPointerException.class);
 
         assertFalse(roomsController.editRoom(r1, r1.getRoomId()));
     }

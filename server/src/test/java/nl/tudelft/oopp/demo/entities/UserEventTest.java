@@ -1,13 +1,13 @@
 package nl.tudelft.oopp.demo.entities;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.sql.Date;
 import java.sql.Time;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class UserEventTest {
 
@@ -17,13 +17,16 @@ public class UserEventTest {
     private Time t1;
     private Time t2;
 
+    /**
+     * Method to setup all the paramaters before each test.
+     */
     @BeforeEach
     public void setup() {
         t1 = new Time(8,0,0);
         t2 = new Time(20,0,0);
 
         d1 = new Date(2020,4, 1);
-        d2= new Date(2020,4,2);
+        d2 = new Date(2020,4,2);
 
         ue1 = new UserEvent();
         ue1.setId(1);

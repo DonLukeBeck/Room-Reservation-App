@@ -1,7 +1,9 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import static nl.tudelft.oopp.demo.controllers.UsersController.hashPassword;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.security.NoSuchAlgorithmException;
@@ -95,7 +97,8 @@ public class UsersControllerTest {
         lu1.setNetid("NetID");
         lu1.setPassword("Password");
 
-        when(usersRepository.findUserByNetidAndPass(lu1.getNetid(), hashPassword(lu1.getPassword()))).thenReturn(u1);
+        when(usersRepository.findUserByNetidAndPass(lu1.getNetid(),
+                hashPassword(lu1.getPassword()))).thenReturn(u1);
         assertEquals("{\"netid\":\"NetID\",\"role\":\"Role\"}", usersController.login(lu1));
     }
 

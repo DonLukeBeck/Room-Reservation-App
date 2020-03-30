@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.sql.Time;
@@ -14,8 +16,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import javax.validation.constraints.Null;
 
 @ExtendWith(MockitoExtension.class)
 public class BuildingsControllerTest {
@@ -73,7 +73,7 @@ public class BuildingsControllerTest {
     }
 
     @Test
-    public void deleteBuildingTrueTest () {
+    public void deleteBuildingTrueTest() {
         b1 = new Buildings();
         buildingsRepository.save(b1);
         assertTrue(buildingsController.deleteBuilding(b1.getBuildingNumber()));
@@ -82,7 +82,8 @@ public class BuildingsControllerTest {
     @Test
     public void deleteBuildingFalseTest() {
         b1 = new Buildings();
-        when(buildingsRepository.deleteBuildingByBuildingNumber(b1.getBuildingNumber())).thenThrow(NullPointerException.class);
+        when(buildingsRepository.deleteBuildingByBuildingNumber(b1.getBuildingNumber()))
+                .thenThrow(NullPointerException.class);
         assertFalse(buildingsController.deleteBuilding(b1.getBuildingNumber()));
     }
 
@@ -107,7 +108,8 @@ public class BuildingsControllerTest {
     public void getBuildingByNameTest() {
         b1 = new Buildings();
 
-        when(buildingsRepository.findBuildingsByBuildingNumber(b1.getBuildingNumber())).thenReturn(b1);
+        when(buildingsRepository.findBuildingsByBuildingNumber(b1.getBuildingNumber()))
+                .thenReturn(b1);
 
         assertEquals(b1, buildingsController.getBuildingByName(b1.getBuildingNumber()));
     }

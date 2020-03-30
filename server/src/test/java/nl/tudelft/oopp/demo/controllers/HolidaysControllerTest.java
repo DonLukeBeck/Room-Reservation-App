@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.sql.Date;
@@ -65,19 +67,21 @@ public class HolidaysControllerTest {
     @Test
     public void addHolidaysTrueTest() {
         h1 = new Holidays();
-        when(holidaysRepository.findHolidaysByStartDate(h1.getStartDate())).thenThrow(NullPointerException.class);
+        when(holidaysRepository.findHolidaysByStartDate(h1.getStartDate()))
+                .thenThrow(NullPointerException.class);
         assertTrue(holidaysController.addHolidays(h1));
     }
 
     @Test
     public void editHolidaysTrueTest() {
         h1 = new Holidays();
-        when(holidaysRepository.updateExistingHolidays(h1.getStartDate(), h1.getEndDate(), h1.getComments(), h1.getHolidaysID())).thenReturn(1);
+        when(holidaysRepository.updateExistingHolidays(h1.getStartDate(), h1.getEndDate(),
+                h1.getComments(), h1.getHolidaysID())).thenReturn(1);
         assertTrue(holidaysController.editHolidays(h1));
     }
 
     @Test
-    public void editHolidaysFalseTest(){
+    public void editHolidaysFalseTest() {
         h1 = new Holidays();
         assertFalse(holidaysController.editHolidays(h1));
     }
@@ -85,7 +89,8 @@ public class HolidaysControllerTest {
     @Test
     public void editHolidaysFalseCase2Test() {
         h1 = new Holidays();
-        when(holidaysRepository.updateExistingHolidays(h1.getStartDate(), h1.getEndDate(), h1.getComments(), h1.getHolidaysID())).thenThrow(NullPointerException.class);
+        when(holidaysRepository.updateExistingHolidays(h1.getStartDate(), h1.getEndDate(),
+                h1.getComments(), h1.getHolidaysID())).thenThrow(NullPointerException.class);
         assertFalse(holidaysController.editHolidays(h1));
     }
 
