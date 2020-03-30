@@ -32,6 +32,7 @@ public class UserSchedule implements Initializable {
     private static int DayNow;
     public String reservationDate;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private ChoiceBox monthChoice;
     @FXML
@@ -42,6 +43,8 @@ public class UserSchedule implements Initializable {
     private AnchorPane mainScreen;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      *
@@ -82,6 +85,20 @@ public class UserSchedule implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
 
     /**
      *Method for 'go back' button.
