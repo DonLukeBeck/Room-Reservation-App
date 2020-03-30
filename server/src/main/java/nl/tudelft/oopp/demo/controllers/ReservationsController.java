@@ -30,8 +30,7 @@ public class ReservationsController {
     }
 
     /**
-     * Adds a room reservation to the database.
-     *
+     * Adds a reservation to the database.
      * @param reservation - reservation to be added to the database
      * @return true when the reservation is saved
      */

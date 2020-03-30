@@ -49,6 +49,7 @@ public class RoomsController {
             newRoom.setTables(room.getTables());
             newRoom.setRoomId(room.getRoomId());
             newRoom.setType(room.getType());
+
             roomsRepository.save(newRoom);
             return true;
         }
