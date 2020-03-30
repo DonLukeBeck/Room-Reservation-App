@@ -16,7 +16,6 @@ class DishesTest {
         d1.setName("dish1");
         d1.setPrice(10);
         d1.setVegan(1);
-        d1.setMenuAssociated("Menu1");
     }
 
     @Test
@@ -56,17 +55,5 @@ class DishesTest {
         d1.setVegan(2);
         assertEquals(2, d1.getVegan());
     }
-
-    @Test
-    public void getMenuAssociatedTest() {
-        assertEquals("Menu1", d1.getMenuAssociated());
-    }
-
-    @Test
-    public void setMenuAssociatedTest() {
-        d1.setMenuAssociated("Menu2");
-        assertEquals("Menu2", d1.getMenuAssociated());
-    }
-
 }
 

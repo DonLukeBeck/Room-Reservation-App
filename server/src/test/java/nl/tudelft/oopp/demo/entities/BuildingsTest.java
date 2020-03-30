@@ -27,7 +27,6 @@ class BuildingsTest {
         b1.setName("Building1");
         b1.setOpeningHours(time1);
         b1.setClosingHours(time2);
-        b1.setNumberOfRooms(10);
         b1.setNumberOfBikes(100);
         b1.setUrl("building1.org");
     }
@@ -79,17 +78,6 @@ class BuildingsTest {
     public void setClosingHoursTest() {
         b1.setClosingHours(time3);
         assertEquals(time3, b1.getClosingHours());
-    }
-
-    @Test
-    public void getNumberOfRoomsTest() {
-        assertEquals(10, b1.getNumberOfRooms());
-    }
-
-    @Test
-    public void setNumberOfRoomsTest() {
-        b1.setNumberOfRooms(15);
-        assertEquals(15, b1.getNumberOfRooms());
     }
 
     @Test

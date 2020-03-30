@@ -4,16 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -21,14 +17,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 
 @SuppressWarnings("checkstyle:Indentation")
 public class AdminController implements Initializable {
-    ServerCommunication con = new ServerCommunication();
+    AdminServerCommunication con = new AdminServerCommunication();
 
     @FXML
     private javafx.scene.control.Button add;
@@ -55,14 +50,19 @@ public class AdminController implements Initializable {
     @FXML
     private TextField roomID;
     @FXML
-    private TextField roomCapacity;
+    private TextField numberChairs;
+    @FXML
+    private TextField numberWhiteboards;
+    @FXML
+    private TextField numberTables;
+    @FXML
+    private TextField numberComputers;
     @FXML
     private ChoiceBox listBuildingID;
     @FXML
     private ChoiceBox roomType;
 
-    /**
-     *
+    /** Sends user to admin add page.
      * @param event
      * @throws IOException
      */
@@ -100,20 +100,26 @@ public class AdminController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        j = 0;
-        String[] listAllBuildings = new String[listGetBuildings.size()];
+
+        String[] listAllBuildings = new String[listGetBuildings.size() + 1];
+        listAllBuildings[0] = "Select building";
+        j = 1;
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
             j++;
         }
-        listOpen.setValue("07:00");
-        listClose.setValue("23:30");
-        roomType.setValue("Student");
-        listBuildingID.setValue("Choose building");
+
         listOpen.setItems(FXCollections.observableArrayList(list));
         listClose.setItems(FXCollections.observableArrayList(list));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
-        roomType.setItems(FXCollections.observableArrayList("Study hall", "Exam hall"));
+        roomType.setItems(FXCollections
+                .observableArrayList("Select type","Study hall", "Exam hall"));
+
+        listOpen.setValue("07:00");
+        listClose.setValue("23:30");
+        roomType.setValue("Select type");
+        listBuildingID.setValue("Select building");
+
     }
 
     /***
@@ -127,7 +133,6 @@ public class AdminController implements Initializable {
     }
 
     /**
-     *
      * @param event
      * @throws IOException
      */
@@ -142,7 +147,11 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (addBuildingID.getText().isBlank() || addBuildingName.getText().isBlank() || addBuildingUrl.getText().isBlank() || addBuildingUrl.getText().isBlank()) {
+        if (addBuildingID
+                .getText().isBlank() || addBuildingName
+                .getText().isBlank() || addBuildingUrl
+                .getText().isBlank() || addBuildingUrl
+                .getText().isBlank()) {
             exception.setText("Fill all fields!");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
@@ -151,6 +160,27 @@ public class AdminController implements Initializable {
             exception.setId("Exception");
             return;
         }
+
+        if (listBuildingID.getValue().toString().equals("Select building")) {
+            exception.setText("Please select building.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        if (roomType.getValue().toString().equals("Select type")) {
+            exception.setText("Please select room type.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
 
         int buildingID = 0;
         try {
@@ -181,7 +211,7 @@ public class AdminController implements Initializable {
         System.out.println(buildingOpen);
         System.out.println(buildingClose);
         con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ""
-                + ":00", buildingClose + ":00", imageUrl, bikes, 0);
+                + ":00", buildingClose + ":00", imageUrl, bikes);
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
@@ -200,7 +230,7 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (roomID.getText().isBlank() || roomCapacity.getText().isBlank()) {
+        if (roomID.getText().isBlank() || numberChairs.getText().isBlank()) {
             addException(670, 120, "Fill all fields!", exception);
             return;
         }
@@ -211,22 +241,36 @@ public class AdminController implements Initializable {
 
         int roomCap = 0;
         try {
-            roomCap = Integer.parseInt(roomCapacity.getText());
+            roomCap = Integer.parseInt(numberChairs.getText());
         } catch (Exception e) {
-            addException(670, 120, "Only numbers are allowed for room capacity!", exception);
+            addException(670, 120, "Only numbers are allowed for number of chairs!", exception);
             return;
         }
+
         int building = Integer.parseInt(listBuildingID.getValue().toString());
-        System.out.println(roomID.getText());
-        System.out.println(roomCap);
-        System.out.println(building);
-        System.out.println(roomType.getValue());
-        con.addRoomAdmin(roomID.getText(), roomCap, building, roomType.getValue().toString());
+        int roomWhiteboards = Integer.parseInt(numberWhiteboards.getText());
+        int roomTables = Integer.parseInt(numberTables.getText());
+        int roomComputers = Integer.parseInt(numberComputers.getText());
+
+        con.addRoomAdmin(roomID.getText(),
+                roomCap,
+                roomWhiteboards,
+                roomTables,
+                roomComputers,
+                building,
+                roomType.getValue().toString());
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
+    /**
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     * @param exception
+     * @throws IOException
+     */
     public void addException(double layoutX, double layoutY, String text, Label exception) {
         exception.setText(text);
         exception.setLayoutY(layoutY);

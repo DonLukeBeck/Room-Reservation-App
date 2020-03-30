@@ -27,6 +27,7 @@ public class RoomMenuController implements Initializable {
     public static List<Rooms> rooms;
     private static String room_id;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane1;
     @FXML
@@ -37,6 +38,8 @@ public class RoomMenuController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     public static String getId() {
         return room_id;
@@ -49,10 +52,8 @@ public class RoomMenuController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
+        addRole();
         helper.loadSidePane(sidePane);
-
-        String buildingId = MainMenuController.getId();
-        int builId = Integer.parseInt(buildingId);
 
         List<Rooms> allrooms = new ArrayList<>();
         try {
@@ -61,15 +62,25 @@ public class RoomMenuController implements Initializable {
             e.printStackTrace();
         }
         System.out.println("Working");
-        rooms = new ArrayList<>();
-        for (int i = 0; i < allrooms.size(); i++) {
-            System.out.println("Working2");
-            if (allrooms.get(i).getAssociatedBuilding() == builId) {
-                rooms.add(allrooms.get(i));
+        if (!MainMenuController.getFilter()) {
+            String buildingId = MainMenuController.getId();
+            int builId = Integer.parseInt(buildingId);
+            rooms = new ArrayList<>();
+            for (int i = 0; i < allrooms.size(); i++) {
+                System.out.println("Working2");
+                if (allrooms.get(i).getAssociatedBuilding() == builId) {
+                    rooms.add(allrooms.get(i));
+                }
             }
+        } else {
+            rooms = MainMenuController.getFilterRooms();
+        }
+        System.out.println("running");
+        if (rooms.isEmpty()) {
+            System.out.println("No Rooms");
         }
 
-        System.out.println("running");
+        rooms = roomShownByRole(rooms);
 
         for (int j = 0; j < rooms.size(); j++) {
             Rectangle last = null;
@@ -92,9 +103,9 @@ public class RoomMenuController implements Initializable {
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(422, box.layoutYProperty().getValue() + 100,
-                        rooms.get(j).getCapacity() + "");
+                        rooms.get(j).getChairs() + "");
 
-
+                addBoxButton(344, last.layoutYProperty().getValue(), "B" + j);
             }
             if (id1.contains("B")) {
                 Rectangle box = addBoxToScrollPane(630, last.layoutYProperty().getValue(), "C" + j);
@@ -107,7 +118,9 @@ public class RoomMenuController implements Initializable {
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(708, box.layoutYProperty().getValue() + 100,
-                        rooms.get(j).getCapacity() + "");
+                        rooms.get(j).getChairs() + "");
+
+                addBoxButton(630, last.layoutYProperty().getValue(), "C" + j);
             }
             if (id1.contains("C")) {
                 Rectangle box = addBoxToScrollPane(58,
@@ -120,11 +133,42 @@ public class RoomMenuController implements Initializable {
                 addLabelToScrollPane(104, box.layoutYProperty().getValue() + 40,
                         rooms.get(j).getRoomId());
 
-                addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getCapacity() + "");
+                addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getChairs() + "");
+                addBoxButton(58,
+                        last.layoutYProperty().getValue() + 176, "A" + j);
             }
 
         }
 
+    }
+
+    public List<Rooms> roomShownByRole(List<Rooms> list) {
+        String user = MainSceneController.getRole();
+        List<Rooms> result = new ArrayList<>();
+        for (Rooms e : list) {
+            if (user.equals("teacher")) {
+                result.add(e);
+            } else if (e.getType().equals("Study hall") && user.equals("student")) {
+                result.add(e);
+            }
+        }
+        return result;
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
     }
 
     public void addLabelToScrollPane(double layoutX, double layoutY, String text) {
@@ -158,6 +202,25 @@ public class RoomMenuController implements Initializable {
         return box;
     }
 
+    public void addBoxButton(double layoutX, double layoutY, String id) {
+        Rectangle box = new Rectangle(188, 136);
+
+        box.arcHeightProperty().setValue(30.0);
+        box.arcWidthProperty().setValue(30.0);
+        box.layoutXProperty().setValue(layoutX);
+        box.layoutYProperty().setValue(layoutY);
+        box.fillProperty().setValue(Color.valueOf("transparent"));
+        box.setId(id);
+        box.setOnMouseClicked(event -> {
+            try {
+                roomChosen(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        pane1.getChildren().add(box);
+    }
+
     /**
      * Method for campus map to pop up.
      *
@@ -182,8 +245,9 @@ public class RoomMenuController implements Initializable {
      * @throws IOException
      */
     public void goBack(Event event) throws IOException {
+        MainMenuController.setFilter(false);
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
+        helperController.loadNextScene("/MainMenu.fxml", mainScreen);
     }
 
     /**

@@ -29,6 +29,7 @@ public class MainSceneDisplay extends Application {
         Parent root = loader.load();
 
         primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Room Reservation App");
         primaryStage.show();
     }
 }

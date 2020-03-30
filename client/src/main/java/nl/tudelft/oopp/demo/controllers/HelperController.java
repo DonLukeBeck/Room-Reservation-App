@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +21,8 @@ public class HelperController {
     ServerCommunication con = new ServerCommunication();
 
     /**
-     *Method to get all timeslots.
+     * Method to get all timeslots.
+     *
      * @return List of all timeslots
      */
     public String[] getAllTimeSlots() {
@@ -45,7 +45,6 @@ public class HelperController {
     }
 
     /**
-     *
      * @param path
      * @param scene1
      * @throws IOException
@@ -59,11 +58,50 @@ public class HelperController {
         Parent root = loader.load();
 
         stage1.setScene(new Scene(root));
+        stage1.setTitle("Room Reservation App");
         stage1.show();
     }
 
+    public void exit(AnchorPane scene1) throws IOException {
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+        stage1.close();
+    }
+
+    public void logOut(AnchorPane scene1) throws IOException {
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        stage1.setScene(new Scene(root));
+        stage1.setTitle("Room Reservation App");
+        stage1.show();
+    }
+
+    public void userProfile(AnchorPane scene1) throws IOException {
+        Stage stage1 = (Stage) scene1.getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/UserPage.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        stage1.setScene(new Scene(root));
+        stage1.setTitle("Room Reservation App");
+        stage1.show();
+    }
+
+    public void addRole(Pane pane, String role) {
+        Label label = new Label(role);
+        label.setLayoutX(88);
+        label.setLayoutY(52);
+        label.setFont(Font.font("System", FontWeight.BOLD, 16));
+        pane.getChildren().add(label);
+    }
+
     /**
-     *
      * @param sidePane
      */
     public void loadSidePane(Pane sidePane) {

@@ -7,26 +7,27 @@ import javax.persistence.Id;
 
 public class Menus {
     @Id
-    private String deliveryPlace;
+    private int buildingNumber;
 
-    private int building;
+    private String dishName;
 
     public Menus() {
     }
 
-    public String getDeliveryPlace() {
-        return deliveryPlace;
+
+    public int getBuildingNumber() {
+        return buildingNumber;
     }
 
-    public void setDeliveryPlace(String deliveryPlace) {
-        this.deliveryPlace = deliveryPlace;
+    public void setBuildingNumber(int buildingNumber) {
+        this.buildingNumber = buildingNumber;
     }
 
-    public int getBuilding() {
-        return building;
+    public String getDishName() {
+        return dishName;
     }
 
-    public void setBuilding(int building) {
-        this.building = building;
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 }
