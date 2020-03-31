@@ -89,12 +89,15 @@ public class UserSchedule implements Initializable {
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
+
     public void paneLogOut(Event event) throws  IOException {
         helper.logOut(mainScreen);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
@@ -128,7 +131,8 @@ public class UserSchedule implements Initializable {
     private void calendarr(Event event) throws IOException {
         int i = 1;
         int flag = 0;
-        String[] months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] months = new String[]{"January", "February", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November", "December"};
         int monIndex = -1;
         // System.out.println(MonthChoice.getValue());
         for (int j = 0; j < months.length; j++) {
@@ -176,20 +180,26 @@ public class UserSchedule implements Initializable {
                     if (day == DayNow && Fmonth == MonthNow) {
                         System.out.println("Here");
                         BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
+                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
                     } else {
                         BorderWidths bor = new BorderWidths(0, 0, 0, 0);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
+                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
                     }
                     ((AnchorPane) e).getChildren().add(text);
                     //get all events for today
-                    List<Reservations> reservationsToday = findReservations(day, Fmonth, Fyear, reservationsUser);
-                    List<UserEvent> userEventsToday = findUserEvents(day, Fmonth, Fyear, userEvents);
-                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
+                    List<Reservations> reservationsToday = findReservations(day, Fmonth, Fyear,
+                            reservationsUser);
+                    List<UserEvent> userEventsToday = findUserEvents(day,
+                            Fmonth, Fyear, userEvents);
+                    Text events = new Text((reservationsToday.size()
+                            + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth, Fyear, reservationsToday, userEventsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth,
+                            Fyear, reservationsToday, userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -204,21 +214,28 @@ public class UserSchedule implements Initializable {
                     if (day == DayNow && Fmonth == MonthNow) {
                         System.out.println("Here");
                         BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
+                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
                     } else {
                         BorderWidths bor = new BorderWidths(0, 0, 0, 0);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
+                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
                     }
                     ((AnchorPane) e).getChildren().add(text);
 
                     //get all events for today
-                    List<Reservations> reservationsToday = findReservations(day, Fmonth, Fyear, reservationsUser);
-                    List<UserEvent> userEventsToday = findUserEvents(day, Fmonth, Fyear, userEvents);
-                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
+                    List<Reservations> reservationsToday = findReservations(day, Fmonth, Fyear,
+                            reservationsUser);
+                    List<UserEvent> userEventsToday = findUserEvents(day, Fmonth,
+                            Fyear, userEvents);
+                    Text events = new Text((reservationsToday.size()
+                            + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth, Fyear, reservationsToday, userEventsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth,
+                            Fyear, reservationsToday,
+                            userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -233,8 +250,11 @@ public class UserSchedule implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        monthChoice.setItems(FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"));
+        String[] allMonths = new String[]{"January", "February", "March", "April", "May",
+                "June", "July", "August", "September", "October", "November", "December"};
+        monthChoice.setItems(FXCollections.observableArrayList("January", "February",
+                "March", "April", "May", "June", "July", "August", "September", "October",
+                "November", "December"));
 
         Calendar defaultCalendar = Calendar.getInstance();
 
@@ -301,19 +321,23 @@ public class UserSchedule implements Initializable {
                     if (day == day1) {
                         System.out.println("Here");
                         BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
+                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
                     }
                     i++;
                     ((AnchorPane) e).getChildren().add(text);
 
                     //get all events for today
-                    List<Reservations> reservationsToday = findReservations(day, month, year, reservationsUser);
+                    List<Reservations> reservationsToday = findReservations(day, month,
+                            year, reservationsUser);
                     List<UserEvent> userEventsToday = findUserEvents(day, month, year, userEvents);
-                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
+                    Text events = new Text((reservationsToday.size()
+                            + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday, userEventsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday,
+                            userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -327,19 +351,23 @@ public class UserSchedule implements Initializable {
                 if (days > 0) {
                     if (day == day1) {
                         BorderWidths bor = new BorderWidths(5, 5, 5, 5);
-                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
+                        ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
+                                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, bor)));
                     }
 
                     ((AnchorPane) e).getChildren().add(text);
 
                     //get all events for today
-                    List<Reservations> reservationsToday = findReservations(day, month, year, reservationsUser);
+                    List<Reservations> reservationsToday = findReservations(day, month,
+                            year, reservationsUser);
                     List<UserEvent> userEventsToday = findUserEvents(day, month, year, userEvents);
-                    Text events = new Text((reservationsToday.size() + userEventsToday.size()) + " events");
+                    Text events = new Text((reservationsToday.size()
+                            + userEventsToday.size()) + " events");
                     events.setTranslateX(30);
                     events.setTranslateY(80);
                     events.setRotate(-90);
-                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday, userEventsToday));
+                    e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday,
+                            userEventsToday));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -378,7 +406,8 @@ public class UserSchedule implements Initializable {
      * @param reservations : List with the reservations to filter
      * @return : List with filtered reservations.
      */
-    public List<Reservations> findReservations(int day, int month, int year, List<Reservations> reservations) {
+    public List<Reservations> findReservations(int day, int month, int year,
+                                               List<Reservations> reservations) {
         List<Reservations> filteredReservations = new ArrayList<>();
 
         String dateString = "";
@@ -455,11 +484,11 @@ public class UserSchedule implements Initializable {
 
     public void printReservations(List<Reservations> reservations) {
         for (Reservations r : reservations) {
-            System.out.println(r.getUserReserving() + " reserved " +
-                    r.getRoomReserved() + " res_ID =" + r.getId() +
-                    "\n Date: " + r.getDate() +
-                    "\n Year=" + r.getDate().getYear() + ", Month=" +
-                    r.getDate().getMonth() + ", Day=" + r.getDate().getDay());
+            System.out.println(r.getUserReserving() + " reserved "
+                    + r.getRoomReserved() + " res_ID =" + r.getId()
+                    + "\n Date: " + r.getDate()
+                    + "\n Year=" + r.getDate().getYear() + ", Month="
+                    + r.getDate().getMonth() + ", Day=" + r.getDate().getDay());
         }
         for (Reservations r : reservations) {
             System.out.println(r.getDate());

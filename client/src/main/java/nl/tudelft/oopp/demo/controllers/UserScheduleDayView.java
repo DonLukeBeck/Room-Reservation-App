@@ -1,18 +1,17 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import nl.tudelft.oopp.demo.entities.Reservations;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import nl.tudelft.oopp.demo.entities.Reservations;
 
 public class UserScheduleDayView {
     private int day = 0;

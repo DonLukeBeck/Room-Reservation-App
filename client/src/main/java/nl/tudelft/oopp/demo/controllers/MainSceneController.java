@@ -16,7 +16,8 @@ import nl.tudelft.oopp.demo.entities.Users;
 public class MainSceneController {
     private static String user;
     private static String role;
-    public static String getRole(){
+
+    public static String getRole() {
         return role;
     }
 

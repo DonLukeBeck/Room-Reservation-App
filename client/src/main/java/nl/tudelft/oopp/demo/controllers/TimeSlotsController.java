@@ -78,7 +78,7 @@ public class TimeSlotsController implements Initializable {
         return timeslot;
     }
 
-    public void addRole(){
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 

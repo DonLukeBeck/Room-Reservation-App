@@ -95,9 +95,11 @@ public class RoomMenuController implements Initializable {
             if (id1.contains("A")) {
                 Rectangle box = addBoxToScrollPane(344, last.layoutYProperty().getValue(), "B" + j);
 
-                addLabelToScrollPane(394, box.layoutYProperty().getValue() + 11, "Room ID:");
+                addLabelToScrollPane(394, box.layoutYProperty().getValue()
+                        + 11, "Room ID:");
 
-                addLabelToScrollPane(390, box.layoutYProperty().getValue() + 70, "Capacity:");
+                addLabelToScrollPane(390, box.layoutYProperty().getValue()
+                        + 70, "Capacity:");
 
                 addLabelToScrollPane(390, box.layoutYProperty().getValue() + 40,
                         rooms.get(j).getRoomId());
@@ -126,14 +128,18 @@ public class RoomMenuController implements Initializable {
                 Rectangle box = addBoxToScrollPane(58,
                         last.layoutYProperty().getValue() + 176, "A" + j);
 
-                addLabelToScrollPane(108, box.layoutYProperty().getValue() + 11, "Room ID:");
+                addLabelToScrollPane(108, box.layoutYProperty().getValue()
+                        + 11, "Room ID:");
 
-                addLabelToScrollPane(104, box.layoutYProperty().getValue() + 70, "Capacity:");
+                addLabelToScrollPane(104, box.layoutYProperty().getValue()
+                        + 70, "Capacity:");
 
-                addLabelToScrollPane(104, box.layoutYProperty().getValue() + 40,
+                addLabelToScrollPane(104, box.layoutYProperty().getValue()
+                                + 40,
                         rooms.get(j).getRoomId());
 
-                addLabelToScrollPane(136, box.layoutYProperty().getValue() + 100, rooms.get(j).getChairs() + "");
+                addLabelToScrollPane(136, box.layoutYProperty().getValue()
+                        + 100, rooms.get(j).getChairs() + "");
                 addBoxButton(58,
                         last.layoutYProperty().getValue() + 176, "A" + j);
             }

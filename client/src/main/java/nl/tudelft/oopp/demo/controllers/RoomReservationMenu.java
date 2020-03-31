@@ -84,7 +84,8 @@ public class RoomReservationMenu implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public void addRole(){
+
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
