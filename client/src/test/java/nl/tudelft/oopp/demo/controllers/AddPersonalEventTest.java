@@ -9,6 +9,9 @@ public class AddPersonalEventTest {
 
     private AddPersonalEvent personalEvent;
 
+    /**
+     * Setup of a personal event to test methods.
+     */
     @BeforeEach
     public void setup() {
         personalEvent = new AddPersonalEvent();
