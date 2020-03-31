@@ -46,7 +46,8 @@ public class BikeReservationMenu implements Initializable {
     private Pane rightPane;
 
     /**
-     * @return
+     * Method to get the month of the reservation.
+     * @return Month as an integer
      */
     public static int getMonth() {
         return Fmonth;
@@ -54,8 +55,7 @@ public class BikeReservationMenu implements Initializable {
 
     /**
      * Method to get the Year.
-     *
-     * @return The year
+     * @return The year as an integer
      */
     public static int getYear() {
         return Fyear;
@@ -63,8 +63,7 @@ public class BikeReservationMenu implements Initializable {
 
     /**
      * Method to get the day.
-     *
-     * @return The day
+     * @return The day as an integer
      */
     public static int getDay() {
         return FDay;
@@ -72,7 +71,6 @@ public class BikeReservationMenu implements Initializable {
 
     /**
      * Method for 'campus map' button.
-     *
      * @param event Event that triggers the campus map pop-up, in this case clicking on campus map
      * @throws IOException
      */
@@ -102,16 +100,23 @@ public class BikeReservationMenu implements Initializable {
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
+
     public void paneLogOut(Event event) throws  IOException {
         helper.logOut(mainScreen);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
-    public void addRole(){
+
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
+    /**
+     * Method to return month as a integer.
+     * @return Month as integer
+     */
     public int getMonthFromSearch() {
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};

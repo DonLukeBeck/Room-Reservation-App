@@ -37,10 +37,11 @@ public class BikeReservationCompleted implements Initializable {
         return name;
     }
 
-    /***
-     *
+
+    /**
+     *Method to initialize.
      * @param location Location of the picture
-     * @param resources
+     * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,6 +137,11 @@ public class BikeReservationCompleted implements Initializable {
         helper.userProfile(pane);
     }
 
+    /**
+     * Method to format the name properly.
+     * @param name Name input
+     * @return Name in proper format
+     */
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {

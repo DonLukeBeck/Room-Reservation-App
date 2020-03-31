@@ -61,7 +61,7 @@ public class FoodReservationCompleted implements Initializable {
         String[] nameA = name.split("\\(");
         addLabelToPane(445, 470, nameInProperFormat(nameA[0]));
 
-        addLabelToPane(345 , 540, FoodSlots.getDate());
+        addLabelToPane(345, 540, FoodSlots.getDate());
 
         addLabelToPane(390, 610, FoodSlots.getTimeslot());
 
@@ -69,6 +69,12 @@ public class FoodReservationCompleted implements Initializable {
 
     }
 
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     */
     public void addLabelToPane(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
         label.setLayoutY(layoutY);
@@ -78,6 +84,11 @@ public class FoodReservationCompleted implements Initializable {
         pane.getChildren().add(label);
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {

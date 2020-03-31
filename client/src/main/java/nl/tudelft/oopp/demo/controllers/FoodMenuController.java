@@ -47,8 +47,7 @@ public class FoodMenuController implements Initializable {
     private Pane rightPane;
 
     /**
-     * Method for getting dish
-     *
+     * Method for getting dish.
      * @return dish
      */
     public static String getDishesName() {
@@ -57,7 +56,6 @@ public class FoodMenuController implements Initializable {
 
     /**
      * Method to pop up campus map.
-     *
      * @param event Clicking on 'campus map'
      * @throws IOException
      */
@@ -71,9 +69,11 @@ public class FoodMenuController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public void addRole(){
+
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -109,46 +109,63 @@ public class FoodMenuController implements Initializable {
                 Rectangle box = addBoxToScrollPane(340, last.layoutYProperty().getValue(), "B" + j);
 
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    addLabelToScrollPane(350, box.layoutYProperty().getValue() + 10, "(vegan) Dish:", 18);
+                    addLabelToScrollPane(350, box.layoutYProperty().getValue()
+                            + 10, "(vegan) Dish:", 18);
                 } else {
-                    addLabelToScrollPane(350, box.layoutYProperty().getValue() + 10, "Dish:", 18);
+                    addLabelToScrollPane(350, box.layoutYProperty().getValue()
+                            + 10, "Dish:", 18);
                 }
 
-                addLabelToScrollPane(350, box.layoutYProperty().getValue() + 70, "Price: ", 18);
+                addLabelToScrollPane(350, box.layoutYProperty().getValue()
+                        + 70, "Price: ", 18);
 
-                addLabelToScrollPane(370, box.layoutYProperty().getValue() + 40, menusByBuilding.get(j).getName(), 20);
+                addLabelToScrollPane(370, box.layoutYProperty().getValue()
+                        + 40, menusByBuilding.get(j).getName(), 20);
 
-                addLabelToScrollPane(370, box.layoutYProperty().getValue() + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
+                addLabelToScrollPane(370, box.layoutYProperty().getValue()
+                        + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
             if (id1.contains("B")) {
-                Rectangle box = addBoxToScrollPane(625, last.layoutYProperty().getValue(), "C" + j);
+                Rectangle box = addBoxToScrollPane(625, last.layoutYProperty().getValue(),
+                        "C" + j);
 
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    addLabelToScrollPane(640, box.layoutYProperty().getValue() + 10, "(vegan) Dish:", 18);
+                    addLabelToScrollPane(640, box.layoutYProperty().getValue()
+                            + 10, "(vegan) Dish:", 18);
                 } else {
-                    addLabelToScrollPane(640, box.layoutYProperty().getValue() + 10, "Dish:", 18);
+                    addLabelToScrollPane(640, box.layoutYProperty().getValue()
+                            + 10, "Dish:", 18);
                 }
 
-                addLabelToScrollPane(640, box.layoutYProperty().getValue() + 70, "Price: ", 18);
+                addLabelToScrollPane(640, box.layoutYProperty().getValue()
+                        + 70, "Price: ", 18);
 
-                addLabelToScrollPane(660, box.layoutYProperty().getValue() + 40, menusByBuilding.get(j).getName(), 20);
+                addLabelToScrollPane(660, box.layoutYProperty().getValue()
+                        + 40, menusByBuilding.get(j).getName(), 20);
 
-                addLabelToScrollPane(660, box.layoutYProperty().getValue() + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
+                addLabelToScrollPane(660, box.layoutYProperty().getValue()
+                        + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
             if (id1.contains("C")) {
-                Rectangle box = addBoxToScrollPane(55, last.layoutYProperty().getValue() + 176, "A" + j);
+                Rectangle box = addBoxToScrollPane(55,
+                        last.layoutYProperty().getValue() + 176, "A" + j);
 
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    addLabelToScrollPane(65, box.layoutYProperty().getValue() + 10, "(vegan) Dish:", 18);
+                    addLabelToScrollPane(65, box.layoutYProperty().getValue()
+                            + 10, "(vegan) Dish:", 18);
                 } else {
-                    addLabelToScrollPane(65, box.layoutYProperty().getValue() + 10, "Dish:", 18);
+                    addLabelToScrollPane(65, box.layoutYProperty().getValue()
+                            + 10, "Dish:", 18);
                 }
 
-                addLabelToScrollPane(65, box.layoutYProperty().getValue() + 70, "Price: ", 18);
+                addLabelToScrollPane(65, box.layoutYProperty().getValue()
+                        + 70, "Price: ", 18);
 
-                addLabelToScrollPane(85, box.layoutYProperty().getValue() + 40, menusByBuilding.get(j).getName(), 20);
+                addLabelToScrollPane(85, box.layoutYProperty().getValue()
+                        + 40, menusByBuilding.get(j).getName(), 20);
 
-                addLabelToScrollPane(85, box.layoutYProperty().getValue() + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
+                addLabelToScrollPane(85, box.layoutYProperty().getValue()
+                        + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
         }
     }
@@ -157,12 +174,27 @@ public class FoodMenuController implements Initializable {
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
+
     public void paneLogOut(Event event) throws  IOException {
         helper.logOut(mainScreen);
     }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     * @param size
+     */
     public void addLabelToScrollPane(double layoutX, double layoutY, String text, int size) {
         Label label = new Label(text);
         pane1.getChildren().add(label);

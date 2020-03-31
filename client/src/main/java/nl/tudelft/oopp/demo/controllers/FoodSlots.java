@@ -145,21 +145,26 @@ public class FoodSlots implements Initializable {
 
         String dishName = FoodMenuController.getDishesName();
 
-        con.foodReservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building), dishName);
+        con.foodReservation(MainSceneController.getUser(), timeslot
+                + ":00", date, Integer.parseInt(building), dishName);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationFoodCompleted.fxml", mainScreen);
     }
+
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
+
     public void paneLogOut(Event event) throws  IOException {
         helper.logOut(mainScreen);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
-    public void addRole(){
+
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
