@@ -38,6 +38,13 @@ public class FoodReservationCompleted implements Initializable {
     }
 
 
+    /**
+     * Method for initializing pane, displaying all information on dish:
+     * building ID, building name, date, time slot, dish
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helperController = new HelperController();
@@ -70,10 +77,11 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
+     * Method to add a label to pane
      *
-     * @param layoutX
-     * @param layoutY
-     * @param text
+     * @param layoutX x-value of where the label will be at
+     * @param layoutY y-value of where the label will be at
+     * @param text String displayed in the label
      */
     public void addLabelToPane(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
@@ -85,9 +93,10 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
+     * Method to get the name of a building in a proper format
      *
-     * @param name
-     * @return
+     * @param name name not in proper format
+     * @return String of name in proper format
      */
     public String nameInProperFormat(String name) {
         String result = "";
