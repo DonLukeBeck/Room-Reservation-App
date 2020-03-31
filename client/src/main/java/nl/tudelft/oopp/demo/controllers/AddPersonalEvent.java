@@ -106,7 +106,7 @@ public class AddPersonalEvent {
         if (month < 9) {
             res += "0";
         }
-        res += month + 1;
+        res += month;
         res += "-";
         if (day < 10) {
             res += "0";

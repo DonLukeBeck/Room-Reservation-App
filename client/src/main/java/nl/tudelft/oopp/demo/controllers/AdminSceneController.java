@@ -34,7 +34,7 @@ public class AdminSceneController {
 
     /**
      * Method to load admin edit view.
-     * @param event Clicking on edit
+     * @param event Clicking on edit.
      * @throws IOException
      */
     public void goToEditPage(ActionEvent event) throws IOException {
