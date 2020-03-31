@@ -3,6 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -108,8 +109,6 @@ public class FoodSlots implements Initializable {
         int currentMonth = defaultCalendar.get(Calendar.MONTH);
         int currentDay = defaultCalendar.get(Calendar.DAY_OF_MONTH);
 
-//        int checkDate = RoomReservationMenu.getDay();
-//        int checkMonth = RoomReservationMenu.getMonth() + 1;
         String formatDate = currentDay + "";
         String formatMonth = currentMonth + "";
 
@@ -122,7 +121,6 @@ public class FoodSlots implements Initializable {
 
         date = currentYear + "-" + formatMonth + "-" + formatDate;
 
-
         Rectangle slot = (Rectangle) event.getSource();
         if (slot.fillProperty().getValue().equals(Color.valueOf("#ffc500"))) {
             slot.fillProperty().setValue(Color.valueOf("blue"));
@@ -130,19 +128,7 @@ public class FoodSlots implements Initializable {
             slot.fillProperty().setValue(Color.valueOf("#ffc500"));
         }
 
-        String str = event.getSource().toString();
-        String[] temp = str.split(" ");
-        String newTemp = "";
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i].contains("id=")) {
-                newTemp = temp[i];
-            }
-        }
-        String[] arrId = newTemp.split("=");
-        String temp2 = arrId[1];
-        temp2 = temp2.substring(1, temp2.length() - 1);
-        timeslot = temp2.replace('A', ':');
-
+        timeslot = getTimeSlotFromID(event.getSource().toString());
         String dishName = FoodMenuController.getDishesName();
 
         con.foodReservation(MainSceneController.getUser(), timeslot
@@ -169,101 +155,77 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     * @param location
-     * @param resources
+     * Method for getting the starting hour using LocalTime     *
+     *
+     * @return the hour used for the start of the building
      */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        addRole();
-        List<Buildings> list = null;
+    public double getLocalTime() {
+        LocalTime localtime = java.time.LocalTime.now();
+        double hour = localtime.getHour();
+        if (localtime.getMinute() <= 20) {
+            hour += 0.5;
+        }
+        else if (localtime.getMinute() <= 50) {
+            hour += 1;
+        }
+        else {
+            hour += 1.5;
+        }
+        return hour;
+    }
 
-        HelperController helper = new HelperController();
-        helper.loadSidePane(sidePane);
+    /**
+     * Method for getting the opening and closing time of a building
+     *
+     * @param start  the starting time of a building
+     * @param closed    the closing time of a building
+     * @return the starting time and closing time in an array
+     */
+    public double[] getEndAndStart(Time start, Time closed) {
+        String openTime = start.toString().substring(0, 5);
+        String closingTime = closed.toString().substring(0, 5);
+        String[] opening = openTime.split(":");
+        String[] closing = closingTime.split(":");
 
-        try {
-            list = con.getBuildings();
-        } catch (IOException e) {
-            e.printStackTrace();
+        double startTime = Integer.parseInt(opening[0]);
+        double timeNow = getLocalTime();
+
+        if (startTime < timeNow) {
+            startTime = timeNow;
+        }
+        else if (opening[1].equals("30")) {
+            startTime = startTime + 0.5;
         }
 
-        List<Reservations> allReservations = null;
+        double endTime = Integer.parseInt(closing[0]);
 
-        try {
-            allReservations = con.getReservations();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (endTime < 6) {
+            endTime = endTime + 24;
         }
-
-        Time closed = null;
-        Time open = null;
-
-        for (Buildings e : list) {
-            if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
-                System.out.println("Works");
-                open = e.getOpeningHours();
-                closed = e.getClosingHours();
-                break;
-            }
-        }
-
-        room = RoomMenuController.getId();
-        /* int checkDate = RoomReservationMenu.getDay();
-        int checkMonth = RoomReservationMenu.getMonth() + 1;
-        String formatDate = checkDate + "";
-        String formatMonth = checkMonth + "";
-
-        if (checkDate < 10) {
-            formatDate = "0" + checkDate;
-        }
-        if (checkMonth < 10) {
-            formatMonth = "0" + checkMonth;
-        }
-
-        date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
-        */
-
-//
-//        List<Reservations> allSuitableRes = new ArrayList<>();
-//
-//        for (Reservations e : allReservations) {
-//            if (e.getDate().toString().equals(date) && e.getRoomReserved() != null && e.getRoomReserved().equals(room)) {
-//                allSuitableRes.add(e);
-//            }
-//        }
-
-        String opentime = open.toString().substring(0, 5);
-        String closingtime = closed.toString().substring(0, 5);
-        String[] opening = opentime.split(":");
-        String[] closing = closingtime.split(":");
-        double start = Integer.parseInt(opening[0]);
-        double end = Integer.parseInt(closing[0]);
-
-        if (opening[1].equals("30")) {
-            start = start + 0.5;
-        }
-
         if (closing[1].equals("30")) {
-            end = end + 0.5;
+            endTime = endTime + 0.5;
         }
+
+        double[] endAndStart = new double[2];
+        endAndStart[0] = endTime;
+        endAndStart[1] = startTime;
+
+        return endAndStart;
+    }
+
+    /**
+     * Method for disabling all timeslots that aren't available
+     *
+     * @param start start of enabled timeslots
+     * @param end   end of enabled timeslots
+     */
+    public void disableNotSuitableSlots(double start, double end) {
 
         for (Node k : slots.getChildren()) {
             if (k instanceof Rectangle) {
-                String str = k.toString();
-                String[] temp = str.split(" ");
-                String newTemp = "";
-                for (int i = 0; i < temp.length; i++) {
-                    if (temp[i].contains("id=")) {
-                        newTemp = temp[i];
-                        break;
-                    }
-                }
-                String[] arrId = newTemp.split("=");
-                String temp2 = arrId[1];
-                temp2 = temp2.substring(1, temp2.length() - 1);
-                String time = temp2.replace('A', ':');
-
-                String[] firsttime = time.split(" ");
-                String[] seperateHandM = firsttime[0].split(":");
+                String time = getTimeSlotFromID(k.toString());
+                String[] firstTime = time.split(" ");
+                String[] seperateHandM = firstTime[0].split(":");
                 double hours = Integer.parseInt(seperateHandM[0]);
 
                 if (seperateHandM[1].equals("30")) {
@@ -273,8 +235,63 @@ public class FoodSlots implements Initializable {
                     ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
                     k.disableProperty().setValue(true);
                 }
+             }
+        }
+    }
+
+    /**
+     * Method for getting timeslot in proper format from string
+     *
+     * @param str used string to get timeslot from
+     * @return timeslot in right format
+     */
+    public String getTimeSlotFromID(String str) {
+        String[] temp = str.split(" ");
+        String newTemp = "";
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i].contains("id=")) {
+                newTemp = temp[i];
             }
         }
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
+        temp2 = temp2.substring(1, temp2.length() - 1);
+        timeslot = temp2.replace('A', ':');
+        return timeslot;
+    }
+    /**
+     * Method for initializing timeslots
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        HelperController helper = new HelperController();
+        helper.loadSidePane(sidePane);
+        addRole();
+
+        List<Buildings> list = null;
+        try {
+            list = con.getBuildings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Time closed = null;
+        Time open = null;
+        for (Buildings e : list) {
+            if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
+                System.out.println("Works");
+                open = e.getOpeningHours();
+                closed = e.getClosingHours();
+                break;
+            }
+        }
+        room = RoomMenuController.getId();
+
+        double[] endAndStart = getEndAndStart(open, closed);
+        disableNotSuitableSlots(endAndStart[1], endAndStart[0]);
     }
 
     /**

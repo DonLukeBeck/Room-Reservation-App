@@ -99,6 +99,12 @@ public class TimeSlotsController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Method for getting timeslot in proper format from string
+     *
+     * @param str used string to get timeslot from
+     * @return timeslot in right format
+     */
     public String getTimeSlotFromID(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
@@ -238,8 +244,9 @@ public class TimeSlotsController implements Initializable {
 
 
     /**
-     * @param location
-     * @param resources
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resources The resources used to localize the root object, or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
