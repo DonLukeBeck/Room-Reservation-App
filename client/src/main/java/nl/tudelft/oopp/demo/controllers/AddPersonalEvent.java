@@ -19,6 +19,10 @@ public class AddPersonalEvent {
     @FXML
     private javafx.scene.control.ChoiceBox minutesChoiceBox;
 
+
+    /**
+     * Method to initialize a personal event.
+     */
     public void initialize() {
         for (int i = 1; i < 24; i++) {
             String iString = "";
@@ -38,6 +42,9 @@ public class AddPersonalEvent {
         }
     }
 
+    /**
+     * Method to add an event.
+     */
     public void addEvent() {
         if (descriptionField.getText().isBlank()) {
             return;
@@ -51,7 +58,8 @@ public class AddPersonalEvent {
             return;
         }
         String timeSlot = hoursString + ":" + minutesString + ":00";
-        con.addUserEvent(Users.user.getNetid(), timeSlot, getDateString(), descriptionField.getText());
+        con.addUserEvent(Users.user.getNetid(), timeSlot,
+                getDateString(), descriptionField.getText());
         cancel();
     }
 
@@ -76,6 +84,10 @@ public class AddPersonalEvent {
         this.month = month;
     }
 
+    /**
+     * Method to return year.
+     * @return Year
+     */
     public int getYear() {
         return year;
     }
@@ -84,6 +96,10 @@ public class AddPersonalEvent {
         this.year = year;
     }
 
+    /**
+     * Method to get date and return it as a string.
+     * @return Date as a string
+     */
     public String getDateString() {
         String res = "";
         res += year + "-";

@@ -73,9 +73,9 @@ public class AdminController implements Initializable {
     }
 
     /***
-     *
+     *Method for admin to initialize picture and resource bundle.
      * @param location Location of the picture
-     * @param resources
+     * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -123,8 +123,8 @@ public class AdminController implements Initializable {
     }
 
     /***
-     *
-     * @param event
+     *Method to go back to main admin scene.
+     * @param event Clicking on go back
      * @throws IOException
      */
     public void goBack(ActionEvent event) throws IOException {
@@ -133,7 +133,8 @@ public class AdminController implements Initializable {
     }
 
     /**
-     * @param event
+     * Method for admin to add a building.
+     * @param event Clicking on add building
      * @throws IOException
      */
     public void addBuilding(Event event) throws IOException {
@@ -217,7 +218,8 @@ public class AdminController implements Initializable {
     }
 
     /**
-     * @param event
+     * Method for admin to add a room.
+     * @param event Clicking on add room
      * @throws IOException
      */
     public void addRoom(Event event) throws IOException {
