@@ -80,5 +80,4 @@ public class UserEventTest {
         assertEquals("test", ue1.getDescription());
     }
 
-
 }
