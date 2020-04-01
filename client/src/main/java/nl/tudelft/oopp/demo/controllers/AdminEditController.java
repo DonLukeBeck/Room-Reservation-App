@@ -183,6 +183,53 @@ public class AdminEditController implements Initializable {
                         }
                     }
                 });
+
+        listBuildingID2.getSelectionModel()
+                .selectedIndexProperty()
+                .addListener(new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                        try{
+                            Buildings selectedBuilding = con
+                                    .getBuildingByName(Integer.parseInt(listAllBuildings[(int)newValue]));
+
+                            listRoomsID.setItems(FXCollections.observableArrayList(con.getRoomsByBuilding(selectedBuilding.getBuilding_number())));
+
+                            listRoomsID.getSelectionModel()
+                                    .selectedIndexProperty()
+                                    .addListener(new ChangeListener<Number>() {
+                                        @Override
+                                        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                                            Rooms selectedRoom = new Rooms();
+                                            try{
+                                                for(Rooms r : con.getRoomsByBuilding(selectedBuilding.getBuilding_number())){
+                                                    if(Integer.parseInt(r.getRoomId()) == (int)newValue){
+                                                        selectedRoom = r;
+                                                    }
+
+                                                }
+                                                editRoomID.setText(selectedRoom.getRoomId());
+                                                numberChairs.setText(String.valueOf(selectedRoom.getChairs()));
+                                                numberComputers.setText(String.valueOf(selectedRoom.getChairs()));
+                                                numberTables.setText(String.valueOf(selectedRoom.getTables()));
+                                                numberWhiteboards.setText(String.valueOf(selectedRoom.getWhiteboards()));
+                                            } catch (IOException e){
+                                                e.printStackTrace();
+                                                System.out.print("No selected Room");
+                                            }
+                                            }
+
+
+                                    });
+
+
+
+                        } catch (IOException e){
+                            e.printStackTrace();
+                            System.out.print("No selected Building");
+                        }
+                    }
+                });
     }
 
     /***
