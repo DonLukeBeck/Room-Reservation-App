@@ -86,7 +86,7 @@ public class TimeSlotsController implements Initializable {
      * Method to pop up campus map.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map scene
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -134,7 +134,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * @param event
-     * @throws IOException
+     * @throws IOException Exception if can't find complete reservation scene
      */
     public void timeSlot(Event event) throws IOException {
         building = RoomMenuController.getBuildingId();
@@ -170,6 +170,12 @@ public class TimeSlotsController implements Initializable {
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param allSuitableRes
+     * @param start
+     * @param end
+     */
     public void disableNotSuitableSlots(List<Reservations> allSuitableRes,
                                         double start, double end) {
 
@@ -199,6 +205,10 @@ public class TimeSlotsController implements Initializable {
         }
     }
 
+    /**
+     * Method to change date format.
+     * @return Date
+     */
     public String returnDateInSuitableFormat() {
         int checkDate = RoomReservationMenu.getDay();
         int checkMonth = RoomReservationMenu.getMonth() + 1;
@@ -216,6 +226,12 @@ public class TimeSlotsController implements Initializable {
         return date;
     }
 
+    /**
+     *
+     * @param open
+     * @param closed
+     * @return
+     */
     public double[] getEndAndStart(Time open, Time closed) {
         String openTime = open.toString().substring(0, 5);
         String closingTime = closed.toString().substring(0, 5);
@@ -244,7 +260,7 @@ public class TimeSlotsController implements Initializable {
 
 
     /**
-     *
+     * Method to initialize.
      * @param location The location used to resolve relative paths for the root object,
      *                or null if the location is not known
      * @param resources The resources used to localize the root object,
