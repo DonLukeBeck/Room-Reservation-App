@@ -271,7 +271,7 @@ public class RoomMenuController implements Initializable {
 
         room_id = rooms.get(roomIndex).getRoomId();
 
-        String buildingId = MainMenuController.getId().substring(1);
+        //String buildingId = MainMenuController.getId().substring(1);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
