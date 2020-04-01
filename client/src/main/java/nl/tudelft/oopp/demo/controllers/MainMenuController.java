@@ -56,6 +56,8 @@ public class MainMenuController implements Initializable {
     private CheckBox filterWhiteboards;
     @FXML
     private CheckBox filterComputers;
+    @FXML
+    private Pane rightPane;
 
     public static boolean getFilter() {
         return filter;
@@ -73,6 +75,10 @@ public class MainMenuController implements Initializable {
         return id;
     }
 
+    /**
+     *Method to open filter.
+     * @param event Clicking on filter
+     */
     public void openFilter(Event event) {
         if (filterPane.isVisible()) {
             filterPane.setVisible(false);
@@ -83,6 +89,22 @@ public class MainMenuController implements Initializable {
 
     public void closeFilter(Event event) {
         filterPane.setVisible(false);
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
@@ -104,14 +126,13 @@ public class MainMenuController implements Initializable {
 
         buildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
 
-        filterRoomType.setItems(FXCollections.observableArrayList("Exam Hall", "Study Hall"));
+        filterRoomType.setItems(FXCollections.observableArrayList("Exam hall", "Study hall"));
     }
 
     /**
      * Getting the input of the user from the fields of the filter.
      * Filtering for suitable rooms
-     *
-     * @throws IOException
+     * @throws IOException Exception if can't find room menu page
      */
     public void searchRoom() throws IOException {
         int building = 1000;
@@ -169,7 +190,7 @@ public class MainMenuController implements Initializable {
             System.out.println(type);
             type = "Study hall";
         }
-
+        System.out.println(type);
         List<Rooms> result = new ArrayList<>();
 
         for (Rooms e : suitableRooms) {
@@ -189,9 +210,8 @@ public class MainMenuController implements Initializable {
 
     /**
      * Opening image of the campus map.
-     *
-     * @param event
-     * @throws IOException
+     * @param event Clicking on campus map button
+     * @throws IOException Exception if can't find campus map scene
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -206,10 +226,9 @@ public class MainMenuController implements Initializable {
 
     /**
      * Opens the fxml of the next scene on click.
-     *
-     * @param event
-     * @param buildingNumber
-     * @throws IOException
+     * @param event Clicking on reservation
+     * @param buildingNumber Building number as a string
+     * @throws IOException Exception if can't find main reservation menu page
      */
     public void goToMenuReservation(Event event, String buildingNumber) throws IOException {
         id = buildingNumber;
@@ -218,6 +237,12 @@ public class MainMenuController implements Initializable {
         helper.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     */
     public void addLabelSidePane(double layoutX, double layoutY, String text) {
         Label sideBuilding = new Label(text);
         sideBuilding.setLayoutX(layoutX);
@@ -227,6 +252,13 @@ public class MainMenuController implements Initializable {
         sidePane.getChildren().add(sideBuilding);
     }
 
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     * @param id
+     */
     public void addLabelScrollPane(double layoutX, double layoutY, String text, String id) {
         Label buildingLabel = new Label(text);
         buildingLabel.setLayoutX(layoutX);
@@ -236,6 +268,11 @@ public class MainMenuController implements Initializable {
         pane1.getChildren().add(buildingLabel);
     }
 
+    /**
+     *Method to change format of building name.
+     * @param e Building to change the name of
+     * @return Building name in desired format
+     */
     public String changeInPositionOfBuildingName(Buildings e) {
         int capsCount = 0;
         String buildingName = "";
@@ -256,6 +293,12 @@ public class MainMenuController implements Initializable {
         return buildingName;
     }
 
+    /**
+     *
+     * @param e
+     * @param layoutX
+     * @param layoutY
+     */
     public void addImageToScrollPane(Buildings e, double layoutX, double layoutY) {
         Image image = new Image(e.getUrl());
         ImageView buildingImage = new ImageView(image);
@@ -273,6 +316,11 @@ public class MainMenuController implements Initializable {
         });
     }
 
+    /**
+     *
+     * @param buildingsList
+     * @return
+     */
     public int addFirstThreeBuildings(List<Buildings> buildingsList) {
         int changeInPosition = 0;
         int i = 0;
@@ -314,12 +362,12 @@ public class MainMenuController implements Initializable {
 
     /**
      * Loading all needed scene controllers when the fxml is loaded.
-     *
-     * @param location
-     * @param resources
+     * @param location Link to location
+     * @param resources Resource Bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         setFilter(false);
         List<Buildings> buildingsList = new ArrayList<>();
 
@@ -395,6 +443,11 @@ public class MainMenuController implements Initializable {
         }
     }
 
+    /**
+     *Method to load the user page.
+     * @param event
+     * @throws IOException Exception if can't find user page
+     */
     public void userPage(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/UserPage.fxml");

@@ -7,10 +7,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Users;
 
 public class UserPage {
+    HelperController helper = new HelperController();
 
     @FXML
     private javafx.scene.control.Button scene1;
@@ -20,6 +23,11 @@ public class UserPage {
     private javafx.scene.control.Label roleLabel;
     @FXML
     private javafx.scene.control.Label changePasswordLabel;
+    @FXML
+    private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
+
 
 
     public void initialize() {
@@ -27,14 +35,53 @@ public class UserPage {
         roleLabel.setText(Users.user.getRole());
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+
+
     public void changePassword(Event e) {
         changePasswordLabel.setText("changed pwd (TO BE IMPLEMENTED)");
     }
 
+    public void openSchedule(Event e) throws IOException {
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/UserSchedule.fxml", mainScreen);
+    }
 
     /**
-     * @param event
-     * @throws IOException
+     * Method for campus map to pop up.
+     * @param e Clicking on campus map button
+     * @throws IOException Exception if can't find campus map scene
+     */
+    public void campusMap(Event e) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    /**
+     * Method to go back to main menu.
+     * @param event Clicking on go back
+     * @throws IOException Exception if can't find main menu scene
      */
     public void goBack(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

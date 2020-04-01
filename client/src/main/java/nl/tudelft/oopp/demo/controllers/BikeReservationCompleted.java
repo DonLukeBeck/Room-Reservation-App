@@ -23,25 +23,29 @@ import nl.tudelft.oopp.demo.entities.Buildings;
 public class BikeReservationCompleted implements Initializable {
     private static String name;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane;
     @FXML
     private Button scene;
-
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     public String getName() {
         return name;
     }
 
-    /***
-     *
+
+    /**
+     *Method to initialize.
      * @param location Location of the picture
-     * @param resources
+     * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
 
@@ -89,11 +93,15 @@ public class BikeReservationCompleted implements Initializable {
         pane.getChildren().add(timeslot);
     }
 
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
      * Method for campus map to pop up.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -110,12 +118,30 @@ public class BikeReservationCompleted implements Initializable {
      * Method to go back to previous page.
      *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException when it can not the MainMenu page
      */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);
     }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(pane);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(pane);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(pane);
+    }
+
+    /**
+     * Method to format the name properly.
+     * @param name Name input
+     * @return Name in proper format
+     */
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {

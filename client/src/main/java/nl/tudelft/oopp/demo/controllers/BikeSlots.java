@@ -32,6 +32,7 @@ public class BikeSlots implements Initializable {
     private static String timeslot;
 
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
 
     @FXML
     private AnchorPane slots;
@@ -41,6 +42,8 @@ public class BikeSlots implements Initializable {
     private javafx.scene.control.Button reserveScene;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to return building.
@@ -69,11 +72,27 @@ public class BikeSlots implements Initializable {
         return timeslot;
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
      * Method for campus map to pop up.
      *
      * @param event Clicking on campus map
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -87,8 +106,10 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Get all information from the chosen time slot.
+     *
+     * @param event on mouse click
+     * @throws IOException when can not load ReservationBikeCompleted
      */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
@@ -120,13 +141,16 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     * @param location
-     * @param resources
+     * Method to initialize.
+     *
+     * @param location  Url to image location
+     * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
+        addRole();
 
         int checkDate = BikeReservationMenu.getDay();
         int checkMonth = BikeReservationMenu.getMonth() + 1;
@@ -313,7 +337,7 @@ public class BikeSlots implements Initializable {
      * Method for go back button.
      *
      * @param event Clicking on go back
-     * @throws IOException
+     * @throws IOException when can not load ReservationBike
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();

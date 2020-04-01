@@ -15,6 +15,12 @@ import nl.tudelft.oopp.demo.entities.Users;
 
 public class MainSceneController {
     private static String user;
+    private static String role;
+
+    public static String getRole() {
+        return role;
+    }
+
     UserServerCommunication con = new UserServerCommunication();
     @FXML
     private javafx.scene.control.Button button1;
@@ -27,9 +33,9 @@ public class MainSceneController {
     @FXML
     private PasswordField pass;
 
+
     /**
      * Method to get User.
-     *
      * @return User
      */
     public static String getUser() {
@@ -37,9 +43,10 @@ public class MainSceneController {
     }
 
     /**
-     * @param event
-     * @throws IOException
-     * @throws InterruptedException
+     * Logging in method.
+     * @param event Attempting to log in
+     * @throws IOException Exception if can't find main menu or main admin scene
+     * @throws InterruptedException Exception if execution is interrupted
      */
     public void logIn(ActionEvent event) throws IOException, InterruptedException {
         if (pass.getText().isBlank() || username.getText().isBlank()) {
@@ -50,6 +57,7 @@ public class MainSceneController {
         String password = pass.getText();
 
         Users userLogged = con.logIn(user, password);
+        role = userLogged.getRole();
 
         // verify if user is logged in
         if (!userLogged.getNetid().isEmpty()) {
@@ -113,9 +121,10 @@ public class MainSceneController {
     }
 
     /**
-     * @param event
-     * @throws IOException
-     * @throws InterruptedException
+     * Register method.
+     * @param event Clicking register button
+     * @throws IOException Exception if can't find sign up scene
+     * @throws InterruptedException Exception if execution is interrupted
      */
     public void register(ActionEvent event) throws IOException, InterruptedException {
         Stage stage1 = (Stage) button2.getScene().getWindow();

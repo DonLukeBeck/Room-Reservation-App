@@ -35,7 +35,6 @@ public class BuildingsController {
 
     /**
      * Adds a building, inserted by the admin, in the database.
-     *
      * @param building - building to be inserted in database
      * @return true if it's added, false if it's already in the database or it has an invalid id
      */
@@ -92,7 +91,6 @@ public class BuildingsController {
 
     /**
      * Deletes a building from the database.
-     *
      * @param buildingNumber - building to be deleted from database
      * @return true if it's deleted, false if it has an invalid id
      */

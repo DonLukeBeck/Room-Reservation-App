@@ -21,76 +21,84 @@ import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 
 public class FoodReservationCompleted implements Initializable {
+    private static String name;
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
     @FXML
     private AnchorPane pane;
     @FXML
     private Button scene;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
-    private static String name;
+    public String getName() {
+        return name;
+    }
 
 
-    public String getName() {   return name;    }
-
-
+    /**
+     * Method for initializing pane, displaying all information on dish:
+     * building ID, building name, date, time slot, dish.
+     * @param location The location used to resolve relative paths for the root
+     *                object, or null if the location is not known
+     * @param resources The resources used to localize the root object, or null
+     *                 if the root object was not localized
+     */
     @Override
-    public void initialize (URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
         HelperController helperController = new HelperController();
         helperController.loadSidePane(sidePane);
+        addRole();
 
         List<Buildings> buildingsList = null;
 
         try {
             buildingsList = con.getBuildings();
-        }   catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Label builId = new Label(FoodSlots.getBuilding());
-        builId.setFont(Font.font("Arial Rounded MT Bold", 24));
-        builId.layoutYProperty().setValue(400);
-        builId.layoutXProperty().setValue(390);
-        builId.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(builId);
+        addLabelToPane(405, 400, FoodSlots.getBuilding());
 
         for (Buildings e : buildingsList) {
             if (e.getBuilding_number() == Integer.parseInt(FoodSlots.getBuilding())) {
                 name = e.getName();
-                System.out.println(name);
             }
         }
         String[] nameA = name.split("\\(");
-        Label builname = new Label(nameInProperFormat(nameA[0]));
-        pane.getChildren().add(builname);
-        builname.layoutYProperty().setValue(470);
-        builname.layoutXProperty().setValue(440);
-        builname.setFont(Font.font("Arial Rounded MT Bold", 24));
-        builname.textFillProperty().setValue(Color.valueOf("ffc500"));
+        addLabelToPane(445, 470, nameInProperFormat(nameA[0]));
 
-        Label date = new Label(FoodSlots.getDate());
-        date.layoutYProperty().setValue(540);
-        date.layoutXProperty().setValue(345);
-        date.setFont(Font.font("Arial Rounded MT Bold", 24));
-        date.textFillProperty().setValue(Color.valueOf("#ffc500"));
-        pane.getChildren().add(date);
+        addLabelToPane(345, 540, FoodSlots.getDate());
 
-        Label timeslot = new Label(FoodSlots.getTimeslot());
-        timeslot.layoutYProperty().setValue(610);
-        timeslot.layoutXProperty().setValue(390);
-        timeslot.setFont(Font.font("Arial Rounded MT Bold", 24));
-        timeslot.textFillProperty().setValue(Color.valueOf("#ffc600"));
-        pane.getChildren().add(timeslot);
+        addLabelToPane(390, 610, FoodSlots.getTimeslot());
 
-        Label orderedDish = new Label(FoodMenuController.getDishesName());
-        orderedDish.layoutYProperty().setValue(680);
-        orderedDish.layoutXProperty().setValue(345);
-        orderedDish.setFont(Font.font("Arial Rounded MT Bold", 24));
-        orderedDish.textFillProperty().setValue(Color.valueOf("ffc600"));
-        pane.getChildren().add(orderedDish);
+        addLabelToPane(345, 680, FoodMenuController.getDishesName());
+
     }
 
+    /**
+     * Method to add a label to pane.
+     *
+     * @param layoutX x-value of where the label will be at
+     * @param layoutY y-value of where the label will be at
+     * @param text String displayed in the label
+     */
+    public void addLabelToPane(double layoutX, double layoutY, String text) {
+        Label label = new Label(text);
+        label.setLayoutY(layoutY);
+        label.setLayoutX(layoutX);
+        label.setFont(Font.font("Arial Rounded MT Bold", 24));
+        label.textFillProperty().setValue(Color.valueOf("#ffc500"));
+        pane.getChildren().add(label);
+    }
+
+    /**
+     * Method to get the name of a building in a proper format.
+     *
+     * @param name name not in proper format
+     * @return String of name in proper format
+     */
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {
@@ -106,9 +114,10 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
-     *Method for campus map to pop up.
+     * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -121,15 +130,30 @@ public class FoodReservationCompleted implements Initializable {
         stage.show();
     }
 
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
-     *Method to go back to previous page.
+     * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException Exception if can't find main menu page
      */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainMenu.fxml", pane);
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(pane);
+    }
 
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(pane);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(pane);
+    }
 }

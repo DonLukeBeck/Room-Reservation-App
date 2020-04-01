@@ -16,6 +16,8 @@ class ReservationsTest {
     private Date date;
     private Date date2;
     private Reservations r1;
+    private Reservations r2;
+    private Reservations r3;
 
     @BeforeEach
     public void setup() {
@@ -23,6 +25,7 @@ class ReservationsTest {
         timeslot2 = new Time(1,0,0);
         date = new Date(2020, 4, 20);
         date2 = new Date(2020, 4, 28);
+
         r1 = new Reservations();
         r1.setBuildingReserved(1);
         r1.setUser_reserving("user");
@@ -126,6 +129,14 @@ class ReservationsTest {
         r1.setBuildingReserved(42);
         assertEquals(42, r1.getBuilding_reserved());
     }
+
+    @Test
+    public void getNiceStringRoomTest() {
+        String r1NiceString = "" + timeslot.toString() + ": " + " Room ordered in building "
+                + r1.getBuilding_reserved();
+        assertEquals(r1NiceString, r1.getNiceString());
+    }
+
 
 }
 

@@ -30,8 +30,7 @@ public class ReservationsController {
     }
 
     /**
-     * Adds a room reservation to the database.
-     *
+     * Adds a reservation to the database.
      * @param reservation - reservation to be added to the database
      * @return true when the reservation is saved
      */
@@ -61,17 +60,7 @@ public class ReservationsController {
     @PostMapping("/postFoodReservation") // Map ONLY POST Requests
     public @ResponseBody
     boolean postFoodReservation(@RequestBody Reservations reservation) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-
-        Reservations newReservation = new Reservations();
-        newReservation.setDate(reservation.getDate());
-        newReservation.setTimeslot(reservation.getTimeslot());
-        newReservation.setUserReserving(reservation.getUserReserving());
-        newReservation.setDishOrdered(reservation.getDishOrdered());
-        newReservation.setBuildingReserved(reservation.getBuildingReserved());
-
-        reservationsRepository.save(newReservation);
+        reservationsRepository.save(reservation);
         return true;
     }
 

@@ -15,6 +15,7 @@ class UsersTest {
         u1 = new Users();
         u1.setNetid("fezard");
         u1.setRole("Student");
+        u1.setPassword("Password");
     }
 
     @Test
@@ -43,5 +44,18 @@ class UsersTest {
         u1.setRole("Teacher");
         assertEquals("Teacher", u1.getRole());
     }
+
+    @Test
+    public void getPasswordTest() {
+        assertEquals("Password", u1.getPassword());
+    }
+
+    @Test
+    public void setPasswordTest() {
+        u1.setPassword("123");
+        assertEquals("123", u1.getPassword());
+    }
+
+
 }
 

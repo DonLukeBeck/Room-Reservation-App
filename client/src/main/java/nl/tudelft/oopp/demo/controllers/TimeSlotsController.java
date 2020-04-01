@@ -24,11 +24,12 @@ import nl.tudelft.oopp.demo.entities.Reservations;
 
 
 public class TimeSlotsController implements Initializable {
-    private static String building;
+    private static int building;
     private static String room;
     private static String date;
     private static String timeslot;
     UserServerCommunication con = new UserServerCommunication();
+    HelperController helper = new HelperController();
 
     @FXML
     private AnchorPane slots;
@@ -38,13 +39,15 @@ public class TimeSlotsController implements Initializable {
     private Pane sidePane;
     @FXML
     private AnchorPane mainScreen;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get Building.
      *
      * @return Building
      */
-    public static String getBuilding() {
+    public static int getBuilding() {
         return building;
     }
 
@@ -75,11 +78,15 @@ public class TimeSlotsController implements Initializable {
         return timeslot;
     }
 
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
      * Method to pop up campus map.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map scene
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -92,6 +99,12 @@ public class TimeSlotsController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Method for getting timeslot in proper format from string.
+     *
+     * @param str used string to get timeslot from
+     * @return timeslot in right format
+     */
     public String getTimeSlotFromID(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
@@ -107,12 +120,24 @@ public class TimeSlotsController implements Initializable {
         return timeslot;
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
     /**
      * @param event
-     * @throws IOException
+     * @throws IOException Exception if can't find complete reservation scene
      */
     public void timeSlot(Event event) throws IOException {
-        building = MainMenuController.getId();
+        building = RoomMenuController.getBuildingId();
         room = RoomMenuController.getId();
         int checkDate = RoomReservationMenu.getDay();
         int checkMonth = RoomReservationMenu.getMonth() + 1;
@@ -138,14 +163,19 @@ public class TimeSlotsController implements Initializable {
 
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
-
         con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
-                date, Integer.parseInt(building), room);
+                date, building, room);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
+    /**
+     *
+     * @param allSuitableRes
+     * @param start
+     * @param end
+     */
     public void disableNotSuitableSlots(List<Reservations> allSuitableRes,
                                         double start, double end) {
 
@@ -175,6 +205,10 @@ public class TimeSlotsController implements Initializable {
         }
     }
 
+    /**
+     * Method to change date format.
+     * @return Date
+     */
     public String returnDateInSuitableFormat() {
         int checkDate = RoomReservationMenu.getDay();
         int checkMonth = RoomReservationMenu.getMonth() + 1;
@@ -192,6 +226,12 @@ public class TimeSlotsController implements Initializable {
         return date;
     }
 
+    /**
+     *
+     * @param open
+     * @param closed
+     * @return
+     */
     public double[] getEndAndStart(Time open, Time closed) {
         String openTime = open.toString().substring(0, 5);
         String closingTime = closed.toString().substring(0, 5);
@@ -220,12 +260,15 @@ public class TimeSlotsController implements Initializable {
 
 
     /**
-     * @param location
-     * @param resources
+     * Method to initialize.
+     * @param location The location used to resolve relative paths for the root object,
+     *                or null if the location is not known
+     * @param resources The resources used to localize the root object,
+     *                 or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        addRole();
         List<Buildings> list = null;
 
         HelperController helper = new HelperController();
@@ -249,7 +292,7 @@ public class TimeSlotsController implements Initializable {
         Time open = null;
 
         for (Buildings e : list) {
-            if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
+            if (e.getBuilding_number() == RoomMenuController.getBuildingId()) {
                 System.out.println("Works");
                 open = e.getOpeningHours();
                 closed = e.getClosingHours();

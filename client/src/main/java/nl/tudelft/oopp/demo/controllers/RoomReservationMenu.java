@@ -38,6 +38,8 @@ public class RoomReservationMenu implements Initializable {
     private GridPane grid;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
      * Method to get Month.
@@ -70,7 +72,7 @@ public class RoomReservationMenu implements Initializable {
      * Method for campus map to pop up.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -83,17 +85,36 @@ public class RoomReservationMenu implements Initializable {
         stage.show();
     }
 
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
     /**
      * Method to go back to previous page.
-     *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException Exception if can't find main menu scene
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    /**
+     * Method to convert month from string to int.
+     * @return Month as integer
+     */
     public int getMonthFromSearch() {
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};
@@ -106,6 +127,13 @@ public class RoomReservationMenu implements Initializable {
         return monIndex;
     }
 
+    /**
+     *
+     * @param e
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     */
     public void addText(Node e, double layoutX, double layoutY, String text) {
         Text day = new Text(text);
         day.setX(layoutX);
@@ -117,12 +145,19 @@ public class RoomReservationMenu implements Initializable {
 
     }
 
+    /**
+     * Method to add border to a date on calendar.
+     * @param e Date to have border added to
+     */
     public void addBorderToTheChosenDate(Node e) {
         BorderWidths border = new BorderWidths(5, 5, 5, 5);
         ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
     }
 
+    /**
+     *Method to clear all dates.
+     */
     public void clearAllDates() {
         for (Node k : grid.getChildren()) {
             try {
@@ -137,6 +172,11 @@ public class RoomReservationMenu implements Initializable {
         }
     }
 
+    /**
+     *Method to add dates onto calendar template.
+     * @param c Calendar passed as parameter
+     * @param lengthOfMonth Number of days in that month
+     */
     public void addDatesOnCalendar(Calendar c, int lengthOfMonth) {
         int flag = 0;
         int i = 1;
@@ -214,8 +254,9 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Method to search for specific calendar month.
+     * @param event Inititating search
+     * @throws IOException Exception if no such calendar exists
      */
     @FXML
     private void calendarSearch(Event event) throws IOException {
@@ -237,6 +278,11 @@ public class RoomReservationMenu implements Initializable {
         addDatesOnCalendar(c, days);
     }
 
+    /**
+     * Method to find the current date.
+     * @param e
+     * @return Current date
+     */
     public String findCurrentDate(AnchorPane e) {
         String currentDate = " ";
         currentDate = e.getChildren().toString();
@@ -248,6 +294,10 @@ public class RoomReservationMenu implements Initializable {
         return currentDate;
     }
 
+    /**
+     *
+     * @throws IOException Exception if can't find previous date alers scene
+     */
     public void openAlert() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/PreviousDateAlert.fxml");
@@ -261,7 +311,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * @param event
-     * @throws IOException
+     * @throws IOException Exception if can't find timeslot scene
      */
     @FXML
     public void dateOnCalendar(Event event) throws IOException {
@@ -299,6 +349,13 @@ public class RoomReservationMenu implements Initializable {
         helperController.loadNextScene("/TimeSlots.fxml", mainScreen);
     }
 
+    /**
+     *Method to keep track of holidays.
+     * @param month Month during which holidays happen
+     * @param monLen Holidays duration
+     * @return Holidays dates
+     * @throws IOException Exception if can't find corresponding calendar
+     */
     public List<Integer> holidays(int month, int monLen) throws IOException {
         List<Holidays> list = con.getHolidays();
 
@@ -345,6 +402,7 @@ public class RoomReservationMenu implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList(allMonths));

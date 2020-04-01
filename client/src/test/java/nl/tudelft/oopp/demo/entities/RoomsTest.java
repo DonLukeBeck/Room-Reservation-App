@@ -15,8 +15,11 @@ class RoomsTest {
         room1 = new Rooms();
         room1.setAssociatedBuilding(36);
         room1.setRoomId("Auditorium");
-        room1.setChairs(300);
         room1.setType("Lecture Hall");
+        room1.setChairs(1);
+        room1.setComputers(1);
+        room1.setWhiteboards(1);
+        room1.setTables(1);
     }
 
     @Test
@@ -33,17 +36,6 @@ class RoomsTest {
     public void setRoomIdTest() {
         room1.setRoomId("Nothing");
         assertEquals("Nothing", room1.getRoomId());
-    }
-
-    @Test
-    public void getCapacityTest() {
-        assertEquals(300, room1.getChairs());
-    }
-
-    @Test
-    public void setCapacityTest() {
-        room1.setChairs(500);
-        assertEquals(500, room1.getChairs());
     }
 
     @Test
@@ -67,6 +59,51 @@ class RoomsTest {
         room1.setAssociatedBuilding(42);
         assertEquals(42, room1.getAssociatedBuilding());
     }
+
+    @Test
+    public void getChairsTest() {
+        assertEquals(1, room1.getChairs());
+    }
+
+    @Test
+    public void setChairsTest() {
+        room1.setChairs(2);
+        assertEquals(2, room1.getChairs());
+    }
+
+    @Test
+    public void getComputersTest() {
+        assertEquals(1, room1.getComputers());
+    }
+
+    @Test
+    public void setComputersTest() {
+        room1.setComputers(2);
+        assertEquals(2, room1.getComputers());
+    }
+
+    @Test
+    public void getWhiteboardsTest() {
+        assertEquals(1, room1.getWhiteboards());
+    }
+
+    @Test
+    public void setWhiteboardsTest() {
+        room1.setWhiteboards(2);
+        assertEquals(2, room1.getWhiteboards());
+    }
+
+    @Test
+    public void getTablesTest() {
+        assertEquals(1, room1.getTables());
+    }
+
+    @Test
+    public void setTablesTest() {
+        room1.setTables(2);
+        assertEquals(2, room1.getTables());
+    }
+
 
 }
 

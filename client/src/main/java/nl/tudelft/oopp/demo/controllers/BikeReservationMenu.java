@@ -3,7 +3,11 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -13,7 +17,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -40,12 +51,15 @@ public class BikeReservationMenu implements Initializable {
     private GridPane grid;
     @FXML
     private AnchorPane mainScreen;
-
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
-     * @return
+     * Method to get the month of the reservation.
+     *
+     * @return Month as an integer
      */
     public static int getMonth() {
         return Fmonth;
@@ -54,7 +68,7 @@ public class BikeReservationMenu implements Initializable {
     /**
      * Method to get the Year.
      *
-     * @return The year
+     * @return The year as an integer
      */
     public static int getYear() {
         return Fyear;
@@ -63,7 +77,7 @@ public class BikeReservationMenu implements Initializable {
     /**
      * Method to get the day.
      *
-     * @return The day
+     * @return The day as an integer
      */
     public static int getDay() {
         return FDay;
@@ -73,7 +87,7 @@ public class BikeReservationMenu implements Initializable {
      * Method for 'campus map' button.
      *
      * @param event Event that triggers the campus map pop-up, in this case clicking on campus map
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -90,7 +104,7 @@ public class BikeReservationMenu implements Initializable {
      * Method for 'go back' button.
      *
      * @param event Clicking on the go back button
-     * @throws IOException
+     * @throws IOException when can not load MainReservationMEnu
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
@@ -98,7 +112,27 @@ public class BikeReservationMenu implements Initializable {
 
     }
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
 
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+    /**
+     * Method to return month as a integer.
+     *
+     * @return Month as integer
+     */
     public int getMonthFromSearch() {
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};
@@ -111,6 +145,15 @@ public class BikeReservationMenu implements Initializable {
         return monIndex;
     }
 
+    /**
+     * Adding text to the page.
+     *
+     * @param e       the Text element will be added to the Node
+     * @param layoutX given layout value
+     * @param layoutY given layout value
+     * @param text    given what should contain the Text
+     */
+
     public void addText(Node e, double layoutX, double layoutY, String text) {
         Text day = new Text(text);
         day.setX(layoutX);
@@ -122,11 +165,21 @@ public class BikeReservationMenu implements Initializable {
 
     }
 
+    /**
+     * Change the borders of the Node.
+     *
+     * @param e given Node
+     */
+
     public void addBorderToTheChosenDate(Node e) {
         BorderWidths border = new BorderWidths(5, 5, 5, 5);
         ((AnchorPane) e).setBorder(new Border(new BorderStroke(Color.BLUE,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
     }
+
+    /**
+     * Clear all elements from the grid cells.
+     */
 
     public void clearAllDates() {
         for (Node k : grid.getChildren()) {
@@ -141,6 +194,13 @@ public class BikeReservationMenu implements Initializable {
 
         }
     }
+
+    /**
+     * For every cell in the grid add the chosen text.
+     *
+     * @param c             Calendar with needed configurations
+     * @param lengthOfMonth given int with the length of the chosen month
+     */
 
     public void addDatesOnCalendar(Calendar c, int lengthOfMonth) {
         int flag = 0;
@@ -220,12 +280,12 @@ public class BikeReservationMenu implements Initializable {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Search for the chosen month.
+     *
+     * @param event on mouse click
      */
     @FXML
-    private void calendarSearch(Event event) throws IOException {
-        int flag = 0;
+    private void calendarSearch(Event event) {
         int yearIndex = 2020;
 
         Fyear = yearIndex;
@@ -243,6 +303,13 @@ public class BikeReservationMenu implements Initializable {
         addDatesOnCalendar(c, days);
     }
 
+    /**
+     * Find the current date.
+     *
+     * @param e get he date from the AnchorPane
+     * @return the current date as String
+     */
+
     public String findCurrentDate(AnchorPane e) {
         String currentDate = " ";
         currentDate = e.getChildren().toString();
@@ -254,6 +321,11 @@ public class BikeReservationMenu implements Initializable {
         return currentDate;
     }
 
+    /**
+     * Open alert when needed.
+     *
+     * @throws IOException when can not load PreviousDateAlert
+     */
     public void openAlert() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/PreviousDateAlert.fxml");
@@ -266,8 +338,10 @@ public class BikeReservationMenu implements Initializable {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Saves the date chosen by the user.
+     *
+     * @param event on mouse click
+     * @throws IOException when can not load TimeSlotBike
      */
     @FXML
     public void dateOnCalendar(Event event) throws IOException {
@@ -304,6 +378,15 @@ public class BikeReservationMenu implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/TimeSlotBikes.fxml", mainScreen);
     }
+
+    /**
+     * Returns list with all holiday days.
+     *
+     * @param month  index of chosen month
+     * @param monLen length of month
+     * @return all dates that should be closed for holidays
+     * @throws IOException when getting list of holidays
+     */
 
     public List<Integer> holidays(int month, int monLen) throws IOException {
         List<Holidays> list = con.getHolidays();
@@ -349,9 +432,16 @@ public class BikeReservationMenu implements Initializable {
         }
     }
 
+    /**
+     * Load elements on opening the page.
+     *
+     * @param location  when url is loaded
+     * @param resources the resources that should be loaded
+     */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
         String[] allMonths = new String[]{"January", "February", "March", "April", "May", "June", ""
                 + "July", "August", "September", "October", "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList(allMonths));

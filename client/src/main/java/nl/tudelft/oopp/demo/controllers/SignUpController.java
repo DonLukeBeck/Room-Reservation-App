@@ -41,11 +41,11 @@ public class SignUpController {
     @FXML
     private CheckBox checkBox;
 
-    /***
-     *
-     * @param event
-     * @throws IOException
-     * @throws InterruptedException
+    /**
+     *Method to sign up.
+     * @param event Clicking sign up
+     * @throws IOException Exception if can'f find main scene
+     * @throws InterruptedException Exception if execution is interrupted
      */
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
         if (pass.getText().isBlank() || coPass.getText().isBlank() || user.getText().isBlank()) {

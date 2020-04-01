@@ -29,6 +29,8 @@ public class FoodMenuController implements Initializable {
     public static List<Dishes> menusByBuilding;
 
     ServerCommunication con = new ServerCommunication();
+    HelperController helper = new HelperController();
+
     @FXML
     private javafx.scene.control.ScrollPane scene1;
     @FXML
@@ -41,10 +43,11 @@ public class FoodMenuController implements Initializable {
     private Rectangle rect1;
     @FXML
     private Pane sidePane;
+    @FXML
+    private Pane rightPane;
 
     /**
-     * Method for getting dish
-     *
+     * Method for getting dish.
      * @return dish
      */
     public static String getDishesName() {
@@ -53,9 +56,8 @@ public class FoodMenuController implements Initializable {
 
     /**
      * Method to pop up campus map.
-     *
      * @param event Clicking on 'campus map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map page
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -68,36 +70,33 @@ public class FoodMenuController implements Initializable {
         stage.show();
     }
 
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+    /**
+     * Method for initializing pane1, displaying all dishes from the right building
+     * in rectangles/boxes.
+     * @param location The location used to resolve relative paths for the root object,
+     *                or null if the location is not known
+     * @param resources The resources used to localize the root object,
+     *                  or null if the root object was not localized
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
-
+        addRole();
         String buildingId = MainMenuController.getId();
         int builId = Integer.parseInt(buildingId);
 
-        List<Menus> allMenus = new ArrayList<>();
-
         try {
             dishes = con.getDishes();
-            allMenus = con.getMenus();
             menusByBuilding = con.getMenuByBuilding(builId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-/*
-        dishes = new ArrayList<>();
-
-        for (int i = 0; i < allDishes.size(); i++) {
-            for (int j = 0; j < allMenus.size(); j++) {
-                if (allDishes.get(i).getName().equals(allMenus.get(j).getDishName())) {
-                    if (allMenus.get(j).getBuildingNumber() == builId) {
-                        dishes.add(allDishes.get(i));
-                    }
-                }
-            }
-        }
-*/
 
         if (menusByBuilding.isEmpty()) {
             EmptyMenu();
@@ -115,159 +114,156 @@ public class FoodMenuController implements Initializable {
             }
 
             if (id1.contains("A")) {
-                Rectangle box = new Rectangle(240, 136);
+                Rectangle box = addBoxToScrollPane(340, last.layoutYProperty().getValue(), "B" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(340);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue());
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("B" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        dishChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
-
-                Label dishId = new Label("Dish:");
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId = new Label("(vegan) Dish:");
+                    addLabelToScrollPane(350, box.layoutYProperty().getValue()
+                            + 10, "(vegan) Dish:", 18);
+                } else {
+                    addLabelToScrollPane(350, box.layoutYProperty().getValue()
+                            + 10, "Dish:", 18);
                 }
-                pane1.getChildren().add(dishId);
-                dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(350);
-                dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label price = new Label("Price: ");
-                pane1.getChildren().add(price);
-                price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(350);
-                price.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(350, box.layoutYProperty().getValue()
+                        + 70, "Price: ", 18);
 
-                Label dishId1 = new Label(menusByBuilding.get(j).getName());
+                addLabelToScrollPane(370, box.layoutYProperty().getValue()
+                        + 40, menusByBuilding.get(j).getName(), 20);
 
-                pane1.getChildren().add(dishId1);
-                dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(370);
-                dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
-
-                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
-                pane1.getChildren().add(price1);
-                price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(370);
-                price1.setFont(Font.font("Arial Rounded MT Bold", 20));
-
-
+                addLabelToScrollPane(370, box.layoutYProperty().getValue()
+                        + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
             if (id1.contains("B")) {
-                Rectangle box = new Rectangle(240, 136);
+                Rectangle box = addBoxToScrollPane(625, last.layoutYProperty().getValue(),
+                        "C" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(625);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue());
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("C" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        dishChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
-
-                Label dishId = new Label("Dish:");
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId = new Label("(vegan) Dish:");
+                    addLabelToScrollPane(640, box.layoutYProperty().getValue()
+                            + 10, "(vegan) Dish:", 18);
+                } else {
+                    addLabelToScrollPane(640, box.layoutYProperty().getValue()
+                            + 10, "Dish:", 18);
                 }
-                pane1.getChildren().add(dishId);
-                dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(640);
-                dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label price = new Label("Price: ");
-                pane1.getChildren().add(price);
-                price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(640);
-                price.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(640, box.layoutYProperty().getValue()
+                        + 70, "Price: ", 18);
 
-                Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                pane1.getChildren().add(dishId1);
-                dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(660);
-                dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(660, box.layoutYProperty().getValue()
+                        + 40, menusByBuilding.get(j).getName(), 20);
 
-                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
-                pane1.getChildren().add(price1);
-                price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(660);
-                price1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(660, box.layoutYProperty().getValue()
+                        + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
             if (id1.contains("C")) {
-                Rectangle box = new Rectangle(240, 136);
+                Rectangle box = addBoxToScrollPane(55,
+                        last.layoutYProperty().getValue() + 176, "A" + j);
 
-                box.arcHeightProperty().setValue(30.0);
-                box.arcWidthProperty().setValue(30.0);
-                box.layoutXProperty().setValue(55);
-                box.layoutYProperty().setValue(last.layoutYProperty().getValue() + 176);
-                box.fillProperty().setValue(Color.valueOf("white"));
-                box.setStroke(Color.valueOf("#00A6D6"));
-                box.strokeWidthProperty().setValue(2);
-                box.setVisible(true);
-                box.setId("A" + j);
-                box.setOnMouseClicked(event -> {
-                    try {
-                        dishChosen(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                pane1.getChildren().add(box);
-
-                Label dishId = new Label("Dish:");
                 if (menusByBuilding.get(j).getVegan() == 1) {
-                    dishId = new Label("(vegan) Dish:");
+                    addLabelToScrollPane(65, box.layoutYProperty().getValue()
+                            + 10, "(vegan) Dish:", 18);
+                } else {
+                    addLabelToScrollPane(65, box.layoutYProperty().getValue()
+                            + 10, "Dish:", 18);
                 }
-                pane1.getChildren().add(dishId);
-                dishId.setLayoutY(box.layoutYProperty().getValue() + 10);
-                dishId.setLayoutX(65);
-                dishId.setFont(Font.font("Arial Rounded MT Bold", 18));
 
-                Label price = new Label("Price:");
-                pane1.getChildren().add(price);
-                price.setLayoutY(box.layoutYProperty().getValue() + 70);
-                price.setLayoutX(65);
-                price.setFont(Font.font("Arial Rounded MT Bold", 18));
+                addLabelToScrollPane(65, box.layoutYProperty().getValue()
+                        + 70, "Price: ", 18);
 
-                Label dishId1 = new Label(menusByBuilding.get(j).getName());
-                pane1.getChildren().add(dishId1);
-                dishId1.setLayoutY(box.layoutYProperty().getValue() + 40);
-                dishId1.setLayoutX(85);
-                dishId1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(85, box.layoutYProperty().getValue()
+                        + 40, menusByBuilding.get(j).getName(), 20);
 
-                Label price1 = new Label(menusByBuilding.get(j).getPrice() + ".00");
-                pane1.getChildren().add(price1);
-                price1.setLayoutY(box.layoutYProperty().getValue() + 100);
-                price1.setLayoutX(85);
-                price1.setFont(Font.font("Arial Rounded MT Bold", 20));
+                addLabelToScrollPane(85, box.layoutYProperty().getValue()
+                        + 100, menusByBuilding.get(j).getPrice() + ".00", 20);
             }
-
         }
     }
 
 
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws  IOException {
+        helper.logOut(mainScreen);
+    }
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    /**
+     * Method that adds a label to the scrollpane.
+     * @param layoutX the x-value where the label will be at
+     * @param layoutY the y-value where the label will be at
+     * @param text String that is displayed in the label
+     * @param size Size of font
+     */
+    public void addLabelToScrollPane(double layoutX, double layoutY, String text, int size) {
+        Label label = new Label(text);
+        pane1.getChildren().add(label);
+        label.setLayoutY(layoutY);
+        label.setLayoutX(layoutX);
+        label.setFont(Font.font("Arial Rounded MT Bold", size));
+    }
+
+    /**
+     * Method that adds rectangles to the scrollpane
+     * used for clickable boxes.
+     * @param layoutX the x-value where the rectangle will be at
+     * @param layoutY the y-value where the rectangle will be at
+     * @param id id of the rectangle
+     * @return a rectangle
+     */
+    public Rectangle addBoxToScrollPane(double layoutX, double layoutY, String id) {
+        Rectangle box = new Rectangle(240, 136);
+
+        box.arcHeightProperty().setValue(30.0);
+        box.arcWidthProperty().setValue(30.0);
+        box.layoutXProperty().setValue(layoutX);
+        box.layoutYProperty().setValue(layoutY);
+        box.fillProperty().setValue(Color.valueOf("white"));
+        box.setStroke(Color.valueOf("#00A6D6"));
+        box.strokeWidthProperty().setValue(2);
+        box.setVisible(true);
+        box.setId(id);
+        box.setOnMouseClicked(event -> {
+            try {
+                dishChosen(event);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        pane1.getChildren().add(box);
+        return box;
+
+    }
+
+    /**
+     * Method that saves the chosen dish and moves you to next scene.
+     * @param event clicking on a rectangle
+     * @throws IOException Exception if can't find timeslot food scene
+     */
     public void dishChosen(Event event) throws IOException {
         String str = event.getSource().toString();
+        dishesName = getDishName(str);
+
+        String buildingId = MainMenuController.getId().substring(1);
+
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/TimeSlotFood.fxml", mainScreen);
+    }
+
+    /**
+     * Method for getting name of the selected dish.
+     * @param str string used for getting the right name
+     * @return name of the dish
+     */
+    public String getDishName(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
         for (int i = 0; i < temp.length; i++) {
@@ -278,27 +274,26 @@ public class FoodMenuController implements Initializable {
         String[] arrId = newTemp.split("=");
         String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
+
         int dishIndex = Integer.parseInt(temp2);
-        dishesName = menusByBuilding.get(dishIndex).getName();
-
-        System.out.println(dishesName);
-        String buildingId = MainMenuController.getId().substring(1);
-
-        HelperController helperController = new HelperController();
-        helperController.loadNextScene("/TimeSlotFood.fxml", mainScreen);
+        return menusByBuilding.get(dishIndex).getName();
     }
 
     /**
      * Method to go back to previous page.
      *
      * @param event Clicking on 'Go Back"
-     * @throws IOException
+     * @throws IOException Exception if can't find main reservation menu page
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainReservationMenu.fxml", mainScreen);
     }
 
+    /**
+     * Method for when there are no
+     * available dishes for a certain building.
+     */
     public void EmptyMenu() {
         Label noDishes = new Label("No dishes are available for this building");
         noDishes.setFont(Font.font("Arial Rounded MT Bold", 24));
@@ -309,5 +304,4 @@ public class FoodMenuController implements Initializable {
         pane1.getChildren().add(noDishes2);
         noDishes2.setLayoutY(noDishes.layoutYProperty().getValue() + 40);
     }
-
 }
