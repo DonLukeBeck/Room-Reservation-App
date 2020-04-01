@@ -40,10 +40,11 @@ public class FoodReservationCompleted implements Initializable {
 
     /**
      * Method for initializing pane, displaying all information on dish:
-     * building ID, building name, date, time slot, dish
-     *
-     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
-     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     * building ID, building name, date, time slot, dish.
+     * @param location The location used to resolve relative paths for the root
+     *                object, or null if the location is not known
+     * @param resources The resources used to localize the root object, or null
+     *                 if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,7 +78,7 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
-     * Method to add a label to pane
+     * Method to add a label to pane.
      *
      * @param layoutX x-value of where the label will be at
      * @param layoutY y-value of where the label will be at
@@ -93,7 +94,7 @@ public class FoodReservationCompleted implements Initializable {
     }
 
     /**
-     * Method to get the name of a building in a proper format
+     * Method to get the name of a building in a proper format.
      *
      * @param name name not in proper format
      * @return String of name in proper format
@@ -116,7 +117,7 @@ public class FoodReservationCompleted implements Initializable {
      * Method for campus map to pop up.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -137,7 +138,7 @@ public class FoodReservationCompleted implements Initializable {
      * Method to go back to previous page.
      *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException Exception if can't find main menu page
      */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();

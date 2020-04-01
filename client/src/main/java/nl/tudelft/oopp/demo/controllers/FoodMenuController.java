@@ -57,7 +57,7 @@ public class FoodMenuController implements Initializable {
     /**
      * Method to pop up campus map.
      * @param event Clicking on 'campus map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map page
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -71,16 +71,17 @@ public class FoodMenuController implements Initializable {
     }
 
 
-    public void addRole(){
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
      * Method for initializing pane1, displaying all dishes from the right building
-     * in rectangles/boxes
-     *
-     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
-     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     * in rectangles/boxes.
+     * @param location The location used to resolve relative paths for the root object,
+     *                or null if the location is not known
+     * @param resources The resources used to localize the root object,
+     *                  or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -196,8 +197,7 @@ public class FoodMenuController implements Initializable {
     }
 
     /**
-     * Method that adds a label to the scrollpane
-     *
+     * Method that adds a label to the scrollpane.
      * @param layoutX the x-value where the label will be at
      * @param layoutY the y-value where the label will be at
      * @param text String that is displayed in the label
@@ -213,8 +213,7 @@ public class FoodMenuController implements Initializable {
 
     /**
      * Method that adds rectangles to the scrollpane
-     * used for clickable boxes
-     *
+     * used for clickable boxes.
      * @param layoutX the x-value where the rectangle will be at
      * @param layoutY the y-value where the rectangle will be at
      * @param id id of the rectangle
@@ -245,10 +244,9 @@ public class FoodMenuController implements Initializable {
     }
 
     /**
-     * Method that saves the chosen dish and moves you to next scene
-     *
+     * Method that saves the chosen dish and moves you to next scene.
      * @param event clicking on a rectangle
-     * @throws IOException
+     * @throws IOException Exception if can't find timeslot food scene
      */
     public void dishChosen(Event event) throws IOException {
         String str = event.getSource().toString();
@@ -261,8 +259,7 @@ public class FoodMenuController implements Initializable {
     }
 
     /**
-     * Method for getting name of the selected dish
-     *
+     * Method for getting name of the selected dish.
      * @param str string used for getting the right name
      * @return name of the dish
      */
@@ -286,7 +283,7 @@ public class FoodMenuController implements Initializable {
      * Method to go back to previous page.
      *
      * @param event Clicking on 'Go Back"
-     * @throws IOException
+     * @throws IOException Exception if can't find main reservation menu page
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
@@ -295,7 +292,7 @@ public class FoodMenuController implements Initializable {
 
     /**
      * Method for when there are no
-     * available dishes for a certain building
+     * available dishes for a certain building.
      */
     public void EmptyMenu() {
         Label noDishes = new Label("No dishes are available for this building");
