@@ -19,6 +19,14 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
     private List<Reservations> reservations;
     private List<UserEvent> userEvents;
 
+    /**
+     * Constructor for User Schedule Handler.
+     * @param day Given day
+     * @param month Given Month
+     * @param year Given Year
+     * @param reservations List of reservations
+     * @param userEvents List of user personal events
+     */
     public UserScheduleHandler(int day, int month, int year, List<Reservations> reservations,
                                List<UserEvent> userEvents) {
         this.day = day;

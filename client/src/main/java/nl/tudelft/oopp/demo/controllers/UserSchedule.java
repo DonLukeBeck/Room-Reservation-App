@@ -47,8 +47,8 @@ public class UserSchedule implements Initializable {
     private Pane rightPane;
 
     /**
-     *
-     * @return
+     * Method to get month.
+     * @return Return month integer
      */
     public static int getMonth() {
         return Fmonth;
@@ -73,7 +73,7 @@ public class UserSchedule implements Initializable {
     /**
      *Method for 'campus map' button.
      * @param event Event that triggers the campus map pop-up, in this case clicking on campus map
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map scene
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -106,7 +106,7 @@ public class UserSchedule implements Initializable {
     /**
      *Method for 'go back' button.
      * @param event Clicking on the go back button
-     * @throws IOException
+     * @throws IOException Exception if can't find user page scene
      */
     public void goBack(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -131,8 +131,9 @@ public class UserSchedule implements Initializable {
     private void calendarr(Event event) throws IOException {
         int i = 1;
         int flag = 0;
-        String[] months = new String[]{"January", "February", "March", "April",
-                "May", "June", "July", "August", "September", "October", "November", "December"};
+        String[] months = new String[]{"January", "February", "March", "April", "May", "June",
+                                       "July", "August", "September", "October", "November",
+                                       "December"};
         int monIndex = -1;
         // System.out.println(MonthChoice.getValue());
         for (int j = 0; j < months.length; j++) {
@@ -245,13 +246,14 @@ public class UserSchedule implements Initializable {
 
     /**
      * Initializes page.
-     * @param location
-     * @param resources
+     * @param location Link to location
+     * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] allMonths = new String[]{"January", "February", "March", "April", "May",
-                "June", "July", "August", "September", "October", "November", "December"};
+                                             "June", "July", "August", "September", "October",
+                                             "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList("January", "February",
                 "March", "April", "May", "June", "July", "August", "September", "October",
                 "November", "December"));
@@ -399,10 +401,9 @@ public class UserSchedule implements Initializable {
 
     /**
      * Filters a reservation list for a given date.
-     *
-     * @param day
-     * @param month
-     * @param year
+     * @param day Given day
+     * @param month Given month
+     * @param year Given year
      * @param reservations : List with the reservations to filter
      * @return : List with filtered reservations.
      */
@@ -438,6 +439,11 @@ public class UserSchedule implements Initializable {
         return filteredReservations;
     }
 
+    /**
+     * Method to find events per user.
+     * @param user User to find events of
+     * @return List of user events
+     */
     public List<UserEvent> findUserEvents(Users user) {
         List<UserEvent> list = new ArrayList<>();
         try {
@@ -456,6 +462,14 @@ public class UserSchedule implements Initializable {
         return filteredEvents;
     }
 
+    /**
+     * Method to filter user events per date.
+     * @param day Given day
+     * @param month Given month
+     * @param year Given year
+     * @param events List of all user events
+     * @return Filtered list of user events
+     */
     public List<UserEvent> findUserEvents(int day, int month, int year, List<UserEvent> events) {
         List<UserEvent> filteredEvents = new ArrayList<>();
 
@@ -482,6 +496,10 @@ public class UserSchedule implements Initializable {
         return filteredEvents;
     }
 
+    /**
+     * Method to output reservations.
+     * @param reservations List of reservations to print
+     */
     public void printReservations(List<Reservations> reservations) {
         for (Reservations r : reservations) {
             System.out.println(r.getUserReserving() + " reserved "
@@ -496,9 +514,9 @@ public class UserSchedule implements Initializable {
     }
 
     /**
-     *Method for 'user page' button.
+     * Method for 'user page' button.
      * @param event Clicking on the go back button
-     * @throws IOException
+     * @throws IOException Exception if can't find user page scene
      */
     public void userPage(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

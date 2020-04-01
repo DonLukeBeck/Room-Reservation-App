@@ -211,6 +211,14 @@ public class UserServerCommunication extends ServerCommunication {
         }
     }
 
+    /**
+     * Method to add a user event.
+     * @param user User associated with the event
+     * @param timeSlot Timeslot of the event
+     * @param date Date of the event
+     * @param description Description of the event
+     * @return True if event added successfully, false otherwise
+     */
     public boolean addUserEvent(String user,
                                    String timeSlot,
                                    String date,

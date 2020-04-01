@@ -19,7 +19,7 @@ public class MainSceneDisplay extends Application {
 
     /**
      * @param primaryStage
-     * @throws IOException
+     * @throws IOException Exception if can't find main scene
      */
     @Override
     public void start(Stage primaryStage) throws IOException {

@@ -133,6 +133,10 @@ public class UserScheduleDayView {
         this.reservations = reservations;
     }
 
+    /**
+     * Method to add a personal event.
+     * @throws IOException Exception if can't find add personal event scene
+     */
     public void addPersonalEvent() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/AddPersonalEvent.fxml");

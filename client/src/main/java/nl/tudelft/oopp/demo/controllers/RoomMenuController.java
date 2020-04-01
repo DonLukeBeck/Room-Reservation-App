@@ -27,7 +27,8 @@ public class RoomMenuController implements Initializable {
     public static List<Rooms> rooms;
     private static String room_id;
     private static int building_id;
-    public static int getBuildingId(){
+
+    public static int getBuildingId() {
         return building_id;
     }
 
@@ -51,8 +52,9 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     * @param location
-     * @param resources
+     * Method to initilize.
+     * @param location Link to location
+     * @param resources Resource Bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -153,6 +155,11 @@ public class RoomMenuController implements Initializable {
 
     }
 
+    /**
+     *Method to add rooms corresponding to user types.
+     * @param list List of rooms before filtering
+     * @return List of rooms
+     */
     public List<Rooms> roomShownByRole(List<Rooms> list) {
         String user = MainSceneController.getRole();
         List<Rooms> result = new ArrayList<>();
@@ -182,6 +189,12 @@ public class RoomMenuController implements Initializable {
         helper.userProfile(mainScreen);
     }
 
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param text
+     */
     public void addLabelToScrollPane(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
         pane1.getChildren().add(label);
@@ -190,6 +203,13 @@ public class RoomMenuController implements Initializable {
         label.setFont(Font.font("Arial Rounded MT Bold", 18));
     }
 
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param id
+     * @return
+     */
     public Rectangle addBoxToScrollPane(double layoutX, double layoutY, String id) {
         Rectangle box = new Rectangle(188, 136);
 
@@ -213,6 +233,12 @@ public class RoomMenuController implements Initializable {
         return box;
     }
 
+    /**
+     *
+     * @param layoutX
+     * @param layoutY
+     * @param id
+     */
     public void addBoxButton(double layoutX, double layoutY, String id) {
         Rectangle box = new Rectangle(188, 136);
 
@@ -234,9 +260,8 @@ public class RoomMenuController implements Initializable {
 
     /**
      * Method for campus map to pop up.
-     *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map scene
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -251,9 +276,8 @@ public class RoomMenuController implements Initializable {
 
     /**
      * Method to go back to previous page.
-     *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException Exception if can't find main menu scene
      */
     public void goBack(Event event) throws IOException {
         MainMenuController.setFilter(false);
@@ -263,7 +287,7 @@ public class RoomMenuController implements Initializable {
 
     /**
      * @param event
-     * @throws IOException
+     * @throws IOException Exception if can't find Reservation room scene
      */
     public void roomChosen(Event event) throws IOException {
         String str = event.getSource().toString();

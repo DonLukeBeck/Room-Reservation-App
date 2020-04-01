@@ -63,8 +63,8 @@ public class AdminController implements Initializable {
     private ChoiceBox roomType;
 
     /** Sends user to admin add page.
-     * @param event
-     * @throws IOException
+     * @param event Logging in as admin
+     * @throws IOException Exception if can't find admin view scene
      */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
@@ -72,7 +72,7 @@ public class AdminController implements Initializable {
         helper.loadNextScene("/AdminView.fxml", mainScreen);
     }
 
-    /***
+    /**
      *Method for admin to initialize picture and resource bundle.
      * @param location Location of the picture
      * @param resources Resource bundle
@@ -122,10 +122,10 @@ public class AdminController implements Initializable {
 
     }
 
-    /***
+    /**
      *Method to go back to main admin scene.
      * @param event Clicking on go back
-     * @throws IOException
+     * @throws IOException Exception if can't find main admin scene
      */
     public void goBack(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
@@ -135,7 +135,7 @@ public class AdminController implements Initializable {
     /**
      * Method for admin to add a building.
      * @param event Clicking on add building
-     * @throws IOException
+     * @throws IOException Exception if can't find admin view scene
      */
     public void addBuilding(Event event) throws IOException {
         String bikeCapacity = addBuildingBikes.getText();
@@ -220,7 +220,7 @@ public class AdminController implements Initializable {
     /**
      * Method for admin to add a room.
      * @param event Clicking on add room
-     * @throws IOException
+     * @throws IOException Exception if can't find admin view scene
      */
     public void addRoom(Event event) throws IOException {
         Label exception = new Label();

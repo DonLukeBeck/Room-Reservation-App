@@ -38,12 +38,15 @@ public class UserPage {
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
+
     public void paneLogOut(Event event) throws  IOException {
         helper.logOut(mainScreen);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
@@ -59,6 +62,11 @@ public class UserPage {
         helperController.loadNextScene("/UserSchedule.fxml", mainScreen);
     }
 
+    /**
+     * Method for campus map to pop up.
+     * @param e Clicking on campus map button
+     * @throws IOException Exception if can't find campus map scene
+     */
     public void campusMap(Event e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/CampusMap.fxml");
@@ -71,8 +79,9 @@ public class UserPage {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Method to go back to main menu.
+     * @param event Clicking on go back
+     * @throws IOException Exception if can't find main menu scene
      */
     public void goBack(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();

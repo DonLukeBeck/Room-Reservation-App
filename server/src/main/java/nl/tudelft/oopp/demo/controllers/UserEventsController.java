@@ -23,6 +23,11 @@ public class UserEventsController {
         return personaleventsRepository.findAll();
     }
 
+    /**
+     * Method to add event to repository.
+     * @param userEvent Event to be added to repository
+     * @return True if event saved to repository
+     */
     @PostMapping("/postUserEvent") // Map ONLY POST Requests
     public @ResponseBody
     boolean addRoom(@RequestBody UserEvent userEvent) {

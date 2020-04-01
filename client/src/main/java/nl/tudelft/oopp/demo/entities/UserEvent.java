@@ -11,6 +11,13 @@ public class UserEvent implements Comparable<UserEvent> {
     private String user;
     private String description;
 
+    /**
+     * Constructor for a user event.
+     * @param user User having the event
+     * @param time Time of event
+     * @param date Date of the event
+     * @param description Description of the event
+     */
     public UserEvent(String user, Time time, Date date, String description) {
         this.user = user;
         this.time = time;

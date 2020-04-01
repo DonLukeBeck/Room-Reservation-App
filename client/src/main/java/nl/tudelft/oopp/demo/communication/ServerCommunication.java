@@ -185,6 +185,11 @@ public class ServerCommunication {
         return reservationsJsonList;
     }
 
+    /**
+     * Method to find user events.
+     * @return User events as a Json list
+     * @throws IOException
+     */
     public List<UserEvent> getUserEvents() throws IOException {
         String jsonString = this.webClient.get().uri("/allPersonalEvents")
                 .retrieve()
