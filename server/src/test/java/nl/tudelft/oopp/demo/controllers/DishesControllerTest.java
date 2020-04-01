@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -74,9 +76,19 @@ public class DishesControllerTest {
     }
 
     @Test
-    public void deleteDishTest() {
+    public void addDishFalseCase2Test() {
         d1 = new Dishes();
-       assertFalse(dishesController.deleteDish(d1.getName()));
+        d1.setName("");
+
+        when(dishesRepository.findDishesByName(d1.getName())).thenReturn(d1);
+
+        assertFalse(dishesController.addDish(d1));
+    }
+
+    @Test
+     public void deleteDishTest() {
+        d1 = new Dishes();
+        assertFalse(dishesController.deleteDish(d1.getName()));
     }
 
     @Test
@@ -86,12 +98,23 @@ public class DishesControllerTest {
     }
 
     @Test
+    public void editDishFalseCase2Test() {
+        d1 = new Dishes();
+
+        when(dishesRepository.updateExistingDish(d1.getName(), d1.getPrice(), d1.getVegan(),
+                d1.getName())).thenThrow(NullPointerException.class);
+
+        assertFalse(dishesController.editDish(d1, d1.getName()));
+    }
+
+    @Test
     public void editDishTrueTest() {
         d1 = new Dishes();
 
         dishesRepository.save(d1);
 
-        when(dishesRepository.updateExistingDish(d1.getName(), d1.getPrice(), d1.getVegan(), d1.getName())).thenReturn(1);
+        when(dishesRepository.updateExistingDish(d1.getName(), d1.getPrice(), d1.getVegan(),
+                d1.getName())).thenReturn(1);
         assertTrue(dishesController.editDish(d1, d1.getName()));
 
     }

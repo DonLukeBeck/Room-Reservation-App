@@ -1,6 +1,9 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import javafx.event.Event;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,11 +12,6 @@ import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import nl.tudelft.oopp.demo.entities.UserEvent;
 
-import java.beans.EventHandler;
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-
 public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent> {
     private int day;
     private int month;
@@ -21,7 +19,8 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
     private List<Reservations> reservations;
     private List<UserEvent> userEvents;
 
-    public UserScheduleHandler(int day, int month, int year, List<Reservations> reservations, List<UserEvent> userEvents) {
+    public UserScheduleHandler(int day, int month, int year, List<Reservations> reservations,
+                               List<UserEvent> userEvents) {
         this.day = day;
         this.month = month;
         this.year = year;

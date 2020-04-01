@@ -69,7 +69,8 @@ public class AdminEditController implements Initializable {
 
 
     /**
-     * @param event
+     * Method to go to admin edit view.
+     * @param event Clicking on edit
      * @throws IOException
      */
     public void goToAdminAdd(ActionEvent event) throws IOException {
@@ -79,9 +80,9 @@ public class AdminEditController implements Initializable {
     }
 
     /***
-     *
+     *Method to initialize.
      * @param location Location of the picture
-     * @param resources
+     * @param resources Resource Bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -186,8 +187,8 @@ public class AdminEditController implements Initializable {
     }
 
     /***
-     *
-     * @param event
+     *Method to go back to main admin scene.
+     * @param event Clicking on go back
      * @throws IOException
      */
     public void goBack(ActionEvent event) throws IOException {
@@ -196,7 +197,8 @@ public class AdminEditController implements Initializable {
     }
 
     /**
-     * @param event
+     * Method for admin to edit building.
+     * @param event Clicking on edit
      * @throws IOException
      */
     public void editBuilding(Event event) throws IOException {
@@ -253,7 +255,8 @@ public class AdminEditController implements Initializable {
     }
 
     /**
-     * @param event
+     * Method for admin to edit a room.
+     * @param event Clicking on edit room
      * @throws IOException
      */
     public void editRoom(Event event) throws IOException {

@@ -107,7 +107,8 @@ public class MainReservationMenuController implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/FoodMenu.fxml", mainScreen);
     }
-    public void addRole(){
+
+    public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 

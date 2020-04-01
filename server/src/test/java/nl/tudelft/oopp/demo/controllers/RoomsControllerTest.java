@@ -1,6 +1,7 @@
 package nl.tudelft.oopp.demo.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -48,6 +49,73 @@ public class RoomsControllerTest {
     public void addRoomTrueTest() {
         r1 = new Rooms();
         assertTrue(roomsController.addRoom(r1));
+    }
+
+    @Test
+    public void addRoomFalseTest() {
+        r1 = new Rooms();
+        r1.setRoomId("r1");
+        when(roomsRepository.findRoomsByRoomId(r1.getRoomId())).thenReturn(r1);
+        assertFalse(roomsController.addRoom(r1));
+    }
+
+    @Test
+    public void addRoomFalseCase2Test() {
+        r1 = new Rooms();
+        r1.setRoomId("");
+        when(roomsRepository.findRoomsByRoomId(r1.getRoomId())).thenReturn(r1);
+        assertFalse(roomsController.addRoom(r1));
+    }
+
+    @Test
+    public void editRoomTrueTest() {
+        r1 = new Rooms();
+
+        when(roomsRepository.updateExistingRoom(r1.getRoomId(), r1.getChairs(), r1.getWhiteboards(),
+                r1.getTables(), r1.getComputers(), r1.getType(), r1.getRoomId())).thenReturn(1);
+
+        assertTrue(roomsController.editRoom(r1, r1.getRoomId()));
+    }
+
+    @Test
+    public void editRoomFalseTest() {
+        r1 = new Rooms();
+
+        when(roomsRepository.updateExistingRoom(r1.getRoomId(), r1.getChairs(), r1.getWhiteboards(),
+                r1.getTables(), r1.getComputers(), r1.getType(), r1.getRoomId())).thenReturn(0);
+
+        assertFalse(roomsController.editRoom(r1, r1.getRoomId()));
+    }
+
+    @Test
+    public void editRoomFalseCase2Test() {
+        r1 = new Rooms();
+
+        when(roomsRepository.updateExistingRoom(r1.getRoomId(), r1.getChairs(), r1.getWhiteboards(),
+                r1.getTables(), r1.getComputers(), r1.getType(),
+                r1.getRoomId())).thenThrow(NullPointerException.class);
+
+        assertFalse(roomsController.editRoom(r1, r1.getRoomId()));
+    }
+
+    @Test
+    public void deleteRoomsTest() {
+        r1 = new Rooms();
+
+        when(roomsRepository.deleteRoomByRoomID(r1.getRoomId())).thenReturn(true);
+        assertTrue(roomsController.deleteRoom(r1.getRoomId()));
+    }
+
+    @Test
+    public void getRoomsByBuildings() {
+        r1 = new Rooms();
+        r1.setAssociatedBuilding(1);
+
+        List<Rooms> repo = new ArrayList<>(List.of(r1));
+        when(roomsRepository.findRoomsByBuildingId(r1.getAssociatedBuilding())).thenReturn(repo);
+        List<Rooms> actual = roomsController.getRoomsByBuilding(1);
+
+        assertEquals(repo, actual);
     }
 
 }

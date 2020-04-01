@@ -181,11 +181,11 @@ public class Reservations implements Comparable<Reservations> {
         try {
             reservationType = roomReserved;
             reservationType = "Room";
-        } catch(NullPointerException e) {
+        } catch (NullPointerException e) {
             try {
                 reservationType = dishOrdered;
                 reservationType = "Dish";
-            } catch(NullPointerException ex) {
+            } catch (NullPointerException ex) {
                 reservationType = "Bike";
             }
         }

@@ -15,7 +15,6 @@ public class AdminSceneController {
 
     /**
      * Method to get ID.
-     *
      * @return The id
      */
     public static String getId() {
@@ -23,6 +22,7 @@ public class AdminSceneController {
     }
 
     /**
+     * Method to load admin view.
      * @param event
      * @throws IOException
      */
@@ -33,7 +33,8 @@ public class AdminSceneController {
     }
 
     /**
-     * @param event
+     * Method to load admin edit view.
+     * @param event Clicking on edit.
      * @throws IOException
      */
     public void goToEditPage(ActionEvent event) throws IOException {

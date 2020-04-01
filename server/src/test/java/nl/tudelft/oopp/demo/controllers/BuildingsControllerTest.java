@@ -1,6 +1,8 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.sql.Time;
@@ -53,16 +55,63 @@ public class BuildingsControllerTest {
     }
 
     @Test
-    public void deleteBuildingTrueTest () {
+    public void addBuildingFalseTest() {
+        b1 = new Buildings();
+        b1.setBuildingNumber(1);
+
+        when(buildingsRepository.findBuildingsByBuildingNumber(1)).thenReturn(b1);
+        assertFalse(buildingsController.addBuilding(b1));
+    }
+
+    @Test
+    public void addBuildingFalseCase2Test() {
+        b1 = new Buildings();
+        b1.setBuildingNumber(0);
+
+        when(buildingsRepository.findBuildingsByBuildingNumber(0)).thenReturn(b1);
+        assertFalse(buildingsController.addBuilding(b1));
+    }
+
+    @Test
+    public void deleteBuildingTrueTest() {
         b1 = new Buildings();
         buildingsRepository.save(b1);
         assertTrue(buildingsController.deleteBuilding(b1.getBuildingNumber()));
     }
 
     @Test
+    public void deleteBuildingFalseTest() {
+        b1 = new Buildings();
+        when(buildingsRepository.deleteBuildingByBuildingNumber(b1.getBuildingNumber()))
+                .thenThrow(NullPointerException.class);
+        assertFalse(buildingsController.deleteBuilding(b1.getBuildingNumber()));
+    }
+
+    @Test
     public void editBuildingFalseTest() {
         b1 = new Buildings();
         assertFalse(buildingsController.editBuilding(b1));
+    }
+
+    @Test
+    public void editBuildingTrueTest() {
+        b1 = new Buildings();
+        b1.setBuildingNumber(1);
+
+        buildingsRepository.save(b1);
+        when(buildingsRepository.findBuildingsByBuildingNumber(1)).thenReturn(b1);
+
+        assertTrue(buildingsController.editBuilding(b1));
+    }
+
+    @Test
+    public void getBuildingByNameTest() {
+        b1 = new Buildings();
+
+        when(buildingsRepository.findBuildingsByBuildingNumber(b1.getBuildingNumber()))
+                .thenReturn(b1);
+
+        assertEquals(b1, buildingsController.getBuildingByName(b1.getBuildingNumber()));
     }
 
 }

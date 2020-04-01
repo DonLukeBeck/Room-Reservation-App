@@ -75,19 +75,21 @@ public class BikeSlots implements Initializable {
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
+
     public void paneLogOut(Event event) throws  IOException {
         helper.logOut(mainScreen);
     }
+
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
     /**
      * Method for campus map to pop up.
-     *
      * @param event Clicking on campus map
      * @throws IOException
      */
@@ -136,8 +138,9 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     * @param location
-     * @param resources
+     * Method to initialize.
+     * @param location Url to image location
+     * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -328,7 +331,6 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method for go back button.
-     *
      * @param event Clicking on go back
      * @throws IOException
      */

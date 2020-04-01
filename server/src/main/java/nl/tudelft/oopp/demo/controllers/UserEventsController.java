@@ -1,7 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import nl.tudelft.oopp.demo.entities.Reservations;
-import nl.tudelft.oopp.demo.entities.Rooms;
+import java.util.List;
 import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.repositories.PersonaleventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @Controller
 public class UserEventsController {

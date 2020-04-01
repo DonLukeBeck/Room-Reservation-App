@@ -38,6 +38,13 @@ public class FoodReservationCompleted implements Initializable {
     }
 
 
+    /**
+     * Method for initializing pane, displaying all information on dish:
+     * building ID, building name, date, time slot, dish
+     *
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helperController = new HelperController();
@@ -61,7 +68,7 @@ public class FoodReservationCompleted implements Initializable {
         String[] nameA = name.split("\\(");
         addLabelToPane(445, 470, nameInProperFormat(nameA[0]));
 
-        addLabelToPane(345 , 540, FoodSlots.getDate());
+        addLabelToPane(345, 540, FoodSlots.getDate());
 
         addLabelToPane(390, 610, FoodSlots.getTimeslot());
 
@@ -69,6 +76,13 @@ public class FoodReservationCompleted implements Initializable {
 
     }
 
+    /**
+     * Method to add a label to pane
+     *
+     * @param layoutX x-value of where the label will be at
+     * @param layoutY y-value of where the label will be at
+     * @param text String displayed in the label
+     */
     public void addLabelToPane(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
         label.setLayoutY(layoutY);
@@ -78,6 +92,12 @@ public class FoodReservationCompleted implements Initializable {
         pane.getChildren().add(label);
     }
 
+    /**
+     * Method to get the name of a building in a proper format
+     *
+     * @param name name not in proper format
+     * @return String of name in proper format
+     */
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {
