@@ -24,7 +24,7 @@ import nl.tudelft.oopp.demo.entities.Reservations;
 
 
 public class TimeSlotsController implements Initializable {
-    private static String building;
+    private static int building;
     private static String room;
     private static String date;
     private static String timeslot;
@@ -47,7 +47,7 @@ public class TimeSlotsController implements Initializable {
      *
      * @return Building
      */
-    public static String getBuilding() {
+    public static int getBuilding() {
         return building;
     }
 
@@ -137,7 +137,7 @@ public class TimeSlotsController implements Initializable {
      * @throws IOException
      */
     public void timeSlot(Event event) throws IOException {
-        building = MainMenuController.getId();
+        building = RoomMenuController.getBuildingId();
         room = RoomMenuController.getId();
         int checkDate = RoomReservationMenu.getDay();
         int checkMonth = RoomReservationMenu.getMonth() + 1;
@@ -164,7 +164,7 @@ public class TimeSlotsController implements Initializable {
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
         con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
-                date, Integer.parseInt(building), room);
+                date, building, room);
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
@@ -274,7 +274,7 @@ public class TimeSlotsController implements Initializable {
         Time open = null;
 
         for (Buildings e : list) {
-            if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
+            if (e.getBuilding_number() == RoomMenuController.getBuildingId()) {
                 System.out.println("Works");
                 open = e.getOpeningHours();
                 closed = e.getClosingHours();

@@ -61,10 +61,10 @@ public class CompletedReservationController implements Initializable {
             e.printStackTrace();
         }
 
-        addText(390, 400, TimeSlotsController.getBuilding());
+        addText(390, 400, ""+TimeSlotsController.getBuilding());
 
         for (Buildings e : list) {
-            if (e.getBuilding_number() == Integer.parseInt(TimeSlotsController.getBuilding())) {
+            if (e.getBuilding_number() == TimeSlotsController.getBuilding()) {
                 name = e.getName();
                 System.out.println(name);
             }

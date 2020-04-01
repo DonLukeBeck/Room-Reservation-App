@@ -26,6 +26,11 @@ import nl.tudelft.oopp.demo.entities.Rooms;
 public class RoomMenuController implements Initializable {
     public static List<Rooms> rooms;
     private static String room_id;
+    private static int building_id;
+    public static int getBuildingId(){
+        return building_id;
+    }
+
     ServerCommunication con = new ServerCommunication();
     HelperController helper = new HelperController();
     @FXML
@@ -276,6 +281,7 @@ public class RoomMenuController implements Initializable {
         int roomIndex = Integer.parseInt(temp2);
 
         room_id = rooms.get(roomIndex).getRoomId();
+        building_id = rooms.get(roomIndex).getAssociatedBuilding();
 
         //String buildingId = MainMenuController.getId().substring(1);
 
