@@ -211,7 +211,7 @@ public class AdminEditController implements Initializable {
                                                 }
                                                 editRoomID.setText(selectedRoom.getRoomId());
                                                 numberChairs.setText(String.valueOf(selectedRoom.getChairs()));
-                                                numberComputers.setText(String.valueOf(selectedRoom.getChairs()));
+                                                numberComputers.setText(String.valueOf(selectedRoom.getComputers()));
                                                 numberTables.setText(String.valueOf(selectedRoom.getTables()));
                                                 numberWhiteboards.setText(String.valueOf(selectedRoom.getWhiteboards()));
                                             } catch (IOException e){
