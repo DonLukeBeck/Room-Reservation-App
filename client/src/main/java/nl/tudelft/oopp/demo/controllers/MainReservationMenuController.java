@@ -39,7 +39,7 @@ public class MainReservationMenuController implements Initializable {
      * Method for campus map to pop up.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException Exception if can't find campus map page
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -56,7 +56,7 @@ public class MainReservationMenuController implements Initializable {
      * Method to go to previous page.
      *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException Exception if can't find Main menu page
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
@@ -67,7 +67,7 @@ public class MainReservationMenuController implements Initializable {
      * Method to go to room reservation.
      *
      * @param event Clicking on 'Rooms'
-     * @throws IOException
+     * @throws IOException Exception if can't find room menu page
      */
     public void goToRooms(Event event) throws IOException {
         HelperController helperController = new HelperController();
@@ -78,7 +78,7 @@ public class MainReservationMenuController implements Initializable {
      * Method to go to bike reservation.
      *
      * @param event Clicking on 'Bikes'
-     * @throws IOException
+     * @throws IOException Exception if can't find reservation bike page
      */
     public void goToBikes(Event event) throws IOException {
         HelperController helperController = new HelperController();
@@ -99,9 +99,8 @@ public class MainReservationMenuController implements Initializable {
 
     /**
      * Method to go to food reservation.
-     *
      * @param event Clicking on 'Food'
-     * @throws IOException
+     * @throws IOException Exception if can't find food menu page
      */
     public void goToFood(Event event) throws IOException {
         HelperController helperController = new HelperController();
@@ -113,8 +112,9 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     * @param location
-     * @param resources
+     * Method to initilize.
+     * @param location Link to the location
+     * @param resources Resource Bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

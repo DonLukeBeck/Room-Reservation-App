@@ -45,9 +45,10 @@ public class HelperController {
     }
 
     /**
-     * @param path
-     * @param scene1
-     * @throws IOException
+     * Method to load next scene from a given scene.
+     * @param path Path to take from current scene
+     * @param scene1 Current scene
+     * @throws IOException Exception if can't find next scene to load
      */
     public void loadNextScene(String path, AnchorPane scene1) throws IOException {
         Stage stage1 = (Stage) scene1.getScene().getWindow();
@@ -67,6 +68,11 @@ public class HelperController {
         stage1.close();
     }
 
+    /**
+     *Method to logout user.
+     * @param scene1
+     * @throws IOException Exception if can't find main scene page
+     */
     public void logOut(AnchorPane scene1) throws IOException {
         Stage stage1 = (Stage) scene1.getScene().getWindow();
 
@@ -80,6 +86,11 @@ public class HelperController {
         stage1.show();
     }
 
+    /**
+     *Method to load user profile.
+     * @param scene1 Current scene
+     * @throws IOException Exception if you can't find user page
+     */
     public void userProfile(AnchorPane scene1) throws IOException {
         Stage stage1 = (Stage) scene1.getScene().getWindow();
 
@@ -93,6 +104,11 @@ public class HelperController {
         stage1.show();
     }
 
+    /**
+     *Method to add role.
+     * @param pane
+     * @param role Role to be added
+     */
     public void addRole(Pane pane, String role) {
         Label label = new Label(role);
         label.setLayoutX(88);
