@@ -23,8 +23,8 @@ public class AdminSceneController {
 
     /**
      * Method to load admin view.
-     * @param event
-     * @throws IOException
+     * @param event Logging in as admin
+     * @throws IOException Exception if can't find admin view scene
      */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
@@ -35,7 +35,7 @@ public class AdminSceneController {
     /**
      * Method to load admin edit view.
      * @param event Clicking on edit.
-     * @throws IOException
+     * @throws IOException Exception if can't find admin edit view scene
      */
     public void goToEditPage(ActionEvent event) throws IOException {
 

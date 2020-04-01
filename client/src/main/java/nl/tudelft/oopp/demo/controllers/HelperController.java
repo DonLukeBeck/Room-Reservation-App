@@ -70,7 +70,7 @@ public class HelperController {
 
     /**
      *Method to logout user.
-     * @param scene1
+     * @param scene1 Scene from which to log out
      * @throws IOException Exception if can't find main scene page
      */
     public void logOut(AnchorPane scene1) throws IOException {

@@ -71,7 +71,7 @@ public class AdminEditController implements Initializable {
     /**
      * Method to go to admin edit view.
      * @param event Clicking on edit
-     * @throws IOException
+     * @throws IOException Exception if can't find admin edit view scene
      */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
@@ -79,7 +79,7 @@ public class AdminEditController implements Initializable {
         helper.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
 
-    /***
+    /**
      *Method to initialize.
      * @param location Location of the picture
      * @param resources Resource Bundle
@@ -186,10 +186,10 @@ public class AdminEditController implements Initializable {
                 });
     }
 
-    /***
+    /**
      *Method to go back to main admin scene.
      * @param event Clicking on go back
-     * @throws IOException
+     * @throws IOException Exception if can't find main admin scene
      */
     public void goBack(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
@@ -199,7 +199,7 @@ public class AdminEditController implements Initializable {
     /**
      * Method for admin to edit building.
      * @param event Clicking on edit
-     * @throws IOException
+     * @throws IOException Exception if can't find admin edit view scene
      */
     public void editBuilding(Event event) throws IOException {
 
@@ -257,7 +257,7 @@ public class AdminEditController implements Initializable {
     /**
      * Method for admin to edit a room.
      * @param event Clicking on edit room
-     * @throws IOException
+     * @throws IOException Exception if can't find admin view scene
      */
     public void editRoom(Event event) throws IOException {
         Label exception = new Label();

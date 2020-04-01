@@ -100,7 +100,7 @@ public class TimeSlotsController implements Initializable {
     }
 
     /**
-     * Method for getting timeslot in proper format from string
+     * Method for getting timeslot in proper format from string.
      *
      * @param str used string to get timeslot from
      * @return timeslot in right format
@@ -245,8 +245,10 @@ public class TimeSlotsController implements Initializable {
 
     /**
      *
-     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
-     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     * @param location The location used to resolve relative paths for the root object,
+     *                or null if the location is not known
+     * @param resources The resources used to localize the root object,
+     *                 or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

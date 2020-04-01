@@ -112,8 +112,8 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *
-     * @return
+     * Method to convert month from string to int.
+     * @return Month as integer
      */
     public int getMonthFromSearch() {
         String[] months = new String[]{"January", "February", "March", "April", "May", "June", ""
@@ -146,8 +146,8 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *
-     * @param e
+     * Method to add border to a date on calendar.
+     * @param e Date to have border added to
      */
     public void addBorderToTheChosenDate(Node e) {
         BorderWidths border = new BorderWidths(5, 5, 5, 5);
