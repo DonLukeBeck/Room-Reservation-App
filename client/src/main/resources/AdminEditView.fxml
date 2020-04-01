@@ -18,12 +18,12 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Label layoutX="55.0" layoutY="200.0" prefHeight="35.0" prefWidth="255.0" text="Select Building Number">
+        <Label layoutX="55.0" layoutY="200.0" prefHeight="35.0" prefWidth="218.0" text="Select Building Number">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="listBuildingID1" layoutX="354.0" layoutY="205.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="listBuildingID1" layoutX="354.0" layoutY="205.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
         <Label layoutX="55.0" layoutY="275.0" prefHeight="35.0" prefWidth="237.0" text="New Building Name:">
             <font>
@@ -37,13 +37,13 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <ComboBox fx:id="listOpen" layoutX="354.0" layoutY="355.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ComboBox fx:id="listOpen" layoutX="354.0" layoutY="355.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
         <Label layoutX="55.0" layoutY="425.0" text="New Closing Hour:">
             <font>
                 <Font size="24.0" />
             </font></Label>
-        <ComboBox fx:id="listClose" layoutX="354.0" layoutY="430.0" prefHeight="26.0" prefWidth="150.0" stylesheets="@style/style.css" />
+        <ComboBox fx:id="listClose" layoutX="354.0" layoutY="430.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
         <Label layoutX="55.0" layoutY="500.0" prefHeight="38.0" prefWidth="218.0" text="URL of image:">
             <font>
@@ -77,14 +77,14 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="listBuildingID2" layoutX="1012.0" layoutY="130.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="listBuildingID2" layoutX="1012.0" layoutY="130.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
         <Label layoutX="675.0" layoutY="200.0" prefHeight="38.0" prefWidth="218.0" text="Select room ID">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="listRoomsID" layoutX="1012.0" layoutY="206.0" prefHeight="26.0" prefWidth="166.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="listRoomsID" layoutX="1012.0" layoutY="206.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
         <Label layoutX="675.0" layoutY="275.0" prefHeight="35.0" prefWidth="228.0" text="New room ID">
             <font>
@@ -105,28 +105,28 @@
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="numberWhiteboards" layoutX="1017.0" layoutY="430.0" prefHeight="26.0" prefWidth="104.0" />
+        <TextField fx:id="numberWhiteboards" layoutX="1012.0" layoutY="430.0" prefHeight="26.0" prefWidth="218.0" />
 
         <Label layoutX="675.0" layoutY="500.0" prefHeight="35.0" prefWidth="228.0" text="Number of tables">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="numberTables" layoutX="1017.0" layoutY="495.0" prefHeight="26.0" prefWidth="104.0" />
+        <TextField fx:id="numberTables" layoutX="1012.0" layoutY="495.0" prefHeight="26.0" prefWidth="218.0" />
 
         <Label layoutX="675.0" layoutY="575.0" prefHeight="35.0" prefWidth="255.0" text="Number of computers">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="numberComputers" layoutX="1017.0" layoutY="580.0" prefHeight="26.0" prefWidth="104.0" />
+        <TextField fx:id="numberComputers" layoutX="1012.0" layoutY="580.0" prefHeight="26.0" prefWidth="218.0" />
 
         <Label layoutX="675.0" layoutY="650.0" prefHeight="38.0" prefWidth="130.0" text="New Type:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="656.0" prefHeight="26.0" prefWidth="104.0" stylesheets="@style/style.css" />
+        <ChoiceBox fx:id="roomType" layoutX="1012.0" layoutY="656.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
 
         <Button defaultButton="true" layoutX="1017.0" layoutY="720.0" mnemonicParsing="false" onAction="#editRoom" prefHeight="46.0" prefWidth="218.0" text="Edit Room">
             <font>

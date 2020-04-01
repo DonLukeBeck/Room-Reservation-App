@@ -116,19 +116,10 @@ public class AdminEditController implements Initializable {
             listAllBuildings[j] = "" + t.getBuilding_number();
             j++;
         }
-        List<Rooms> listGetRooms = null;
-        try {
-            listGetRooms = con.getRooms();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String[] listAllRooms = new String[listGetRooms.size() + 1];
+
+        String[] listAllRooms = new String[2];
         listAllRooms[0] = "Select room";
-        j = 1;
-        for (Rooms r : listGetRooms) {
-            listAllRooms[j] = "" + r.getRoomId();
-            j++;
-        }
+        listAllRooms[1] = "First select building";
 
 
         listOpen.setItems(FXCollections.observableArrayList(list));
@@ -189,43 +180,75 @@ public class AdminEditController implements Initializable {
                 .selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
                     @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        try{
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue,
+                                        Number newValue) {
+                        try {
                             Buildings selectedBuilding = con
-                                    .getBuildingByName(Integer.parseInt(listAllBuildings[(int)newValue]));
+                                    .getBuildingByName(Integer
+                                            .parseInt(listAllBuildings[(int)newValue]));
 
-                            listRoomsID.setItems(FXCollections.observableArrayList(con.getRoomsByBuilding(selectedBuilding.getBuilding_number())));
+                            List<Rooms> listGetRoomsByBuilding = null;
+                            try {
+                                listGetRoomsByBuilding = con
+                                        .getRoomsByBuilding(selectedBuilding
+                                                .getBuilding_number());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            String[] listRoomsByBuilding = new String[listGetRoomsByBuilding
+                                    .size() + 1];
+                            listRoomsByBuilding[0] = "Select room";
+                            int j = 1;
+                            for (Rooms r : listGetRoomsByBuilding) {
+                                listRoomsByBuilding[j] = "" + r.getRoomId();
+                                j++;
+                            }
+                            listRoomsID.setItems(FXCollections
+                                    .observableArrayList(listRoomsByBuilding));
+                            listRoomsID.setValue("Select room");
 
                             listRoomsID.getSelectionModel()
                                     .selectedIndexProperty()
                                     .addListener(new ChangeListener<Number>() {
                                         @Override
-                                        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                                        public void changed(
+                                                ObservableValue<? extends Number> observable,
+                                                            Number oldValue,
+                                                            Number newValue) {
                                             Rooms selectedRoom = new Rooms();
-                                            try{
-                                                for(Rooms r : con.getRoomsByBuilding(selectedBuilding.getBuilding_number())){
-                                                    if(Integer.parseInt(r.getRoomId()) == (int)newValue){
+                                            try {
+                                                for (Rooms r : con
+                                                        .getRoomsByBuilding(selectedBuilding
+                                                                .getBuilding_number())) {
+                                                    if (r.getRoomId()
+                                                            .equals(listRoomsByBuilding[
+                                                                    (int)newValue])) {
                                                         selectedRoom = r;
                                                     }
-
                                                 }
                                                 editRoomID.setText(selectedRoom.getRoomId());
-                                                numberChairs.setText(String.valueOf(selectedRoom.getChairs()));
-                                                numberComputers.setText(String.valueOf(selectedRoom.getComputers()));
-                                                numberTables.setText(String.valueOf(selectedRoom.getTables()));
-                                                numberWhiteboards.setText(String.valueOf(selectedRoom.getWhiteboards()));
-                                            } catch (IOException e){
+                                                numberChairs.setText(String
+                                                        .valueOf(selectedRoom
+                                                                .getChairs()));
+                                                numberComputers.setText(String
+                                                        .valueOf(selectedRoom
+                                                                .getComputers()));
+                                                numberTables.setText(String
+                                                        .valueOf(selectedRoom
+                                                                .getTables()));
+                                                numberWhiteboards
+                                                        .setText(String
+                                                                .valueOf(selectedRoom
+                                                                        .getWhiteboards()));
+                                                roomType.setValue(selectedRoom.getType());
+                                            } catch (IOException e) {
                                                 e.printStackTrace();
                                                 System.out.print("No selected Room");
                                             }
-                                            }
-
-
+                                        }
                                     });
-
-
-
-                        } catch (IOException e){
+                        } catch (IOException e) {
                             e.printStackTrace();
                             System.out.print("No selected Building");
                         }
@@ -364,7 +387,7 @@ public class AdminEditController implements Initializable {
                 oldRoomId);
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminView.fxml", mainScreen);
+        h.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
 }
 
