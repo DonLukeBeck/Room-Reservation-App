@@ -76,7 +76,7 @@ public class BikeSlots implements Initializable {
         helper.exit(mainScreen);
     }
 
-    public void paneLogOut(Event event) throws  IOException {
+    public void paneLogOut(Event event) throws IOException {
         helper.logOut(mainScreen);
     }
 
@@ -90,8 +90,9 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method for campus map to pop up.
+     *
      * @param event Clicking on campus map
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -105,8 +106,10 @@ public class BikeSlots implements Initializable {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Get all information from the chosen time slot.
+     *
+     * @param event on mouse click
+     * @throws IOException when can not load ReservationBikeCompleted
      */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
@@ -139,7 +142,8 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method to initialize.
-     * @param location Url to image location
+     *
+     * @param location  Url to image location
      * @param resources Resource bundle
      */
     @Override
@@ -331,8 +335,9 @@ public class BikeSlots implements Initializable {
 
     /**
      * Method for go back button.
+     *
      * @param event Clicking on go back
-     * @throws IOException
+     * @throws IOException when can not load ReservationBike
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();

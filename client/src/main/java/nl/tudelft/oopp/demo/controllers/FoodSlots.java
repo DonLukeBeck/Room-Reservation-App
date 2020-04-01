@@ -21,7 +21,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
-import nl.tudelft.oopp.demo.entities.Reservations;
 
 public class FoodSlots implements Initializable {
     private static String building;
@@ -82,7 +81,7 @@ public class FoodSlots implements Initializable {
      * Method to pop up campus map.
      *
      * @param event Clicking on 'campus map'
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -96,8 +95,10 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     * @param event
-     * @throws IOException
+     * Get all information from the chosen time slot.
+     *
+     * @param event on mouse click
+     * @throws IOException when can not load ReservationFoodCompleted
      */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
@@ -142,7 +143,7 @@ public class FoodSlots implements Initializable {
         helper.exit(mainScreen);
     }
 
-    public void paneLogOut(Event event) throws  IOException {
+    public void paneLogOut(Event event) throws IOException {
         helper.logOut(mainScreen);
     }
 
@@ -155,7 +156,7 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     * Method for getting the starting hour using LocalTime     *
+     * Method for getting the starting hour using LocalTime.
      *
      * @return the hour used for the start of the building
      */
@@ -164,21 +165,19 @@ public class FoodSlots implements Initializable {
         double hour = localtime.getHour();
         if (localtime.getMinute() <= 20) {
             hour += 0.5;
-        }
-        else if (localtime.getMinute() <= 50) {
+        } else if (localtime.getMinute() <= 50) {
             hour += 1;
-        }
-        else {
+        } else {
             hour += 1.5;
         }
         return hour;
     }
 
     /**
-     * Method for getting the opening and closing time of a building
+     * Method for getting the opening and closing time of a building.
      *
      * @param start  the starting time of a building
-     * @param closed    the closing time of a building
+     * @param closed the closing time of a building
      * @return the starting time and closing time in an array
      */
     public double[] getEndAndStart(Time start, Time closed) {
@@ -192,8 +191,7 @@ public class FoodSlots implements Initializable {
 
         if (startTime < timeNow) {
             startTime = timeNow;
-        }
-        else if (opening[1].equals("30")) {
+        } else if (opening[1].equals("30")) {
             startTime = startTime + 0.5;
         }
 
@@ -214,7 +212,7 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     * Method for disabling all timeslots that aren't available
+     * Method for disabling all timeslots that aren't available.
      *
      * @param start start of enabled timeslots
      * @param end   end of enabled timeslots
@@ -235,12 +233,12 @@ public class FoodSlots implements Initializable {
                     ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
                     k.disableProperty().setValue(true);
                 }
-             }
+            }
         }
     }
 
     /**
-     * Method for getting timeslot in proper format from string
+     * Method for getting timeslot in proper format from string.
      *
      * @param str used string to get timeslot from
      * @return timeslot in right format
@@ -259,11 +257,14 @@ public class FoodSlots implements Initializable {
         timeslot = temp2.replace('A', ':');
         return timeslot;
     }
+
     /**
-     * Method for initializing timeslots
+     * Method for initializing timeslots.
      *
-     * @param location The location used to resolve relative paths for the root object, or null if the location is not known
-     * @param resources The resources used to localize the root object, or null if the root object was not localized
+     * @param location  The location used to resolve relative paths for the root object,
+     *                 or null if the location is not known
+     * @param resources The resources used to localize the root object,
+     *                 or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -298,7 +299,7 @@ public class FoodSlots implements Initializable {
      * Method to go back.
      *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException when can not load FoodMenu
      */
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();

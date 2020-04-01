@@ -101,7 +101,7 @@ public class BikeReservationCompleted implements Initializable {
      * Method for campus map to pop up.
      *
      * @param event Clicking on 'Campus Map'
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -118,7 +118,7 @@ public class BikeReservationCompleted implements Initializable {
      * Method to go back to previous page.
      *
      * @param event Clicking on 'Go Back'
-     * @throws IOException
+     * @throws IOException when it can not the MainMenu page
      */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();

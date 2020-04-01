@@ -45,8 +45,10 @@ public class CompletedReservationController implements Initializable {
     }
 
     /**
-     * @param location
-     * @param resources
+     * Loading elements when the scene is opened.
+     *
+     * @param location  location of the chosen fxml
+     * @param resources resources needed
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,7 +63,7 @@ public class CompletedReservationController implements Initializable {
             e.printStackTrace();
         }
 
-        addText(390, 400, ""+TimeSlotsController.getBuilding());
+        addText(390, 400, "" + TimeSlotsController.getBuilding());
 
         for (Buildings e : list) {
             if (e.getBuilding_number() == TimeSlotsController.getBuilding()) {
@@ -94,6 +96,11 @@ public class CompletedReservationController implements Initializable {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
+    /**
+     * Change String to proper format.
+     * @param name String to change
+     * @return String in needed format
+     */
     public String nameInProperFormat(String name) {
         String result = "";
         if (name.toCharArray().length > 50) {
@@ -108,6 +115,13 @@ public class CompletedReservationController implements Initializable {
         return result;
     }
 
+    /**
+     * Create new Label.
+     * @param layoutX layout X chosen
+     * @param layoutY layout Y chosen
+     * @param text String to add to the label.
+     */
+
     public void addText(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
         label.layoutYProperty().setValue(layoutY);
@@ -121,7 +135,7 @@ public class CompletedReservationController implements Initializable {
      * Method to pop up campus map.
      *
      * @param event Clicking on campus map button
-     * @throws IOException
+     * @throws IOException when can not load CampusMap
      */
     public void campusMap(Event event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -137,8 +151,8 @@ public class CompletedReservationController implements Initializable {
     /**
      * Method to go back to main menu.
      *
-     * @param event
-     * @throws IOException
+     * @param event on mouse click
+     * @throws IOException when can not load MainMenu
      */
     public void goToMainMenu(Event event) throws IOException {
         HelperController helperController = new HelperController();
