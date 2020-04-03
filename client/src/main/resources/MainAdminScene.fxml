@@ -39,37 +39,53 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-      <Text layoutX="374.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD">
+      <Text layoutX="303.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD">
          <font>
             <Font name="Arial Rounded MT Bold" size="30.0" />
          </font>
       </Text>
-      <Label layoutX="286.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
+      <Label layoutX="213.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
          <font>
             <Font name="Arial Rounded MT Bold" size="24.0" />
          </font>
       </Label>
-        <Label layoutX="286.0" layoutY="581.0" prefHeight="51.0" prefWidth="241.0" text="Holiday/Dishes">
+        <Label layoutX="212.0" layoutY="579.0" prefHeight="51.0" prefWidth="241.0" text="Holiday/Dishes">
             <font>
                 <Font name="Arial Rounded MT Bold" size="24.0" />
             </font>
         </Label>
-      <Button fx:id="add" layoutX="279.0" layoutY="438.0" mnemonicParsing="false" onAction="#goToAdminAddSelection" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
-      <Text layoutX="807.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE">
+      <Button fx:id="add" layoutX="206.0" layoutY="429.0" mnemonicParsing="false" onAction="#goToAdminAddSelection" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Text layoutX="889.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE">
          <font>
             <Font name="Arial Rounded MT Bold" size="30.0" />
          </font>
       </Text>
-      <Label layoutX="753.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
+      <Label layoutX="827.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
          <font>
             <Font name="Arial Rounded MT Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="780.0" layoutY="581.0" prefHeight="51.0" prefWidth="187.0" text="Bike availability">
+      <Label layoutX="854.0" layoutY="579.0" prefHeight="51.0" prefWidth="187.0" text="Bike availability">
          <font>
             <Font name="Arial Rounded MT Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="change" layoutX="746.0" layoutY="438.0" mnemonicParsing="false" onAction="#goToEditPage" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Button fx:id="change" layoutX="821.0" layoutY="429.0" mnemonicParsing="false" onAction="#goToEditPage" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Button fx:id="delete" layoutX="513.0" layoutY="429.0" mnemonicParsing="false" onAction="#goToAdminDelete" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Label layoutX="519.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="519.0" layoutY="579.0" prefHeight="51.0" prefWidth="241.0" text="Holiday/Dishes">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="591.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DELETE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
