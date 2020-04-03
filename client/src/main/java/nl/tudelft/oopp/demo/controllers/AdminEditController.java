@@ -73,7 +73,7 @@ public class AdminEditController implements Initializable {
      * @param event Clicking on edit
      * @throws IOException Exception if can't find admin edit view scene
      */
-    public void goToAdminAdd(ActionEvent event) throws IOException {
+    public void goToAdminEdit(ActionEvent event) throws IOException {
 
         HelperController helper = new HelperController();
         helper.loadNextScene("/AdminEditView.fxml", mainScreen);
@@ -389,5 +389,8 @@ public class AdminEditController implements Initializable {
         HelperController h = new HelperController();
         h.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
+
+
+
 }
 
