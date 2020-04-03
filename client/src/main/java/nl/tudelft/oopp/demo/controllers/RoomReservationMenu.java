@@ -59,6 +59,14 @@ public class RoomReservationMenu implements Initializable {
         return Fyear;
     }
 
+    public static int getDayNow() {
+        return DayNow;
+    }
+
+    public static int getMonthNow() {
+        return MonthNow;
+    }
+
     /**
      * Method to get Day.
      *
@@ -91,6 +99,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException Exception if can't find main menu scene
      */
@@ -113,6 +122,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to convert month from string to int.
+     *
      * @return Month as integer
      */
     public int getMonthFromSearch() {
@@ -128,7 +138,6 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *
      * @param e
      * @param layoutX
      * @param layoutY
@@ -147,6 +156,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to add border to a date on calendar.
+     *
      * @param e Date to have border added to
      */
     public void addBorderToTheChosenDate(Node e) {
@@ -156,7 +166,7 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *Method to clear all dates.
+     * Method to clear all dates.
      */
     public void clearAllDates() {
         for (Node k : grid.getChildren()) {
@@ -173,8 +183,9 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *Method to add dates onto calendar template.
-     * @param c Calendar passed as parameter
+     * Method to add dates onto calendar template.
+     *
+     * @param c             Calendar passed as parameter
      * @param lengthOfMonth Number of days in that month
      */
     public void addDatesOnCalendar(Calendar c, int lengthOfMonth) {
@@ -255,6 +266,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to search for specific calendar month.
+     *
      * @param event Inititating search
      * @throws IOException Exception if no such calendar exists
      */
@@ -280,6 +292,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Method to find the current date.
+     *
      * @param e
      * @return Current date
      */
@@ -295,7 +308,6 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *
      * @throws IOException Exception if can't find previous date alers scene
      */
     public void openAlert() throws IOException {
@@ -350,8 +362,9 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     *Method to keep track of holidays.
-     * @param month Month during which holidays happen
+     * Method to keep track of holidays.
+     *
+     * @param month  Month during which holidays happen
      * @param monLen Holidays duration
      * @return Holidays dates
      * @throws IOException Exception if can't find corresponding calendar

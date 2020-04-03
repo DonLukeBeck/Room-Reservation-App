@@ -22,6 +22,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
+import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Reservations;
 
@@ -33,6 +34,7 @@ public class BikeSlots implements Initializable {
 
     ServerCommunication con = new ServerCommunication();
     HelperController helper = new HelperController();
+    UserServerCommunication send = new UserServerCommunication();
 
     @FXML
     private AnchorPane slots;
@@ -134,6 +136,9 @@ public class BikeSlots implements Initializable {
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
+        send.bikeReservation(MainSceneController.getUser(), timeslot + ":00",
+                date, Integer.parseInt(building));
+
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBikeCompleted.fxml", mainScreen);
