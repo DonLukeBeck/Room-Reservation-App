@@ -136,10 +136,8 @@ public class BikeSlots implements Initializable {
         temp2 = temp2.substring(1, temp2.length() - 1);
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
-        send.bikeReservation(MainSceneController.getUser(), timeslot + ":00",
-                date, Integer.parseInt(building));
 
-
+        send.bikeReservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building));
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBikeCompleted.fxml", mainScreen);
 
@@ -238,6 +236,7 @@ public class BikeSlots implements Initializable {
             if (e.getBuilding_number() == Integer.parseInt(MainMenuController.getId())) {
                 open = e.getOpeningHours();
                 closed = e.getClosingHours();
+                buildingavailablebikes = e.getNumber_of_bikes();
                 break;
             }
         }
