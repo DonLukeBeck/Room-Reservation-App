@@ -22,7 +22,9 @@ public class Holidays {
     public Holidays() {
     }
 
-    public String getComments() { return comments; }
+    public String getComments() {
+        return comments;
+    }
 
     public void setComments(String comments) {
         this.comments = comments;

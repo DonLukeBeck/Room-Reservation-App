@@ -63,7 +63,7 @@ public class AdminDeleteController implements Initializable {
      * @throws IOException Exception if can't find admin edit view scene
      */
 
-    public void goToAdminDelete(ActionEvent event) throws IOException{
+    public void goToAdminDelete(ActionEvent event) throws IOException {
         HelperController helper = new HelperController();
         helper.loadNextScene("/AdminDeleteView.fxml", mainScreen);
     }
@@ -75,7 +75,7 @@ public class AdminDeleteController implements Initializable {
      * @param resources Resource Bundle
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void initialize(URL location, ResourceBundle resources) {
 
         List<Buildings> listGetBuildings = null;
         int j = 0;
@@ -99,9 +99,9 @@ public class AdminDeleteController implements Initializable {
         listAllRooms[1] = "First select building";
 
         List<Holidays> listGetHolidays = null;
-        try{
+        try {
             listGetHolidays = con.getHolidays();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -109,7 +109,7 @@ public class AdminDeleteController implements Initializable {
         listHolidaysID[0] = "Select holiday ID";
 
         j =  1;
-        for(Holidays h : listGetHolidays) {
+        for (Holidays h : listGetHolidays) {
             listHolidaysID[j] = "" + h.getHolidaysID();
             j++;
         }
@@ -146,16 +146,17 @@ public class AdminDeleteController implements Initializable {
                 .selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
                     @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue, Number newValue) {
                         try {
                             Buildings selectedBuilding = con
                                     .getBuildingByName(Integer
                                             .parseInt(listAllBuildings[(int) newValue]));
 
                             List<Rooms> listGetRoomByBuilding = null;
-                            try{
+                            try {
                                 listGetRoomByBuilding = con.getRoomsByBuilding(selectedBuilding.getBuilding_number());
-                            } catch (IOException e){
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             String[] listRoomsByBuilding = new String[listGetRoomByBuilding
@@ -171,7 +172,7 @@ public class AdminDeleteController implements Initializable {
                             listRoomID.setValue("Select room");
 
 
-                        } catch (IOException e){
+                        } catch (IOException e) {
                             e.printStackTrace();
                             System.out.println("No selected building");
                         }
@@ -184,7 +185,8 @@ public class AdminDeleteController implements Initializable {
                 .selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
                     @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue, Number newValue) {
                         try {
                             Buildings selectedBuilding = con.getBuildingByName(Integer
                                     .parseInt(listAllBuildings[(int) newValue]));
@@ -192,17 +194,17 @@ public class AdminDeleteController implements Initializable {
 
 
                             List<Menus> listAllMenus = null;
-                            try{
+                            try {
                                 listAllMenus = con.getMenus();
-                            }catch (IOException e){
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             String[] listMenusByBuilding = new String[listAllMenus.size() + 1];
                             listMenusByBuilding[0] = "Select Menu";
 
                             int j = 1;
-                            for(Menus m : listAllMenus){
-                                if(m.getBuildingNumber() == selectedBuilding.getBuilding_number()){
+                            for (Menus m : listAllMenus) {
+                                if (m.getBuildingNumber() == selectedBuilding.getBuilding_number()) {
                                     listMenusByBuilding[j] = m.getDishName();
                                     j++;
                                 }
@@ -213,9 +215,9 @@ public class AdminDeleteController implements Initializable {
 
 
                             List<Dishes> listAllDishes = null;
-                            try{
+                            try {
                                 listAllDishes = con.getDishes();
-                            } catch (IOException e){
+                            } catch (IOException e) {
                                 e.printStackTrace();
                             }
 
@@ -223,7 +225,7 @@ public class AdminDeleteController implements Initializable {
                             listDishesByBuilding[0] = "Select Dish";
 
                             int k = 1;
-                            for(Dishes d : listAllDishes){
+                            for (Dishes d : listAllDishes) {
                                 listDishesByBuilding[k] = d.getName();
                                 k++;
                             }
@@ -248,7 +250,12 @@ public class AdminDeleteController implements Initializable {
         helperController.loadNextScene("/MainAdminScene.fxml", mainScreen);
     }
 
-    public void deleteBuilding(Event event) throws IOException{
+    /**
+     * Method for admin to delete a building.
+     * @param event Clicking delete building
+     * @throws IOException Exception if can't find admin edit view scene
+     */
+    public void deleteBuilding(Event event) throws IOException {
 
         Label exception = new Label();
 
@@ -259,7 +266,7 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if(listBuildingID.getValue().toString().equals("Select building")){
+        if (listBuildingID.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -278,7 +285,12 @@ public class AdminDeleteController implements Initializable {
     }
 
 
-    public void deleteRoom(Event event) throws IOException{
+    /**
+     * Method for admin to delete a room.
+     * @param event Clicking delete room
+     * @throws IOException Exception if can't find admin delete view scene
+     */
+    public void deleteRoom(Event event) throws IOException {
 
         Label exception = new Label();
 
@@ -289,7 +301,7 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if(listBuildingID2.getValue().toString().equals("Select building")){
+        if (listBuildingID2.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -299,7 +311,7 @@ public class AdminDeleteController implements Initializable {
             return;
         }
 
-        if(listRoomID.getValue().toString().equals("Select room")){
+        if (listRoomID.getValue().toString().equals("Select room")) {
             exception.setText("Please select room.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -318,7 +330,12 @@ public class AdminDeleteController implements Initializable {
 
     }
 
-    public void deleteHoliday(Event event) throws IOException{
+    /**
+     * Method for admin to delete a holiday.
+     * @param event Clicking delete holiday
+     * @throws IOException Exception if can't find admin delete view
+     */
+    public void deleteHoliday(Event event) throws IOException {
 
         Label exception = new Label();
 
@@ -329,7 +346,7 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if(listHolidayID.getValue().toString().equals("Select holiday ID")){
+        if (listHolidayID.getValue().toString().equals("Select holiday ID")) {
             exception.setText("Please select holiday.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -348,7 +365,12 @@ public class AdminDeleteController implements Initializable {
     }
 
 
-    public void deleteDish(Event event) throws IOException{
+    /**
+     * Method for admin to delete a dish.
+     * @param event Clicking delete dish
+     * @throws IOException Exception if can't find admin delete view
+     */
+    public void deleteDish(Event event) throws IOException {
 
         Label exception = new Label();
 
@@ -359,7 +381,7 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if(listDishes.getValue().toString().equals("Select dish")){
+        if (listDishes.getValue().toString().equals("Select dish")) {
             exception.setText("Please select dish.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -379,7 +401,12 @@ public class AdminDeleteController implements Initializable {
 
     }
 
-    public void deleteMenu(Event event) throws IOException{
+    /**
+     * Method for admin to delete a menu.
+     * @param event Clicking delete menu
+     * @throws IOException Exception if can't find admin delete view
+     */
+    public void deleteMenu(Event event) throws IOException {
 
         Label exception = new Label();
 
@@ -390,7 +417,7 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if(listBuildingID1.getValue().toString().equals("Select building")){
+        if (listBuildingID1.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -399,7 +426,7 @@ public class AdminDeleteController implements Initializable {
             exception.setId("Exception");
             return;
         }
-        if(listMenus.getValue().toString().equals("Select menu")){
+        if (listMenus.getValue().toString().equals("Select menu")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);

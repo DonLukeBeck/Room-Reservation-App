@@ -48,12 +48,22 @@ public class AdminSceneController {
         helperController.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
 
+    /**
+     * Method to go to admin holiday add scene.
+     * @param event Admin clicking add holiday
+     * @throws IOException Exception if can't find admin holiday add scene
+     */
     public void goToAdminHolidayAdd(ActionEvent event) throws IOException {
 
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/AdminHolidayAdd.fxml", mainScreen);
     }
 
+    /**
+     * Method to go back to main admin scene.
+     * @param event Clicking go back button
+     * @throws IOException Exception if can't find main admin scene
+     */
     public void goBack(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/MainAdminScene.fxml", mainScreen);

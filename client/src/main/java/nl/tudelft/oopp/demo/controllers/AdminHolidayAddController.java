@@ -131,7 +131,7 @@ public class AdminHolidayAddController implements Initializable {
         String start =  startDate.getDayCellFactory().toString();
         String end = endDate.getDayCellFactory().toString();
 
-        if(start.isEmpty()){
+        if (start.isEmpty()) {
 
             exception.setText("Please select start date.");
             exception.setLayoutY(120);
@@ -144,7 +144,7 @@ public class AdminHolidayAddController implements Initializable {
 
         }
 
-        if(end.isEmpty()){
+        if (end.isEmpty()) {
 
             exception.setText("Please select end date.");
             exception.setLayoutY(120);
@@ -194,7 +194,7 @@ public class AdminHolidayAddController implements Initializable {
             return;
         }
 
-        if (dishName.getText().isEmpty()){
+        if (dishName.getText().isEmpty()) {
             exception.setText("Please enter dish name.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -233,7 +233,7 @@ public class AdminHolidayAddController implements Initializable {
             }
         }
 
-        if(dishName1.getText().isEmpty()){
+        if (dishName1.getText().isEmpty()) {
             exception.setText("Please enter dish name.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -243,7 +243,7 @@ public class AdminHolidayAddController implements Initializable {
             return;
         }
 
-        if(price.getText().isEmpty()){
+        if (price.getText().isEmpty()) {
             exception.setText("Please enter price.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -255,9 +255,9 @@ public class AdminHolidayAddController implements Initializable {
         }
 
         int pr = 0;
-        try{
+        try {
             pr = Integer.parseInt(price.getText());
-        } catch (Exception e){
+        } catch (Exception e) {
             exception.setText("Only numbers for price");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -268,7 +268,7 @@ public class AdminHolidayAddController implements Initializable {
         }
 
         int k = 0;
-        if(vegan.isSelected()){
+        if (vegan.isSelected()) {
             k = 1;
         }
         String dish = dishName1.getText();
