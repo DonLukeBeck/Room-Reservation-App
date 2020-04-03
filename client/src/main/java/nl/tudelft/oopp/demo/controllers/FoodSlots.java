@@ -157,10 +157,9 @@ public class FoodSlots implements Initializable {
 
     /**
      * Method for getting the starting hour using LocalTime.
-     *
      * @return the hour used for the start of the building
      */
-     public static double getLocalTime() {
+    public static double getLocalTime() {
         LocalTime localtime = java.time.LocalTime.now();
         double hour = localtime.getHour();
         if (localtime.getMinute() <= 20) {
@@ -246,7 +245,7 @@ public class FoodSlots implements Initializable {
     public static String getTimeSlotFromID(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
-                for (int i = 0; i < temp.length; i++) {
+        for (int i = 0; i < temp.length; i++) {
             if (temp[i].contains("id=")) {
                 newTemp = temp[i];
             }
