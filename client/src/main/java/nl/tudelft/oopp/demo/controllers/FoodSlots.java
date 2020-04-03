@@ -157,10 +157,9 @@ public class FoodSlots implements Initializable {
 
     /**
      * Method for getting the starting hour using LocalTime.
-     *
      * @return the hour used for the start of the building
      */
-    public double getLocalTime() {
+    public static double getLocalTime() {
         LocalTime localtime = java.time.LocalTime.now();
         double hour = localtime.getHour();
         if (localtime.getMinute() <= 20) {
@@ -180,7 +179,7 @@ public class FoodSlots implements Initializable {
      * @param closed the closing time of a building
      * @return the starting time and closing time in an array
      */
-    public double[] getEndAndStart(Time start, Time closed) {
+    public static double[] getEndAndStart(Time start, Time closed) {
         String openTime = start.toString().substring(0, 5);
         String closingTime = closed.toString().substring(0, 5);
         String[] opening = openTime.split(":");
@@ -243,7 +242,7 @@ public class FoodSlots implements Initializable {
      * @param str used string to get timeslot from
      * @return timeslot in right format
      */
-    public String getTimeSlotFromID(String str) {
+    public static String getTimeSlotFromID(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
         for (int i = 0; i < temp.length; i++) {

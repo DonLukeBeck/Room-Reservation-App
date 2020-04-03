@@ -54,6 +54,10 @@ public class FoodMenuController implements Initializable {
         return dishesName;
     }
 
+    public static void setDishesName(String dishName) {
+        dishesName = dishName;
+    }
+
     /**
      * Method to pop up campus map.
      * @param event Clicking on 'campus map'
