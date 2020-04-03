@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminEditController">
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminDeleteController">
     <children>
         <ImageView fitHeight="112.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../../../build/resources/main/images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Button fx:id="deleteRoom" defaultButton="true" layoutX="684.0" layoutY="319.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="51.0" prefWidth="218.0" text="Delete Room">
+        <Button fx:id="deleteRoom" defaultButton="true" layoutX="684.0" layoutY="319.0" mnemonicParsing="false" onAction="#deleteRoom" prefHeight="51.0" prefWidth="218.0" text="Delete Room">
             <font>
                 <Font size="24.0" />
             </font>
@@ -50,7 +50,7 @@
          </font>
       </Label>
       <ChoiceBox fx:id="listRoomsID" layoutX="942.0" layoutY="214.0" prefWidth="150.0" />
-      <Button fx:id="deleteBuilding" defaultButton="true" layoutX="38.0" layoutY="319.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="51.0" prefWidth="218.0" text="Delete Building">
+      <Button fx:id="deleteBuilding" defaultButton="true" layoutX="38.0" layoutY="319.0" mnemonicParsing="false" onAction="#deleteBuilding" prefHeight="51.0" prefWidth="218.0" text="Delete Building">
          <font>
             <Font size="24.0" />
          </font>
@@ -61,7 +61,7 @@
          </font>
       </Label>
       <ChoiceBox fx:id="listHolidayID" layoutX="339.0" layoutY="529.0" prefWidth="150.0" />
-      <Button fx:id="deleteHoliday" defaultButton="true" layoutX="38.0" layoutY="660.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="51.0" prefWidth="218.0" text="Delete Holiday">
+      <Button fx:id="deleteHoliday" defaultButton="true" layoutX="38.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteHoliday" prefHeight="51.0" prefWidth="218.0" text="Delete Holiday">
          <font>
             <Font size="24.0" />
          </font>
@@ -84,12 +84,12 @@
          </font>
       </Label>
       <ChoiceBox fx:id="listDishes" layoutX="942.0" layoutY="585.0" prefWidth="150.0" />
-      <Button fx:id="deleteMenu" defaultButton="true" layoutX="684.0" layoutY="660.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="51.0" prefWidth="218.0" text="Delete Menu">
+      <Button fx:id="deleteMenu" defaultButton="true" layoutX="684.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteMenu" prefHeight="51.0" prefWidth="218.0" text="Delete Menu">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="deleteDish" defaultButton="true" layoutX="983.0" layoutY="660.0" mnemonicParsing="false" onAction="#editBuilding" prefHeight="51.0" prefWidth="218.0" text="Delete Dish">
+      <Button fx:id="deleteDish" defaultButton="true" layoutX="983.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteDish" prefHeight="51.0" prefWidth="218.0" text="Delete Dish">
          <font>
             <Font size="24.0" />
          </font>
