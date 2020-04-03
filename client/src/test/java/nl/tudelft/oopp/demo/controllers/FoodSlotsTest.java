@@ -65,14 +65,4 @@ public class FoodSlotsTest {
         String timeSlot = "10:30";
         assertEquals(timeSlot, FoodSlots.getTimeSlotFromID(longString));
     }
-
-    @Test
-    public void getEndAndStartTest() {
-        Time start = new Time(0);
-        Time end = new Time(3600000);
-        double[] arr = FoodSlots.getEndAndStart(start, end);
-        double endTime = 26;
-        assertEquals(endTime, arr[0]);
-        assertEquals(hour2, arr[1]);
-    }
 }
