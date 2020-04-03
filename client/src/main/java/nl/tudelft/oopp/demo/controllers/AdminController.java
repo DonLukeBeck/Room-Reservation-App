@@ -162,27 +162,6 @@ public class AdminController implements Initializable {
             return;
         }
 
-        if (listBuildingID.getValue().toString().equals("Select building")) {
-            exception.setText("Please select building.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
-            return;
-        }
-
-        if (roomType.getValue().toString().equals("Select type")) {
-            exception.setText("Please select room type.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
-            return;
-        }
-
-
         int buildingID = 0;
         try {
             buildingID = Integer.parseInt(addBuildingID.getText());
@@ -232,12 +211,28 @@ public class AdminController implements Initializable {
             }
         }
 
-        if (roomID.getText().isBlank() || numberChairs.getText().isBlank()) {
-            addException(670, 120, "Fill all fields!", exception);
+        if (listBuildingID.getValue().toString().equals("Select building")) {
+            exception.setText("Please select building.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
             return;
         }
-        if (listBuildingID.getValue().toString().equals("Choose building")) {
-            addException(670, 120, "Choose building!", exception);
+
+        if (roomType.getValue().toString().equals("Select type")) {
+            exception.setText("Please select room type.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        if (roomID.getText().isBlank() || numberChairs.getText().isBlank()) {
+            addException(670, 120, "Fill all fields!", exception);
             return;
         }
 

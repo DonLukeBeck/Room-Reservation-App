@@ -489,7 +489,7 @@ public class AdminServerCommunication extends ServerCommunication {
         String body = "{\"startDate\":\"" + startDate
                 + "\",\"endDate\":\"" + endDate
                 + "\",\"comments\":\"" + comments + "\"}";
-
+        System.out.println(body);
         try {
             boolean bool = super.webClient.post().uri("/addHolidays")
                     .contentType(MediaType.APPLICATION_JSON)

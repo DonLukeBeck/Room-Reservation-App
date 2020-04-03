@@ -127,9 +127,8 @@ public class AdminHolidayAddController implements Initializable {
             }
         }
 
-
-        String start =  startDate.getDayCellFactory().toString();
-        String end = endDate.getDayCellFactory().toString();
+        String start = startDate.getValue().toString();
+        String end = endDate.getValue().toString();
 
         if (start.isEmpty()) {
 
@@ -155,8 +154,7 @@ public class AdminHolidayAddController implements Initializable {
             return;
         }
 
-        String comm = comments.getText();
-
+        String comm = comments.getText();;
         con.addHolidayAdmin(start, end, comm);
 
 
