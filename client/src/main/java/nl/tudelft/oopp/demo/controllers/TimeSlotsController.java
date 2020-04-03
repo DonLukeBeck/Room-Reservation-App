@@ -105,7 +105,7 @@ public class TimeSlotsController implements Initializable {
      * @param str used string to get timeslot from
      * @return timeslot in right format
      */
-    public String getTimeSlotFromID(String str) {
+    public static String getTimeSlotFromID(String str) {
         String[] temp = str.split(" ");
         String newTemp = "";
         for (int i = 0; i < temp.length; i++) {
@@ -232,7 +232,7 @@ public class TimeSlotsController implements Initializable {
      * @param closed
      * @return
      */
-    public double[] getEndAndStart(Time open, Time closed) {
+    public static double[] getEndAndStart(Time open, Time closed) {
         String openTime = open.toString().substring(0, 5);
         String closingTime = closed.toString().substring(0, 5);
         String[] opening = openTime.split(":");
