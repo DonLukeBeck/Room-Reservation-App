@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import nl.tudelft.oopp.demo.entities.Holidays;
 import nl.tudelft.oopp.demo.repositories.HolidaysRepository;
@@ -37,15 +38,8 @@ public class HolidaysController {
     boolean addHolidays(@RequestBody Holidays holidays) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestBody means it is a parameter from the GET or POST request
-        try {
-            if (holidaysRepository.findHolidaysByStartDate(holidays.getStartDate()) != null) {
-                return false;
-            }
-            return false;
-        } catch (NullPointerException e) {
-            holidaysRepository.save(holidays);
-            return true;
-        }
+        holidaysRepository.save(holidays);
+        return true;
     }
 
     /**
