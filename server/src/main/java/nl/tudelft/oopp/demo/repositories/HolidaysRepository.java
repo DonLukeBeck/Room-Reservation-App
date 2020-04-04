@@ -10,10 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 // This will be AUTO IMPLEMENTED by Spring into a Bean called holidaysRepository
 
 public interface HolidaysRepository extends JpaRepository<Holidays, Long> {
-
-    @Query(value = "SELECT * FROM Holidays WHERE startDate = ?1 LIMIT 1", nativeQuery = true)
-    Holidays findHolidaysByStartDate(Date startDate);
-
     @Query(value = "UPDATE Holidays "
             + "SET startDate = ?1, endDate = ?2, comments = ?3,"
             + "WHERE holidaysId = ?4", nativeQuery = true)

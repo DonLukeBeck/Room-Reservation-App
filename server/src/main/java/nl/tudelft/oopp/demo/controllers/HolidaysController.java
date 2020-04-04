@@ -1,10 +1,12 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import nl.tudelft.oopp.demo.entities.Holidays;
 import nl.tudelft.oopp.demo.repositories.HolidaysRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,8 +40,12 @@ public class HolidaysController {
     boolean addHolidays(@RequestBody Holidays holidays) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestBody means it is a parameter from the GET or POST request
-        holidaysRepository.save(holidays);
-        return true;
+        try {
+            holidaysRepository.save(holidays);
+            return true;
+        }catch (DataIntegrityViolationException e){
+            return false;
+        }
     }
 
     /**
