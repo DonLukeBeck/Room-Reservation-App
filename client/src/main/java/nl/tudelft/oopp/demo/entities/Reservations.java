@@ -179,14 +179,19 @@ public class Reservations implements Comparable<Reservations> {
         res += ": ";
         String reservationType = "";
         try {
+            if (! roomReserved.equals(null)) {
             reservationType = roomReserved;
-            reservationType = "Room";
-        } catch (NullPointerException e) {
+            reservationType = "Room " + roomReserved;
+            }
+        } catch (NullPointerException e)  {
             try {
-                reservationType = dishOrdered;
-                reservationType = "Dish";
-            } catch (NullPointerException ex) {
-                reservationType = "Bike";
+                if (!dishOrdered.equals(null)) {
+                    reservationType = dishOrdered;
+                    reservationType = "Dish " + dishOrdered;
+                }
+            }
+            catch (NullPointerException f) {
+                    reservationType = "Bike";
             }
         }
         res += " " + reservationType + " ordered in building " + buildingReserved;
