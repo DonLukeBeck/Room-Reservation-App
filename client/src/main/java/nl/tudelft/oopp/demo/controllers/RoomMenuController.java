@@ -83,11 +83,17 @@ public class RoomMenuController implements Initializable {
             rooms = MainMenuController.getFilterRooms();
         }
         System.out.println("running");
-        if (rooms.isEmpty()) {
-            System.out.println("No Rooms");
-        }
 
         rooms = roomShownByRole(rooms);
+        if (rooms.isEmpty()) {
+            System.out.println("No Rooms");
+            Label label = new Label("No available rooms!");
+            pane1.getChildren().add(label);
+            label.setLayoutY(200);
+            label.setLayoutX(300);
+            label.setFont(Font.font("Arial Rounded MT Bold", 32));
+            return;
+        }
 
         for (int j = 0; j < rooms.size(); j++) {
             Rectangle last = null;
