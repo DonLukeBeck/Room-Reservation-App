@@ -3,7 +3,9 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -105,6 +107,32 @@ public class BikeSlots implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public double closeSlotsForLocalTime() {
+        int chosenDay = BikeReservationMenu.getDay();
+        int chosenMonth = BikeReservationMenu.getMonth();
+//        System.out.println(chosenDay);
+//        System.out.println(chosenMonth);
+        Calendar c = Calendar.getInstance();
+        int dayNow = c.get(Calendar.DAY_OF_MONTH);
+        int monthNow = c.get(Calendar.MONTH);
+//        System.out.println(dayNow);
+//        System.out.println(monthNow);
+        double hour = 4;
+        if (chosenDay == dayNow && chosenMonth == monthNow) {
+            LocalTime localtime = java.time.LocalTime.now();
+            hour = localtime.getHour();
+            if (localtime.getMinute() <= 20) {
+                hour += 0.5;
+            } else if (localtime.getMinute() <= 50) {
+                hour += 1;
+            } else {
+                hour += 1.5;
+            }
+            return hour;
+        }
+        return hour;
     }
 
     /**
@@ -258,6 +286,11 @@ public class BikeSlots implements Initializable {
         if (closing[1].equals("30")) {
             end = end + 0.5;
         }
+        double localTime = closeSlotsForLocalTime();
+        if (start < localTime) {
+            start = localTime;
+        }
+
         if (!reservationOnChosenDate.isEmpty()) {
             for (Node k : slots.getChildren()) {
                 availablebikes = buildingavailablebikes;

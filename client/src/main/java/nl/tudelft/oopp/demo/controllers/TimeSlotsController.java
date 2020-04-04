@@ -3,7 +3,9 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -78,27 +80,6 @@ public class TimeSlotsController implements Initializable {
         return timeslot;
     }
 
-    public void addRole() {
-        helper.addRole(rightPane, MainSceneController.getRole());
-    }
-
-    /**
-     * Method to pop up campus map.
-     *
-     * @param event Clicking on 'Campus Map'
-     * @throws IOException Exception if can't find campus map scene
-     */
-    public void campusMap(Event event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
     /**
      * Method for getting timeslot in proper format from string.
      *
@@ -120,6 +101,86 @@ public class TimeSlotsController implements Initializable {
         return timeslot;
     }
 
+    /**
+     * Find end and start time in proper format.
+     *
+     * @param open   Time when building opens
+     * @param closed Time when building closes
+     * @return array with the opening and closing time in needed format
+     */
+    public static double[] getEndAndStart(Time open, Time closed) {
+        String openTime = open.toString().substring(0, 5);
+        String closingTime = closed.toString().substring(0, 5);
+        String[] opening = openTime.split(":");
+        String[] closing = closingTime.split(":");
+        double start = Integer.parseInt(opening[0]);
+        double end = Integer.parseInt(closing[0]);
+        if (end < 6) {
+            end = end + 24;
+        }
+
+        if (opening[1].equals("30")) {
+            start = start + 0.5;
+        }
+
+        if (closing[1].equals("30")) {
+            end = end + 0.5;
+        }
+
+        double[] endAndStart = new double[2];
+        endAndStart[0] = end;
+        endAndStart[1] = start;
+
+        return endAndStart;
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+    /**
+     * Method to pop up campus map.
+     *
+     * @param event Clicking on 'Campus Map'
+     * @throws IOException Exception if can't find campus map scene
+     */
+    public void campusMap(Event event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public double closeSlotsForLocalTime() {
+        int chosenDay = RoomReservationMenu.getDay();
+        int chosenMonth = RoomReservationMenu.getMonth();
+//        System.out.println(chosenDay);
+//        System.out.println(chosenMonth);
+        Calendar c = Calendar.getInstance();
+        int dayNow = c.get(Calendar.DAY_OF_MONTH);
+        int monthNow = c.get(Calendar.MONTH);
+//        System.out.println(dayNow);
+//        System.out.println(monthNow);
+        double hour = 4;
+        if (chosenDay == dayNow && chosenMonth == monthNow) {
+            LocalTime localtime = java.time.LocalTime.now();
+            hour = localtime.getHour();
+            if (localtime.getMinute() <= 20) {
+                hour += 0.5;
+            } else if (localtime.getMinute() <= 50) {
+                hour += 1;
+            } else {
+                hour += 1.5;
+            }
+            return hour;
+        }
+        return hour;
+    }
+
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
@@ -134,6 +195,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Chosen time slot.
+     *
      * @param event on mouse click
      * @throws IOException Exception if can't find complete reservation scene
      */
@@ -173,12 +235,18 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Disable not suitable slots.
+     *
      * @param allSuitableRes list with reservation for chosen date
-     * @param start time when building opens
-     * @param end time when building closes
+     * @param start          time when building opens
+     * @param end            time when building closes
      */
     public void disableNotSuitableSlots(List<Reservations> allSuitableRes,
                                         double start, double end) {
+
+        double localTime = closeSlotsForLocalTime();
+        if (start < localTime) {
+            start = localTime;
+        }
 
         for (Node k : slots.getChildren()) {
             if (k instanceof Rectangle) {
@@ -208,6 +276,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Method to change date format.
+     *
      * @return Date
      */
     public String returnDateInSuitableFormat() {
@@ -228,44 +297,12 @@ public class TimeSlotsController implements Initializable {
     }
 
     /**
-     *Find end and start time in proper format.
-     * @param open Time when building opens
-     * @param closed Time when building closes
-     * @return array with the opening and closing time in needed format
-     */
-    public static double[] getEndAndStart(Time open, Time closed) {
-        String openTime = open.toString().substring(0, 5);
-        String closingTime = closed.toString().substring(0, 5);
-        String[] opening = openTime.split(":");
-        String[] closing = closingTime.split(":");
-        double start = Integer.parseInt(opening[0]);
-        double end = Integer.parseInt(closing[0]);
-        if (end < 6) {
-            end = end + 24;
-        }
-
-        if (opening[1].equals("30")) {
-            start = start + 0.5;
-        }
-
-        if (closing[1].equals("30")) {
-            end = end + 0.5;
-        }
-
-        double[] endAndStart = new double[2];
-        endAndStart[0] = end;
-        endAndStart[1] = start;
-
-        return endAndStart;
-    }
-
-
-    /**
      * Method to initialize.
-     * @param location The location used to resolve relative paths for the root object,
-     *                or null if the location is not known
+     *
+     * @param location  The location used to resolve relative paths for the root object,
+     *                  or null if the location is not known
      * @param resources The resources used to localize the root object,
-     *                 or null if the root object was not localized
+     *                  or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
