@@ -129,7 +129,7 @@ public class AdminDeleteController implements Initializable {
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
-        listHolidayID.setItems(FXCollections.observableArrayList(listHolidayID));
+        listHolidayID.setItems(FXCollections.observableArrayList(listHolidaysID));
         listRoomID.setItems(FXCollections.observableArrayList(listAllRooms));
         listDishes.setItems(FXCollections.observableArrayList(listAllDishes));
         listMenus.setItems(FXCollections.observableArrayList(listAllMenus));
