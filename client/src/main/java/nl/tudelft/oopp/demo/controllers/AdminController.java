@@ -262,11 +262,11 @@ public class AdminController implements Initializable {
     }
 
     /**
-     * @param layoutX
-     * @param layoutY
-     * @param text
-     * @param exception
-     * @throws IOException
+     * Open exception when needed.
+     * @param layoutX layout X
+     * @param layoutY layout Y
+     * @param text text for the exception
+     * @param exception Label which text will be changed
      */
     public void addException(double layoutX, double layoutY, String text, Label exception) {
         exception.setText(text);

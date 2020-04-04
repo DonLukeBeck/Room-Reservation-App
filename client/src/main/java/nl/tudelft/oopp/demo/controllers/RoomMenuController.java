@@ -190,10 +190,10 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *
-     * @param layoutX
-     * @param layoutY
-     * @param text
+     *Add Label to chosen Pane.
+     * @param layoutX chosen layout X
+     * @param layoutY chosen layout Y
+     * @param text text for the Label
      */
     public void addLabelToScrollPane(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
@@ -204,11 +204,11 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *
-     * @param layoutX
-     * @param layoutY
-     * @param id
-     * @return
+     *Add rectangle to the ScrollPane.
+     * @param layoutX chosen layout X
+     * @param layoutY cosen layout Y
+     * @param id chosen id
+     * @return the created Rectangle with right properties
      */
     public Rectangle addBoxToScrollPane(double layoutX, double layoutY, String id) {
         Rectangle box = new Rectangle(188, 136);
@@ -234,10 +234,10 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *
-     * @param layoutX
-     * @param layoutY
-     * @param id
+     *Add new rectangle to the chosen place.
+     * @param layoutX chosen layout X
+     * @param layoutY chosen layout Y
+     * @param id chosen id
      */
     public void addBoxButton(double layoutX, double layoutY, String id) {
         Rectangle box = new Rectangle(188, 136);
@@ -286,7 +286,8 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     * @param event
+     * Save all needed properties for the chosen room.
+     * @param event on mouse click
      * @throws IOException Exception if can't find Reservation room scene
      */
     public void roomChosen(Event event) throws IOException {

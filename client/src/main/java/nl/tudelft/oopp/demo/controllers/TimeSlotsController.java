@@ -133,7 +133,8 @@ public class TimeSlotsController implements Initializable {
     }
 
     /**
-     * @param event
+     * Chosen time slot.
+     * @param event on mouse click
      * @throws IOException Exception if can't find complete reservation scene
      */
     public void timeSlot(Event event) throws IOException {
@@ -171,10 +172,10 @@ public class TimeSlotsController implements Initializable {
     }
 
     /**
-     *
-     * @param allSuitableRes
-     * @param start
-     * @param end
+     * Disable not suitable slots.
+     * @param allSuitableRes list with reservation for chosen date
+     * @param start time when building opens
+     * @param end time when building closes
      */
     public void disableNotSuitableSlots(List<Reservations> allSuitableRes,
                                         double start, double end) {
@@ -227,10 +228,10 @@ public class TimeSlotsController implements Initializable {
     }
 
     /**
-     *
-     * @param open
-     * @param closed
-     * @return
+     *Find end and start time in proper format.
+     * @param open Time when building opens
+     * @param closed Time when building closes
+     * @return array with the opening and closing time in needed format
      */
     public static double[] getEndAndStart(Time open, Time closed) {
         String openTime = open.toString().substring(0, 5);

@@ -103,7 +103,7 @@ public class FoodMenuController implements Initializable {
         }
 
         if (menusByBuilding.isEmpty()) {
-            EmptyMenu();
+            emptyMenu();
             return;
         }
 
@@ -191,11 +191,6 @@ public class FoodMenuController implements Initializable {
         helper.logOut(mainScreen);
     }
 
-    /**
-     *
-     * @param event
-     * @throws IOException
-     */
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
@@ -298,7 +293,7 @@ public class FoodMenuController implements Initializable {
      * Method for when there are no
      * available dishes for a certain building.
      */
-    public void EmptyMenu() {
+    public void emptyMenu() {
         Label noDishes = new Label("No dishes are available for this building");
         noDishes.setFont(Font.font("Arial Rounded MT Bold", 24));
         pane1.getChildren().add(noDishes);

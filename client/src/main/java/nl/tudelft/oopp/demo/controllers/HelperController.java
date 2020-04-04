@@ -106,7 +106,7 @@ public class HelperController {
 
     /**
      *Method to add role.
-     * @param pane
+     * @param pane the pane where the Label should be added
      * @param role Role to be added
      */
     public void addRole(Pane pane, String role) {
@@ -118,7 +118,8 @@ public class HelperController {
     }
 
     /**
-     * @param sidePane
+     * Loading elements on chosen Pane.
+     * @param sidePane chosen Pane
      */
     public void loadSidePane(Pane sidePane) {
         List<Buildings> buildingsList = new ArrayList<>();

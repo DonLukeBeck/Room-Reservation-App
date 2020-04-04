@@ -137,7 +137,8 @@ public class BikeSlots implements Initializable {
         timeslot = temp2.replace('A', ':');
         System.out.println(timeslot);
 
-        send.bikeReservation(MainSceneController.getUser(), timeslot + ":00", date, Integer.parseInt(building));
+        send.bikeReservation(MainSceneController.getUser(), timeslot
+                + ":00", date, Integer.parseInt(building));
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBikeCompleted.fxml", mainScreen);
 

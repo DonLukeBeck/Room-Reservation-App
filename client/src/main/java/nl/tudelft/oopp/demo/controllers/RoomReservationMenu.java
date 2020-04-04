@@ -3,7 +3,11 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -13,7 +17,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -138,10 +149,11 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     * @param e
-     * @param layoutX
-     * @param layoutY
-     * @param text
+     * Add new Text.
+     * @param e Node where the Text will be added
+     * @param layoutX chosen layout X
+     * @param layoutY chosen layout Y
+     * @param text text to be added to the Text
      */
     public void addText(Node e, double layoutX, double layoutY, String text) {
         Text day = new Text(text);
@@ -293,7 +305,7 @@ public class RoomReservationMenu implements Initializable {
     /**
      * Method to find the current date.
      *
-     * @param e
+     * @param e AnchorPane from which children we will search for the current date
      * @return Current date
      */
     public String findCurrentDate(AnchorPane e) {
@@ -308,6 +320,7 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
+     * Opens when previous date is chosen.
      * @throws IOException Exception if can't find previous date alers scene
      */
     public void openAlert() throws IOException {
@@ -322,7 +335,8 @@ public class RoomReservationMenu implements Initializable {
     }
 
     /**
-     * @param event
+     * Saves all needed properties for the chosen date.
+     * @param event on mouse click
      * @throws IOException Exception if can't find timeslot scene
      */
     @FXML

@@ -13,7 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -76,7 +80,8 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     *Method to open filter.
+     * Method to open filter.
+     *
      * @param event Clicking on filter
      */
     public void openFilter(Event event) {
@@ -132,6 +137,7 @@ public class MainMenuController implements Initializable {
     /**
      * Getting the input of the user from the fields of the filter.
      * Filtering for suitable rooms
+     *
      * @throws IOException Exception if can't find room menu page
      */
     public void searchRoom() throws IOException {
@@ -210,6 +216,7 @@ public class MainMenuController implements Initializable {
 
     /**
      * Opening image of the campus map.
+     *
      * @param event Clicking on campus map button
      * @throws IOException Exception if can't find campus map scene
      */
@@ -226,7 +233,8 @@ public class MainMenuController implements Initializable {
 
     /**
      * Opens the fxml of the next scene on click.
-     * @param event Clicking on reservation
+     *
+     * @param event          Clicking on reservation
      * @param buildingNumber Building number as a string
      * @throws IOException Exception if can't find main reservation menu page
      */
@@ -238,10 +246,11 @@ public class MainMenuController implements Initializable {
     }
 
     /**
+     * Create new label.
      *
-     * @param layoutX
-     * @param layoutY
-     * @param text
+     * @param layoutX chosen layout X
+     * @param layoutY chosen layout Y
+     * @param text    text for the label
      */
     public void addLabelSidePane(double layoutX, double layoutY, String text) {
         Label sideBuilding = new Label(text);
@@ -253,11 +262,12 @@ public class MainMenuController implements Initializable {
     }
 
     /**
+     * Add label to ScrollPane.
      *
-     * @param layoutX
-     * @param layoutY
-     * @param text
-     * @param id
+     * @param layoutX chosen layout X
+     * @param layoutY chosen layout Y
+     * @param text    text for the label
+     * @param id      id for the Label
      */
     public void addLabelScrollPane(double layoutX, double layoutY, String text, String id) {
         Label buildingLabel = new Label(text);
@@ -269,7 +279,8 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     *Method to change format of building name.
+     * Method to change format of building name.
+     *
      * @param e Building to change the name of
      * @return Building name in desired format
      */
@@ -294,10 +305,11 @@ public class MainMenuController implements Initializable {
     }
 
     /**
+     * Add image to ScrollPane.
      *
-     * @param e
-     * @param layoutX
-     * @param layoutY
+     * @param e       chosen building.
+     * @param layoutX layoutX
+     * @param layoutY layout Y
      */
     public void addImageToScrollPane(Buildings e, double layoutX, double layoutY) {
         Image image = new Image(e.getUrl());
@@ -317,35 +329,62 @@ public class MainMenuController implements Initializable {
     }
 
     /**
+     * Calculate the change in the position of the building name.
+     * @param buildingName name of the building
+     * @return change in layout position
+     */
+
+    public double changeInPositionOfName(String buildingName) {
+        int changeInPosition = 0;
+
+        if (buildingName.toCharArray().length > 14) {
+            changeInPosition = 2 + ((buildingName.toCharArray().length - 14) * (-8));
+        }
+        if (buildingName.toCharArray().length < 14 && buildingName.toCharArray().length > 10) {
+            changeInPosition = ((14 - buildingName.toCharArray().length) * (8));
+        }
+        if (buildingName.toCharArray().length == 10) {
+            changeInPosition = 10;
+        }
+        if (buildingName.toCharArray().length < 10 && buildingName.toCharArray().length > 5) {
+            changeInPosition = (10 - buildingName.toCharArray().length) * 11;
+        }
+        if (buildingName.toCharArray().length == 5) {
+            changeInPosition = 40;
+        }
+        if (buildingName.toCharArray().length < 5) {
+            changeInPosition = (10 - buildingName.toCharArray().length) * 6;
+        }
+        return changeInPosition;
+    }
+
+    /**
+     * Add the first three building to the ScrollPane.
      *
-     * @param buildingsList
-     * @return
+     * @param buildingsList list with the first 3 buildings
+     * @return the index of the last building
      */
     public int addFirstThreeBuildings(List<Buildings> buildingsList) {
-        int changeInPosition = 0;
+        double changeInPosition = 0;
         int i = 0;
         int layoutY = 220;
 
         for (Buildings e : buildingsList) {
             String buildingName = changeInPositionOfBuildingName(e);
-            if (!buildingName.contains("Faculty")) {
-                changeInPosition = 40;
-            } else {
-                changeInPosition = 0;
-            }
+            changeInPosition = changeInPositionOfName(buildingName);
 
             addLabelSidePane(56, layoutY + 28, "-" + buildingName);
             layoutY = layoutY + 28;
             System.out.println(layoutY);
 
             if (i == 0) {
-                addLabelScrollPane(72 + changeInPosition, 14, buildingName, "A");
+                addLabelScrollPane(82 + changeInPosition, 14, buildingName, "A");
                 addLabelScrollPane(98, 41, "Building: " + e.getBuilding_number(), null);
                 addImageToScrollPane(e, 4, 74);
             }
             if (i == 1) {
 
-                addLabelScrollPane(377 + changeInPosition, 14, buildingName, "B");
+                addLabelScrollPane(387 + changeInPosition, 14, buildingName, "B");
                 addLabelScrollPane(397, 41, "Building: " + e.getBuilding_number(), null);
                 addImageToScrollPane(e, 302, 74);
             }
@@ -362,7 +401,8 @@ public class MainMenuController implements Initializable {
 
     /**
      * Loading all needed scene controllers when the fxml is loaded.
-     * @param location Link to location
+     *
+     * @param location  Link to location
      * @param resources Resource Bundle
      */
     @Override
@@ -384,7 +424,7 @@ public class MainMenuController implements Initializable {
         }
 
         int i = 0;
-        int changeInPosition = 0;
+        double changeInPosition = 0;
         int checkNumberOfBuildings = addFirstThreeBuildings(buildingsList);
 
         if (checkNumberOfBuildings < 2) {
@@ -398,12 +438,9 @@ public class MainMenuController implements Initializable {
 
         for (int j = i; j < buildingsList.size(); j++) {
             String buildingName = changeInPositionOfBuildingName(buildingsList.get(j));
-
-            if (!buildingName.contains("Faculty")) {
-                changeInPosition = 40;
-            } else {
-                changeInPosition = 0;
-            }
+            System.out.println(buildingName);
+            System.out.println(buildingName.toCharArray().length);
+            changeInPosition = changeInPositionOfName(buildingName);
 
             addLabelSidePane(56, layoutY + 28, "-" + buildingName);
             layoutY = layoutY + 28;
@@ -444,8 +481,9 @@ public class MainMenuController implements Initializable {
     }
 
     /**
-     *Method to load the user page.
-     * @param event
+     * Method to load the user page.
+     *
+     * @param event on mouse click
      * @throws IOException Exception if can't find user page
      */
     public void userPage(Event event) throws IOException {
