@@ -348,6 +348,8 @@ public class AdminEditController implements Initializable {
             return;
         }
 
+
+
         if (listBuildingID2.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
@@ -360,6 +362,15 @@ public class AdminEditController implements Initializable {
 
         if (roomType.getValue().toString().equals("Select type")) {
             exception.setText("Please select room type.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+        if(editRoomID.getText().length() > 18){
+            exception.setText("Max 18 characters allowed.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
             exception.setTextFill(Color.valueOf("red"));
