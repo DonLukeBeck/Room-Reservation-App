@@ -14,14 +14,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
-import nl.tudelft.oopp.demo.entities.*;
+import nl.tudelft.oopp.demo.entities.Buildings;
+import nl.tudelft.oopp.demo.entities.Dishes;
+import nl.tudelft.oopp.demo.entities.Holidays;
+import nl.tudelft.oopp.demo.entities.Menus;
+import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class AdminDeleteController implements Initializable {
 

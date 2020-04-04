@@ -6,7 +6,13 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-import nl.tudelft.oopp.demo.entities.*;
+import nl.tudelft.oopp.demo.entities.Buildings;
+import nl.tudelft.oopp.demo.entities.Dishes;
+import nl.tudelft.oopp.demo.entities.Holidays;
+import nl.tudelft.oopp.demo.entities.Menus;
+import nl.tudelft.oopp.demo.entities.Reservations;
+import nl.tudelft.oopp.demo.entities.Rooms;
+import nl.tudelft.oopp.demo.entities.UserEvent;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
