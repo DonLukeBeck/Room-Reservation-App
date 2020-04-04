@@ -236,6 +236,16 @@ public class AdminController implements Initializable {
             return;
         }
 
+        if(roomID.getText().length() > 18){
+            exception.setText("Max 18 characters allowed.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
         int roomCap = 0;
         try {
             roomCap = Integer.parseInt(numberChairs.getText());
