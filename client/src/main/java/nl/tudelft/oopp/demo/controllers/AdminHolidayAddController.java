@@ -26,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
+import nl.tudelft.oopp.demo.entities.Dishes;
 import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class AdminHolidayAddController implements Initializable {
@@ -47,7 +48,7 @@ public class AdminHolidayAddController implements Initializable {
     private ChoiceBox listBuildingID;
 
     @FXML
-    private TextField dishName;
+    private ChoiceBox dishName;
 
     @FXML
     private TextField dishName1;
@@ -100,7 +101,24 @@ public class AdminHolidayAddController implements Initializable {
         }
 
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
-        listBuildingID.setValue("Select Building");
+        listBuildingID.setValue("Select building");
+
+        List<Dishes> listGetDishes = null;
+        try {
+            listGetDishes = con.getDishes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] listAllDishes = new String[listGetDishes.size() + 1];
+        listAllDishes[0] = "Select dishes";
+        int i = 1;
+        for (Dishes t : listGetDishes) {
+            listAllDishes[i] = "" + t.getName();
+            i++;
+        }
+
+        dishName.setItems(FXCollections.observableArrayList(listAllDishes));
+        dishName.setValue("Select dishes");
     }
 
 
@@ -197,8 +215,8 @@ public class AdminHolidayAddController implements Initializable {
             return;
         }
 
-        if (dishName.getText().isEmpty()) {
-            exception.setText("Please enter dish name.");
+        if (dishName.getValue().toString().equals("Select dishes")) {
+            exception.setText("Please select a dish.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
             exception.setTextFill(Color.valueOf("red"));
@@ -209,7 +227,7 @@ public class AdminHolidayAddController implements Initializable {
 
         int build = Integer.parseInt(listBuildingID.getValue().toString());
 
-        String name = dishName.getText();
+        String name = dishName.getValue().toString();
 
         con.addMenuAdmin(build, name);
 
