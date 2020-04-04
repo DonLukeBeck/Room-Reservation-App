@@ -371,9 +371,12 @@ public class BikeReservationMenu implements Initializable {
         Calendar now = Calendar.getInstance();
         Date now1 = now.getTime();
 
-        if (date1.before(now1)) {
-            openAlert();
-            return;
+        if (!date1.toString().equals(now1.toString())) {
+            System.out.println("Here");
+            if (date1.before(now1)) {
+                openAlert();
+                return;
+            }
         }
 
         reservationDate = date1.toString();

@@ -1,6 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
@@ -18,7 +17,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -144,10 +150,11 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Add new Text.
-     * @param e Node where the Text will be added
+     *
+     * @param e       Node where the Text will be added
      * @param layoutX chosen layout X
      * @param layoutY chosen layout Y
-     * @param text text to be added to the Text
+     * @param text    text to be added to the Text
      */
     public void addText(Node e, double layoutX, double layoutY, String text) {
         Text day = new Text(text);
@@ -178,8 +185,8 @@ public class RoomReservationMenu implements Initializable {
         for (Node k : grid.getChildren()) {
             try {
                 ((AnchorPane) k).getChildren().clear();
-                ((AnchorPane) k).setStyle("-fx-background-color: transparent");
-                ((AnchorPane) k).setDisable(false);
+                k.setStyle("-fx-background-color: transparent");
+                k.setDisable(false);
                 BorderWidths border = new BorderWidths(0, 0, 0, 0);
                 ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
                         BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
@@ -317,6 +324,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Opens when previous date is chosen.
+     *
      * @throws IOException Exception if can't find previous date alers scene
      */
     public void openAlert() throws IOException {
@@ -332,6 +340,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Saves all needed properties for the chosen date.
+     *
      * @param event on mouse click
      * @throws IOException Exception if can't find timeslot scene
      */
@@ -360,10 +369,15 @@ public class RoomReservationMenu implements Initializable {
         Date date1 = check.getTime();
         Calendar now = Calendar.getInstance();
         Date now1 = now.getTime();
+        System.out.println(date1.toString());
+        System.out.println(now1.toString());
 
-        if (date1.before(now1)) {
-            openAlert();
-            return;
+        if (!date1.toString().equals(now1.toString())) {
+            System.out.println("Here");
+            if (date1.before(now1)) {
+                openAlert();
+                return;
+            }
         }
 
         reservationDate = date1.toString();
