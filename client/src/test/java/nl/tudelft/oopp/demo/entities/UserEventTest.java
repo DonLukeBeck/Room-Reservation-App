@@ -27,7 +27,13 @@ public class UserEventTest {
         t1 = new Time(8,0,0);
         t2 = new Time(9,0,0);
 
-        ue1 = new UserEvent("User", t1, d1, "Description");
+        //ue1 = new UserEvent("User", t1, d1, "Description");
+        ue1 = new UserEvent();
+        ue1.setDate(d1);
+        ue1.setTime(t1);
+        ue1.setUser("User");
+        ue1.setId(1);
+        ue1.setDescription("Description");
 
     }
 

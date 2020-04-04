@@ -31,7 +31,13 @@ public class UserScheduleHandlerTest {
         d1 = new Date(1,1,2020);
 
         r1 = new Reservations();
-        ue1 = new UserEvent("user", t1, d1, "description");
+        //ue1 = new UserEvent("user", t1, d1, "description");
+        ue1 = new UserEvent();
+        ue1.setDate(d1);
+        ue1.setTime(t1);
+        ue1.setUser("user");
+        ue1.setId(1);
+        ue1.setDescription("description");
 
         listR = new ArrayList<Reservations>(List.of(r1));
         listR2 = new ArrayList<Reservations>();

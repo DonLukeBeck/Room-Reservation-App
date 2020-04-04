@@ -16,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @ExtendWith(MockitoExtension.class)
 public class HolidaysControllerTest {
@@ -49,30 +50,6 @@ public class HolidaysControllerTest {
     }
 
     @Test
-    public void addHolidaysFalseTest() {
-        h1 = new Holidays();
-        h1.setStartDate(d1);
-
-        when(holidaysRepository.findHolidaysByStartDate(d1)).thenReturn(h1);
-        assertFalse(holidaysController.addHolidays(h1));
-
-    }
-
-    @Test
-    public void addHolidaysFalseCase2Test() {
-        h1 = new Holidays();
-        assertFalse(holidaysController.addHolidays(h1));
-    }
-
-    @Test
-    public void addHolidaysTrueTest() {
-        h1 = new Holidays();
-        when(holidaysRepository.findHolidaysByStartDate(h1.getStartDate()))
-                .thenThrow(NullPointerException.class);
-        assertTrue(holidaysController.addHolidays(h1));
-    }
-
-    @Test
     public void editHolidaysTrueTest() {
         h1 = new Holidays();
         when(holidaysRepository.updateExistingHolidays(h1.getStartDate(), h1.getEndDate(),
@@ -101,5 +78,19 @@ public class HolidaysControllerTest {
         assertTrue(holidaysController.deleteHolidays(h1.getHolidaysID()));
     }
 
+
+
+    @Test
+    public void addHolidaysTrueTest() {
+        h1 = new Holidays();
+        assertTrue(holidaysController.addHolidays(h1));
+    }
+
+    @Test
+    public void addHolidaysFalseTest() {
+        h1 = new Holidays();
+        when(holidaysRepository.save(h1)).thenThrow(DataIntegrityViolationException.class);
+        assertFalse(holidaysController.addHolidays(h1));
+    }
 
 }
