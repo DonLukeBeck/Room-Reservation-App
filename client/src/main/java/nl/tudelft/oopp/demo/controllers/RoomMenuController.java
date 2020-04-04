@@ -13,12 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Rooms;
 
@@ -27,11 +29,6 @@ public class RoomMenuController implements Initializable {
     public static List<Rooms> rooms;
     private static String room_id;
     private static int building_id;
-
-    public static int getBuildingId() {
-        return building_id;
-    }
-
     ServerCommunication con = new ServerCommunication();
     HelperController helper = new HelperController();
     @FXML
@@ -47,13 +44,18 @@ public class RoomMenuController implements Initializable {
     @FXML
     private Pane rightPane;
 
+    public static int getBuildingId() {
+        return building_id;
+    }
+
     public static String getId() {
         return room_id;
     }
 
     /**
      * Method to initilize.
-     * @param location Link to location
+     *
+     * @param location  Link to location
      * @param resources Resource Bundle
      */
     @Override
@@ -162,7 +164,8 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *Method to add rooms corresponding to user types.
+     * Method to add rooms corresponding to user types.
+     *
      * @param list List of rooms before filtering
      * @return List of rooms
      */
@@ -196,10 +199,11 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *Add Label to chosen Pane.
+     * Add Label to chosen Pane.
+     *
      * @param layoutX chosen layout X
      * @param layoutY chosen layout Y
-     * @param text text for the Label
+     * @param text    text for the Label
      */
     public void addLabelToScrollPane(double layoutX, double layoutY, String text) {
         Label label = new Label(text);
@@ -210,10 +214,11 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     *Add rectangle to the ScrollPane.
+     * Add rectangle to the ScrollPane.
+     *
      * @param layoutX chosen layout X
      * @param layoutY cosen layout Y
-     * @param id chosen id
+     * @param id      chosen id
      * @return the created Rectangle with right properties
      */
     public Rectangle addBoxToScrollPane(double layoutX, double layoutY, String id) {
@@ -235,15 +240,40 @@ public class RoomMenuController implements Initializable {
                 e.printStackTrace();
             }
         });
+
         pane1.getChildren().add(box);
         return box;
     }
 
     /**
-     *Add new rectangle to the chosen place.
+     * Create text for the tooltip.
+     *
+     * @param id id of the chosen building
+     * @return text for the tooltip
+     */
+    public String addTooltip(String id) {
+        String text = "";
+        text = text + "Building: "
+                + rooms.get(Integer.parseInt(id.substring(1))).getAssociatedBuilding() + "\n";
+        text = text + "Capacity: "
+                + rooms.get(Integer.parseInt(id.substring(1))).getChairs() + "\n";
+        text = text + "Number of tables: "
+                + rooms.get(Integer.parseInt(id.substring(1))).getTables() + "\n";
+        text = text + "Whiteboards: "
+                + rooms.get(Integer.parseInt(id.substring(1))).getWhiteboards() + "\n";
+        text = text + "Computers: "
+                + rooms.get(Integer.parseInt(id.substring(1))).getComputers() + "\n";
+        text = text + "Room type: "
+                + rooms.get(Integer.parseInt(id.substring(1))).getType();
+        return text;
+    }
+
+    /**
+     * Add new rectangle to the chosen place.
+     *
      * @param layoutX chosen layout X
      * @param layoutY chosen layout Y
-     * @param id chosen id
+     * @param id      chosen id
      */
     public void addBoxButton(double layoutX, double layoutY, String id) {
         Rectangle box = new Rectangle(188, 136);
@@ -254,6 +284,13 @@ public class RoomMenuController implements Initializable {
         box.layoutYProperty().setValue(layoutY);
         box.fillProperty().setValue(Color.valueOf("transparent"));
         box.setId(id);
+        box.setOnMouseEntered(event -> {
+            Tooltip tooltip = new Tooltip(addTooltip(id));
+            tooltip.showDelayProperty().setValue(Duration.ZERO);
+            tooltip.showDurationProperty().setValue(Duration.minutes(1.5));
+            tooltip.setFont(Font.font("Arial Rounded MT Bold", 14));
+            Tooltip.install(box, tooltip);
+        });
         box.setOnMouseClicked(event -> {
             try {
                 roomChosen(event);
@@ -266,6 +303,7 @@ public class RoomMenuController implements Initializable {
 
     /**
      * Method for campus map to pop up.
+     *
      * @param event Clicking on 'Campus Map'
      * @throws IOException Exception if can't find campus map scene
      */
@@ -282,6 +320,7 @@ public class RoomMenuController implements Initializable {
 
     /**
      * Method to go back to previous page.
+     *
      * @param event Clicking on 'Go Back'
      * @throws IOException Exception if can't find main menu scene
      */
@@ -293,6 +332,7 @@ public class RoomMenuController implements Initializable {
 
     /**
      * Save all needed properties for the chosen room.
+     *
      * @param event on mouse click
      * @throws IOException Exception if can't find Reservation room scene
      */
