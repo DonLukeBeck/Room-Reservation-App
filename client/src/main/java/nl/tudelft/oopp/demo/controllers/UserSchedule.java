@@ -461,6 +461,7 @@ public class UserSchedule implements Initializable {
             list = con.getUserEvents();
         } catch (IOException e) {
             System.out.println("got an IOException when trying to retrieve user events.");
+            e.printStackTrace();
             return list;
         }
         System.out.println("retrieved events correctly");
@@ -470,6 +471,7 @@ public class UserSchedule implements Initializable {
                 filteredEvents.add(e);
             }
         }
+        System.out.println("For this user, " + filteredEvents.size() + " events were found.");
         return filteredEvents;
     }
 
@@ -487,10 +489,10 @@ public class UserSchedule implements Initializable {
         String dateString = "";
         dateString += year;
         dateString += "-";
-        if (month < 9) {
+        if (month < 10) {
             dateString += "0";
         }
-        dateString += month + 1;
+        dateString += month;
         dateString += "-";
         if (day < 10) {
             dateString += "0";
@@ -502,7 +504,6 @@ public class UserSchedule implements Initializable {
                 filteredEvents.add(e);
             }
         }
-
         Collections.sort(filteredEvents);
         return filteredEvents;
     }

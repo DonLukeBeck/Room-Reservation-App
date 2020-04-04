@@ -12,12 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Reservations;
+import nl.tudelft.oopp.demo.entities.UserEvent;
 
 public class UserScheduleDayView {
     private int day = 0;
     private int month = 0;
     private int year = 0;
     private List<Reservations> reservations = new ArrayList<>();
+    private List<UserEvent> userEvents = new ArrayList<>();
 
     @FXML
     private javafx.scene.control.Label dateLabel;
@@ -31,7 +33,9 @@ public class UserScheduleDayView {
         String dateString = getDateString();
         dateLabel.setText(dateString);
         String reservationsString = getReservationsString();
-        Text reservationsText = new Text(reservationsString);
+        String userEventsString = getUserEventsString();
+        String allEventsString = reservationsString + "\n\nPersonal events:\n\n" + userEventsString;
+        Text reservationsText = new Text(allEventsString);
         scrollPane.setContent(reservationsText);
     }
 
@@ -43,6 +47,15 @@ public class UserScheduleDayView {
         String res = "";
         for (Reservations r : reservations) {
             res += r.getNiceString();
+            res += "\n\n";
+        }
+        return res;
+    }
+
+    private String getUserEventsString() {
+        String res = "";
+        for (UserEvent e : userEvents) {
+            res += e.getNiceString();
             res += "\n\n";
         }
         return res;
@@ -131,6 +144,14 @@ public class UserScheduleDayView {
 
     public void setReservations(List<Reservations> reservations) {
         this.reservations = reservations;
+    }
+
+    public List<UserEvent> getUserEvents() {
+        return userEvents;
+    }
+
+    public void setUserEvents(List<UserEvent> userEvents) {
+        this.userEvents = userEvents;
     }
 
     /**

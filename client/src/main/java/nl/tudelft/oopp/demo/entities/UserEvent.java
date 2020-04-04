@@ -13,16 +13,8 @@ public class UserEvent implements Comparable<UserEvent> {
 
     /**
      * Constructor for a user event.
-     * @param user User having the event
-     * @param time Time of event
-     * @param date Date of the event
-     * @param description Description of the event
      */
-    public UserEvent(String user, Time time, Date date, String description) {
-        this.user = user;
-        this.time = time;
-        this.date = date;
-        this.description = description;
+    public UserEvent() {
     }
 
     public int getId() {
@@ -68,5 +60,12 @@ public class UserEvent implements Comparable<UserEvent> {
     @Override
     public int compareTo(UserEvent o) {
         return (int) Math.signum(date.getTime() - o.date.getTime());
+    }
+
+    public String getNiceString() {
+        String res = "";
+        res += time + ": ";
+        res += description;
+        return res;
     }
 }

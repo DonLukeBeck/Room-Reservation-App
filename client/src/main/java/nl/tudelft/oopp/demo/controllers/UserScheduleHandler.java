@@ -96,6 +96,7 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
         controller.setMonth(month);
         controller.setYear(year);
         controller.setReservations(reservations);
+        controller.setUserEvents(userEvents);
         controller.initialize();
 
         Stage stage = new Stage();
