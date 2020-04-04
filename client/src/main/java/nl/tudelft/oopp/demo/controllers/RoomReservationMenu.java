@@ -1,5 +1,6 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
@@ -17,14 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -184,6 +178,8 @@ public class RoomReservationMenu implements Initializable {
         for (Node k : grid.getChildren()) {
             try {
                 ((AnchorPane) k).getChildren().clear();
+                ((AnchorPane) k).setStyle("-fx-background-color: transparent");
+                ((AnchorPane) k).setDisable(false);
                 BorderWidths border = new BorderWidths(0, 0, 0, 0);
                 ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
                         BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));

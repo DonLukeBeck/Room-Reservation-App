@@ -185,6 +185,8 @@ public class BikeReservationMenu implements Initializable {
         for (Node k : grid.getChildren()) {
             try {
                 ((AnchorPane) k).getChildren().clear();
+                ((AnchorPane) k).setStyle("-fx-background-color: transparent");
+                ((AnchorPane) k).setDisable(false);
                 BorderWidths border = new BorderWidths(0, 0, 0, 0);
                 ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
                         BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));

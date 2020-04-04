@@ -223,7 +223,6 @@ public class BikeSlots implements Initializable {
             }
             if (capsCount == 1 || capsCount == 0) {
                 buildingName = e.getName();
-                changeInPosition = 40;
             } else {
                 buildingName = "Faculty of " + buildingName;
             }
@@ -290,82 +289,49 @@ public class BikeSlots implements Initializable {
         if (start < localTime) {
             start = localTime;
         }
-
-        if (!reservationOnChosenDate.isEmpty()) {
-            for (Node k : slots.getChildren()) {
-                availablebikes = buildingavailablebikes;
-                if (k instanceof Rectangle) {
-                    String str = k.toString();
-                    String[] temp = str.split(" ");
-                    String newTemp = "";
-                    for (int i = 0; i < temp.length; i++) {
-                        if (temp[i].contains("id=")) {
-                            newTemp = temp[i];
-                            break;
-                        }
-                    }
-                    String[] arrId = newTemp.split("=");
-                    String temp2 = arrId[1];
-                    temp2 = temp2.substring(1, temp2.length() - 1);
-                    String time = temp2.replace('A', ':');
-
-                    String[] firsttime = time.split(" ");
-                    String[] seperateHandM = firsttime[0].split(":");
-
-                    for (Reservations t : reservationOnChosenDate) {
-                        String reservationSlot = t.getTimeslot().toString();
-                        reservationSlot = reservationSlot.substring(0, 5);
-                        if (reservationSlot.substring(0, 5).equals(firsttime[0])) {
-                            availablebikes--;
-                        }
-                    }
-
-                    if (availablebikes <= 0) {
-                        ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
-                        k.disableProperty().setValue(true);
-                    }
-
-                    double hours = Integer.parseInt(seperateHandM[0]);
-
-                    if (seperateHandM[1].equals("30")) {
-                        hours = hours + 0.5;
-                    }
-                    if (hours < start || hours >= end) {
-                        ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
-                        k.disableProperty().setValue(true);
+        System.out.println(buildingavailablebikes);
+        // if (!reservationOnChosenDate.isEmpty()) {
+        for (Node k : slots.getChildren()) {
+            availablebikes = buildingavailablebikes;
+            if (k instanceof Rectangle) {
+                String str = k.toString();
+                String[] temp = str.split(" ");
+                String newTemp = "";
+                for (int i = 0; i < temp.length; i++) {
+                    if (temp[i].contains("id=")) {
+                        newTemp = temp[i];
+                        break;
                     }
                 }
-            }
-        } else {
-            for (Node k : slots.getChildren()) {
-                if (k instanceof Rectangle) {
-                    String str = k.toString();
-                    String[] temp = str.split(" ");
-                    String newTemp = "";
-                    for (int i = 0; i < temp.length; i++) {
-                        if (temp[i].contains("id=")) {
-                            newTemp = temp[i];
-                            break;
-                        }
+                String[] arrId = newTemp.split("=");
+                String temp2 = arrId[1];
+                temp2 = temp2.substring(1, temp2.length() - 1);
+                String time = temp2.replace('A', ':');
+
+                String[] firsttime = time.split(" ");
+                String[] seperateHandM = firsttime[0].split(":");
+
+                for (Reservations t : reservationOnChosenDate) {
+                    String reservationSlot = t.getTimeslot().toString();
+                    reservationSlot = reservationSlot.substring(0, 5);
+                    if (reservationSlot.substring(0, 5).equals(firsttime[0])) {
+                        availablebikes--;
                     }
-                    String[] arrId = newTemp.split("=");
-                    String temp2 = arrId[1];
-                    temp2 = temp2.substring(1, temp2.length() - 1);
-                    String time = temp2.replace('A', ':');
+                }
 
-                    String[] firsttime = time.split(" ");
-                    String[] seperateHandM = firsttime[0].split(":");
+                if (availablebikes <= 0) {
+                    ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
+                    k.disableProperty().setValue(true);
+                }
 
+                double hours = Integer.parseInt(seperateHandM[0]);
 
-                    double hours = Integer.parseInt(seperateHandM[0]);
-
-                    if (seperateHandM[1].equals("30")) {
-                        hours = hours + 0.5;
-                    }
-                    if (hours < start || hours >= end) {
-                        ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
-                        k.disableProperty().setValue(true);
-                    }
+                if (seperateHandM[1].equals("30")) {
+                    hours = hours + 0.5;
+                }
+                if (hours < start || hours >= end) {
+                    ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
+                    k.disableProperty().setValue(true);
                 }
             }
         }
