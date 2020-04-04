@@ -279,7 +279,7 @@ public class RoomReservationMenu implements Initializable {
     /**
      * Method to search for specific calendar month.
      *
-     * @param event Inititating search
+     * @param event on mouse click
      * @throws IOException Exception if no such calendar exists
      */
     @FXML
