@@ -236,7 +236,7 @@ public class AdminController implements Initializable {
             return;
         }
 
-        if(roomID.getText().length() > 18){
+        if (roomID.getText().length() > 18) {
             exception.setText("Max 18 characters allowed.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
