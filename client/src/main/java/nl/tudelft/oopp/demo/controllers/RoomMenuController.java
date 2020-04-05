@@ -71,13 +71,11 @@ public class RoomMenuController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Working");
         if (!MainMenuController.getFilter()) {
             String buildingId = MainMenuController.getId();
             int builId = Integer.parseInt(buildingId);
             rooms = new ArrayList<>();
             for (int i = 0; i < allrooms.size(); i++) {
-                System.out.println("Working2");
                 if (allrooms.get(i).getAssociatedBuilding() == builId) {
                     rooms.add(allrooms.get(i));
                 }
@@ -85,11 +83,9 @@ public class RoomMenuController implements Initializable {
         } else {
             rooms = MainMenuController.getFilterRooms();
         }
-        System.out.println("running");
 
         rooms = roomShownByRole(rooms);
         if (rooms.isEmpty()) {
-            System.out.println("No Rooms");
             Label label = new Label("No available rooms!");
             pane1.getChildren().add(label);
             label.setLayoutY(200);
@@ -101,6 +97,8 @@ public class RoomMenuController implements Initializable {
         for (int j = 0; j < rooms.size(); j++) {
             Rectangle last = null;
             String id1 = "";
+            double change = changeInName(rooms.get(j).getRoomId());
+
             for (Node e : pane1.getChildren()) {
                 if (e instanceof Rectangle) {
                     id1 = e.getId();
@@ -114,10 +112,10 @@ public class RoomMenuController implements Initializable {
                 addLabelToScrollPane(394, box.layoutYProperty().getValue()
                         + 11, "Room ID:");
 
-                addLabelToScrollPane(390, box.layoutYProperty().getValue()
+                addLabelToScrollPane(392, box.layoutYProperty().getValue()
                         + 70, "Capacity:");
 
-                addLabelToScrollPane(390, box.layoutYProperty().getValue() + 40,
+                addLabelToScrollPane(390 + change, box.layoutYProperty().getValue() + 40,
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(422, box.layoutYProperty().getValue() + 100,
@@ -130,9 +128,9 @@ public class RoomMenuController implements Initializable {
 
                 addLabelToScrollPane(680, box.layoutYProperty().getValue() + 11, "Room ID:");
 
-                addLabelToScrollPane(676, box.layoutYProperty().getValue() + 70, "Capacity:");
+                addLabelToScrollPane(678, box.layoutYProperty().getValue() + 70, "Capacity:");
 
-                addLabelToScrollPane(676, box.layoutYProperty().getValue() + 40,
+                addLabelToScrollPane(676 + change, box.layoutYProperty().getValue() + 40,
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(708, box.layoutYProperty().getValue() + 100,
@@ -147,11 +145,10 @@ public class RoomMenuController implements Initializable {
                 addLabelToScrollPane(108, box.layoutYProperty().getValue()
                         + 11, "Room ID:");
 
-                addLabelToScrollPane(104, box.layoutYProperty().getValue()
+                addLabelToScrollPane(106, box.layoutYProperty().getValue()
                         + 70, "Capacity:");
 
-                addLabelToScrollPane(104, box.layoutYProperty().getValue()
-                                + 40,
+                addLabelToScrollPane(104 + change, box.layoutYProperty().getValue() + 40,
                         rooms.get(j).getRoomId());
 
                 addLabelToScrollPane(136, box.layoutYProperty().getValue()
@@ -162,6 +159,23 @@ public class RoomMenuController implements Initializable {
 
         }
 
+    }
+
+    /**
+     * Calculate the change in position.
+     * @param name name given to calculate the change
+     * @return change in position
+     */
+    public double changeInName(String name) {
+        double change = 0;
+        if (name.toCharArray().length > 8 && name.toCharArray().length <= 10) {
+            change = (name.toCharArray().length - 8) * (-2.7);
+        } else if (name.toCharArray().length > 10) {
+            change = (name.toCharArray().length - 8) * (-3.6);
+        } else if (name.toCharArray().length < 8) {
+            change = (8 - name.toCharArray().length) * (3.9);
+        }
+        return change;
     }
 
     /**

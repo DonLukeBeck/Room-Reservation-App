@@ -22,6 +22,68 @@ public class HelperController {
     ServerCommunication con = new ServerCommunication();
 
     /**
+     * Using Insertion sort to sort the dates in List of holidays.
+     *
+     * @param list list of holidays
+     * @return sorted list of holidays
+     */
+
+    public static List<RoomReservationMenu.HolidayTuple>
+            insertionSort(List<RoomReservationMenu.HolidayTuple> list) {
+
+        int n = list.size();
+        for (int i = 1; i < n; i++) {
+            int key = list.get(i).getHolidayDay();
+            RoomReservationMenu.HolidayTuple keyTuple = list.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && list.get(j).getHolidayDay() > key) {
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, keyTuple);
+        }
+        List<RoomReservationMenu.HolidayTuple> newList = new ArrayList<>();
+        for (RoomReservationMenu.HolidayTuple e : list) {
+            if (!newList.contains(e)) {
+                newList.add(e);
+            }
+        }
+        return newList;
+    }
+
+    /**
+     * Using Insertion sort to sort the dates in List of holidays for bikes.
+     *
+     * @param list list of holidays
+     * @return sorted list of holidays
+     */
+    public static List<BikeReservationMenu.HolidayTuple>
+            insertionSortBikes(List<BikeReservationMenu.HolidayTuple> list) {
+
+        int n = list.size();
+        for (int i = 1; i < n; i++) {
+            int key = list.get(i).getHolidayDay();
+            BikeReservationMenu.HolidayTuple keyTuple = list.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && list.get(j).getHolidayDay() > key) {
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, keyTuple);
+        }
+        List<BikeReservationMenu.HolidayTuple> newList = new ArrayList<>();
+        for (BikeReservationMenu.HolidayTuple e : list) {
+            if (!newList.contains(e)) {
+                newList.add(e);
+            }
+        }
+
+        return list;
+    }
+
+    /**
      * Method to get all timeslots.
      *
      * @return List of all timeslots
@@ -167,58 +229,5 @@ public class HelperController {
             layoutY = layoutY + 28;
             sidePane.getChildren().add(sideBuilding);
         }
-    }
-
-    /**
-     * Using Insertion sort to sort the dates in List of holidays.
-     * @param list list of holidays
-     * @return sorted list of holidays
-     */
-
-    public static List<RoomReservationMenu.HolidayTuple>
-        insertionSort(List<RoomReservationMenu.HolidayTuple> list) {
-
-        int n = list.size();
-        for (int i = 1; i < n; i++) {
-            int key = list.get(i).getHolidayDay();
-            RoomReservationMenu.HolidayTuple keyTuple = list.get(i);
-            int j = i - 1;
-
-            while (j >= 0 && list.get(j).getHolidayDay() > key) {
-                list.set(j + 1, list.get(j));
-                j--;
-            }
-            list.set(j + 1, keyTuple);
-        }
-        for (RoomReservationMenu.HolidayTuple e : list) {
-            System.out.println("Sort" + e.getHolidayDay());
-        }
-        return list;
-    }
-
-    /**
-     * Using Insertion sort to sort the dates in List of holidays for bikes.
-     * @param list list of holidays
-     * @return sorted list of holidays
-     */
-    public static List<BikeReservationMenu.HolidayTuple>
-        insertionSortBikes(List<BikeReservationMenu.HolidayTuple> list) {
-
-        int n = list.size();
-        for (int i = 1; i < n; i++) {
-            int key = list.get(i).getHolidayDay();
-            BikeReservationMenu.HolidayTuple keyTuple = list.get(i);
-            int j = i - 1;
-
-            while (j >= 0 && list.get(j).getHolidayDay() > key) {
-                list.set(j + 1, list.get(j));
-                j--;
-            }
-            list.set(j + 1, keyTuple);
-        }
-        for (BikeReservationMenu.HolidayTuple e : list) {
-            System.out.println("Sort" + e.getHolidayDay());
-        }
-        return list;
     }
 }

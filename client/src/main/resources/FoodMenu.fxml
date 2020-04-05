@@ -101,7 +101,7 @@
                   <Rectangle fx:id="C" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="136.0" layoutX="630.0" layoutY="-125.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="188.0" />
                </children></AnchorPane>
          </content></ScrollPane>
-      <Label layoutX="276.0" layoutY="227.0" text="Please pick the item you would like to order" textFill="#2dc26b">
+      <Label layoutX="276.0" layoutY="227.0" text="Please pick the item you would like to order">
          <font>
             <Font name="Comic Sans MS" size="36.0" />
          </font></Label>

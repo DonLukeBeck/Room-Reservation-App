@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" fillWidth="false" minWidth="-Infinity" prefHeight="351.0" prefWidth="717.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.SignUpController">
+<VBox alignment="TOP_CENTER" fillWidth="false" minWidth="-Infinity" prefHeight="351.0" prefWidth="717.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.SignUpController">
     <AnchorPane prefHeight="409.0" prefWidth="716.0">
         <children>
          <Line endX="361.0" layoutX="171.0" layoutY="218.0" rotate="90.0" startX="-80.0" stroke="#595858" />
@@ -83,6 +77,14 @@
                      <Image url="@images/LogIn_Pass.png" />
                   </image>
                </ImageView>
+               <JFXButton fx:id="button31" buttonType="RAISED" layoutX="280.0" layoutY="12.0" onAction="#goBack" prefHeight="40.0" prefWidth="111.0" ripplerFill="BLUE" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-background-color: #D3D3D3; -fx-border-color: #606060; -fx-border-width: 2.5;" text="Go Back" textFill="#00a6d6">
+                  <font>
+                     <Font name="Arial Rounded MT Bold" size="18.0" />
+                  </font>
+                  <effect>
+                     <DropShadow height="27.55" radius="12.2325" width="23.38" />
+                  </effect>
+               </JFXButton>
             </children>
             <effect>
                <ColorAdjust brightness="0.06" contrast="0.35" />

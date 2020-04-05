@@ -144,11 +144,9 @@ public class MainMenuController implements Initializable {
         int building = 1000;
         try {
             building = Integer.parseInt(buildingID.getValue().toString());
-            //System.out.println(building);
+
         } catch (Exception r) {
-            System.out.println("No building");
         }
-        System.out.println("works");
         List<Rooms> allRooms = con.getRooms();
         List<Rooms> suitableRooms = new ArrayList<>();
 
@@ -166,7 +164,6 @@ public class MainMenuController implements Initializable {
             try {
                 capacity = Integer.parseInt(filterCapacity.getText());
             } catch (Exception k) {
-                System.out.println("NAN");
                 capacity = 0;
             }
         }
@@ -193,10 +190,8 @@ public class MainMenuController implements Initializable {
         if (filterRoomType.getValue() != null) {
             type = filterRoomType.getValue().toString();
         } else {
-            System.out.println(type);
             type = "Study hall";
         }
-        System.out.println(type);
         List<Rooms> result = new ArrayList<>();
 
         for (Rooms e : suitableRooms) {
@@ -205,7 +200,6 @@ public class MainMenuController implements Initializable {
                     && e.getChairs() >= capacity && e.getType().equals(type)) {
 
                 result.add(e);
-                System.out.println(e.getRoomId());
             }
         }
         filterRooms = result;
@@ -376,7 +370,6 @@ public class MainMenuController implements Initializable {
 
             addLabelSidePane(56, layoutY + 28, "-" + buildingName);
             layoutY = layoutY + 28;
-            System.out.println(layoutY);
 
             if (i == 0) {
                 addLabelScrollPane(82 + changeInPosition, 14, buildingName, "A");
@@ -439,8 +432,6 @@ public class MainMenuController implements Initializable {
 
         for (int j = i; j < buildingsList.size(); j++) {
             String buildingName = changeInPositionOfBuildingName(buildingsList.get(j));
-            System.out.println(buildingName);
-            System.out.println(buildingName.toCharArray().length);
             changeInPosition = changeInPositionOfName(buildingName);
 
             addLabelSidePane(56, layoutY + 28, "-" + buildingName);

@@ -103,7 +103,7 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Label fx:id="sc" contentDisplay="CENTER" layoutX="308.0" layoutY="278.0" text="Choose the room you want to reserve in" textAlignment="CENTER" textFill="#2dc26b">
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="308.0" layoutY="278.0" text="Choose the room you want to reserve in" textAlignment="CENTER">
             <font>
                 <Font name="Comic Sans MS" size="36.0" />
             </font>

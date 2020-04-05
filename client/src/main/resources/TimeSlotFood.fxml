@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.FoodSlots">
     <children>
-        <Label fx:id="sc" contentDisplay="CENTER" layoutX="487.0" layoutY="264.0" text="Choose a time slot" textAlignment="CENTER" textFill="#2dc26b">
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="487.0" layoutY="264.0" text="Choose a time slot" textAlignment="CENTER">
             <font>
                 <Font name="Comic Sans MS" size="36.0" />
             </font>

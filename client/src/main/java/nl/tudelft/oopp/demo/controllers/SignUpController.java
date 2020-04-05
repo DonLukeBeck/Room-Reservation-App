@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -92,6 +93,7 @@ public class SignUpController implements Initializable {
         Parent root = loader.load();
 
         Stage stage = new Stage();
+        stage.setTitle("Room Reservation App");
         stage.setScene(new Scene(root));
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
@@ -105,5 +107,25 @@ public class SignUpController implements Initializable {
         text.setLayoutX(coPass.getLayoutX());
         text.setLayoutY(coPass.getLayoutY() + 35);
         pane.getChildren().add(text);
+    }
+
+    /**
+     * Go back on click.
+     * @throws IOException when can not load mainScene
+     */
+    public void goBack(Event event) throws IOException {
+        Stage stage1 = (Stage) button3.getScene().getWindow();
+        stage1.close();
+
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/mainScene.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Room Reservation App");
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
+        stage.show();
     }
 }

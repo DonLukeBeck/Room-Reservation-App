@@ -81,7 +81,7 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Label fx:id="sc" contentDisplay="CENTER" layoutX="392.0" layoutY="288.0" prefHeight="51.0" prefWidth="496.0" text="Your reservation is complete!" textAlignment="CENTER" textFill="#2dc26b">
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="392.0" layoutY="288.0" prefHeight="51.0" prefWidth="496.0" text="Your reservation is complete!" textAlignment="CENTER">
             <font>
                 <Font name="Comic Sans MS" size="36.0" />
             </font>
