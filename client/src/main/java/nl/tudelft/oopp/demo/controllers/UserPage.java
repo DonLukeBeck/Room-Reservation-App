@@ -49,6 +49,11 @@ public class UserPage implements Initializable {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
+    /**
+     * Method to change password.
+     * @param e Clicking on change password
+     * @throws IOException Exception if can't find change password scene
+     */
     public void changePassword(Event e) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/ChangePassword.fxml");

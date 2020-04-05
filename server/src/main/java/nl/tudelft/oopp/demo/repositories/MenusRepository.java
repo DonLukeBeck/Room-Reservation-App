@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface MenusRepository extends JpaRepository<Menus, Long> {
 
-    @Query(value = "INSERT INTO Menus (buildingNumber, dishName) Values (?1,?2)", nativeQuery = true)
+    @Query(value = "INSERT INTO Menus (buildingNumber,"
+            + " dishName) Values (?1,?2)", nativeQuery = true)
     @Modifying
     @Transactional
     int addMenu(int buildingNumber,String dishName);

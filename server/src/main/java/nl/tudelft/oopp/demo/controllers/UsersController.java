@@ -12,7 +12,10 @@ import nl.tudelft.oopp.demo.entities.Users;
 import nl.tudelft.oopp.demo.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // This means that this class is a Controller
 public class UsersController {
@@ -74,9 +77,16 @@ public class UsersController {
         }
     }
 
+    /**
+     * Method to change password.
+     * @param changePassword
+     * @return True if password changed
+     * @throws NoSuchAlgorithmException
+     */
     @PostMapping("/changePassword")
     public @ResponseBody
-    boolean changePassword(@RequestBody ChangePassword changePassword) throws NoSuchAlgorithmException {
+    boolean changePassword(@RequestBody ChangePassword
+                                   changePassword) throws NoSuchAlgorithmException {
         LoginUser loginUser = new LoginUser();
         loginUser.setNetid(changePassword.getNetId());
         loginUser.setPassword(changePassword.getOldPassword());

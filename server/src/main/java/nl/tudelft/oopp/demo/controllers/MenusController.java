@@ -40,7 +40,7 @@ public class MenusController {
         try {
             menusRepository.addMenu(menu.getBuildingNumber(),menu.getDishName());
             return true;
-        }catch(DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             return false;
         }
     }
