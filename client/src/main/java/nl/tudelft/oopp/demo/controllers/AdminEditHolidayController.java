@@ -1,11 +1,11 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import io.netty.channel.ChannelDuplexHandler;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Date;
+import io.netty.channel.ChannelDuplexHandler;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
