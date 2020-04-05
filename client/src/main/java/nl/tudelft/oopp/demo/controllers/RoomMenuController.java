@@ -53,7 +53,7 @@ public class RoomMenuController implements Initializable {
     }
 
     /**
-     * Method to initilize.
+     * Method to initialize.
      *
      * @param location  Link to location
      * @param resources Resource Bundle

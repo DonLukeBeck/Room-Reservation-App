@@ -81,8 +81,13 @@ public class MainReservationMenuController implements Initializable {
      * @throws IOException Exception if can't find reservation bike page
      */
     public void goToBikes(Event event) throws IOException {
+        int id = Integer.parseInt(MainMenuController.getId());
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
+        if (con.getBuildingByName(id).getNumber_of_bikes() <= 0) {
+            helperController.loadNextScene("/NoBikes.fxml", mainScreen);
+        } else {
+            helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
+        }
     }
 
     public void paneExit(Event event) throws IOException {
@@ -99,6 +104,7 @@ public class MainReservationMenuController implements Initializable {
 
     /**
      * Method to go to food reservation.
+     *
      * @param event Clicking on 'Food'
      * @throws IOException Exception if can't find food menu page
      */
@@ -112,8 +118,9 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     * Method to initilize.
-     * @param location Link to the location
+     * Method to initialize.
+     *
+     * @param location  Link to the location
      * @param resources Resource Bundle
      */
     @Override
