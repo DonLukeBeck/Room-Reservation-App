@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -101,6 +102,7 @@ public class RoomReservationMenu implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("favicon.png"));
         stage.show();
     }
 
@@ -338,6 +340,7 @@ public class RoomReservationMenu implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("favicon.png"));
         stage.show();
     }
 
