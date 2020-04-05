@@ -48,7 +48,7 @@ public class AdminDeleteController implements Initializable {
     private ChoiceBox listBuildingID2;
 
     @FXML
-    private ChoiceBox listRoomID;
+    private ChoiceBox listRoomsID;
 
     @FXML
     private ChoiceBox listDishes;
@@ -130,7 +130,7 @@ public class AdminDeleteController implements Initializable {
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
         listHolidayID.setItems(FXCollections.observableArrayList(listHolidaysID));
-        listRoomID.setItems(FXCollections.observableArrayList(listAllRooms));
+        listRoomsID.setItems(FXCollections.observableArrayList(listAllRooms));
         listDishes.setItems(FXCollections.observableArrayList(listAllDishes));
         listMenus.setItems(FXCollections.observableArrayList(listAllMenus));
 
@@ -138,7 +138,7 @@ public class AdminDeleteController implements Initializable {
         listBuildingID1.setValue("Select Building");
         listBuildingID2.setValue("Select Building");
         listHolidayID.setValue("Select Building");
-        listRoomID.setValue("Select Room");
+        listRoomsID.setValue("Select Room");
         listDishes.setValue("Select Dish");
         listMenus.setValue("Select Menu");
         listHolidayID.setValue("Select Holiday ID");
@@ -169,9 +169,9 @@ public class AdminDeleteController implements Initializable {
                                 listRoomsByBuilding[j] = "" + r.getRoomId();
                                 j++;
                             }
-                            listRoomID.setItems(FXCollections
+                            listRoomsID.setItems(FXCollections
                                     .observableArrayList(listRoomsByBuilding));
-                            listRoomID.setValue("Select room");
+                            listRoomsID.setValue("Select room");
 
 
                         } catch (IOException e) {
@@ -313,7 +313,7 @@ public class AdminDeleteController implements Initializable {
             return;
         }
 
-        if (listRoomID.getValue().toString().equals("Select room")) {
+        if (listRoomsID.getValue().toString().equals("Select room")) {
             exception.setText("Please select room.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
@@ -323,7 +323,7 @@ public class AdminDeleteController implements Initializable {
             return;
         }
 
-        con.deleteRoomAdmin(listRoomID.getValue().toString());
+        con.deleteRoomAdmin(listRoomsID.getValue().toString());
 
         System.out.print("Room deleted");
 
