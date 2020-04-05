@@ -196,7 +196,7 @@ public class ServerCommunication {
      *
      * @param id : id of the reservation.
      * @return true if the deletion was successful.
-     * @throws IOException
+     * @throws IOException exception to be handled
      */
     public boolean deleteReservation(String id) throws IOException {
 
@@ -232,7 +232,7 @@ public class ServerCommunication {
      *
      * @param id : id of the UserEvent.
      * @return true if the deletion was successful.
-     * @throws IOException
+     * @throws IOException exception to be handled
      */
     public boolean deleteUserEvent(String id) throws IOException {
 
@@ -266,7 +266,7 @@ public class ServerCommunication {
     /**
      * Method to find user events.
      * @return User events as a Json list
-     * @throws IOException
+     * @throws IOException exception to be handled
      */
     public List<UserEvent> getUserEvents() throws IOException {
         String jsonString = this.webClient.get().uri("/allPersonalEvents")

@@ -98,9 +98,9 @@ public class BuildingsController {
     public @ResponseBody
     boolean deleteBuilding(@RequestParam int buildingNumber) {
         try {
-            if( buildingsRepository.deleteBuildingByBuildingNumber(buildingNumber) != 0) {
+            if (buildingsRepository.deleteBuildingByBuildingNumber(buildingNumber) != 0) {
                 return true;
-            }else {
+            } else {
                 return false;
             }
         } catch (NullPointerException e) {

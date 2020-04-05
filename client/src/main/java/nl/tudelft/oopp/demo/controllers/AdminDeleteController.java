@@ -157,7 +157,9 @@ public class AdminDeleteController implements Initializable {
 
                             List<Rooms> listGetRoomByBuilding = null;
                             try {
-                                listGetRoomByBuilding = con.getRoomsByBuilding(selectedBuilding.getBuilding_number());
+                                listGetRoomByBuilding = con
+                                        .getRoomsByBuilding(selectedBuilding
+                                                .getBuilding_number());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -206,7 +208,8 @@ public class AdminDeleteController implements Initializable {
 
                             int j = 1;
                             for (Menus m : listAllMenus) {
-                                if (m.getBuildingNumber() == selectedBuilding.getBuilding_number()) {
+                                if (m.getBuildingNumber() == selectedBuilding
+                                        .getBuilding_number()) {
                                     listMenusByBuilding[j] = m.getDishName();
                                     j++;
                                 }
@@ -232,7 +235,9 @@ public class AdminDeleteController implements Initializable {
                                 k++;
                             }
 
-                            listDishes.setItems(FXCollections.observableArrayList(listDishesByBuilding));
+                            listDishes
+                                    .setItems(FXCollections
+                                            .observableArrayList(listDishesByBuilding));
 
 
 
@@ -439,7 +444,11 @@ public class AdminDeleteController implements Initializable {
         }
 
 
-        con.deleteMenuAdmin(Integer.parseInt(listBuildingID1.getValue().toString()), listMenus.getValue().toString());
+        con
+                .deleteMenuAdmin(Integer
+                        .parseInt(listBuildingID1
+                                .getValue().toString()), listMenus
+                        .getValue().toString());
 
         System.out.print("Menu deleted");
 

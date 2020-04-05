@@ -11,15 +11,15 @@ import javafx.stage.Stage;
 
 public class MainSceneDisplay extends Application {
 
-    /**
-     * @param args
+    /** Application launch.
+     * @param args string parameter
      */
     public static void main(String[] args) {
         launch(args);
     }
 
-    /**
-     * @param primaryStage
+    /** FXML load start.
+     * @param primaryStage first stage of application
      * @throws IOException Exception if can't find main scene
      */
     @Override
