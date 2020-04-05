@@ -36,14 +36,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="listBuildingID" layoutX="330.0" layoutY="214.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="listBuildingID" layoutX="383.0" layoutY="214.0" prefWidth="150.0" />
       <Separator layoutX="-1.0" layoutY="398.0" prefHeight="0.0" prefWidth="1288.0" style="-fx-background-color: black;" />
       <Label layoutX="684.0" layoutY="141.0" prefHeight="26.0" prefWidth="166.0" text="Select Building:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="listBuildingID1" layoutX="942.0" layoutY="444.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="listBuildingID1" layoutX="960.0" layoutY="487.0" prefWidth="150.0" />
       <Label layoutX="684.0" layoutY="209.0" prefHeight="26.0" prefWidth="166.0" text="Select Room:">
          <font>
             <Font size="24.0" />
@@ -55,41 +55,41 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Label layoutX="38.0" layoutY="524.0" prefHeight="35.0" prefWidth="195.0" text="Select Holiday ID:">
+      <Label layoutX="35.0" layoutY="482.0" prefHeight="35.0" prefWidth="195.0" text="Select Holiday:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="listHolidayID" layoutX="339.0" layoutY="529.0" prefWidth="150.0" />
-      <Button fx:id="deleteHoliday" defaultButton="true" layoutX="38.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteHoliday" prefHeight="51.0" prefWidth="218.0" text="Delete Holiday">
+      <ChoiceBox fx:id="listHolidayID" layoutX="38.0" layoutY="573.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="deleteHoliday" defaultButton="true" layoutX="27.0" layoutY="671.0" mnemonicParsing="false" onAction="#deleteHoliday" prefHeight="51.0" prefWidth="218.0" text="Delete Holiday">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Label layoutX="684.0" layoutY="439.0" prefHeight="26.0" prefWidth="166.0" text="Select Building:">
+      <Label layoutX="684.0" layoutY="482.0" prefHeight="26.0" prefWidth="166.0" text="Select Building:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="listBuildingID2" layoutX="942.0" layoutY="146.0" prefWidth="150.0" />
-      <Label layoutX="684.0" layoutY="511.0" prefHeight="26.0" prefWidth="166.0" text="Select Menu:">
+      <Label layoutX="684.0" layoutY="568.0" prefHeight="35.0" prefWidth="251.0" text="Select Dish From Menu:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="listMenus" layoutX="942.0" layoutY="516.0" prefWidth="150.0" />
-      <Label layoutX="684.0" layoutY="580.0" prefHeight="26.0" prefWidth="166.0" text="Select Dish:">
+      <ChoiceBox fx:id="listMenus" layoutX="960.0" layoutY="573.0" prefHeight="25.0" prefWidth="150.0" />
+      <Label layoutX="383.0" layoutY="482.0" prefHeight="26.0" prefWidth="166.0" text="Select Dish:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="listDishes" layoutX="942.0" layoutY="585.0" prefWidth="150.0" />
-      <Button fx:id="deleteMenu" defaultButton="true" layoutX="684.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteMenu" prefHeight="51.0" prefWidth="218.0" text="Delete Menu">
+      <ChoiceBox fx:id="listDishes" layoutX="383.0" layoutY="573.0" prefHeight="25.0" prefWidth="166.0" />
+      <Button fx:id="deleteMenu" defaultButton="true" layoutX="684.0" layoutY="671.0" mnemonicParsing="false" onAction="#deleteMenu" prefHeight="51.0" prefWidth="218.0" text="Delete Menu">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="deleteDish" defaultButton="true" layoutX="983.0" layoutY="660.0" mnemonicParsing="false" onAction="#deleteDish" prefHeight="51.0" prefWidth="218.0" text="Delete Dish">
+      <Button fx:id="deleteDish" defaultButton="true" layoutX="383.0" layoutY="671.0" mnemonicParsing="false" onAction="#deleteDish" prefHeight="51.0" prefWidth="218.0" text="Delete Dish">
          <font>
             <Font size="24.0" />
          </font>

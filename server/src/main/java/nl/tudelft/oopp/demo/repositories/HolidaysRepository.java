@@ -20,5 +20,5 @@ public interface HolidaysRepository extends JpaRepository<Holidays, Long> {
     @Query(value = "DELETE FROM Holidays WHERE holidaysId = ?1", nativeQuery = true)
     @Modifying
     @Transactional
-    boolean deleteHolidaysById(int holidaysId);
+    int deleteHolidaysById(int holidaysId);
 }

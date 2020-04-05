@@ -573,7 +573,7 @@ public class AdminServerCommunication extends ServerCommunication {
                     .bodyToMono(Boolean.class)
                     .block();
             if (bool) {
-                System.out.println("Menu deleted");
+                System.out.println("Holiday deleted");
                 return true;
             } else {
                 System.out.println("failed");
