@@ -125,14 +125,15 @@ public class AdminEditHolidayController implements Initializable {
             j++;
         }
 
-
-
+        String[] listAllDishesByBuilding = new String[2];
+        listAllDishesByBuilding[0] = "Select Dish";
+        listAllDishesByBuilding[1] = "First select building";
 
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         holidayID.setItems(FXCollections.observableArrayList(listAllHolidays));
         selectDish.setItems(FXCollections.observableArrayList(listAllDishes));
-        selectNewDishName.setItems(FXCollections.observableArrayList(listAllDishes));
-        oldDishName.setItems(FXCollections.observableArrayList(listAllDishes));
+        selectNewDishName.setItems(FXCollections.observableArrayList(listAllDishesByBuilding));
+        oldDishName.setItems(FXCollections.observableArrayList(listAllDishesByBuilding));
 
         listBuildingID.setValue("Select Building");
         holidayID.setValue("Select Holiday");
@@ -193,8 +194,29 @@ public class AdminEditHolidayController implements Initializable {
                                 j++;
                             }
 
-                            oldDishName.setItems(FXCollections.observableArrayList(listDishes));
+                            List<Dishes> listGetDishes = null;
+                            try {
+                                listGetDishes = con.getDishes();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            listGetDishes.removeAll(dishes);
 
+                            String[] listAllDishes1 = new String[listGetDishes.size() + 1];
+                            listAllDishes1[0] = "Select Dish";
+                            j = 1;
+
+                            for (Dishes d : listGetDishes) {
+                                listAllDishes1[j] = d.getName();
+                                j++;
+                            }
+
+
+                            oldDishName.setItems(FXCollections.observableArrayList(listDishes));
+                            selectNewDishName.setItems(FXCollections
+                                    .observableArrayList(listAllDishes1));
+                            oldDishName.setValue("Select Dish");
+                            selectNewDishName.setValue("Select Dish");
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -203,6 +225,8 @@ public class AdminEditHolidayController implements Initializable {
                     }
 
                 });
+
+
 
         selectDish.getSelectionModel()
                 .selectedIndexProperty()
@@ -264,8 +288,8 @@ public class AdminEditHolidayController implements Initializable {
 
         if (holidayID.getValue().equals("Select Holiday")) {
             exception.setText("Please select holiday.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
+            exception.setLayoutY(110);
+            exception.setLayoutX(14);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -302,8 +326,8 @@ public class AdminEditHolidayController implements Initializable {
 
         if (listBuildingID.getValue().equals("Select Building")) {
             exception.setText("Please select building.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
+            exception.setLayoutY(110);
+            exception.setLayoutX(14);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -312,8 +336,8 @@ public class AdminEditHolidayController implements Initializable {
 
         if (selectNewDishName.getValue().equals("Select Dish")) {
             exception.setText("Please select dish.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
+            exception.setLayoutY(110);
+            exception.setLayoutX(14);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -322,8 +346,8 @@ public class AdminEditHolidayController implements Initializable {
 
         if (oldDishName.getValue().equals("Select Dish")) {
             exception.setText("Please select dish.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
+            exception.setLayoutY(110);
+            exception.setLayoutX(14);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -355,8 +379,8 @@ public class AdminEditHolidayController implements Initializable {
 
         if (selectDish.getValue().equals("Select Dish")) {
             exception.setText("Please select dish.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(45);
+            exception.setLayoutY(110);
+            exception.setLayoutX(14);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
