@@ -53,6 +53,10 @@ public class RoomMenuController implements Initializable {
         return room_id;
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
+
     /**
      * Method to initialize.
      *

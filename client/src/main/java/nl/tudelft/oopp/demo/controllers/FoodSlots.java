@@ -95,6 +95,9 @@ public class FoodSlots implements Initializable {
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
 
     /**
      * Get all information from the chosen time slot.

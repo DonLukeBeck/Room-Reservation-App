@@ -40,8 +40,9 @@ public class BikeReservationCompleted implements Initializable {
 
 
     /**
-     *Method to initialize.
-     * @param location Location of the picture
+     * Method to initialize.
+     *
+     * @param location  Location of the picture
      * @param resources Resource bundle
      */
     @Override
@@ -139,8 +140,13 @@ public class BikeReservationCompleted implements Initializable {
         helper.userProfile(pane);
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
+
     /**
      * Method to format the name properly.
+     *
      * @param name Name input
      * @return Name in proper format
      */

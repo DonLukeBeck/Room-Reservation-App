@@ -74,6 +74,9 @@ public class FoodMenuController implements Initializable {
         stage.show();
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
 
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());

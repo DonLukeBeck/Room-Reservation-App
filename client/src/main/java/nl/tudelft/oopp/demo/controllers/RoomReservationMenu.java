@@ -459,6 +459,9 @@ public class RoomReservationMenu implements Initializable {
         }
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

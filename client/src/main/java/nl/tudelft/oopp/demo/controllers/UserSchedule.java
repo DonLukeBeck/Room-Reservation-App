@@ -114,6 +114,10 @@ public class UserSchedule implements Initializable {
         helper.userProfile(mainScreen);
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
+
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }

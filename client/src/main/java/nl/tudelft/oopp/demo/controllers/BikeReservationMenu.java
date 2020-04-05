@@ -125,6 +125,9 @@ public class BikeReservationMenu implements Initializable {
     public void paneUserProfile(Event event) throws IOException {
         helper.userProfile(mainScreen);
     }
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
 
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());

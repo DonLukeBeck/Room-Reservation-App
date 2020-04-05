@@ -45,6 +45,10 @@ public class CompletedReservationController implements Initializable {
         return name;
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
+
     /**
      * Loading elements when the scene is opened.
      *

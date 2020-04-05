@@ -83,6 +83,18 @@ public class HelperController {
         return list;
     }
 
+    public void openContacts() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/Contacts.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
+        stage.show();
+    }
+
     /**
      * Method to get all timeslots.
      *

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.BikeSlots">
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.BikeSlots">
     <children>
         <Label fx:id="sc" contentDisplay="CENTER" layoutX="487.0" layoutY="264.0" text="Choose a time slot" textAlignment="CENTER">
             <font>
@@ -27,7 +30,7 @@
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="34.0" layoutY="444.0" text="- Contacts" textFill="WHITE">
+                <Label layoutX="34.0" layoutY="444.0" onMouseClicked="#contactsOpen" text="- Contacts" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -87,7 +90,7 @@
                     <effect>
                         <DropShadow blurType="ONE_PASS_BOX">
                             <color>
-                                <Color red="1.0" green="1.0" blue="1.0" />
+                                <Color blue="1.0" green="1.0" red="1.0" />
                             </color></DropShadow>
                     </effect></Button>
             </children>

@@ -49,6 +49,9 @@ public class UserPage implements Initializable {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
     /**
      * Method to change password.
      * @param e Clicking on change password

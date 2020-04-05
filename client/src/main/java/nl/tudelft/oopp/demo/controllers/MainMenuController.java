@@ -207,6 +207,10 @@ public class MainMenuController implements Initializable {
         helper.loadNextScene("/RoomMenu.fxml", mainScreen);
     }
 
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
+
 
     /**
      * Opening image of the campus map.

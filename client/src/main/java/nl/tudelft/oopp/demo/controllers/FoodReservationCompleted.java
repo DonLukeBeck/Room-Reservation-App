@@ -77,7 +77,9 @@ public class FoodReservationCompleted implements Initializable {
         addLabelToPane(345, 680, FoodMenuController.getDishesName());
 
     }
-
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
     /**
      * Method to add a label to pane.
      *
