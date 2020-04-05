@@ -17,7 +17,6 @@ class ReservationsTest {
     private Date date2;
     private Reservations r1;
     private Reservations r2;
-    private Reservations r3;
 
     @BeforeEach
     public void setup() {
@@ -134,6 +133,30 @@ class ReservationsTest {
     public void getNiceStringRoomTest() {
         String r1NiceString = "00:45:00:  Room 1 ordered in building 1";
         assertEquals(r1NiceString, r1.getNiceString());
+    }
+
+    @Test
+    public void getNiceStringDishTest() {
+        r1.setRoomReserved(null);
+        String expected = "00:45:00:  Dish testDish ordered in building 1";
+        assertEquals(expected, r1.getNiceString());
+    }
+
+    @Test
+    public void getNiceStringBikeTest() {
+        r1.setRoomReserved(null);
+        r1.setDishOrdered(null);
+        String expected = "00:45:00:  Bike ordered in building 1";
+        assertEquals(expected, r1.getNiceString());
+    }
+
+
+    @Test
+    public void compareToTest() {
+        r2 = new Reservations();
+        r2.setDate(date2);
+        r2.setTimeslot(timeslot2);
+        assertEquals(-1, r1.compareTo(r2));
     }
 
 

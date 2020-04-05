@@ -86,4 +86,32 @@ public class UserEventTest {
         assertEquals("test", ue1.getDescription());
     }
 
+    @Test
+    public void getIdTest() {
+        assertEquals(1, ue1.getId());
+    }
+
+    @Test
+    public void setIdTest() {
+        ue1.setId(2);
+        assertEquals(2, ue1.getId());
+    }
+
+    @Test
+    public void getNiceStringTest() {
+        String expected = "08:00:00: Description";
+        assertEquals(expected, ue1.getNiceString());
+    }
+
+    @Test
+    public void compareToTest() {
+        UserEvent ue2 = new UserEvent();
+        ue2.setTime(t2);
+        ue2.setDate(d2);
+        ue2.setId(2);
+        ue2.setDescription("Description2");
+        ue2.setUser("User2");
+        assertEquals(-1, ue1.compareTo(ue2));
+    }
+
 }

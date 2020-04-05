@@ -75,12 +75,18 @@ public class BuildingsControllerTest {
     @Test
     public void deleteBuildingTrueTest() {
         b1 = new Buildings();
-        buildingsRepository.save(b1);
+        when(buildingsRepository.deleteBuildingByBuildingNumber(b1.getBuildingNumber())).thenReturn(1);
         assertTrue(buildingsController.deleteBuilding(b1.getBuildingNumber()));
     }
 
     @Test
     public void deleteBuildingFalseTest() {
+        b1 = new Buildings();
+        assertFalse(buildingsController.deleteBuilding(b1.getBuildingNumber()));
+    }
+
+    @Test
+    public void deleteBuildingFalseCase2Test() {
         b1 = new Buildings();
         when(buildingsRepository.deleteBuildingByBuildingNumber(b1.getBuildingNumber()))
                 .thenThrow(NullPointerException.class);
