@@ -107,7 +107,7 @@ public class FoodSlots implements Initializable {
         Calendar defaultCalendar = Calendar.getInstance();
 
         int currentYear = defaultCalendar.get(Calendar.YEAR);
-        int currentMonth = defaultCalendar.get(Calendar.MONTH);
+        int currentMonth = defaultCalendar.get(Calendar.MONTH) + 1;
         int currentDay = defaultCalendar.get(Calendar.DAY_OF_MONTH);
 
         String formatDate = currentDay + "";
