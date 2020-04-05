@@ -41,6 +41,7 @@ public class SignUpController implements Initializable {
 
 
     private static Label text;
+
     /**
      * Method to sign up.
      *
