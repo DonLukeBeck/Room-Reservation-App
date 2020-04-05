@@ -100,7 +100,6 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="245.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#827c7c" height="20.0" layoutX="451.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="657.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc500" height="20.0" layoutX="863.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
         <Label layoutX="286.0" layoutY="339.0" prefHeight="22.0" prefWidth="67.0" text="- Free">
             <font>
                 <Font name="Comic Sans MS Bold" size="16.0" />
@@ -112,11 +111,6 @@
             </font>
         </Label>
         <Label layoutX="701.0" layoutY="339.0" prefHeight="23.0" prefWidth="95.0" text="- Occcupied">
-            <font>
-                <Font name="Comic Sans MS Bold" size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="906.0" layoutY="339.0" prefHeight="23.0" prefWidth="158.0" text="- Selected">
             <font>
                 <Font name="Comic Sans MS Bold" size="16.0" />
             </font>
