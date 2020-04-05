@@ -53,8 +53,15 @@ public class UserPage {
 
 
 
-    public void changePassword(Event e) {
-        changePasswordLabel.setText("changed pwd (TO BE IMPLEMENTED)");
+    public void changePassword(Event e) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/ChangePassword.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     public void openSchedule(Event e) throws IOException {

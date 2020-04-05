@@ -21,6 +21,7 @@ public class ChangePassword {
             || oldPasswordField.getText().isBlank()) {
             return;
         }
+        System.out.println("Changing password");
     }
 
     /**
