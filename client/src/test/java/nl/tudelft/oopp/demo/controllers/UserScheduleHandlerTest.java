@@ -3,6 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import javafx.scene.text.Text;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import nl.tudelft.oopp.demo.entities.UserEvent;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,8 +44,9 @@ public class UserScheduleHandlerTest {
         listR2 = new ArrayList<Reservations>();
         listU = new ArrayList<UserEvent>(List.of(ue1));
         listU2 = new ArrayList<UserEvent>();
+        Text eventsText = new Text("3 events");
 
-        userScheduleHandler = new UserScheduleHandler(1,1,2020, listR, listU);
+        userScheduleHandler = new UserScheduleHandler(1,1,2020, listR, listU, eventsText);
     }
 
     @Test
