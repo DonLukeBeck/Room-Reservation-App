@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface HolidaysRepository extends JpaRepository<Holidays, Long> {
     @Query(value = "UPDATE Holidays "
-            + "SET startDate = ?1, endDate = ?2, comments = ?3,"
+            + "SET startDate = ?1, endDate = ?2, comments = ?3 "
             + "WHERE holidaysId = ?4", nativeQuery = true)
     @Modifying
     @Transactional

@@ -3,6 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import io.netty.channel.ChannelDuplexHandler;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -76,6 +77,8 @@ public class AdminEditHolidayController implements Initializable {
     @FXML
     private AnchorPane mainScreen;
 
+    private int selectedHoliday;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -86,7 +89,7 @@ public class AdminEditHolidayController implements Initializable {
             e.printStackTrace();
         }
         String[] listAllBuildings = new String[listGetBuildings.size() + 1];
-        listAllBuildings[0] = "Select building";
+        listAllBuildings[0] = "Select Building";
         int j = 1;
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
@@ -105,7 +108,7 @@ public class AdminEditHolidayController implements Initializable {
         j = 1;
         for (Holidays h : listGetHolidays) {
             listAllHolidays[j] = "" + h.getComments();
-
+            j++;
         }
 
         List<Dishes> listGetDishes = null;
@@ -129,13 +132,13 @@ public class AdminEditHolidayController implements Initializable {
         holidayID.setItems(FXCollections.observableArrayList(listAllHolidays));
         selectDish.setItems(FXCollections.observableArrayList(listAllDishes));
         selectNewDishName.setItems(FXCollections.observableArrayList(listAllDishes));
+        oldDishName.setItems(FXCollections.observableArrayList(listAllDishes));
 
         listBuildingID.setValue("Select Building");
         holidayID.setValue("Select Holiday");
-        selectDish.setValue("Select dish");
-        selectNewDishName.setValue("Select dish");
-        oldDishName.setValue("Select dish");
-
+        selectDish.setValue("Select Dish");
+        selectNewDishName.setValue("Select Dish");
+        oldDishName.setValue("Select Dish");
 
         holidayID.getSelectionModel()
                 .selectedIndexProperty()
@@ -143,29 +146,23 @@ public class AdminEditHolidayController implements Initializable {
                     @Override
                     public void changed(ObservableValue<? extends Number> observable,
                                         Number oldValue, Number newValue) {
-
-                        List<Holidays> holi = null;
                         try {
-                            holi = con.getHolidays();
-
-                            for (Holidays hol : holi) {
-
-
-                                if (hol.getHolidaysID() == (int) newValue) {
-                                    startDate.setDayCellFactory((Callback<DatePicker,
-                                            DateCell>) hol.getStartDate());
-                                    endDate.setDayCellFactory((Callback<DatePicker,
-                                            DateCell>) hol.getEndDate());
-
-                                    comments.setText(hol.getComments());
-                                }
-
-
-                            }
-
+                            selectedHoliday = (int)newValue - 1;
+                            List<Holidays> listAllHolidays = con.getHolidays();
+                            Holidays holiday = listAllHolidays.get(selectedHoliday);
+                            selectedHoliday = holiday.getHolidaysID();
+                            startDate
+                                    .setValue(holiday.getStartDate()
+                                            .toInstant().atZone(ZoneId
+                                                    .systemDefault()).toLocalDate());
+                            endDate
+                                    .setValue(holiday.getEndDate()
+                                            .toInstant().atZone(ZoneId
+                                                    .systemDefault()).toLocalDate());
+                            comments.setText(holiday.getComments());
                         } catch (IOException e) {
                             e.printStackTrace();
-                            System.out.print("Select holiday");
+                            System.out.print("Select Holiday");
                         }
                     }
                 });
@@ -189,7 +186,7 @@ public class AdminEditHolidayController implements Initializable {
                                 e.printStackTrace();
                             }
                             String[] listDishes = new String[dishes.size() + 1];
-                            listDishes[0] = "Select dish";
+                            listDishes[0] = "Select Dish";
                             int j = 1;
                             for (Dishes d : dishes) {
                                 listDishes[j] = d.getName();
@@ -265,7 +262,7 @@ public class AdminEditHolidayController implements Initializable {
             }
         }
 
-        if (holidayID.getValue().equals("Select holiday")) {
+        if (holidayID.getValue().equals("Select Holiday")) {
             exception.setText("Please select holiday.");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
@@ -275,25 +272,12 @@ public class AdminEditHolidayController implements Initializable {
             return;
         }
 
-        List<Holidays> list = null;
-        try {
-            list = con.getHolidays();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Holidays hol = new Holidays();
-        for (Holidays h : list) {
-            if (h.getComments().equals(holidayID.getValue().toString())) {
-                hol = h;
-            }
-        }
 
-        int holID = hol.getHolidaysID();
-        Date start = (Date) startDate.getDayCellFactory();
-        Date end = (Date) endDate.getDayCellFactory();
+        Date start = java.sql.Date.valueOf(startDate.getValue());
+        Date end = java.sql.Date.valueOf(endDate.getValue());
         String comm = comments.getText();
 
-        con.editHolidaysAdmin(start.toString(), end.toString(), comm, holID);
+        con.editHolidaysAdmin(start.toString(), end.toString(), comm, selectedHoliday);
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
@@ -316,7 +300,7 @@ public class AdminEditHolidayController implements Initializable {
             }
         }
 
-        if (listBuildingID.getValue().equals("Select building")) {
+        if (listBuildingID.getValue().equals("Select Building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
@@ -326,7 +310,7 @@ public class AdminEditHolidayController implements Initializable {
             return;
         }
 
-        if (selectNewDishName.getValue().equals("Select dish")) {
+        if (selectNewDishName.getValue().equals("Select Dish")) {
             exception.setText("Please select dish.");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
@@ -336,7 +320,7 @@ public class AdminEditHolidayController implements Initializable {
             return;
         }
 
-        if (oldDishName.getValue().equals("Selecy dish")) {
+        if (oldDishName.getValue().equals("Select Dish")) {
             exception.setText("Please select dish.");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
