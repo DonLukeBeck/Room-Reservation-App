@@ -217,10 +217,14 @@ public class AdminDeleteController implements Initializable {
                             String[] listDishesByMenu = new String[listAllDishesFromMenu
                                     .size() + 1];
                             listDishesByMenu[0] = "Select Dish";
-
+                            int j = 1;
+                            for (Dishes d : listAllDishesFromMenu) {
+                                listDishesByMenu[j] = "" + d.getName();
+                                j++;
+                            }
                             listMenus.setItems(FXCollections
                                     .observableArrayList(listDishesByMenu));
-
+                            listMenus.setValue("Select Dish");
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.out.println("No selected building");
@@ -243,8 +247,6 @@ public class AdminDeleteController implements Initializable {
                             e.printStackTrace();
                             System.out.println("No selected building");
                         }
-
-
                     }
                 });
     }
@@ -428,8 +430,8 @@ public class AdminDeleteController implements Initializable {
             exception.setId("Exception");
             return;
         }
-        if (listMenus.getValue().toString().equals("Select Menu")) {
-            exception.setText("Please select building.");
+        if (listMenus.getValue().toString().equals("Select Dish")) {
+            exception.setText("Please select dish.");
             exception.setLayoutY(120);
             exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
@@ -439,11 +441,10 @@ public class AdminDeleteController implements Initializable {
         }
 
 
-        con
-                .deleteMenuAdmin(Integer
-                        .parseInt(listBuildingID1
-                                .getValue().toString()), listMenus
-                        .getValue().toString());
+        con.deleteMenuAdmin(Integer.parseInt(listBuildingID1
+                .getValue()
+                .toString()), listMenus.getValue()
+                .toString());
 
         System.out.print("Menu deleted");
 

@@ -10,6 +10,11 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface MenusRepository extends JpaRepository<Menus, Long> {
 
+    @Query(value = "INSERT INTO Menus (buildingNumber, dishName) Values (?1,?2)", nativeQuery = true)
+    @Modifying
+    @Transactional
+    int addMenu(int buildingNumber,String dishName);
+
     @Query(value = "SELECT * FROM Menus"
             + " WHERE buildingNumber = ?1 AND dishName =?2  LIMIT 1", nativeQuery = true)
     Menus findMenu(int buildingNumber, String dishName);
@@ -25,6 +30,6 @@ public interface MenusRepository extends JpaRepository<Menus, Long> {
             + "WHERE buildingNumber = ?1 AND dishName = ?2", nativeQuery = true)
     @Modifying
     @Transactional
-    boolean deleteMenu(int buildingNumber, String dishName);
+    int deleteMenu(int buildingNumber, String dishName);
 
 }
