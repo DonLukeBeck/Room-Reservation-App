@@ -3,7 +3,11 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,7 +18,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -129,8 +140,8 @@ public class UserSchedule implements Initializable {
         int i = 1;
         int flag = 0;
         String[] months = new String[]{"January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November",
-                "December"};
+                                       "July", "August", "September", "October", "November",
+                                       "December"};
         int monIndex = -1;
         // System.out.println(MonthChoice.getValue());
         for (int j = 0; j < months.length; j++) {
@@ -252,8 +263,8 @@ public class UserSchedule implements Initializable {
         addRole();
         helper.loadSidePane(sidePane);
         String[] allMonths = new String[]{"January", "February", "March", "April", "May",
-                "June", "July", "August", "September", "October",
-                "November", "December"};
+                                          "June", "July", "August", "September", "October",
+                                          "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList("January", "February",
                 "March", "April", "May", "June", "July", "August", "September", "October",
                 "November", "December"));

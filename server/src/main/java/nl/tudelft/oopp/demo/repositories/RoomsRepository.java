@@ -35,6 +35,6 @@ public interface RoomsRepository extends JpaRepository<Rooms, Long> {
     @Query(value = "DELETE FROM Rooms WHERE roomId = ?1", nativeQuery = true)
     @Modifying
     @Transactional
-    boolean deleteRoomByRoomID(String roomId);
+    int deleteRoomByRoomID(String roomId);
 
 }
