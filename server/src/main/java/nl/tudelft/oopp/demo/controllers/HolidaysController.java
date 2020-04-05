@@ -43,7 +43,7 @@ public class HolidaysController {
         try {
             holidaysRepository.save(holidays);
             return true;
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             return false;
         }
     }
@@ -72,10 +72,24 @@ public class HolidaysController {
         }
     }
 
+
+    /**
+     * Delete a holiday.
+     * @param holidaysId - id of a holiday
+     * @return true if holiday successfully deleted, false otherwise
+     */
     @GetMapping("/deleteHolidays")
     public @ResponseBody
     boolean deleteHolidays(@RequestParam int holidaysId) {
-        return holidaysRepository.deleteHolidaysById(holidaysId);
+        try {
+            if (holidaysRepository.deleteHolidaysById(holidaysId) != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 }
 

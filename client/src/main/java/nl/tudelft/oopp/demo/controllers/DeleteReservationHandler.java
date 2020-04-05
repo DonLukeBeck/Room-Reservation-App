@@ -1,10 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+
 import javafx.event.Event;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Reservations;
-
-import java.io.IOException;
 
 public class DeleteReservationHandler implements javafx.event.EventHandler {
 
@@ -12,7 +12,8 @@ public class DeleteReservationHandler implements javafx.event.EventHandler {
     private UserScheduleDayView userScheduleDayView;
     UserServerCommunication con = new UserServerCommunication();
 
-    public DeleteReservationHandler(Reservations reservation, UserScheduleDayView userScheduleDayView) {
+    public DeleteReservationHandler(Reservations reservation,
+                                    UserScheduleDayView userScheduleDayView) {
         this.reservation = reservation;
         this.userScheduleDayView = userScheduleDayView;
     }

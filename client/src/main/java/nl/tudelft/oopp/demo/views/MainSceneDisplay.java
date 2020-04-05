@@ -6,19 +6,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainSceneDisplay extends Application {
 
-    /**
-     * @param args
+    /** Application launch.
+     * @param args string parameter
      */
     public static void main(String[] args) {
         launch(args);
     }
 
-    /**
-     * @param primaryStage
+    /** FXML load start.
+     * @param primaryStage first stage of application
      * @throws IOException Exception if can't find main scene
      */
     @Override
@@ -30,6 +31,8 @@ public class MainSceneDisplay extends Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Room Reservation App");
+        primaryStage.getIcons().add(new Image("images/favicon.png"));
         primaryStage.show();
+
     }
 }

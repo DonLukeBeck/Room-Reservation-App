@@ -2,7 +2,6 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.Event;
@@ -13,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -21,7 +21,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
 import nl.tudelft.oopp.demo.entities.Dishes;
-import nl.tudelft.oopp.demo.entities.Menus;
 
 public class FoodMenuController implements Initializable {
     public static List<Dishes> dishes;
@@ -71,6 +70,7 @@ public class FoodMenuController implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 

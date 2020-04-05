@@ -1,11 +1,11 @@
 package nl.tudelft.oopp.demo.repositories;
 
+import javax.transaction.Transactional;
+
 import nl.tudelft.oopp.demo.entities.UserEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-
-import javax.transaction.Transactional;
 
 // This will be AUTO IMPLEMENTED by Spring
 
@@ -15,6 +15,7 @@ public interface PersonaleventsRepository extends JpaRepository<UserEvent, Long>
     @Transactional
     void deleteUserEventByID(String id);
 
-    @Query(value = "SELECT * FROM UserEvent WHERE id = (SELECT MAX(id) FROM UserEvent)", nativeQuery = true)
+    @Query(value = "SELECT * FROM UserEvent WHERE id = (SELECT MAX(id) FROM UserEvent)",
+            nativeQuery = true)
     UserEvent getLastUserEvent();
 }

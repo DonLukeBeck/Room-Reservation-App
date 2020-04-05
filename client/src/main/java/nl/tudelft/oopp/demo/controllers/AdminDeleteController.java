@@ -48,7 +48,7 @@ public class AdminDeleteController implements Initializable {
     private ChoiceBox listBuildingID2;
 
     @FXML
-    private ChoiceBox listRoomID;
+    private ChoiceBox listRoomsID;
 
     @FXML
     private ChoiceBox listDishes;
@@ -58,6 +58,8 @@ public class AdminDeleteController implements Initializable {
 
     @FXML
     private ChoiceBox listMenus;
+
+    private int selectedHoliday;
 
     /**
      * Method to go to admin delete view.
@@ -89,7 +91,7 @@ public class AdminDeleteController implements Initializable {
 
 
         String[] listAllBuildings = new String[listGetBuildings.size() + 1];
-        listAllBuildings[0] = "Select building";
+        listAllBuildings[0] = "Select Building";
         j = 1;
         for (Buildings t : listGetBuildings) {
             listAllBuildings[j] = "" + t.getBuilding_number();
@@ -97,7 +99,7 @@ public class AdminDeleteController implements Initializable {
         }
 
         String[] listAllRooms = new String[2];
-        listAllRooms[0] = "Select room";
+        listAllRooms[0] = "Select Room";
         listAllRooms[1] = "First select building";
 
         List<Holidays> listGetHolidays = null;
@@ -107,41 +109,50 @@ public class AdminDeleteController implements Initializable {
             e.printStackTrace();
         }
 
-        String[] listHolidaysID = new String[listGetHolidays.size() + 1];
-        listHolidaysID[0] = "Select holiday ID";
+        String[] listHolidaysComments = new String[listGetHolidays.size() + 1];
+        listHolidaysComments[0] = "Select Holiday";
 
         j =  1;
         for (Holidays h : listGetHolidays) {
-            listHolidaysID[j] = "" + h.getHolidaysID();
+            listHolidaysComments[j] = "" + h.getComments();
             j++;
         }
 
         String[] listAllMenus = new String[2];
-        listAllMenus[0] = "Select menu";
+        listAllMenus[0] = "Select Dish";
         listAllMenus[1] = "First select building";
 
-        String[] listAllDishes = new String[2];
-        listAllDishes[0] = "Select dish";
-        listAllDishes[1] = "First select building";
+        List<Dishes> listGetDishes = null;
+        try {
+            listGetDishes = con.getDishes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] listAllDishes = new String[listGetDishes.size() + 1];
+        listAllDishes[0] = "Select Dish";
+        j = 1;
+        for (Dishes d : listGetDishes) {
+            listAllDishes[j] = "" + d.getName();
+            j++;
+        }
 
 
 
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID1.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID2.setItems(FXCollections.observableArrayList(listAllBuildings));
-        listHolidayID.setItems(FXCollections.observableArrayList(listHolidayID));
-        listRoomID.setItems(FXCollections.observableArrayList(listAllRooms));
+        listHolidayID.setItems(FXCollections.observableArrayList(listHolidaysComments));
+        listRoomsID.setItems(FXCollections.observableArrayList(listAllRooms));
         listDishes.setItems(FXCollections.observableArrayList(listAllDishes));
         listMenus.setItems(FXCollections.observableArrayList(listAllMenus));
 
         listBuildingID.setValue("Select Building");
         listBuildingID1.setValue("Select Building");
         listBuildingID2.setValue("Select Building");
-        listHolidayID.setValue("Select Building");
-        listRoomID.setValue("Select Room");
+        listHolidayID.setValue("Select Holiday");
+        listRoomsID.setValue("Select Room");
         listDishes.setValue("Select Dish");
-        listMenus.setValue("Select Menu");
-        listHolidayID.setValue("Select Holiday ID");
+        listMenus.setValue("Select Dish");
 
 
         listBuildingID2.getSelectionModel()
@@ -157,21 +168,23 @@ public class AdminDeleteController implements Initializable {
 
                             List<Rooms> listGetRoomByBuilding = null;
                             try {
-                                listGetRoomByBuilding = con.getRoomsByBuilding(selectedBuilding.getBuilding_number());
+                                listGetRoomByBuilding = con
+                                        .getRoomsByBuilding(selectedBuilding
+                                                .getBuilding_number());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             String[] listRoomsByBuilding = new String[listGetRoomByBuilding
                                     .size() + 1];
-                            listRoomsByBuilding[0] = "Select room";
+                            listRoomsByBuilding[0] = "Select Room";
                             int j = 1;
                             for (Rooms r : listGetRoomByBuilding) {
                                 listRoomsByBuilding[j] = "" + r.getRoomId();
                                 j++;
                             }
-                            listRoomID.setItems(FXCollections
+                            listRoomsID.setItems(FXCollections
                                     .observableArrayList(listRoomsByBuilding));
-                            listRoomID.setValue("Select room");
+                            listRoomsID.setValue("Select Room");
 
 
                         } catch (IOException e) {
@@ -193,56 +206,45 @@ public class AdminDeleteController implements Initializable {
                             Buildings selectedBuilding = con.getBuildingByName(Integer
                                     .parseInt(listAllBuildings[(int) newValue]));
 
-
-
-                            List<Menus> listAllMenus = null;
+                            List<Dishes> listAllDishesFromMenu = null;
                             try {
-                                listAllMenus = con.getMenus();
+                                listAllDishesFromMenu = con
+                                        .getMenuByBuilding(selectedBuilding
+                                                .getBuilding_number());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            String[] listMenusByBuilding = new String[listAllMenus.size() + 1];
-                            listMenusByBuilding[0] = "Select Menu";
+                            String[] listDishesByMenu = new String[listAllDishesFromMenu
+                                    .size() + 1];
+                            listDishesByMenu[0] = "Select Dish";
 
-                            int j = 1;
-                            for (Menus m : listAllMenus) {
-                                if (m.getBuildingNumber() == selectedBuilding.getBuilding_number()) {
-                                    listMenusByBuilding[j] = m.getDishName();
-                                    j++;
-                                }
-
-                            }
                             listMenus.setItems(FXCollections
-                                    .observableArrayList(listMenusByBuilding));
-
-
-                            List<Dishes> listAllDishes = null;
-                            try {
-                                listAllDishes = con.getDishes();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            String[] listDishesByBuilding = new String[listAllDishes.size() + 1];
-                            listDishesByBuilding[0] = "Select Dish";
-
-                            int k = 1;
-                            for (Dishes d : listAllDishes) {
-                                listDishesByBuilding[k] = d.getName();
-                                k++;
-                            }
-
-                            listDishes.setItems(FXCollections.observableArrayList(listDishesByBuilding));
-
-
-
-
-
+                                    .observableArrayList(listDishesByMenu));
 
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.out.println("No selected building");
                         }
+                    }
+                });
+
+        listHolidayID.getSelectionModel()
+                .selectedIndexProperty()
+                .addListener(new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue, Number newValue) {
+                        try {
+                            selectedHoliday = (int)newValue - 1;
+                            List<Holidays> listAllHolidays = con.getHolidays();
+                            selectedHoliday = listAllHolidays.get(selectedHoliday).getHolidaysID();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("No selected building");
+                        }
+
+
                     }
                 });
     }
@@ -268,10 +270,10 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if (listBuildingID.getValue().toString().equals("Select building")) {
+        if (listBuildingID.getValue().toString().equals("Select Building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -303,27 +305,27 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if (listBuildingID2.getValue().toString().equals("Select building")) {
+        if (listBuildingID2.getValue().toString().equals("Select Building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
             return;
         }
 
-        if (listRoomID.getValue().toString().equals("Select room")) {
+        if (listRoomsID.getValue().toString().equals("Select Room")) {
             exception.setText("Please select room.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
             return;
         }
 
-        con.deleteRoomAdmin(listRoomID.getValue().toString());
+        con.deleteRoomAdmin(listRoomsID.getValue().toString());
 
         System.out.print("Room deleted");
 
@@ -348,19 +350,17 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if (listHolidayID.getValue().toString().equals("Select holiday ID")) {
+        if (listHolidayID.getValue().toString().equals("Select Holiday")) {
             exception.setText("Please select holiday.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
             return;
         }
 
-        con.deleteHolidaysAdmin(Integer.parseInt(listHolidayID.getValue().toString()));
-
-        System.out.print("Holiday deleted");
+        con.deleteHolidaysAdmin(selectedHoliday);
 
         HelperController h = new HelperController();
         h.loadNextScene("/AdminDeleteView.fxml", mainScreen);
@@ -383,10 +383,10 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if (listDishes.getValue().toString().equals("Select dish")) {
+        if (listDishes.getValue().toString().equals("Select Dish")) {
             exception.setText("Please select dish.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -419,19 +419,19 @@ public class AdminDeleteController implements Initializable {
             }
         }
 
-        if (listBuildingID1.getValue().toString().equals("Select building")) {
+        if (listBuildingID1.getValue().toString().equals("Select Building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
             return;
         }
-        if (listMenus.getValue().toString().equals("Select menu")) {
+        if (listMenus.getValue().toString().equals("Select Menu")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(38);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -439,7 +439,11 @@ public class AdminDeleteController implements Initializable {
         }
 
 
-        con.deleteMenuAdmin(Integer.parseInt(listBuildingID1.getValue().toString()), listMenus.getValue().toString());
+        con
+                .deleteMenuAdmin(Integer
+                        .parseInt(listBuildingID1
+                                .getValue().toString()), listMenus
+                        .getValue().toString());
 
         System.out.print("Menu deleted");
 

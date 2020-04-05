@@ -29,5 +29,5 @@ public interface DishesRepository extends JpaRepository<Dishes, Long> {
     @Query(value = "DELETE FROM Dishes WHERE name = ?1", nativeQuery = true)
     @Modifying
     @Transactional
-    boolean deleteDishByName(String name);
+    int deleteDishByName(String name);
 }

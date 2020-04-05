@@ -15,6 +15,6 @@ public interface BuildingsRepository extends JpaRepository<Buildings, Long> {
     @Query(value = "DELETE FROM Buildings WHERE buildingNumber = ?1", nativeQuery = true)
     @Modifying
     @Transactional
-    boolean deleteBuildingByBuildingNumber(int buildingNumber);
+    int deleteBuildingByBuildingNumber(int buildingNumber);
 
 }

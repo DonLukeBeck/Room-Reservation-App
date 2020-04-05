@@ -5,7 +5,11 @@ import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.repositories.PersonaleventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserEventsController {
@@ -38,6 +42,11 @@ public class UserEventsController {
         return personaleventsRepository.getLastUserEvent();
     }
 
+    /**
+     * Method to delete user event.
+     * @param id Id of event to be deleted
+     * @return True if event was deleted
+     */
     @GetMapping("/deleteUserEvent")
     public @ResponseBody
     boolean deleteUserEvent(@RequestParam String id) {

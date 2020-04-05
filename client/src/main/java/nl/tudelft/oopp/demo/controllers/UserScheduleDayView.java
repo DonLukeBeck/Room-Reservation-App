@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -81,7 +82,7 @@ public class UserScheduleDayView {
 
     /**
      * Deletes a reservation from the view.
-     * @param reservation
+     * @param reservation Reservation to be deleted
      */
     public void deleteReservation(Reservations reservation) {
         reservations.remove(reservation);
@@ -93,7 +94,7 @@ public class UserScheduleDayView {
 
     /**
      * Deletes a user event from the view.
-     * @param userEvent
+     * @param userEvent User event to be deleted
      */
     public void deleteUserEvent(UserEvent userEvent) {
         userEvents.remove(userEvent);
@@ -229,6 +230,7 @@ public class UserScheduleDayView {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 

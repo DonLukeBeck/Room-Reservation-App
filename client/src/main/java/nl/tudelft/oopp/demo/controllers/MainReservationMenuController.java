@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -49,6 +50,7 @@ public class MainReservationMenuController implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 
@@ -81,8 +83,13 @@ public class MainReservationMenuController implements Initializable {
      * @throws IOException Exception if can't find reservation bike page
      */
     public void goToBikes(Event event) throws IOException {
+        int id = Integer.parseInt(MainMenuController.getId());
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
+        if (con.getBuildingByName(id).getNumber_of_bikes() <= 0) {
+            helperController.loadNextScene("/NoBikes.fxml", mainScreen);
+        } else {
+            helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
+        }
     }
 
     public void paneExit(Event event) throws IOException {
@@ -99,6 +106,7 @@ public class MainReservationMenuController implements Initializable {
 
     /**
      * Method to go to food reservation.
+     *
      * @param event Clicking on 'Food'
      * @throws IOException Exception if can't find food menu page
      */
@@ -112,8 +120,9 @@ public class MainReservationMenuController implements Initializable {
     }
 
     /**
-     * Method to initilize.
-     * @param location Link to the location
+     * Method to initialize.
+     *
+     * @param location  Link to the location
      * @param resources Resource Bundle
      */
     @Override

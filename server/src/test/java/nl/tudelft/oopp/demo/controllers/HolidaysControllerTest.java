@@ -74,8 +74,22 @@ public class HolidaysControllerTest {
     @Test
     public void deleteHolidaysTest() {
         h1 = new Holidays();
-        when(holidaysRepository.deleteHolidaysById(h1.getHolidaysID())).thenReturn(true);
+        when(holidaysRepository.deleteHolidaysById(h1.getHolidaysID())).thenReturn(1);
         assertTrue(holidaysController.deleteHolidays(h1.getHolidaysID()));
+    }
+
+    @Test
+    public void deleteHolidaysFalseTest() {
+        h1 = new Holidays();
+        when(holidaysRepository.deleteHolidaysById(h1.getHolidaysID())).thenReturn(0);
+        assertFalse(holidaysController.deleteHolidays(h1.getHolidaysID()));
+    }
+
+    @Test
+    public void deleteHolidaysFalseCase2Test() {
+        h1 = new Holidays();
+        when(holidaysRepository.deleteHolidaysById(h1.getHolidaysID())).thenThrow(NullPointerException.class);
+        assertFalse(holidaysController.deleteHolidays(h1.getHolidaysID()));
     }
 
 

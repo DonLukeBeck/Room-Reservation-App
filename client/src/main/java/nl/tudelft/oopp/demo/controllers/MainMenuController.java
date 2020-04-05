@@ -228,6 +228,7 @@ public class MainMenuController implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 
@@ -494,6 +495,7 @@ public class MainMenuController implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
 
         Stage stage1 = (Stage) scene1.getScene().getWindow();

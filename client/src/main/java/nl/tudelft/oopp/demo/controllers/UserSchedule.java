@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -18,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -59,6 +59,7 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method to get month.
+     *
      * @return Return month integer
      */
     public static int getMonth() {
@@ -67,6 +68,7 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method to get the Year.
+     *
      * @return The year
      */
     public static int getYear() {
@@ -75,6 +77,7 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method to get the day.
+     *
      * @return The day
      */
     public static int getDay() {
@@ -82,7 +85,8 @@ public class UserSchedule implements Initializable {
     }
 
     /**
-     *Method for 'campus map' button.
+     * Method for 'campus map' button.
+     *
      * @param event Event that triggers the campus map pop-up, in this case clicking on campus map
      * @throws IOException Exception if can't find campus map scene
      */
@@ -94,6 +98,7 @@ public class UserSchedule implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 
@@ -101,7 +106,7 @@ public class UserSchedule implements Initializable {
         helper.exit(mainScreen);
     }
 
-    public void paneLogOut(Event event) throws  IOException {
+    public void paneLogOut(Event event) throws IOException {
         helper.logOut(mainScreen);
     }
 
@@ -115,28 +120,20 @@ public class UserSchedule implements Initializable {
 
 
     /**
-     *Method for 'go back' button.
+     * Method for 'go back' button.
+     *
      * @param event Clicking on the go back button
      * @throws IOException Exception if can't find user page scene
      */
     public void goBack(Event event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/UserPage.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-
-        Stage stage1 = (Stage) monthChoice.getScene().getWindow();
-        stage1.close();
+        helper.loadNextScene("/UserPage.fxml",mainScreen);
     }
 
     /**
+     * Loads the calendar.
      *
-     * @param event
-     * @throws IOException
+     * @param event on mouse click
+     * @throws IOException when can not load next scene
      */
     @FXML
     private void calendarr(Event event) throws IOException {
@@ -257,14 +254,17 @@ public class UserSchedule implements Initializable {
 
     /**
      * Initializes page.
-     * @param location Link to location
+     *
+     * @param location  Link to location
      * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRole();
+        helper.loadSidePane(sidePane);
         String[] allMonths = new String[]{"January", "February", "March", "April", "May",
-                                             "June", "July", "August", "September", "October",
-                                             "November", "December"};
+                                          "June", "July", "August", "September", "October",
+                                          "November", "December"};
         monthChoice.setItems(FXCollections.observableArrayList("January", "February",
                 "March", "April", "May", "June", "July", "August", "September", "October",
                 "November", "December"));
@@ -412,9 +412,10 @@ public class UserSchedule implements Initializable {
 
     /**
      * Filters a reservation list for a given date.
-     * @param day Given day
-     * @param month Given month
-     * @param year Given year
+     *
+     * @param day          Given day
+     * @param month        Given month
+     * @param year         Given year
      * @param reservations : List with the reservations to filter
      * @return : List with filtered reservations.
      */
@@ -452,6 +453,7 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method to find events per user.
+     *
      * @param user User to find events of
      * @return List of user events
      */
@@ -477,9 +479,10 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method to filter user events per date.
-     * @param day Given day
-     * @param month Given month
-     * @param year Given year
+     *
+     * @param day    Given day
+     * @param month  Given month
+     * @param year   Given year
      * @param events List of all user events
      * @return Filtered list of user events
      */
@@ -510,6 +513,7 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method to output reservations.
+     *
      * @param reservations List of reservations to print
      */
     public void printReservations(List<Reservations> reservations) {
@@ -527,6 +531,7 @@ public class UserSchedule implements Initializable {
 
     /**
      * Method for 'user page' button.
+     *
      * @param event Clicking on the go back button
      * @throws IOException Exception if can't find user page scene
      */
@@ -538,6 +543,7 @@ public class UserSchedule implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
 
         Stage stage1 = (Stage) monthChoice.getScene().getWindow();

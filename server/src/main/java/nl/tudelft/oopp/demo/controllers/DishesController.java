@@ -83,10 +83,24 @@ public class DishesController {
         }
     }
 
+
+    /**
+     *  Deletes a dish.
+     * @param name - name of dish
+     * @return true if dish successfully deleted, false otherwise.
+     */
     @GetMapping("/deleteDish")
     public @ResponseBody
     boolean deleteDish(@RequestParam String name) {
-        return dishesRepository.deleteDishByName(name);
+        try {
+            if (dishesRepository.deleteDishByName(name) != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
 }

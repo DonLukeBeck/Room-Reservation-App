@@ -80,11 +80,23 @@ public class RoomsController {
         }
     }
 
+    /**
+     *  Deletes a room.
+     * @param roomId - the Id of the room
+     * @return true if room successfully deleted, false otherwise.
+     */
     @GetMapping("/deleteRoom")
     public @ResponseBody
     boolean deleteRoom(@RequestParam String roomId) {
-        // This returns a JSON or XML with the menus
-        return roomsRepository.deleteRoomByRoomID(roomId);
+        try {
+            if (roomsRepository.deleteRoomByRoomID(roomId) != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     @GetMapping("/roomsByBuilding")

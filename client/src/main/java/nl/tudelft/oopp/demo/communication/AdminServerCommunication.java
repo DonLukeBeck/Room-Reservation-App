@@ -110,7 +110,7 @@ public class AdminServerCommunication extends ServerCommunication {
      */
     public boolean deleteBuildingAdmin(int buildingNumber) throws IOException {
         try {
-            boolean bool = this.webClient.get().uri("/deleteBuilding?bnr="
+            boolean bool = this.webClient.get().uri("/deleteBuilding?buildingNumber="
                     + buildingNumber)
                     .retrieve()
                     .onStatus(HttpStatus::is4xxClientError, response -> {
@@ -573,7 +573,7 @@ public class AdminServerCommunication extends ServerCommunication {
                     .bodyToMono(Boolean.class)
                     .block();
             if (bool) {
-                System.out.println("Menu deleted");
+                System.out.println("Holiday deleted");
                 return true;
             } else {
                 System.out.println("failed");
