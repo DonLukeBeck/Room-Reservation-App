@@ -62,6 +62,10 @@ public class UserEvent implements Comparable<UserEvent> {
         return (int) Math.signum(date.getTime() - o.date.getTime());
     }
 
+    /**
+     * Method to convert user even into a nice string.
+     * @return Nice string
+     */
     public String getNiceString() {
         String res = "";
         res += time + ": ";

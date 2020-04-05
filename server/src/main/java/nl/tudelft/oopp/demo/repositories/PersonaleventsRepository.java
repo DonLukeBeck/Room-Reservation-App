@@ -15,6 +15,7 @@ public interface PersonaleventsRepository extends JpaRepository<UserEvent, Long>
     @Transactional
     void deleteUserEventByID(String id);
 
-    @Query(value = "SELECT * FROM UserEvent WHERE id = (SELECT MAX(id) FROM UserEvent)", nativeQuery = true)
+    @Query(value = "SELECT * FROM UserEvent WHERE id = (SELECT MAX(id) FROM UserEvent)",
+            nativeQuery = true)
     UserEvent getLastUserEvent();
 }
