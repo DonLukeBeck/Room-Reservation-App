@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Users;
@@ -77,6 +78,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Room Reservation App");
+                stage.getIcons().add(new Image("favicon.png"));
                 stage.show();
                 return;
             } else if (userLogged.getRole().equals("student")) {
@@ -92,6 +94,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Room Reservation App");
+                stage.getIcons().add(new Image("favicon.png"));
                 stage.show();
             } else if (userLogged.getRole().equals("teacher")) {
                 //redirect to student page
@@ -106,6 +109,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Room Reservation App");
+                stage.getIcons().add(new Image("favicon.png"));
                 stage.show();
 
                 return;
@@ -138,6 +142,7 @@ public class MainSceneController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Room Reservation App");
+        stage.getIcons().add(new Image("favicon.png"));
         stage.show();
     }
 

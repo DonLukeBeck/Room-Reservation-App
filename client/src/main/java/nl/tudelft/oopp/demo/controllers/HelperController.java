@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -61,6 +62,7 @@ public class HelperController {
 
         stage1.setScene(new Scene(root));
         stage1.setTitle("Room Reservation App");
+        stage1.getIcons().add(new Image("favicon.png"));
         stage1.show();
     }
 
@@ -85,6 +87,7 @@ public class HelperController {
 
         stage1.setScene(new Scene(root));
         stage1.setTitle("Room Reservation App");
+        stage1.getIcons().add(new Image("favicon.png"));
         stage1.show();
     }
 
@@ -104,6 +107,7 @@ public class HelperController {
 
         stage1.setScene(new Scene(root));
         stage1.setTitle("Room Reservation App");
+        stage1.getIcons().add(new Image("favicon.png"));
         stage1.show();
     }
 
