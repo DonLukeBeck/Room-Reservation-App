@@ -33,12 +33,12 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Label layoutX="14.0" layoutY="225.0" prefHeight="35.0" prefWidth="187.0" text="Enter Start Date">
+        <Label layoutX="14.0" layoutY="225.0" prefHeight="35.0" prefWidth="187.0" text="New Start Date:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <Label layoutX="14.0" layoutY="436.0" prefHeight="35.0" prefWidth="187.0" text="Add comments">
+        <Label layoutX="14.0" layoutY="436.0" prefHeight="35.0" prefWidth="178.0" text="New comments:">
             <font>
                 <Font size="24.0" />
             </font>
@@ -49,12 +49,12 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Label layoutX="453.0" layoutY="137.0" prefHeight="35.0" prefWidth="257.0" text="Select Building Number">
+        <Label layoutX="453.0" layoutY="137.0" prefHeight="35.0" prefWidth="194.0" text="Building Number:">
             <font>
                 <Font size="24.0" />
             </font></Label>
-        <ChoiceBox fx:id="listBuildingID" layoutX="721.0" layoutY="142.0" prefHeight="26.0" prefWidth="119.0" />
-        <Label layoutX="453.0" layoutY="329.0" prefHeight="35.0" prefWidth="257.0" text="Enter New Dish Name:">
+        <ChoiceBox fx:id="listBuildingID" layoutX="700.0" layoutY="142.0" prefHeight="26.0" prefWidth="131.0" />
+        <Label layoutX="453.0" layoutY="329.0" prefHeight="35.0" prefWidth="187.0" text="New Dish Name:">
             <font>
                 <Font size="24.0" />
             </font>
@@ -65,48 +65,48 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Label layoutX="881.0" layoutY="226.0" prefHeight="35.0" prefWidth="257.0" text="Enter New Dish Name:">
+        <Label layoutX="881.0" layoutY="226.0" prefHeight="35.0" prefWidth="187.0" text="New Dish Name:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="newDishName" layoutX="1121.0" layoutY="230.0" prefHeight="26.0" prefWidth="141.0" />
-        <Label layoutX="881.0" layoutY="329.0" prefHeight="35.0" prefWidth="257.0" text="Enter Price:">
+        <TextField fx:id="newDishName" layoutX="1084.0" layoutY="230.0" prefHeight="26.0" prefWidth="178.0" />
+        <Label layoutX="881.0" layoutY="329.0" prefHeight="35.0" prefWidth="119.0" text="New Price:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
         <TextField fx:id="price" layoutX="1084.0" layoutY="335.0" prefHeight="26.0" prefWidth="178.0" />
-        <Label layoutX="881.0" layoutY="419.0" prefHeight="35.0" prefWidth="257.0" text="Vegan">
+        <Label layoutX="881.0" layoutY="419.0" prefHeight="35.0" prefWidth="70.0" text="Vegan">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
         <DatePicker fx:id="startDate" layoutX="224.0" layoutY="231.0" />
-        <Label layoutX="14.0" layoutY="330.0" prefHeight="35.0" prefWidth="187.0" text="Enter End Date">
+        <Label layoutX="14.0" layoutY="330.0" prefHeight="35.0" prefWidth="187.0" text="New End Date:">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
         <DatePicker fx:id="endDate" layoutX="224.0" layoutY="335.0" />
         <CheckBox fx:id="vegan" layoutX="1089.0" layoutY="428.0" mnemonicParsing="false" />
-      <Label layoutX="14.0" layoutY="138.0" prefHeight="35.0" prefWidth="187.0" text="Select Holiday ID">
+      <Label layoutX="14.0" layoutY="138.0" prefHeight="35.0" prefWidth="187.0" text="Select Holiday:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="holidayID" layoutX="222.0" layoutY="142.0" prefHeight="26.0" prefWidth="178.0" />
-      <Label layoutX="453.0" layoutY="225.0" prefHeight="35.0" prefWidth="257.0" text="Enter Old Dish Name:">
+      <Label layoutX="453.0" layoutY="225.0" prefHeight="35.0" prefWidth="174.0" text="Old Dish Name:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <ChoiceBox fx:id="oldDishName" layoutX="700.0" layoutY="230.0" prefHeight="26.0" prefWidth="131.0" />
-      <Label layoutX="881.0" layoutY="137.0" prefHeight="35.0" prefWidth="257.0" text="Select Dish Name:">
+      <Label layoutX="881.0" layoutY="137.0" prefHeight="35.0" prefWidth="131.0" text="Dish Name:">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ChoiceBox id="1" fx:id="selectDish" layoutX="1107.0" layoutY="141.0" prefHeight="26.0" prefWidth="131.0" />
+      <ChoiceBox id="1" fx:id="selectDish" layoutX="1085.0" layoutY="143.0" prefHeight="26.0" prefWidth="178.0" />
     </children>
 </AnchorPane>

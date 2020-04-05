@@ -57,7 +57,7 @@ public class AdminSceneController {
     public void goToEditPage(ActionEvent event) throws IOException {
 
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/AdminEditView.fxml", mainScreen);
+        helperController.loadNextScene("/EditSelectionAdmin.fxml", mainScreen);
     }
 
     /**
@@ -90,5 +90,10 @@ public class AdminSceneController {
     public void goToAdminEditHoliday(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
+    }
+
+    public void goToAdminEditView(ActionEvent event) throws IOException {
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/AdminEditView.fxml", mainScreen);
     }
 }
