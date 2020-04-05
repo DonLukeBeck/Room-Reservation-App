@@ -2,10 +2,13 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
 public class AdminSceneController {
+    HelperController helper = new HelperController();
+
     private static String id;
     @FXML
     private javafx.scene.control.Button add;
@@ -20,6 +23,15 @@ public class AdminSceneController {
     public static String getId() {
         return id;
     }
+
+    public void exit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void logOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
 
     /**
      * Method to load admin view.

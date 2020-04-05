@@ -126,7 +126,7 @@ public class MainSceneController {
         } else {
             //else show error message - user not in db
             exception.setText("NetID and password do not match!");
-            exception.setLayoutX(78);
+            exception.setLayoutX(72);
             exception.setLayoutY(255);
             exception.setTextFill(Color.valueOf("red"));
             return;

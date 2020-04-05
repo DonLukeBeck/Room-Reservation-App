@@ -2,10 +2,11 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
@@ -17,13 +18,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
-import nl.tudelft.oopp.demo.entities.Buildings;
-import nl.tudelft.oopp.demo.entities.Reservations;
-import nl.tudelft.oopp.demo.entities.Rooms;
 
 
-public class SignUpController {
-
+public class SignUpController implements Initializable {
     @FXML
     public javafx.scene.control.Button button3;
     UserServerCommunication con = new UserServerCommunication();
@@ -42,10 +39,13 @@ public class SignUpController {
     @FXML
     private CheckBox checkBox;
 
+
+    private static Label text;
     /**
-     *Method to sign up.
+     * Method to sign up.
+     *
      * @param event Clicking sign up
-     * @throws IOException Exception if can'f find main scene
+     * @throws IOException          Exception if can'f find main scene
      * @throws InterruptedException Exception if execution is interrupted
      */
     public void signUp(ActionEvent event) throws IOException, InterruptedException {
@@ -67,49 +67,18 @@ public class SignUpController {
         if (firstPass.equals(secondPass)) {
             check = true;
         }
-        System.out.println(check);
-
-        //Printing all buildings from database
-        List<Buildings> buildings = con.getBuildings();
-        for (int i = 0; i < buildings.size(); i++) {
-            System.out.println(buildings.get(i).getBuilding_number());
-            System.out.println(buildings.get(i).getName());
-            System.out.println(buildings.get(i).getOpeningHours());
-            System.out.println(buildings.get(i).getClosingHours());
-        }
-        System.out.println("******************Rooms");
-        //Printing all rooms from database
-        List<Rooms> rooms = con.getRooms();
-        for (int i = 0; i < rooms.size(); i++) {
-            System.out.println(rooms.get(i).getRoomId());
-            System.out.println(rooms.get(i).getChairs());
-            System.out.println(rooms.get(i).getType());
-            System.out.println(rooms.get(i).getAssociatedBuilding());
-        }
-        System.out.println("******************");
-        //Printing all reservations from database
-        List<Reservations> reservations = con.getReservations();
-        for (int i = 0; i < reservations.size(); i++) {
-            System.out.println(reservations.get(i).getId());
-            System.out.println(reservations.get(i).getUserReserving());
-            System.out.println(reservations.get(i).getTimeslot());
-            System.out.println(reservations.get(i).getDate());
-            System.out.println(reservations.get(i).getRoomReserved());
-            System.out.println(reservations.get(i).getBikeReserved());
-            System.out.println(reservations.get(i).getDishOrdered());
-        }
 
         if (check) {
             boolean signUp = con.signUp(username, firstPass, role);
+            if (!signUp) {
+                text.setText("User is already registered with this NetID!");
+                text.setVisible(true);
+                return;
+            }
         } else {
             System.out.println("Pass do not match!");
-            Label text = new Label("Passwords do not match!");
-            text.setTextFill(Color.web("red"));
+            text.setText("Passwords do not match!");
             text.setVisible(true);
-            text.setLayoutX(coPass.getLayoutX());
-            text.setLayoutY(coPass.getLayoutY() + 28);
-            pane.getChildren().add(text);
-
             return;
         }
 
@@ -125,5 +94,15 @@ public class SignUpController {
         stage.setScene(new Scene(root));
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        text = new Label(" ");
+        text.setTextFill(Color.web("red"));
+        text.setVisible(false);
+        text.setLayoutX(coPass.getLayoutX());
+        text.setLayoutY(coPass.getLayoutY() + 35);
+        pane.getChildren().add(text);
     }
 }
