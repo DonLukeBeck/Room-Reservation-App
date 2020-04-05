@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Users;
@@ -17,26 +20,26 @@ import nl.tudelft.oopp.demo.entities.Users;
 public class MainSceneController {
     private static String user;
     private static String role;
-
-    public static String getRole() {
-        return role;
-    }
-
     UserServerCommunication con = new UserServerCommunication();
     @FXML
     private javafx.scene.control.Button button1;
     @FXML
     private javafx.scene.control.Button button2;
-
     @FXML
     private TextField username;
-
     @FXML
     private PasswordField pass;
+    @FXML
+    private Pane pane;
 
+
+    public static String getRole() {
+        return role;
+    }
 
     /**
      * Method to get User.
+     *
      * @return User
      */
     public static String getUser() {
@@ -45,11 +48,15 @@ public class MainSceneController {
 
     /**
      * Logging in method.
+     *
      * @param event Attempting to log in
-     * @throws IOException Exception if can't find main menu or main admin scene
+     * @throws IOException          Exception if can't find main menu or main admin scene
      * @throws InterruptedException Exception if execution is interrupted
      */
     public void logIn(ActionEvent event) throws IOException, InterruptedException {
+        Label exception = new Label();
+        pane.getChildren().add(exception);
+
         if (pass.getText().isBlank() || username.getText().isBlank()) {
             return;
         }
@@ -114,11 +121,14 @@ public class MainSceneController {
 
                 return;
             } else {
-                //redirect to teacher page
                 return;
             }
         } else {
             //else show error message - user not in db
+            exception.setText("NetID and password do not match!");
+            exception.setLayoutX(78);
+            exception.setLayoutY(255);
+            exception.setTextFill(Color.valueOf("red"));
             return;
         }
 
@@ -126,8 +136,9 @@ public class MainSceneController {
 
     /**
      * Register method.
+     *
      * @param event Clicking register button
-     * @throws IOException Exception if can't find sign up scene
+     * @throws IOException          Exception if can't find sign up scene
      * @throws InterruptedException Exception if execution is interrupted
      */
     public void register(ActionEvent event) throws IOException, InterruptedException {
