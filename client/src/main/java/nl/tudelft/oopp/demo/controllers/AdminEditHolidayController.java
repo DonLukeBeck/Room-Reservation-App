@@ -101,7 +101,7 @@ public class AdminEditHolidayController implements Initializable {
         listAllHolidays[0] = "Select Holiday";
         j=1;
         for(Holidays h : listGetHolidays){
-            listAllHolidays[j] = "" + h.getHolidaysID();
+            listAllHolidays[j] = "" + h.getComments();
             j++;
         }
 
@@ -146,7 +146,7 @@ public class AdminEditHolidayController implements Initializable {
 
                             for (Holidays hol : holi) {
 
-                                if (hol.getHolidaysID() == (int) newValue) {
+                                if (hol.getComments() == String.valueOf((int) newValue)) {
                                     startDate.setDayCellFactory((Callback<DatePicker, DateCell>) hol.getStartDate());
                                     endDate.setDayCellFactory((Callback<DatePicker, DateCell>) hol.getEndDate());
                                     comments.setText(hol.getComments());
@@ -259,7 +259,20 @@ public class AdminEditHolidayController implements Initializable {
             return;
         }
 
-        int holID = Integer.parseInt(holidayID.getValue().toString());
+        List<Holidays> list = null;
+        try{
+            list = con.getHolidays();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        Holidays hol = new Holidays();
+        for(Holidays h : list){
+            if(h.getComments().equals(holidayID.getValue().toString())){
+                hol = h;
+            }
+        }
+
+        int holID = hol.getHolidaysID();
         Date start = (Date) startDate.getDayCellFactory();
         Date end = (Date) endDate.getDayCellFactory();
         String comm = comments.getText();
