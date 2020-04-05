@@ -211,7 +211,7 @@ public class UserSchedule implements Initializable {
                     events.setTranslateY(80);
                     events.setRotate(-90);
                     e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth,
-                            Fyear, reservationsToday, userEventsToday));
+                            Fyear, reservationsToday, userEventsToday, events));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -247,7 +247,7 @@ public class UserSchedule implements Initializable {
                     events.setRotate(-90);
                     e.setOnMouseClicked(new UserScheduleHandler(day, Fmonth,
                             Fyear, reservationsToday,
-                            userEventsToday));
+                            userEventsToday,events));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -350,7 +350,7 @@ public class UserSchedule implements Initializable {
                     events.setTranslateY(80);
                     events.setRotate(-90);
                     e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday,
-                            userEventsToday));
+                            userEventsToday, events));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
@@ -380,7 +380,7 @@ public class UserSchedule implements Initializable {
                     events.setTranslateY(80);
                     events.setRotate(-90);
                     e.setOnMouseClicked(new UserScheduleHandler(day, month, year, reservationsToday,
-                            userEventsToday));
+                            userEventsToday, events));
                     ((AnchorPane) e).getChildren().add(events);
                     day++;
                 }
