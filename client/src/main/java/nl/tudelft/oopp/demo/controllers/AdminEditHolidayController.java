@@ -183,7 +183,8 @@ public class AdminEditHolidayController implements Initializable {
 
                             List<Dishes> dishes = null;
                             try {
-                                dishes = con.getMenuByBuilding(selectedBuilding.getBuilding_number());
+                                dishes = con.getMenuByBuilding(
+                                        selectedBuilding.getBuilding_number());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
