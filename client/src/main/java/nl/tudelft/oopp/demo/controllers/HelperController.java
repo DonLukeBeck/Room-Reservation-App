@@ -46,7 +46,8 @@ public class HelperController {
 
     /**
      * Method to load next scene from a given scene.
-     * @param path Path to take from current scene
+     *
+     * @param path   Path to take from current scene
      * @param scene1 Current scene
      * @throws IOException Exception if can't find next scene to load
      */
@@ -69,7 +70,8 @@ public class HelperController {
     }
 
     /**
-     *Method to logout user.
+     * Method to logout user.
+     *
      * @param scene1 Scene from which to log out
      * @throws IOException Exception if can't find main scene page
      */
@@ -87,7 +89,8 @@ public class HelperController {
     }
 
     /**
-     *Method to load user profile.
+     * Method to load user profile.
+     *
      * @param scene1 Current scene
      * @throws IOException Exception if you can't find user page
      */
@@ -105,7 +108,8 @@ public class HelperController {
     }
 
     /**
-     *Method to add role.
+     * Method to add role.
+     *
      * @param pane the pane where the Label should be added
      * @param role Role to be added
      */
@@ -119,6 +123,7 @@ public class HelperController {
 
     /**
      * Loading elements on chosen Pane.
+     *
      * @param sidePane chosen Pane
      */
     public void loadSidePane(Pane sidePane) {
@@ -158,5 +163,58 @@ public class HelperController {
             layoutY = layoutY + 28;
             sidePane.getChildren().add(sideBuilding);
         }
+    }
+
+    /**
+     * Using Insertion sort to sort the dates in List of holidays.
+     * @param list list of holidays
+     * @return sorted list of holidays
+     */
+
+    public static List<RoomReservationMenu.HolidayTuple>
+        insertionSort(List<RoomReservationMenu.HolidayTuple> list) {
+
+        int n = list.size();
+        for (int i = 1; i < n; i++) {
+            int key = list.get(i).getHolidayDay();
+            RoomReservationMenu.HolidayTuple keyTuple = list.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && list.get(j).getHolidayDay() > key) {
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, keyTuple);
+        }
+        for (RoomReservationMenu.HolidayTuple e : list) {
+            System.out.println("Sort" + e.getHolidayDay());
+        }
+        return list;
+    }
+
+    /**
+     * Using Insertion sort to sort the dates in List of holidays for bikes.
+     * @param list list of holidays
+     * @return sorted list of holidays
+     */
+    public static List<BikeReservationMenu.HolidayTuple>
+        insertionSortBikes(List<BikeReservationMenu.HolidayTuple> list) {
+
+        int n = list.size();
+        for (int i = 1; i < n; i++) {
+            int key = list.get(i).getHolidayDay();
+            BikeReservationMenu.HolidayTuple keyTuple = list.get(i);
+            int j = i - 1;
+
+            while (j >= 0 && list.get(j).getHolidayDay() > key) {
+                list.set(j + 1, list.get(j));
+                j--;
+            }
+            list.set(j + 1, keyTuple);
+        }
+        for (BikeReservationMenu.HolidayTuple e : list) {
+            System.out.println("Sort" + e.getHolidayDay());
+        }
+        return list;
     }
 }

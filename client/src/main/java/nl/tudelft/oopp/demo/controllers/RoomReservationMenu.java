@@ -1,6 +1,5 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
@@ -18,7 +17,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -144,10 +150,11 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Add new Text.
-     * @param e Node where the Text will be added
+     *
+     * @param e       Node where the Text will be added
      * @param layoutX chosen layout X
      * @param layoutY chosen layout Y
-     * @param text text to be added to the Text
+     * @param text    text to be added to the Text
      */
     public void addText(Node e, double layoutX, double layoutY, String text) {
         Text day = new Text(text);
@@ -178,8 +185,8 @@ public class RoomReservationMenu implements Initializable {
         for (Node k : grid.getChildren()) {
             try {
                 ((AnchorPane) k).getChildren().clear();
-                ((AnchorPane) k).setStyle("-fx-background-color: transparent");
-                ((AnchorPane) k).setDisable(false);
+                k.setStyle("-fx-background-color: transparent");
+                k.setDisable(false);
                 BorderWidths border = new BorderWidths(0, 0, 0, 0);
                 ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
                         BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
@@ -205,7 +212,7 @@ public class RoomReservationMenu implements Initializable {
 
         clearAllDates();
 
-        List<Integer> holiday = null;
+        List<HolidayTuple> holiday = null;
         try {
             holiday = holidays(Fmonth, days);
         } catch (IOException e) {
@@ -237,29 +244,32 @@ public class RoomReservationMenu implements Initializable {
             if (flag == 0) {
                 if (e.getId().equals(time)) {
                     flag++;
-                    if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
+                    addText(e, 5, 115, day + "");
+                    if (hasHoliday == 1 && !holiday.isEmpty()
+                            && day == holiday.get(0).getHolidayDay()) {
+
                         e.setStyle("-fx-background-color: #a5ee6e");
-                        addText(e, 30, 68, "Holiday");
+                        addText(e, 10, 68, holiday.get(0).getComment());
                         e.disableProperty().setValue(true);
                         holiday.remove(0);
                     }
-                    addText(e, 5, 115, day + "");
 
                     if (day == DayNow && Fmonth == MonthNow) {
                         addBorderToTheChosenDate(e);
                     }
-
                     i++;
                     day++;
                 }
             } else {
-                if (hasHoliday == 1 && !holiday.isEmpty() && day == holiday.get(0)) {
+                addText(e, 5, 115, day + "");
+                if (hasHoliday == 1 && !holiday.isEmpty()
+                        && day == holiday.get(0).getHolidayDay()) {
+
                     e.setStyle("-fx-background-color: #a5ee6e");
-                    addText(e, 30, 68, "Holiday");
+                    addText(e, 10, 68, holiday.get(0).getComment());
                     e.disableProperty().setValue(true);
                     holiday.remove(0);
                 }
-                addText(e, 5, 115, day + "");
                 days--;
                 if (days > 0) {
                     if (day == DayNow && Fmonth == MonthNow) {
@@ -317,6 +327,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Opens when previous date is chosen.
+     *
      * @throws IOException Exception if can't find previous date alers scene
      */
     public void openAlert() throws IOException {
@@ -332,6 +343,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Saves all needed properties for the chosen date.
+     *
      * @param event on mouse click
      * @throws IOException Exception if can't find timeslot scene
      */
@@ -361,9 +373,12 @@ public class RoomReservationMenu implements Initializable {
         Calendar now = Calendar.getInstance();
         Date now1 = now.getTime();
 
-        if (date1.before(now1)) {
-            openAlert();
-            return;
+        if (!date1.toString().equals(now1.toString())) {
+
+            if (date1.before(now1)) {
+                openAlert();
+                return;
+            }
         }
 
         reservationDate = date1.toString();
@@ -379,38 +394,55 @@ public class RoomReservationMenu implements Initializable {
      * @return Holidays dates
      * @throws IOException Exception if can't find corresponding calendar
      */
-    public List<Integer> holidays(int month, int monLen) throws IOException {
+    public List<HolidayTuple> holidays(int month, int monLen) throws IOException {
         List<Holidays> list = con.getHolidays();
 
-        List<Integer> holidaysForMonth = new ArrayList<>();
-        List<Integer> allHolidayDates = new ArrayList<>();
+        List<HolidayTuple> holidaysForMonth = new ArrayList<>();
+        List<HolidayTuple> allHolidayDates = new ArrayList<>();
 
         for (Holidays e : list) {
+
             Calendar startDate = Calendar.getInstance();
             startDate.setTime(e.getStartDate());
 
-            if (month == startDate.get(Calendar.MONTH)) {
-                int startDay = startDate.get(Calendar.DAY_OF_MONTH) - 1;
-                System.out.println(startDay);
-                holidaysForMonth.add(startDay);
+            Calendar endDate = Calendar.getInstance();
+            endDate.setTime(e.getEndDate());
 
-                Calendar endDate = Calendar.getInstance();
-                endDate.setTime(e.getEndDate());
+            if (month == startDate.get(Calendar.MONTH)) {
+
+                int startDay = startDate.get(Calendar.DAY_OF_MONTH);
+
+                holidaysForMonth.add(new HolidayTuple(startDay, e.getComments()));
+
 
                 if (endDate.get(Calendar.MONTH) == startDate.get(Calendar.MONTH)) {
-                    int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
-                    System.out.println(endDay);
-                    holidaysForMonth.add(endDay);
+                    int endDay = endDate.get(Calendar.DAY_OF_MONTH);
+
+                    holidaysForMonth.add(new HolidayTuple(endDay, e.getComments()));
                 } else {
-                    holidaysForMonth.add(monLen);
+                    holidaysForMonth.add(new HolidayTuple(monLen, e.getComments()));
                 }
+            } else if (month == endDate.get(Calendar.MONTH)
+                    && month != startDate.get(Calendar.MONTH)) {
+                int startDay = 1;
+
+                holidaysForMonth.add(new HolidayTuple(startDay, e.getComments()));
+
+                int endDay = endDate.get(Calendar.DAY_OF_MONTH);
+                holidaysForMonth.add(new HolidayTuple(endDay, e.getComments()));
+
+            } else if (startDate.get(Calendar.MONTH) < month
+                    && endDate.get(Calendar.MONTH) > month) {
+                int startDay = 1;
+                holidaysForMonth.add(new HolidayTuple(startDay, e.getComments()));
+                holidaysForMonth.add(new HolidayTuple(monLen, e.getComments()));
             }
         }
 
         for (int i = 0; i < holidaysForMonth.size(); i++) {
-            int j = holidaysForMonth.get(i);
-            while (j <= holidaysForMonth.get(i + 1)) {
-                allHolidayDates.add(j);
+            int j = holidaysForMonth.get(i).getHolidayDay();
+            while (j <= holidaysForMonth.get(i + 1).getHolidayDay()) {
+                allHolidayDates.add(new HolidayTuple(j, holidaysForMonth.get(i).getComment()));
                 j++;
             }
             i++;
@@ -419,9 +451,11 @@ public class RoomReservationMenu implements Initializable {
         if (allHolidayDates.isEmpty()) {
             return null;
         } else {
-            return allHolidayDates;
+
+            return HelperController.insertionSort(allHolidayDates);
         }
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -461,5 +495,23 @@ public class RoomReservationMenu implements Initializable {
         int days = yearMon.lengthOfMonth();
 
         addDatesOnCalendar(defaultCalendar, days);
+    }
+
+    public class HolidayTuple {
+        private int day;
+        private String comment;
+
+        public HolidayTuple(int day, String comment) {
+            this.day = day;
+            this.comment = comment;
+        }
+
+        public int getHolidayDay() {
+            return this.day;
+        }
+
+        public String getComment() {
+            return this.comment;
+        }
     }
 }

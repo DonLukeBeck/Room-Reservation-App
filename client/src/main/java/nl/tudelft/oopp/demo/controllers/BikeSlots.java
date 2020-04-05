@@ -109,16 +109,17 @@ public class BikeSlots implements Initializable {
         stage.show();
     }
 
+    /**
+     * If the chosen date is today find the local time.
+     *
+     * @return Local time in double or 4 if the chosen date in not today
+     */
     public double closeSlotsForLocalTime() {
         int chosenDay = BikeReservationMenu.getDay();
         int chosenMonth = BikeReservationMenu.getMonth();
-//        System.out.println(chosenDay);
-//        System.out.println(chosenMonth);
         Calendar c = Calendar.getInstance();
         int dayNow = c.get(Calendar.DAY_OF_MONTH);
         int monthNow = c.get(Calendar.MONTH);
-//        System.out.println(dayNow);
-//        System.out.println(monthNow);
         double hour = 4;
         if (chosenDay == dayNow && chosenMonth == monthNow) {
             LocalTime localtime = java.time.LocalTime.now();

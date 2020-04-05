@@ -192,6 +192,78 @@ public class ServerCommunication {
     }
 
     /**
+     * Deletes a reservation.
+     *
+     * @param id : id of the reservation.
+     * @return true if the deletion was successful.
+     * @throws IOException
+     */
+    public boolean deleteReservation(String id) throws IOException {
+
+        try {
+            boolean bool = this.webClient.get().uri("/deleteReservation?id="
+                    + id)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, response -> {
+                        System.out.println("4xx error");
+                        return Mono.error(new RuntimeException("4xx"));
+                    })
+                    .onStatus(HttpStatus::is5xxServerError, response -> {
+                        System.out.println("5xx error");
+                        return Mono.error(new RuntimeException("5xx"));
+                    })
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("Reservation " + id + " deleted");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    /**
+     * Deletes a personal event.
+     *
+     * @param id : id of the UserEvent.
+     * @return true if the deletion was successful.
+     * @throws IOException
+     */
+    public boolean deleteUserEvent(String id) throws IOException {
+
+        try {
+            boolean bool = this.webClient.get().uri("/deleteUserEvent?id="
+                    + id)
+                    .retrieve()
+                    .onStatus(HttpStatus::is4xxClientError, response -> {
+                        System.out.println("4xx error");
+                        return Mono.error(new RuntimeException("4xx"));
+                    })
+                    .onStatus(HttpStatus::is5xxServerError, response -> {
+                        System.out.println("5xx error");
+                        return Mono.error(new RuntimeException("5xx"));
+                    })
+                    .bodyToMono(Boolean.class)
+                    .block();
+            if (bool) {
+                System.out.println("User event " + id + " deleted");
+                return true;
+            } else {
+                System.out.println("failed");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
      * Method to find user events.
      * @return User events as a Json list
      * @throws IOException

@@ -9,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Reservations;
@@ -18,9 +21,11 @@ public class UserScheduleDayView {
     private int day = 0;
     private int month = 0;
     private int year = 0;
+    private int heightReservationsPane = 0;
     private List<Reservations> reservations = new ArrayList<>();
     private List<UserEvent> userEvents = new ArrayList<>();
 
+    private GridPane gridPane;
     @FXML
     private javafx.scene.control.Label dateLabel;
     @FXML
@@ -32,33 +37,77 @@ public class UserScheduleDayView {
     public void initialize() {
         String dateString = getDateString();
         dateLabel.setText(dateString);
-        String reservationsString = getReservationsString();
-        String userEventsString = getUserEventsString();
-        String allEventsString = reservationsString + "\n\nPersonal events:\n\n" + userEventsString;
-        Text reservationsText = new Text(allEventsString);
-        scrollPane.setContent(reservationsText);
+        addAllEventsToGridPane();
+        scrollPane.setContent(gridPane);
     }
 
     /**
      * Helper method to get a nice String of the reservations.
      * @return
      */
-    private String getReservationsString() {
-        String res = "";
+    private void addAllEventsToGridPane() {
+        gridPane = new GridPane();
+        int i = 0;
         for (Reservations r : reservations) {
-            res += r.getNiceString();
-            res += "\n\n";
+            AnchorPane pane = new AnchorPane();
+            Text text = new Text(r.getNiceString());
+            Button deleteButton = new Button();
+            deleteButton.setText("Delete");
+            deleteButton.setTranslateY(-20);
+            deleteButton.setTranslateX(300);
+            deleteButton.setOnAction(new DeleteReservationHandler(r, this));
+            pane.getChildren().add(text);
+            pane.getChildren().add(deleteButton);
+            pane.setTranslateY(25 * i);
+            gridPane.add(pane, 0, i, 1, 1);
+            i++;
         }
-        return res;
+        for (UserEvent e : userEvents) {
+            AnchorPane pane = new AnchorPane();
+            Text text = new Text(e.getNiceString());
+            Button deleteButton = new Button();
+            deleteButton.setText("Delete");
+            deleteButton.setTranslateY(-20);
+            deleteButton.setTranslateX(300);
+            deleteButton.setOnAction(new DeleteEventHandler(e, this));
+            pane.getChildren().add(text);
+            pane.getChildren().add(deleteButton);
+            pane.setTranslateY(25 * i);
+            gridPane.add(pane, 0, i, 1, 1);
+            i++;
+        }
+        gridPane.setTranslateY(40);
     }
 
-    private String getUserEventsString() {
-        String res = "";
-        for (UserEvent e : userEvents) {
-            res += e.getNiceString();
-            res += "\n\n";
+    /**
+     * Deletes a reservation from the view.
+     * @param reservation Reservation to be deleted
+     */
+    public void deleteReservation(Reservations reservation) {
+        reservations.remove(reservation);
+        for (Reservations r : reservations) {
+            System.out.println(r.getNiceString());
         }
-        return res;
+        System.out.println();
+    }
+
+    /**
+     * Deletes a user event from the view.
+     * @param userEvent User event to be deleted
+     */
+    public void deleteUserEvent(UserEvent userEvent) {
+        userEvents.remove(userEvent);
+    }
+
+    /**
+     * Updates the schedule view.
+     */
+    public void update() {
+        scrollPane.setContent(null);
+        String dateString = getDateString();
+        dateLabel.setText(dateString);
+        addAllEventsToGridPane();
+        scrollPane.setContent(gridPane);
     }
 
     /**
@@ -167,9 +216,14 @@ public class UserScheduleDayView {
         controller.setDay(day);
         controller.setMonth(month);
         controller.setYear(year);
+        controller.setUserScheduleDayView(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    public void addPersonalEvent(UserEvent userEvent) {
+        userEvents.add(userEvent);
     }
 }

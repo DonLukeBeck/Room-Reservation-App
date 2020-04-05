@@ -369,7 +369,7 @@ public class AdminEditController implements Initializable {
             exception.setId("Exception");
             return;
         }
-        if(editRoomID.getText().length() > 18){
+        if (editRoomID.getText().length() > 18) {
             exception.setText("Max 18 characters allowed.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);

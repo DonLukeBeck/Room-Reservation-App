@@ -132,8 +132,7 @@ class ReservationsTest {
 
     @Test
     public void getNiceStringRoomTest() {
-        String r1NiceString = "" + timeslot.toString() + ": " + " Room ordered in building "
-                + r1.getBuilding_reserved();
+        String r1NiceString = "00:45:00:  Room 1 ordered in building 1";
         assertEquals(r1NiceString, r1.getNiceString());
     }
 
