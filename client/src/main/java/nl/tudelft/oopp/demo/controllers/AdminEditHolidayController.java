@@ -1,11 +1,11 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import io.netty.channel.ChannelDuplexHandler;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Date;
-import io.netty.channel.ChannelDuplexHandler;
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -102,8 +102,8 @@ public class AdminEditHolidayController implements Initializable {
         String[] listAllHolidays = new String[listGetHolidays.size() + 1];
         listAllHolidays[0] = "Select Holiday";
 
-        j=1;
-        for(Holidays h : listGetHolidays){
+        j = 1;
+        for (Holidays h : listGetHolidays) {
             listAllHolidays[j] = "" + h.getComments();
 
         }
@@ -183,7 +183,8 @@ public class AdminEditHolidayController implements Initializable {
 
                             List<Dishes> dishes = null;
                             try {
-                                dishes = con.getMenuByBuilding(selectedBuilding.getBuilding_number());
+                                dishes = con.getMenuByBuilding(
+                                        selectedBuilding.getBuilding_number());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -275,14 +276,14 @@ public class AdminEditHolidayController implements Initializable {
         }
 
         List<Holidays> list = null;
-        try{
+        try {
             list = con.getHolidays();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         Holidays hol = new Holidays();
-        for(Holidays h : list){
-            if(h.getComments().equals(holidayID.getValue().toString())){
+        for (Holidays h : list) {
+            if (h.getComments().equals(holidayID.getValue().toString())) {
                 hol = h;
             }
         }

@@ -99,10 +99,22 @@ public class RoomsControllerTest {
     }
 
     @Test
-    public void deleteRoomsTest() {
+    public void deleteRoomsFalseTest() {
         r1 = new Rooms();
+        assertFalse(roomsController.deleteRoom(r1.getRoomId()));
+    }
 
-        when(roomsRepository.deleteRoomByRoomID(r1.getRoomId())).thenReturn(true);
+    @Test
+    public void deleteRoomsFalseCase2Test() {
+        r1 = new Rooms();
+        when(roomsRepository.deleteRoomByRoomID(r1.getRoomId())).thenThrow(NullPointerException.class);
+        assertFalse(roomsController.deleteRoom(r1.getRoomId()));
+    }
+
+    @Test
+    public void deleteRoomsTrueTest() {
+        r1 = new Rooms();
+        when(roomsRepository.deleteRoomByRoomID(r1.getRoomId())).thenReturn(1);
         assertTrue(roomsController.deleteRoom(r1.getRoomId()));
     }
 

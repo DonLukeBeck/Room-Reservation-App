@@ -29,20 +29,20 @@ public class AddPersonalEvent {
      */
     public void initialize() {
         for (int i = 1; i < 24; i++) {
-            String iString = "";
+            String istring = "";
             if (i < 10) {
-                iString += "0";
+                istring += "0";
             }
-            iString += i;
-            hoursChoiceBox.getItems().add(iString);
+            istring += i;
+            hoursChoiceBox.getItems().add(istring);
         }
         for (int i = 0; i < 60; i += 5) {
-            String iString = "";
+            String istring = "";
             if (i < 10) {
-                iString += "0";
+                istring += "0";
             }
-            iString += i;
-            minutesChoiceBox.getItems().add(iString);
+            istring += i;
+            minutesChoiceBox.getItems().add(istring);
         }
     }
 
