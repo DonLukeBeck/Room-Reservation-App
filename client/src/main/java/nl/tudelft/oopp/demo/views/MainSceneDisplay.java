@@ -31,7 +31,7 @@ public class MainSceneDisplay extends Application {
 
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Room Reservation App");
-        primaryStage.getIcons().add(new Image("favicon.png"));
+        primaryStage.getIcons().add(new Image("images/favicon.png"));
         primaryStage.show();
 
     }

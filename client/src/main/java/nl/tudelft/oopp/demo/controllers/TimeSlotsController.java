@@ -153,7 +153,7 @@ public class TimeSlotsController implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 

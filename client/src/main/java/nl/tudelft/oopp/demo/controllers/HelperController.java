@@ -62,7 +62,7 @@ public class HelperController {
 
         stage1.setScene(new Scene(root));
         stage1.setTitle("Room Reservation App");
-        stage1.getIcons().add(new Image("favicon.png"));
+        stage1.getIcons().add(new Image("images/favicon.png"));
         stage1.show();
     }
 
@@ -87,7 +87,7 @@ public class HelperController {
 
         stage1.setScene(new Scene(root));
         stage1.setTitle("Room Reservation App");
-        stage1.getIcons().add(new Image("favicon.png"));
+        stage1.getIcons().add(new Image("images/favicon.png"));
         stage1.show();
     }
 
@@ -107,7 +107,7 @@ public class HelperController {
 
         stage1.setScene(new Scene(root));
         stage1.setTitle("Room Reservation App");
-        stage1.getIcons().add(new Image("favicon.png"));
+        stage1.getIcons().add(new Image("images/favicon.png"));
         stage1.show();
     }
 

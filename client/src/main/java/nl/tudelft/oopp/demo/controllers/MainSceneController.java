@@ -78,7 +78,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Room Reservation App");
-                stage.getIcons().add(new Image("favicon.png"));
+                stage.getIcons().add(new Image("images/favicon.png"));
                 stage.show();
                 return;
             } else if (userLogged.getRole().equals("student")) {
@@ -94,7 +94,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Room Reservation App");
-                stage.getIcons().add(new Image("favicon.png"));
+                stage.getIcons().add(new Image("images/favicon.png"));
                 stage.show();
             } else if (userLogged.getRole().equals("teacher")) {
                 //redirect to student page
@@ -109,7 +109,7 @@ public class MainSceneController {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Room Reservation App");
-                stage.getIcons().add(new Image("favicon.png"));
+                stage.getIcons().add(new Image("images/favicon.png"));
                 stage.show();
 
                 return;
@@ -142,7 +142,7 @@ public class MainSceneController {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle("Room Reservation App");
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 

@@ -2,9 +2,11 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.entities.Users;
 
-public class UserPage {
+public class UserPage implements Initializable {
     HelperController helper = new HelperController();
 
     @FXML
@@ -28,19 +30,14 @@ public class UserPage {
     private AnchorPane mainScreen;
     @FXML
     private Pane rightPane;
-
-
-
-    public void initialize() {
-        netIdLabel.setText(Users.user.getNetid());
-        roleLabel.setText(Users.user.getRole());
-    }
+    @FXML
+    private Pane sidePane;
 
     public void paneExit(Event event) throws IOException {
         helper.exit(mainScreen);
     }
 
-    public void paneLogOut(Event event) throws  IOException {
+    public void paneLogOut(Event event) throws IOException {
         helper.logOut(mainScreen);
     }
 
@@ -51,7 +48,6 @@ public class UserPage {
     public void addRole() {
         helper.addRole(rightPane, MainSceneController.getRole());
     }
-
 
 
     public void changePassword(Event e) {
@@ -65,6 +61,7 @@ public class UserPage {
 
     /**
      * Method for campus map to pop up.
+     *
      * @param e Clicking on campus map button
      * @throws IOException Exception if can't find campus map scene
      */
@@ -76,27 +73,25 @@ public class UserPage {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.getIcons().add(new Image("favicon.png"));
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
 
     /**
      * Method to go back to main menu.
+     *
      * @param event Clicking on go back
      * @throws IOException Exception if can't find main menu scene
      */
     public void goBack(Event event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/MainMenu.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
+        helper.loadNextScene("/MainMenu.fxml", mainScreen);
+    }
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.getIcons().add(new Image("favicon.png"));
-        stage.show();
-
-        Stage stage1 = (Stage) scene1.getScene().getWindow();
-        stage1.close();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        addRole();
+        helper.loadSidePane(sidePane);
+        netIdLabel.setText(Users.user.getNetid());
+        roleLabel.setText(Users.user.getRole());
     }
 }
