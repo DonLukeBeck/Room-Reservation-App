@@ -3,12 +3,16 @@ package nl.tudelft.oopp.demo.controllers;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
+import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.entities.Users;
+
+import java.sql.Time;
 
 public class AddPersonalEvent {
     private int day;
     private int month;
     private int year;
+    private UserScheduleDayView userScheduleDayView;
     UserServerCommunication con = new UserServerCommunication();
     @FXML
     private javafx.scene.control.Button button;
@@ -32,7 +36,7 @@ public class AddPersonalEvent {
             iString += i;
             hoursChoiceBox.getItems().add(iString);
         }
-        for (int i = 5; i < 60; i += 5) {
+        for (int i = 0; i < 60; i += 5) {
             String iString = "";
             if (i < 10) {
                 iString += "0";
@@ -58,8 +62,11 @@ public class AddPersonalEvent {
             return;
         }
         String timeSlot = hoursString + ":" + minutesString + ":00";
-        con.addUserEvent(Users.user.getNetid(), timeSlot,
+        UserEvent userEvent = con.addUserEvent(Users.user.getNetid(), timeSlot,
                 getDateString(), descriptionField.getText());
+        System.out.println("id=" + userEvent.getId());
+        userScheduleDayView.addPersonalEvent(userEvent);
+        userScheduleDayView.update();
         cancel();
     }
 
@@ -82,6 +89,14 @@ public class AddPersonalEvent {
 
     public void setMonth(int month) {
         this.month = month;
+    }
+
+    public UserScheduleDayView getUserScheduleDayView() {
+        return userScheduleDayView;
+    }
+
+    public void setUserScheduleDayView(UserScheduleDayView userScheduleDayView) {
+        this.userScheduleDayView = userScheduleDayView;
     }
 
     /**

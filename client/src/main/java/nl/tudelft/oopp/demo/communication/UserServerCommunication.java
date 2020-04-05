@@ -1,9 +1,13 @@
 package nl.tudelft.oopp.demo.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import nl.tudelft.oopp.demo.entities.Rooms;
+import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.entities.Users;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
+
+import java.util.List;
 
 public class UserServerCommunication extends ServerCommunication {
 
@@ -219,7 +223,7 @@ public class UserServerCommunication extends ServerCommunication {
      * @param description Description of the event
      * @return True if event added successfully, false otherwise
      */
-    public boolean addUserEvent(String user,
+    public UserEvent addUserEvent(String user,
                                    String timeSlot,
                                    String date,
                                    String description) {
@@ -229,23 +233,27 @@ public class UserServerCommunication extends ServerCommunication {
                 + description + "\"}";
 
         try {
-            boolean bool = this.webClient.post().uri("/postUserEvent")
+            String jsonString = this.webClient.post().uri("/postUserEvent")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(BodyInserters.fromObject(body))
                     .accept(MediaType.APPLICATION_JSON)
                     .retrieve()
-                    .bodyToMono(Boolean.class)
+                    .bodyToMono(String.class)
                     .block();
-            if (bool) {
-                System.out.println("Personal event added");
-                return true;
-            } else {
-                System.out.println("Adding personal event failed");
-                return false;
-            }
+            ObjectMapper mapper = new ObjectMapper();
+            UserEvent newUserEvent = mapper
+                    .readValue(jsonString, new com
+                            .fasterxml
+                            .jackson
+                            .core
+                            .type
+                            .TypeReference<UserEvent>() {
+                    });
+
+            return newUserEvent;
         } catch (Exception e) {
             System.out.println(e);
-            return false;
+            return null;
         }
     }
 }
