@@ -43,7 +43,7 @@ public class HolidaysController {
         try {
             holidaysRepository.save(holidays);
             return true;
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             return false;
         }
     }

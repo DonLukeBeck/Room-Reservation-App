@@ -1,13 +1,12 @@
 package nl.tudelft.oopp.demo.communication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 import nl.tudelft.oopp.demo.entities.Rooms;
 import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.entities.Users;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
-
-import java.util.List;
 
 public class UserServerCommunication extends ServerCommunication {
 

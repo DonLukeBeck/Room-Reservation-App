@@ -1,10 +1,10 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.io.IOException;
+
 import javafx.event.Event;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.Reservations;
-
-import java.io.IOException;
 
 public class DeleteReservationHandler implements javafx.event.EventHandler {
 

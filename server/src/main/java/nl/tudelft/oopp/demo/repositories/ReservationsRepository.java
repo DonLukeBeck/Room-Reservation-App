@@ -3,6 +3,7 @@ package nl.tudelft.oopp.demo.repositories;
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
+import javax.transaction.Transactional;
 import nl.tudelft.oopp.demo.entities.Dishes;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import org.hibernate.context.TenantIdentifierMismatchException;
@@ -10,7 +11,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import javax.transaction.Transactional;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 

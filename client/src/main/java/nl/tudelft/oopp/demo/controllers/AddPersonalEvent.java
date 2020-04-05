@@ -1,12 +1,12 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import java.sql.Time;
+
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import nl.tudelft.oopp.demo.communication.UserServerCommunication;
 import nl.tudelft.oopp.demo.entities.UserEvent;
 import nl.tudelft.oopp.demo.entities.Users;
-
-import java.sql.Time;
 
 public class AddPersonalEvent {
     private int day;
