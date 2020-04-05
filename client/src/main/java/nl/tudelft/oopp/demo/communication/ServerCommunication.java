@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
+import nl.tudelft.oopp.demo.controllers.WrongPasswordException;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Dishes;
 import nl.tudelft.oopp.demo.entities.Holidays;
@@ -13,7 +14,10 @@ import nl.tudelft.oopp.demo.entities.Menus;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import nl.tudelft.oopp.demo.entities.Rooms;
 import nl.tudelft.oopp.demo.entities.UserEvent;
+import nl.tudelft.oopp.demo.entities.Users;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -456,6 +460,36 @@ public class ServerCommunication {
                 .bodyToMono(boolean.class)
                 .block();
         return bool;
+    }
+
+    /**
+     * Method to change password.
+     * @param oldPassword Previous password
+     * @param newPassword Old Password
+     * @return True if changed password
+     * @throws WrongPasswordException Exception if authentication failed
+     */
+    public boolean changePassword(String oldPassword,
+                                  String newPassword) throws WrongPasswordException {
+        if (oldPassword.equals("wrong")) {
+            throw new WrongPasswordException();
+        }
+
+        String body = "{\"netId\":\""
+                + Users.user.getNetid() + "\",\"oldPassword\":\""
+                + oldPassword + "\",\"newPassword\":\"" + newPassword + "\"}";
+        Boolean response = this.webClient.post().uri("/changePassword")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromObject(body))
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .block();
+
+        if (response) {
+            return true;
+        }
+        throw new WrongPasswordException();
     }
 
 }

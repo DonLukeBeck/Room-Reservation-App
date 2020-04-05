@@ -4,6 +4,7 @@ import java.util.List;
 import nl.tudelft.oopp.demo.entities.Menus;
 import nl.tudelft.oopp.demo.repositories.MenusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,16 +38,10 @@ public class MenusController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestBody means it is a parameter from the GET or POST request
         try {
-            if (!menusRepository.findMenu(menu
-                    .getBuildingNumber(), menu
-                    .getDishName())
-                    .getDishName().isEmpty()) {
-                return false;
-            }
-            return false;
-        } catch (NullPointerException e) {
-            menusRepository.save(menu);
+            menusRepository.addMenu(menu.getBuildingNumber(),menu.getDishName());
             return true;
+        } catch (DataIntegrityViolationException e) {
+            return false;
         }
     }
 
@@ -73,10 +68,24 @@ public class MenusController {
         }
     }
 
+    /**
+     *  Deletes a menu.
+     * @param buildingNumber - building id
+     * @param dishName - name of dish
+     * @return true if menu successfully deleted, false otherwise.
+     */
     @GetMapping("/deleteMenu")
     public @ResponseBody
-    boolean deleteMenu(@RequestParam int buildinNumber, String dishName) {
-        return menusRepository.deleteMenu(buildinNumber, dishName);
+    boolean deleteMenu(@RequestParam int buildingNumber, String dishName) {
+        try {
+            if (menusRepository.deleteMenu(buildingNumber, dishName) != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
 

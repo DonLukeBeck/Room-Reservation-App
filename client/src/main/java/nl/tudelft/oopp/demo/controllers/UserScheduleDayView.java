@@ -22,7 +22,7 @@ public class UserScheduleDayView {
     private int day = 0;
     private int month = 0;
     private int year = 0;
-    private int heightReservationsPane = 0;
+    private Text eventsText;
     private List<Reservations> reservations = new ArrayList<>();
     private List<UserEvent> userEvents = new ArrayList<>();
 
@@ -109,6 +109,7 @@ public class UserScheduleDayView {
         dateLabel.setText(dateString);
         addAllEventsToGridPane();
         scrollPane.setContent(gridPane);
+        eventsText.setText((reservations.size() + userEvents.size()) + " events");
     }
 
     /**
@@ -202,6 +203,14 @@ public class UserScheduleDayView {
 
     public void setUserEvents(List<UserEvent> userEvents) {
         this.userEvents = userEvents;
+    }
+
+    public Text getEventsText() {
+        return eventsText;
+    }
+
+    public void setEventsText(Text eventsText) {
+        this.eventsText = eventsText;
     }
 
     /**

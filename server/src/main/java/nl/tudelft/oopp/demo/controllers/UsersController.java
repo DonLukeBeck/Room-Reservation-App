@@ -4,6 +4,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
+import nl.tudelft.oopp.demo.entities.ChangePassword;
 import nl.tudelft.oopp.demo.entities.LoginUser;
 import nl.tudelft.oopp.demo.entities.RegisterNewUser;
 import nl.tudelft.oopp.demo.entities.Users;
@@ -73,6 +75,29 @@ public class UsersController {
         } catch (NullPointerException e) {
             return "";
         }
+    }
+
+    /**
+     * Method to change password.
+     * @param changePassword
+     * @return True if password changed
+     * @throws NoSuchAlgorithmException
+     */
+    @PostMapping("/changePassword")
+    public @ResponseBody
+    boolean changePassword(@RequestBody ChangePassword
+                                   changePassword) throws NoSuchAlgorithmException {
+        LoginUser loginUser = new LoginUser();
+        loginUser.setNetid(changePassword.getNetId());
+        loginUser.setPassword(changePassword.getOldPassword());
+        String res = login(loginUser);
+        if (res.equals("")) {
+            return false;
+        } else {
+            String newHashedPassword = hashPassword(changePassword.getNewPassword());
+            usersRepository.changePassword(changePassword.getNetId(), newHashedPassword);
+        }
+        return true;
     }
 
     @GetMapping("/allUsers")

@@ -51,7 +51,7 @@
             </font>
         </Text>
 
-        <Button fx:id="add" layoutX="260.0" layoutY="513.0" mnemonicParsing="false" onAction="#goToEditPage" prefHeight="66.0" prefWidth="294.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+        <Button fx:id="add" layoutX="260.0" layoutY="513.0" mnemonicParsing="false" onAction="#goToAdminEditView" prefHeight="66.0" prefWidth="294.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
         <Text layoutX="720.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT HOLIDAY/MENU/DISH">
             <font>
                 <Font size="24.0" />
