@@ -21,7 +21,7 @@ public interface MenusRepository extends JpaRepository<Menus, Long> {
     Menus findMenu(int buildingNumber, String dishName);
 
     @Query(value = "UPDATE Menus "
-            + "SET buildingNumber = ?1,  dishName= ?2,"
+            + "SET buildingNumber = ?1,  dishName= ?2 "
             + "WHERE dishName = ?3", nativeQuery = true)
     @Modifying
     @Transactional

@@ -57,12 +57,9 @@ public class MenusController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         try {
-            if (menusRepository.updateExistingMenu(menu.getBuildingNumber(),
-                    menu.getDishName(),
-                    oldDishName) == 1) {
-                return true;
-            }
-            return false;
+            menusRepository.deleteMenu(menu.getBuildingNumber(),oldDishName);
+            menusRepository.addMenu(menu.getBuildingNumber(),menu.getDishName());
+            return true;
         } catch (NullPointerException e) {
             return false;
         }
