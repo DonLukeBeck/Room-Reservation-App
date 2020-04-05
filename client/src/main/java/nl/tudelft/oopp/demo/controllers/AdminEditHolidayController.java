@@ -150,17 +150,13 @@ public class AdminEditHolidayController implements Initializable {
 
                             for (Holidays hol : holi) {
 
-<<<<<<< HEAD
-                                if (hol.getComments() == String.valueOf((int) newValue)) {
-                                    startDate.setDayCellFactory((Callback<DatePicker, DateCell>) hol.getStartDate());
-                                    endDate.setDayCellFactory((Callback<DatePicker, DateCell>) hol.getEndDate());
-=======
+
                                 if (hol.getHolidaysID() == (int) newValue) {
                                     startDate.setDayCellFactory((Callback<DatePicker,
                                             DateCell>) hol.getStartDate());
                                     endDate.setDayCellFactory((Callback<DatePicker,
                                             DateCell>) hol.getEndDate());
->>>>>>> 23f07a78257ab2ccd3c73b72c8b19802fc790668
+
                                     comments.setText(hol.getComments());
                                 }
 
