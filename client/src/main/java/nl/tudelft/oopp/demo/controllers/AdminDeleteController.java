@@ -119,12 +119,22 @@ public class AdminDeleteController implements Initializable {
         }
 
         String[] listAllMenus = new String[2];
-        listAllMenus[0] = "Select Menu";
+        listAllMenus[0] = "Select Dish";
         listAllMenus[1] = "First select building";
 
-        String[] listAllDishes = new String[2];
+        List<Dishes> listGetDishes = null;
+        try {
+            listGetDishes = con.getDishes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] listAllDishes = new String[listGetDishes.size() + 1];
         listAllDishes[0] = "Select Dish";
-        listAllDishes[1] = "First select building";
+        j = 1;
+        for (Dishes d : listGetDishes) {
+            listAllDishes[j] = "" + d.getName();
+            j++;
+        }
 
 
 
@@ -142,7 +152,7 @@ public class AdminDeleteController implements Initializable {
         listHolidayID.setValue("Select Holiday");
         listRoomsID.setValue("Select Room");
         listDishes.setValue("Select Dish");
-        listMenus.setValue("Select Menu");
+        listMenus.setValue("Select Dish");
 
 
         listBuildingID2.getSelectionModel()
@@ -196,49 +206,21 @@ public class AdminDeleteController implements Initializable {
                             Buildings selectedBuilding = con.getBuildingByName(Integer
                                     .parseInt(listAllBuildings[(int) newValue]));
 
-
-
-                            List<Menus> listAllMenus = null;
+                            List<Dishes> listAllDishesFromMenu = null;
                             try {
-                                listAllMenus = con.getMenus();
+                                listAllDishesFromMenu = con
+                                        .getMenuByBuilding(selectedBuilding
+                                                .getBuilding_number());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            String[] listMenusByBuilding = new String[listAllMenus.size() + 1];
-                            listMenusByBuilding[0] = "Select Menu";
+                            String[] listDishesByMenu = new String[listAllDishesFromMenu
+                                    .size() + 1];
+                            listDishesByMenu[0] = "Select Dish";
 
-                            int j = 1;
-                            for (Menus m : listAllMenus) {
-                                if (m.getBuildingNumber() == selectedBuilding
-                                        .getBuilding_number()) {
-                                    listMenusByBuilding[j] = m.getDishName();
-                                    j++;
-                                }
-
-                            }
                             listMenus.setItems(FXCollections
-                                    .observableArrayList(listMenusByBuilding));
+                                    .observableArrayList(listDishesByMenu));
 
-
-                            List<Dishes> listAllDishes = null;
-                            try {
-                                listAllDishes = con.getDishes();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            String[] listDishesByBuilding = new String[listAllDishes.size() + 1];
-                            listDishesByBuilding[0] = "Select Dish";
-
-                            int k = 1;
-                            for (Dishes d : listAllDishes) {
-                                listDishesByBuilding[k] = d.getName();
-                                k++;
-                            }
-
-                            listDishes
-                                    .setItems(FXCollections
-                                            .observableArrayList(listDishesByBuilding));
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.out.println("No selected building");
