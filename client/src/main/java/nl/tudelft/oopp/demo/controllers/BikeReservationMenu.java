@@ -3,11 +3,7 @@ package nl.tudelft.oopp.demo.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,14 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -185,8 +174,8 @@ public class BikeReservationMenu implements Initializable {
         for (Node k : grid.getChildren()) {
             try {
                 ((AnchorPane) k).getChildren().clear();
-                ((AnchorPane) k).setStyle("-fx-background-color: transparent");
-                ((AnchorPane) k).setDisable(false);
+                k.setStyle("-fx-background-color: transparent");
+                k.setDisable(false);
                 BorderWidths border = new BorderWidths(0, 0, 0, 0);
                 ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
                         BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
@@ -402,14 +391,13 @@ public class BikeReservationMenu implements Initializable {
         for (Holidays e : list) {
             Calendar startDate = Calendar.getInstance();
             startDate.setTime(e.getStartDate());
+            Calendar endDate = Calendar.getInstance();
+            endDate.setTime(e.getEndDate());
 
             if (month == startDate.get(Calendar.MONTH)) {
                 int startDay = startDate.get(Calendar.DAY_OF_MONTH) - 1;
                 System.out.println(startDay);
                 holidaysForMonth.add(startDay);
-
-                Calendar endDate = Calendar.getInstance();
-                endDate.setTime(e.getEndDate());
 
                 if (endDate.get(Calendar.MONTH) == startDate.get(Calendar.MONTH)) {
                     int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
@@ -418,6 +406,18 @@ public class BikeReservationMenu implements Initializable {
                 } else {
                     holidaysForMonth.add(monLen);
                 }
+            } else if (month == endDate.get(Calendar.MONTH) && month != startDate.get(Calendar.MONTH)) {
+                int startDay = 1;
+                System.out.println(startDay);
+                holidaysForMonth.add(startDay);
+
+                int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
+                holidaysForMonth.add(endDay);
+
+            } else if (startDate.get(Calendar.MONTH) < month && endDate.get(Calendar.MONTH) > month) {
+                int startDay = 1;
+                holidaysForMonth.add(startDay);
+                holidaysForMonth.add(monLen);
             }
         }
 
