@@ -1,14 +1,9 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.time.YearMonth;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -144,10 +139,11 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Add new Text.
-     * @param e Node where the Text will be added
+     *
+     * @param e       Node where the Text will be added
      * @param layoutX chosen layout X
      * @param layoutY chosen layout Y
-     * @param text text to be added to the Text
+     * @param text    text to be added to the Text
      */
     public void addText(Node e, double layoutX, double layoutY, String text) {
         Text day = new Text(text);
@@ -178,8 +174,8 @@ public class RoomReservationMenu implements Initializable {
         for (Node k : grid.getChildren()) {
             try {
                 ((AnchorPane) k).getChildren().clear();
-                ((AnchorPane) k).setStyle("-fx-background-color: transparent");
-                ((AnchorPane) k).setDisable(false);
+                k.setStyle("-fx-background-color: transparent");
+                k.setDisable(false);
                 BorderWidths border = new BorderWidths(0, 0, 0, 0);
                 ((AnchorPane) k).setBorder(new Border(new BorderStroke(Color.TRANSPARENT,
                         BorderStrokeStyle.SOLID, CornerRadii.EMPTY, border)));
@@ -317,6 +313,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Opens when previous date is chosen.
+     *
      * @throws IOException Exception if can't find previous date alers scene
      */
     public void openAlert() throws IOException {
@@ -332,6 +329,7 @@ public class RoomReservationMenu implements Initializable {
 
     /**
      * Saves all needed properties for the chosen date.
+     *
      * @param event on mouse click
      * @throws IOException Exception if can't find timeslot scene
      */
@@ -360,10 +358,15 @@ public class RoomReservationMenu implements Initializable {
         Date date1 = check.getTime();
         Calendar now = Calendar.getInstance();
         Date now1 = now.getTime();
+        System.out.println(date1.toString());
+        System.out.println(now1.toString());
 
-        if (date1.before(now1)) {
-            openAlert();
-            return;
+        if (!date1.toString().equals(now1.toString())) {
+            System.out.println("Here");
+            if (date1.before(now1)) {
+                openAlert();
+                return;
+            }
         }
 
         reservationDate = date1.toString();
@@ -389,13 +392,14 @@ public class RoomReservationMenu implements Initializable {
             Calendar startDate = Calendar.getInstance();
             startDate.setTime(e.getStartDate());
 
+            Calendar endDate = Calendar.getInstance();
+            endDate.setTime(e.getEndDate());
+
             if (month == startDate.get(Calendar.MONTH)) {
                 int startDay = startDate.get(Calendar.DAY_OF_MONTH) - 1;
                 System.out.println(startDay);
                 holidaysForMonth.add(startDay);
 
-                Calendar endDate = Calendar.getInstance();
-                endDate.setTime(e.getEndDate());
 
                 if (endDate.get(Calendar.MONTH) == startDate.get(Calendar.MONTH)) {
                     int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
@@ -404,6 +408,18 @@ public class RoomReservationMenu implements Initializable {
                 } else {
                     holidaysForMonth.add(monLen);
                 }
+            } else if (month == endDate.get(Calendar.MONTH) && month != startDate.get(Calendar.MONTH)) {
+                int startDay = 1;
+                System.out.println(startDay);
+                holidaysForMonth.add(startDay);
+
+                int endDay = endDate.get(Calendar.DAY_OF_MONTH) - 1;
+                holidaysForMonth.add(endDay);
+
+            } else if (startDate.get(Calendar.MONTH) < month && endDate.get(Calendar.MONTH) > month) {
+                int startDay = 1;
+                holidaysForMonth.add(startDay);
+                holidaysForMonth.add(monLen);
             }
         }
 
