@@ -74,4 +74,9 @@ public class AdminSceneController {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/AdminDeleteView.fxml", mainScreen);
     }
+
+    public void goToAdminEditHoliday(ActionEvent event) throws IOException {
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
+    }
 }
