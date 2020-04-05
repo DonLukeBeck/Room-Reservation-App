@@ -81,7 +81,7 @@ public class UserScheduleDayView {
 
     /**
      * Deletes a reservation from the view.
-     * @param reservation
+     * @param reservation Reservation to be deleted
      */
     public void deleteReservation(Reservations reservation) {
         reservations.remove(reservation);
@@ -93,7 +93,7 @@ public class UserScheduleDayView {
 
     /**
      * Deletes a user event from the view.
-     * @param userEvent
+     * @param userEvent User event to be deleted
      */
     public void deleteUserEvent(UserEvent userEvent) {
         userEvents.remove(userEvent);

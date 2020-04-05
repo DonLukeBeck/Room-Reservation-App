@@ -12,7 +12,8 @@ public class DeleteReservationHandler implements javafx.event.EventHandler {
     private UserScheduleDayView userScheduleDayView;
     UserServerCommunication con = new UserServerCommunication();
 
-    public DeleteReservationHandler(Reservations reservation, UserScheduleDayView userScheduleDayView) {
+    public DeleteReservationHandler(Reservations reservation,
+                                    UserScheduleDayView userScheduleDayView) {
         this.reservation = reservation;
         this.userScheduleDayView = userScheduleDayView;
     }
