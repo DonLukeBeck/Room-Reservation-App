@@ -266,7 +266,6 @@ public class TimeSlotsController implements Initializable {
                 chosen.fillProperty().setValue(Color.BLUE);
             }
         }
-        System.out.println(allSlots.toString());
 
         //        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
         //                date, building, room);

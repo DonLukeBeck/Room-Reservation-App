@@ -91,8 +91,6 @@ public class CompletedReservationController implements Initializable {
             addText(defaultY + (count * 85), 680, e.getTimeslotSlot().substring(0, 5));
             count++;
         }
-
-
     }
 
     public void paneExit(Event event) throws IOException {
