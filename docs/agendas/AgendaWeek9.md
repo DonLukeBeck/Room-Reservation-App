@@ -2,7 +2,7 @@
 
 Date:           {06/04/2020}\
 Main focus:     {Finishing off and submission}\
-Note taker:     {}\
+Note taker:     {François Ezard}\
 
 # Opening
 *Here you check that everybody is present.*
