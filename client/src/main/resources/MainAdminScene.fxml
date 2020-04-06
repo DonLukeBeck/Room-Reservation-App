@@ -19,12 +19,12 @@
                         <Image url="@images/Icon_User.png" />
                     </image>
                 </ImageView>
-            <Label fx:id="logOut" layoutX="27.0" layoutY="146.0" onMouseClicked="#logOut" text="Log Out" textFill="WHITE">
+            <Label fx:id="logOut" layoutX="27.0" layoutY="146.0" onMouseClicked="#logOut" text="Log Out" textFill="WHITE" underline="true">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="exit" layoutX="27.0" layoutY="198.0" onMouseClicked="#exit" text="Exit" textFill="WHITE">
+            <Label fx:id="exit" layoutX="27.0" layoutY="198.0" onMouseClicked="#exit" text="Exit" textFill="WHITE" underline="true">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

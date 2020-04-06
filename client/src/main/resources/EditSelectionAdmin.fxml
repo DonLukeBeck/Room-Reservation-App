@@ -24,7 +24,23 @@
                         <Image url="@images/Icon_User.png" />
                     </image>
                 </ImageView>
-            </children></Pane>
+                <Label fx:id="logOut" layoutX="27.0" layoutY="146.0" onMouseClicked="#logOut" text="Log Out" textFill="WHITE" underline="true">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="exit" layoutX="27.0" layoutY="198.0" onMouseClicked="#exit" text="Exit" textFill="WHITE" underline="true">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="94.0" layoutY="39.0" text="Admin">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
         <ImageView fitHeight="251.0" fitWidth="948.0" layoutX="186.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/libr1.jpg" />

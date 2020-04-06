@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,6 +16,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -24,7 +25,7 @@ import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Rooms;
 
-public class AdminEditController implements Initializable {
+public class AdminEditBuildingController implements Initializable {
     AdminServerCommunication con = new AdminServerCommunication();
 
     @FXML
@@ -76,7 +77,7 @@ public class AdminEditController implements Initializable {
     public void goToAdminEdit(ActionEvent event) throws IOException {
 
         HelperController helper = new HelperController();
-        helper.loadNextScene("/AdminEditView.fxml", mainScreen);
+        helper.loadNextScene("/AdminEditBuildingView.fxml", mainScreen);
     }
 
     /**
@@ -188,6 +189,14 @@ public class AdminEditController implements Initializable {
                                     .getBuildingByName(Integer
                                             .parseInt(listAllBuildings[(int)newValue]));
 
+                            listRoomsID.setValue("Select room");
+                            editRoomID.setText("");
+                            numberChairs.setText("");
+                            numberComputers.setText("");
+                            numberTables.setText("");
+                            numberWhiteboards.setText("");
+                            roomType.setValue("Select type");
+
                             List<Rooms> listGetRoomsByBuilding = null;
                             try {
                                 listGetRoomsByBuilding = con
@@ -216,35 +225,37 @@ public class AdminEditController implements Initializable {
                                                 ObservableValue<? extends Number> observable,
                                                             Number oldValue,
                                                             Number newValue) {
-                                            Rooms selectedRoom = new Rooms();
-                                            try {
-                                                for (Rooms r : con
-                                                        .getRoomsByBuilding(selectedBuilding
-                                                                .getBuilding_number())) {
-                                                    if (r.getRoomId()
-                                                            .equals(listRoomsByBuilding[
-                                                                    (int)newValue])) {
-                                                        selectedRoom = r;
+                                            if ((int) newValue != 0) {
+                                                Rooms selectedRoom = new Rooms();
+                                                try {
+                                                    for (Rooms r : con
+                                                            .getRoomsByBuilding(selectedBuilding
+                                                                    .getBuilding_number())) {
+                                                        if (r.getRoomId()
+                                                                .equals(listRoomsByBuilding[
+                                                                        (int) newValue])) {
+                                                            selectedRoom = r;
+                                                        }
                                                     }
+                                                    editRoomID.setText(selectedRoom.getRoomId());
+                                                    numberChairs.setText(String
+                                                            .valueOf(selectedRoom
+                                                                    .getChairs()));
+                                                    numberComputers.setText(String
+                                                            .valueOf(selectedRoom
+                                                                    .getComputers()));
+                                                    numberTables.setText(String
+                                                            .valueOf(selectedRoom
+                                                                    .getTables()));
+                                                    numberWhiteboards
+                                                            .setText(String
+                                                                    .valueOf(selectedRoom
+                                                                            .getWhiteboards()));
+                                                    roomType.setValue(selectedRoom.getType());
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                    System.out.print("No selected Room");
                                                 }
-                                                editRoomID.setText(selectedRoom.getRoomId());
-                                                numberChairs.setText(String
-                                                        .valueOf(selectedRoom
-                                                                .getChairs()));
-                                                numberComputers.setText(String
-                                                        .valueOf(selectedRoom
-                                                                .getComputers()));
-                                                numberTables.setText(String
-                                                        .valueOf(selectedRoom
-                                                                .getTables()));
-                                                numberWhiteboards
-                                                        .setText(String
-                                                                .valueOf(selectedRoom
-                                                                        .getWhiteboards()));
-                                                roomType.setValue(selectedRoom.getType());
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                                System.out.print("No selected Room");
                                             }
                                         }
                                     });
@@ -273,7 +284,6 @@ public class AdminEditController implements Initializable {
      */
     public void editBuilding(Event event) throws IOException {
 
-        String bikeCapacity = editBuildingBikes.getText();
         Label exception = new Label();
 
         mainScreen.getChildren().add(exception);
@@ -282,6 +292,8 @@ public class AdminEditController implements Initializable {
                 ((Label) e).setText(" ");
             }
         }
+
+        String bikeCapacity = editBuildingBikes.getText();
 
         int bikes = 0;
         if (!bikeCapacity.isEmpty()) {
@@ -299,13 +311,40 @@ public class AdminEditController implements Initializable {
             }
         }
 
+
+        if (listBuildingID1.getValue().toString().equals("Select building")) {
+            exception.setText("Please select building.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(45);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        if (editBuildingName
+                .getText().isEmpty() || editBuildingUrl
+                .getText().isEmpty() || editBuildingBikes
+                .getText().isEmpty()) {
+            exception.setText("Fill all fields!");
+            exception.setLayoutY(120);
+            exception.setLayoutX(45);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
         String buildingName = editBuildingName.getText();
         String imageUrl = editBuildingUrl.getText();
         String buildingOpen = listOpen.getValue().toString();
         String buildingClose = listClose.getValue().toString();
 
-        if (listBuildingID1.getValue().toString().equals("Select building")) {
-            exception.setText("Please select building.");
+        try {
+            Image image = new Image(imageUrl);
+            ImageView buildingImage = new ImageView(image);
+        } catch (Exception e) {
+            exception.setText("Not valid URL");
             exception.setLayoutY(120);
             exception.setLayoutX(45);
             exception.setTextFill(Color.valueOf("red"));
@@ -321,7 +360,7 @@ public class AdminEditController implements Initializable {
                 + ":00", imageUrl, bikes);
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminEditView.fxml", mainScreen);
+        h.loadNextScene("/AdminEditBuildingView.fxml", mainScreen);
     }
 
     /**
@@ -338,21 +377,10 @@ public class AdminEditController implements Initializable {
                 ((Label) e).setText(" ");
             }
         }
-        if (listRoomsID.getValue().toString().equals("Select room")) {
-            exception.setText("Please select room.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
-            return;
-        }
-
-
 
         if (listBuildingID2.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
-            exception.setLayoutY(120);
+            exception.setLayoutY(100);
             exception.setLayoutX(670);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
@@ -360,24 +388,50 @@ public class AdminEditController implements Initializable {
             return;
         }
 
+        if (listRoomsID.getValue().toString().equals("Select room")) {
+            exception.setText("Please select room.");
+            exception.setLayoutY(100);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+
         if (roomType.getValue().toString().equals("Select type")) {
             exception.setText("Please select room type.");
-            exception.setLayoutY(120);
+            exception.setLayoutY(100);
             exception.setLayoutX(670);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
             return;
         }
-        if (editRoomID.getText().length() > 18) {
-            exception.setText("Max 18 characters allowed.");
-            exception.setLayoutY(120);
+        if (editRoomID.getText().length() > 14) {
+            exception.setText("Max 14 characters allowed.");
+            exception.setLayoutY(100);
             exception.setLayoutX(670);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
             return;
         }
+
+        if (editRoomID.getText().isEmpty()
+                || numberChairs.getText().isEmpty()
+                || numberComputers.getText().isEmpty()
+                || numberTables.getText().isEmpty()
+                || numberWhiteboards.getText().isEmpty()) {
+            exception.setText("Fill all fields!");
+            exception.setLayoutY(100);
+            exception.setLayoutX(670);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
 
         String roomID = editRoomID.getText();
         int roomChairs = Integer.parseInt(numberChairs.getText());
@@ -398,10 +452,8 @@ public class AdminEditController implements Initializable {
                 oldRoomId);
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminEditView.fxml", mainScreen);
+        h.loadNextScene("/AdminEditBuildingView.fxml", mainScreen);
     }
-
-
 
 }
 
