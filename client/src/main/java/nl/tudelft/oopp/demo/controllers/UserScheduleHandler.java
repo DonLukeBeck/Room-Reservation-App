@@ -104,8 +104,7 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
         URL xmlUrl = getClass().getResource("/UserScheduleDayView.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        root.getBaselineOffset();
         UserScheduleDayView controller = loader.<UserScheduleDayView>getController();
         controller.setDay(day);
         controller.setMonth(month);
@@ -114,6 +113,8 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
         controller.setUserEvents(userEvents);
         controller.setEventsText(eventsText);
         controller.initialize();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
         stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
