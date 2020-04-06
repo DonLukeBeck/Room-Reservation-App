@@ -62,7 +62,7 @@ public class BikeReservationCompleted implements Initializable {
         builId.setFont(Font.font("Arial Rounded MT Bold", 24));
         builId.layoutYProperty().setValue(400);
         builId.layoutXProperty().setValue(390);
-        builId.textFillProperty().setValue(Color.valueOf("#ffc500"));
+        builId.textFillProperty().setValue(Color.valueOf("black"));
         pane.getChildren().add(builId);
 
 
@@ -78,20 +78,20 @@ public class BikeReservationCompleted implements Initializable {
         builname.layoutYProperty().setValue(470);
         builname.layoutXProperty().setValue(440);
         builname.setFont(Font.font("Arial Rounded MT Bold", 22));
-        builname.textFillProperty().setValue(Color.valueOf("#ffc500"));
+        builname.textFillProperty().setValue(Color.valueOf("black"));
 
         Label date = new Label(BikeSlots.getDate());
         date.layoutYProperty().setValue(545);
         date.layoutXProperty().setValue(345);
         date.setFont(Font.font("Arial Rounded MT Bold", 24));
-        date.textFillProperty().setValue(Color.valueOf("#ffc500"));
+        date.textFillProperty().setValue(Color.valueOf("black"));
         pane.getChildren().add(date);
 
         Label timeslot = new Label(BikeSlots.getTimeslot());
         timeslot.layoutYProperty().setValue(615);
         timeslot.layoutXProperty().setValue(390);
         timeslot.setFont(Font.font("Arial Rounded MT Bold", 24));
-        timeslot.textFillProperty().setValue(Color.valueOf("#ffc600"));
+        timeslot.textFillProperty().setValue(Color.valueOf("black"));
         pane.getChildren().add(timeslot);
     }
 

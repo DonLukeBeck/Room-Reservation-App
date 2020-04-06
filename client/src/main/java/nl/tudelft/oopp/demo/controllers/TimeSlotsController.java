@@ -240,9 +240,6 @@ public class TimeSlotsController implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
-    public void openResources(Event event) throws IOException {
-        helper.openResources();
-    }
 
     /**
      * Disable not suitable slots.
@@ -376,5 +373,9 @@ public class TimeSlotsController implements Initializable {
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationRoom.fxml", mainScreen);
+    }
+
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
     }
 }

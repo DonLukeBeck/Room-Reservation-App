@@ -97,7 +97,7 @@ public class FoodReservationCompleted implements Initializable {
         label.setLayoutY(layoutY);
         label.setLayoutX(layoutX);
         label.setFont(Font.font("Arial Rounded MT Bold", 24));
-        label.textFillProperty().setValue(Color.valueOf("#ffc500"));
+        label.textFillProperty().setValue(Color.valueOf("black"));
         pane.getChildren().add(label);
     }
 
