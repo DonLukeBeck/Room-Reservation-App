@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminSceneController">
+    <children>
+        <Label fx:id="sc" contentDisplay="CENTER" layoutX="544.0" layoutY="300.0" text="Admin page" textAlignment="CENTER" textFill="black">
+            <font>
+                <Font name="Comic Sans MS" size="36.0" />
+            </font>
+        </Label>
+        <Pane layoutX="1094.0" prefHeight="800.0" prefWidth="187.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <ImageView fitHeight="51.0" fitWidth="54.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/Icon_User.png" />
+                    </image>
+                </ImageView>
+            <Label fx:id="logOut" layoutX="27.0" layoutY="146.0" onMouseClicked="#logOut" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="exit" layoutX="27.0" layoutY="198.0" onMouseClicked="#exit" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="39.0" text="Admin">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            </children></Pane>
+        <ImageView fitHeight="251.0" fitWidth="948.0" layoutX="186.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/libr1.jpg" />
+            </image>
+        </ImageView>
+        <Pane layoutX="-2.0" prefHeight="800.0" prefWidth="188.0" style="-fx-background-color: #00A6D6;">
+            <children>
+                <ImageView fitHeight="108.0" fitWidth="206.0" layoutX="36.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/flame1.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <ImageView fitHeight="91.0" fitWidth="219.0" layoutX="286.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/TU-delft-768x325.png" />
+            </image>
+        </ImageView>
+      <Text layoutX="303.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Text>
+      <Label layoutX="213.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+        <Label layoutX="246.0" layoutY="579.0" prefHeight="51.0" prefWidth="180.0" text="Holiday/Dishes">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="24.0" />
+            </font>
+        </Label>
+      <Button fx:id="add" layoutX="208.0" layoutY="429.0" mnemonicParsing="false" onAction="#goToAdminAddSelection" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Text layoutX="889.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHANGE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Text>
+      <Label layoutX="827.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="854.0" layoutY="579.0" prefHeight="51.0" prefWidth="187.0" text="Bike availability">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="change" layoutX="821.0" layoutY="429.0" mnemonicParsing="false" onAction="#goToEditPage" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Button fx:id="delete" layoutX="512.0" layoutY="429.0" mnemonicParsing="false" onAction="#goToAdminDelete" prefHeight="201.0" prefWidth="254.0" style="-fx-background-color: transperant; -fx-border-color: #00A6D6; -fx-border-width: 2.5; -fx-border-radius: 10;" />
+      <Label layoutX="519.0" layoutY="530.0" prefHeight="51.0" prefWidth="241.0" text="Building/Room/Menu">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="550.0" layoutY="571.0" prefHeight="51.0" prefWidth="180.0" text="Holiday/Dishes">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="580.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DELETE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="30.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminController">
+   <children>
+      <ImageView fitHeight="112.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../build/resources/main/images/TU-delft-768x325.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addBuilding" defaultButton="true" layoutX="380.0" layoutY="703.0" mnemonicParsing="false" onAction="#addBuilding" prefHeight="46.0" prefWidth="218.0" text="Add Building">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <TextField fx:id="addBuildingID" layoutX="358.0" layoutY="195.0" prefHeight="6.0" prefWidth="218.0" />
+      <Label layoutX="58.0" layoutY="190.0" prefHeight="35.0" prefWidth="192.0" text="Building ID:">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label layoutX="58.0" layoutY="261.0" prefHeight="35.0" prefWidth="192.0" text="Building Name:">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <TextField fx:id="addBuildingName" layoutX="358.0" layoutY="266.0" prefHeight="26.0" prefWidth="218.0" />
+      <Label layoutX="58.0" layoutY="335.0" prefHeight="35.0" prefWidth="165.0" text="Opening Hour:">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <Label layoutX="60.0" layoutY="413.0" text="Closing Hour:">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <TextField fx:id="addBuildingUrl" layoutX="355.0" layoutY="490.0" prefHeight="26.0" prefWidth="218.0" />
+
+      <TextField fx:id="addBuildingBikes" layoutX="355.0" layoutY="565.0" prefHeight="26.0" prefWidth="218.0" />
+      <Label layoutX="58.0" layoutY="559.0" prefHeight="38.0" prefWidth="218.0" text="Bike capacity:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="487.0" prefHeight="38.0" prefWidth="218.0" text="URL of image:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+
+
+      <ComboBox fx:id="listOpen" layoutX="355.0" layoutY="341.0" prefHeight="25.0" prefWidth="218.0" stylesheets="@style/style.css" />
+      <ComboBox fx:id="listClose" layoutX="355.0" layoutY="418.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
+
+
+
+
+      <Separator layoutX="637.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" style="-fx-background-color: black;" />
+
+
+
+      <JFXButton fx:id="goBack" layoutX="1114.0" layoutY="43.0" onAction="#goBack" prefHeight="51.0" prefWidth="119.0" style="-fx-background-radius: 8; -fx-border-color: grey; -fx-border-width: 2.5; -fx-border-radius: 8;" text="Go Back">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+      </JFXButton>
+
+      <Label layoutX="675.0" layoutY="155.0" prefHeight="35.0" prefWidth="192.0" text="Room ID:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="roomID" layoutX="1017.0" layoutY="160.0" prefHeight="6.0" prefWidth="218.0" />
+
+      <Label layoutX="675.0" layoutY="230.0" prefHeight="38.0" prefWidth="218.0" text="Building ID:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="listBuildingID" layoutX="1017.0" layoutY="236.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
+
+
+      <Label layoutX="675.0" layoutY="305.0" prefHeight="35.0" prefWidth="228.0" text="Number of chairs:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numberChairs" layoutX="1017.0" layoutY="310.0" prefHeight="26.0" prefWidth="218.0" />
+
+      <Label layoutX="675.0" layoutY="380.0" prefHeight="35.0" prefWidth="255.0" text="Number of whiteboards">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numberWhiteboards" layoutX="1017.0" layoutY="385.0" prefHeight="26.0" prefWidth="218.0" />
+
+      <Label layoutX="675.0" layoutY="455.0" prefHeight="35.0" prefWidth="228.0" text="Number of tables">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numberTables" layoutX="1017.0" layoutY="450.0" prefHeight="26.0" prefWidth="218.0" />
+
+      <Label layoutX="675.0" layoutY="530.0" prefHeight="35.0" prefWidth="255.0" text="Number of computers">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numberComputers" layoutX="1017.0" layoutY="535.0" prefHeight="26.0" prefWidth="218.0" />
+
+
+      <Label layoutX="675.0" layoutY="605.0" prefHeight="38.0" prefWidth="68.0" text="Type:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="roomType" layoutX="1017.0" layoutY="610.0" prefHeight="26.0" prefWidth="218.0" stylesheets="@style/style.css" />
+
+      <Button defaultButton="true" layoutX="1017.0" layoutY="703.0" mnemonicParsing="false" onAction="#addRoom" prefHeight="46.0" prefWidth="218.0" text="Add Room">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+
+   </children>
+</AnchorPane>

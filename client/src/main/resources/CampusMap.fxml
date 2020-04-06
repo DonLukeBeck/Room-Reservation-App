@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="479.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.MainSceneController">
+   <children>
+      <ImageView fitHeight="463.0" fitWidth="660.0" layoutX="51.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/campusMap.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
