@@ -102,6 +102,7 @@ public class RoomReservationMenu implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
@@ -340,6 +341,7 @@ public class RoomReservationMenu implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }

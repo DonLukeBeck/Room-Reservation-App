@@ -69,6 +69,8 @@ public class UserPage implements Initializable {
         Parent root = loader.load();
 
         Stage stage = new Stage();
+        stage.setTitle("Room Reservation App");
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -92,6 +94,7 @@ public class UserPage implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }

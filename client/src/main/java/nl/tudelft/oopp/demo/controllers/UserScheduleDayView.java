@@ -233,6 +233,7 @@ public class UserScheduleDayView {
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }

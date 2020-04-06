@@ -171,11 +171,15 @@ public class RoomMenuController implements Initializable {
 
     /**
      * Calculate the change in position.
+     *
      * @param name name given to calculate the change
      * @return change in position
      */
     public double changeInName(String name) {
         double change = 0;
+        if (name.toCharArray().length == 8) {
+            change = 3;
+        }
         if (name.toCharArray().length > 8 && name.toCharArray().length <= 10) {
             change = (name.toCharArray().length - 8) * (-2.7);
         } else if (name.toCharArray().length > 10) {
@@ -338,6 +342,7 @@ public class RoomMenuController implements Initializable {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }
