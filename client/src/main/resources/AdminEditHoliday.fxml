@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: C0EFF5;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nl.tudelft.oopp.demo.controllers.AdminEditHolidayController">
+    <children>
+        <ImageView fitHeight="112.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../build/resources/main/images/TU-delft-768x325.png" />
+            </image>
+        </ImageView>
+
+
+
+        <Separator layoutX="426.6" layoutY="-2.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" style="-fx-background-color: black;" />
+        <Separator layoutX="853.3" layoutY="-2.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" style="-fx-background-color: black;" />
+
+
+
+
+        <JFXButton fx:id="goBack" layoutX="1114.0" layoutY="43.0" onAction="#goBack" prefHeight="51.0" prefWidth="119.0" style="-fx-background-radius: 8; -fx-border-color: grey; -fx-border-width: 2.5; -fx-border-radius: 8;" text="Go Back">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="20.0" />
+            </font>
+        </JFXButton>
+
+        <Button defaultButton="true" layoutX="881.0" layoutY="720.0" mnemonicParsing="false" onAction="#editDish" prefHeight="46.0" prefWidth="218.0" text="Edit Dish">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Label layoutX="14.0" layoutY="225.0" prefHeight="35.0" prefWidth="187.0" text="New Start Date:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="14.0" layoutY="436.0" prefHeight="35.0" prefWidth="178.0" text="New comments:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextArea fx:id="comments" layoutX="201.0" layoutY="446.0" prefHeight="176.0" prefWidth="187.0" />
+        <Button defaultButton="true" layoutX="14.0" layoutY="720.0" mnemonicParsing="false" onAction="#editHoliday" prefHeight="46.0" prefWidth="218.0" text="Edit Holiday">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Label layoutX="453.0" layoutY="137.0" prefHeight="35.0" prefWidth="194.0" text="Building Number:">
+            <font>
+                <Font size="24.0" />
+            </font></Label>
+        <ChoiceBox fx:id="listBuildingID" layoutX="700.0" layoutY="142.0" prefHeight="26.0" prefWidth="131.0" />
+        <Label layoutX="453.0" layoutY="329.0" prefHeight="35.0" prefWidth="187.0" text="New Dish Name:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <ChoiceBox fx:id="selectNewDishName" layoutX="700.0" layoutY="334.0" prefHeight="26.0" prefWidth="131.0" />
+        <Button defaultButton="true" layoutX="453.0" layoutY="720.0" mnemonicParsing="false" onAction="#editMenu" prefHeight="46.0" prefWidth="218.0" text="Edit Menu">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Button>
+        <Label layoutX="881.0" layoutY="226.0" prefHeight="35.0" prefWidth="187.0" text="New Dish Name:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="newDishName" layoutX="1084.0" layoutY="230.0" prefHeight="26.0" prefWidth="178.0" />
+        <Label layoutX="881.0" layoutY="329.0" prefHeight="35.0" prefWidth="119.0" text="New Price:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="price" layoutX="1084.0" layoutY="335.0" prefHeight="26.0" prefWidth="178.0" />
+        <Label layoutX="881.0" layoutY="419.0" prefHeight="35.0" prefWidth="70.0" text="Vegan">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="startDate" layoutX="224.0" layoutY="231.0" />
+        <Label layoutX="14.0" layoutY="330.0" prefHeight="35.0" prefWidth="187.0" text="New End Date:">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="endDate" layoutX="224.0" layoutY="335.0" />
+        <CheckBox fx:id="vegan" layoutX="1089.0" layoutY="428.0" mnemonicParsing="false" />
+      <Label layoutX="14.0" layoutY="138.0" prefHeight="35.0" prefWidth="187.0" text="Select Holiday:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="holidayID" layoutX="222.0" layoutY="142.0" prefHeight="26.0" prefWidth="178.0" />
+      <Label layoutX="453.0" layoutY="225.0" prefHeight="35.0" prefWidth="174.0" text="Old Dish Name:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="oldDishName" layoutX="700.0" layoutY="230.0" prefHeight="26.0" prefWidth="131.0" />
+      <Label layoutX="881.0" layoutY="137.0" prefHeight="35.0" prefWidth="131.0" text="Dish Name:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ChoiceBox id="1" fx:id="selectDish" layoutX="1085.0" layoutY="143.0" prefHeight="26.0" prefWidth="178.0" />
+    </children>
+</AnchorPane>

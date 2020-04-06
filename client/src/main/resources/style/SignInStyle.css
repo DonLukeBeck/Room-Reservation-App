@@ -1,0 +1,14 @@
+.text-field{
+    -fx-prompt-text-fill: #696969;
+}
+
+.text-field:focused{
+    -fx-prompt-text-fill: transparent;
+}
+.password-field{
+    -fx-prompt-text-fill: #696969;
+}
+
+.password-field:focused{
+    -fx-prompt-text-fill: transparent;
+}
