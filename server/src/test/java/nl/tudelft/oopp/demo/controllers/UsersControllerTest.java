@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.tudelft.oopp.demo.entities.ChangePassword;
 import nl.tudelft.oopp.demo.entities.LoginUser;
 import nl.tudelft.oopp.demo.entities.RegisterNewUser;
 import nl.tudelft.oopp.demo.entities.Users;
@@ -117,5 +118,16 @@ public class UsersControllerTest {
                 hashPassword(lu1.getPassword()))).thenThrow(NullPointerException.class);
         assertEquals("", usersController.login(lu1));
     }
+
+    /*
+
+    @Test
+    public void changePasswordTrueTest() throws NoSuchAlgorithmException {
+        ChangePassword cp = new ChangePassword();
+        lu1 = new LoginUser();
+        assertFalse(usersController.changePassword(cp));
+    }
+
+     */
 
 }

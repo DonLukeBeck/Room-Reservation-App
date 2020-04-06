@@ -69,8 +69,8 @@ public class MenusControllerTest {
     @Test
     public void editMenuFalseTest() {
         m1 = new Menus();
-        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(NullPointerException.class);
-        assertFalse(menusController.deleteMenu(m1.getBuildingNumber(), m1.getDishName()));
+        when(menusRepository.addMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(NullPointerException.class);
+        assertFalse(menusController.editMenu(m1, m1.getDishName()));
     }
 
     @Test
