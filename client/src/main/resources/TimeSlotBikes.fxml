@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -100,25 +101,25 @@
                 <Image url="@images/TU-delft-768x325.png" />
             </image>
         </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="245.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#827c7c" height="20.0" layoutX="451.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="657.0" layoutY="341.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-        <Label layoutX="286.0" layoutY="339.0" prefHeight="22.0" prefWidth="67.0" text="- Free">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="20.0" layoutX="245.0" layoutY="327.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#827c7c" height="20.0" layoutX="451.0" layoutY="327.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="657.0" layoutY="327.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+        <Label layoutX="286.0" layoutY="325.0" prefHeight="22.0" prefWidth="67.0" text="- Free">
             <font>
                 <Font name="Comic Sans MS Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="495.0" layoutY="339.0" prefHeight="22.0" prefWidth="67.0" text="- Closed">
+        <Label layoutX="495.0" layoutY="325.0" prefHeight="22.0" prefWidth="67.0" text="- Closed">
             <font>
                 <Font name="Comic Sans MS Bold" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="701.0" layoutY="339.0" prefHeight="23.0" prefWidth="95.0" text="- Occcupied">
+        <Label layoutX="701.0" layoutY="325.0" prefHeight="23.0" prefWidth="95.0" text="- Occcupied">
             <font>
                 <Font name="Comic Sans MS Bold" size="16.0" />
             </font>
         </Label>
-        <AnchorPane fx:id="slots" layoutX="186.0" layoutY="362.0" prefHeight="431.0" prefWidth="908.0">
+        <AnchorPane fx:id="slots" layoutX="186.0" layoutY="347.0" prefHeight="406.0" prefWidth="908.0">
             <children>
                 <Rectangle fx:id="A08A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
                 <Label fx:id="A08A00" layoutX="103.0" layoutY="149.0" onMouseClicked="#timeSlot" text="08:00 - 08:30" textFill="WHITE">
@@ -338,5 +339,21 @@
                 </Label>
             </children>
         </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbf00" height="20.0" layoutX="873.0" layoutY="327.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+      <Label layoutX="919.0" layoutY="325.0" prefHeight="23.0" prefWidth="95.0" text="- Selected">
+         <font>
+            <Font name="Comic Sans MS Bold" size="16.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="967.0" layoutY="753.0" onAction="#reserveSlots" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: grey;" text="Reserve" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="exception" layoutX="552.0" layoutY="761.0" text="You can not reserve more than 4 time slots !" textFill="RED" visible="false">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

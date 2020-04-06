@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,14 +32,13 @@ import nl.tudelft.oopp.demo.entities.Reservations;
 
 
 public class BikeSlots implements Initializable {
+    public static List<SlotReservation> allSlots = new ArrayList<>();
     private static String building;
     private static String date;
     private static String timeslot;
-
     ServerCommunication con = new ServerCommunication();
     HelperController helper = new HelperController();
     UserServerCommunication send = new UserServerCommunication();
-
     @FXML
     private AnchorPane slots;
     @FXML
@@ -49,6 +49,8 @@ public class BikeSlots implements Initializable {
     private Pane sidePane;
     @FXML
     private Pane rightPane;
+    @FXML
+    private Label exception;
 
     /**
      * Method to return building.
@@ -73,7 +75,28 @@ public class BikeSlots implements Initializable {
      *
      * @return Timeslot
      */
-    public static String getTimeslot() {
+    public static List<SlotReservation> getTimeslots() {
+        return allSlots;
+    }
+
+    /**
+     * Extract id from string.
+     *
+     * @param str provided String
+     * @return id
+     */
+    public static String getTimeSlotFromID(String str) {
+        String[] temp = str.split(" ");
+        String newTemp = "";
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i].contains("id=")) {
+                newTemp = temp[i];
+            }
+        }
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
+        temp2 = temp2.substring(1, temp2.length() - 1);
+        timeslot = temp2.replace('A', ':');
         return timeslot;
     }
 
@@ -147,6 +170,21 @@ public class BikeSlots implements Initializable {
     }
 
     /**
+     * Finds rectangle.
+     *
+     * @param id id of rectangle
+     * @return the rectangle
+     */
+    public Rectangle findRectangle(String id) {
+        for (Node k : slots.getChildren()) {
+            if (k instanceof Rectangle && id.equals(getTimeSlotFromID(k.toString()))) {
+                return (Rectangle) k;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Get all information from the chosen time slot.
      *
      * @param event on mouse click
@@ -166,14 +204,30 @@ public class BikeSlots implements Initializable {
         String[] arrId = newTemp.split("=");
         String temp2 = arrId[1];
         temp2 = temp2.substring(1, temp2.length() - 1);
+
         timeslot = temp2.replace('A', ':');
-        System.out.println(timeslot);
 
-        send.bikeReservation(MainSceneController.getUser(), timeslot
-                + ":00", date, Integer.parseInt(building));
-        HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationBikeCompleted.fxml", mainScreen);
-
+        if (event.getSource() instanceof Rectangle) {
+            if (!((Rectangle) event.getSource())
+                    .fillProperty().getValue().equals(Color.valueOf("#ffbf00"))) {
+                ((Rectangle) event.getSource()).fillProperty().setValue(Color.valueOf("#ffbf00"));
+                allSlots.add(new SlotReservation(MainSceneController.getUser(), timeslot + ":00",
+                        date, Integer.parseInt(building)));
+            } else {
+                removeSlotFromList(getTimeSlotFromID(event.getSource().toString()));
+                ((Rectangle) event.getSource()).fillProperty().setValue(Color.BLUE);
+            }
+        } else if (event.getSource() instanceof Label) {
+            Rectangle chosen = findRectangle(getTimeSlotFromID(event.getSource().toString()));
+            if (!chosen.fillProperty().getValue().equals(Color.valueOf("#ffbf00"))) {
+                chosen.fillProperty().setValue(Color.valueOf("#ffbf00"));
+                allSlots.add(new SlotReservation(MainSceneController.getUser(), timeslot + ":00",
+                        date, Integer.parseInt(building)));
+            } else {
+                removeSlotFromList(getTimeSlotFromID(event.getSource().toString()));
+                chosen.fillProperty().setValue(Color.BLUE);
+            }
+        }
     }
 
     /**
@@ -380,6 +434,41 @@ public class BikeSlots implements Initializable {
         }
     }
 
+
+    /**
+     * Reserves slots.
+     *
+     * @param actionEvent - event on mouse click
+     * @throws IOException Exception if can't find complete reservation scene
+     */
+    public void reserveSlots(ActionEvent actionEvent) throws IOException {
+        if (allSlots.size() > 4) {
+            exception.setVisible(true);
+            return;
+        }
+        for (SlotReservation e : allSlots) {
+            send.bikeReservation(e.getUserSlot(), e.getTimeslotSlot(),
+                    e.getDateSlot(), e.getBuildingSlot());
+        }
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/ReservationBikeCompleted.fxml", mainScreen);
+    }
+
+    /**
+     * Removes a slot from the list.
+     *
+     * @param id the id of the slot
+     */
+    public void removeSlotFromList(String id) {
+        SlotReservation remove = null;
+        for (SlotReservation e : allSlots) {
+            if (e.getTimeslotSlot().equals(id + ":00")) {
+                remove = e;
+            }
+        }
+        allSlots.remove(remove);
+    }
+
     /**
      * Method for go back button.
      *
@@ -389,6 +478,46 @@ public class BikeSlots implements Initializable {
     public void goBack(Event event) throws IOException {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/ReservationBike.fxml", mainScreen);
+    }
+
+    public class SlotReservation {
+        private String user;
+        private String date;
+        private String timeslot;
+        private int building;
+        private String room;
+
+        /**
+         * Reservation for a slot.
+         *
+         * @param user     the user reserving
+         * @param timeslot timeslot
+         * @param date     date of reservation
+         * @param building building id
+         */
+        public SlotReservation(String user, String timeslot,
+                               String date, int building) {
+            this.user = user;
+            this.date = date;
+            this.timeslot = timeslot;
+            this.building = building;
+        }
+
+        public String getUserSlot() {
+            return this.user;
+        }
+
+        public String getDateSlot() {
+            return this.date;
+        }
+
+        public String getTimeslotSlot() {
+            return this.timeslot;
+        }
+
+        public int getBuildingSlot() {
+            return this.building;
+        }
     }
 
 }

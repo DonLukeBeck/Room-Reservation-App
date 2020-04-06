@@ -1,35 +1,27 @@
 package nl.tudelft.oopp.demo.controllers;
 
-import io.netty.channel.ChannelDuplexHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.util.Callback;
 import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Dishes;
 import nl.tudelft.oopp.demo.entities.Holidays;
-import nl.tudelft.oopp.demo.entities.Rooms;
 
 public class AdminEditHolidayController implements Initializable {
 
@@ -148,7 +140,7 @@ public class AdminEditHolidayController implements Initializable {
                     public void changed(ObservableValue<? extends Number> observable,
                                         Number oldValue, Number newValue) {
                         try {
-                            selectedHoliday = (int)newValue - 1;
+                            selectedHoliday = (int) newValue - 1;
                             List<Holidays> listAllHolidays = con.getHolidays();
                             Holidays holiday = listAllHolidays.get(selectedHoliday);
                             selectedHoliday = holiday.getHolidaysID();
@@ -202,13 +194,23 @@ public class AdminEditHolidayController implements Initializable {
                             }
                             listGetDishes.removeAll(dishes);
 
-                            String[] listAllDishes1 = new String[listGetDishes.size() + 1];
+                            String[] listAllDishes1 =
+                                    new String[listGetDishes.size() - dishes.size() + 1];
                             listAllDishes1[0] = "Select Dish";
-                            j = 1;
 
+                            int i = 1;
+                            boolean ok;
                             for (Dishes d : listGetDishes) {
-                                listAllDishes1[j] = d.getName();
-                                j++;
+                                ok = true;
+                                for (Dishes di : dishes) {
+                                    if (di.getName().equals(d.getName()) && ok) {
+                                        ok = false;
+                                    }
+                                }
+                                if (ok == true) {
+                                    listAllDishes1[i] = "" + d.getName();
+                                    i++;
+                                }
                             }
 
                             oldDishName.setItems(FXCollections.observableArrayList(listDishes));
@@ -222,7 +224,6 @@ public class AdminEditHolidayController implements Initializable {
                             System.out.println("No selected building");
                         }
                     }
-
                 });
 
         selectDish.getSelectionModel()
@@ -233,8 +234,8 @@ public class AdminEditHolidayController implements Initializable {
                                         Number oldValue, Number newValue) {
                         try {
                             List<Dishes> list = con.getDishes();
-                            Dishes dish = list.get((int)newValue - 1);
-                            for (Dishes d: list) {
+                            Dishes dish = list.get((int) newValue - 1);
+                            for (Dishes d : list) {
                                 if (d.getName().equals(newValue.toString())) {
                                     dish = d;
                                 }
@@ -264,10 +265,11 @@ public class AdminEditHolidayController implements Initializable {
 
     /**
      * Method for admin to edit holidays.
+     *
      * @param event admin clicking edit holidays
      * @throws IOException Exception if can't find admin edit holiday scene
      */
-    public void editHoliday(Event event) throws  IOException {
+    public void editHoliday(Event event) throws IOException {
 
 
         Label exception = new Label();
@@ -303,6 +305,7 @@ public class AdminEditHolidayController implements Initializable {
 
     /**
      * Method for admin to edit menu.
+     *
      * @param event Admin clicking edit menu
      * @throws IOException Exception if can't find scene
      */
@@ -356,6 +359,7 @@ public class AdminEditHolidayController implements Initializable {
 
     /**
      * Method for admin to edit a dish.
+     *
      * @param event Admin clicking edit dish
      * @throws IOException Exception if can't find scene
      */
@@ -395,8 +399,6 @@ public class AdminEditHolidayController implements Initializable {
         h.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
 
     }
-
-
 
 
 }

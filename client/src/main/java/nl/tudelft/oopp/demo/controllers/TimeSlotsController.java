@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,13 +29,13 @@ import nl.tudelft.oopp.demo.entities.Reservations;
 
 
 public class TimeSlotsController implements Initializable {
+    public static List<SlotReservation> allSlots = new ArrayList<>();
     private static int building;
     private static String room;
     private static String date;
     private static String timeslot;
     UserServerCommunication con = new UserServerCommunication();
     HelperController helper = new HelperController();
-
     @FXML
     private AnchorPane slots;
     @FXML
@@ -45,6 +46,8 @@ public class TimeSlotsController implements Initializable {
     private AnchorPane mainScreen;
     @FXML
     private Pane rightPane;
+    @FXML
+    private Label exception;
 
     /**
      * Method to get Building.
@@ -78,8 +81,8 @@ public class TimeSlotsController implements Initializable {
      *
      * @return Timeslot
      */
-    public static String getTimeslot() {
-        return timeslot;
+    public static List<SlotReservation> getTimeslots() {
+        return allSlots;
     }
 
     /**
@@ -160,6 +163,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * If the chosen date is today find the local time.
+     *
      * @return Local time in double or 4 if the chosen date in not today
      */
     public double closeSlotsForLocalTime() {
@@ -203,6 +207,21 @@ public class TimeSlotsController implements Initializable {
     }
 
     /**
+     * Finds rectangle.
+     *
+     * @param id id of rectangle
+     * @return the rectangle
+     */
+    public Rectangle findRectangle(String id) {
+        for (Node k : slots.getChildren()) {
+            if (k instanceof Rectangle && id.equals(getTimeSlotFromID(k.toString()))) {
+                return (Rectangle) k;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Chosen time slot.
      *
      * @param event on mouse click
@@ -224,14 +243,52 @@ public class TimeSlotsController implements Initializable {
         }
 
         date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
-
-
-
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
-        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
-                date, building, room);
+        if (event.getSource() instanceof Rectangle) {
+            if (!((Rectangle) event.getSource())
+                    .fillProperty().getValue().equals(Color.valueOf("#ffbf00"))) {
+                ((Rectangle) event.getSource()).fillProperty().setValue(Color.valueOf("#ffbf00"));
+                allSlots.add(new SlotReservation(MainSceneController.getUser(), timeslot + ":00",
+                        date, building, room));
+            } else {
+                removeSlotFromList(getTimeSlotFromID(event.getSource().toString()));
+                ((Rectangle) event.getSource()).fillProperty().setValue(Color.BLUE);
+            }
+        } else if (event.getSource() instanceof Label) {
+            Rectangle chosen = findRectangle(getTimeSlotFromID(event.getSource().toString()));
+            if (!chosen.fillProperty().getValue().equals(Color.valueOf("#ffbf00"))) {
+                chosen.fillProperty().setValue(Color.valueOf("#ffbf00"));
+                allSlots.add(new SlotReservation(MainSceneController.getUser(), timeslot + ":00",
+                        date, building, room));
+            } else {
+                removeSlotFromList(getTimeSlotFromID(event.getSource().toString()));
+                chosen.fillProperty().setValue(Color.BLUE);
+            }
+        }
 
+        //        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
+        //                date, building, room);
+        //
+        //        HelperController helperController = new HelperController();
+        //        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
+    }
+
+    /**
+     * Reserves slots.
+     *
+     * @param actionEvent - event on mouse click
+     * @throws IOException Exception if can't find complete reservation scene
+     */
+    public void reserveSlots(ActionEvent actionEvent) throws IOException {
+        if (allSlots.size() > 4) {
+            exception.setVisible(true);
+            return;
+        }
+        for (SlotReservation e : allSlots) {
+            con.roomReservation(e.getUserSlot(), e.getTimeslotSlot(),
+                    e.getDateSlot(), e.getBuildingSlot(), e.getRoomSlot());
+        }
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
@@ -329,6 +386,9 @@ public class TimeSlotsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (!allSlots.isEmpty()) {
+            allSlots = new ArrayList<>();
+        }
         addRole();
         List<Buildings> list = null;
 
@@ -392,5 +452,66 @@ public class TimeSlotsController implements Initializable {
 
     public void openResources(Event event) throws IOException {
         helper.openResources();
+    }
+
+    /**
+     * Removes a slot from the list.
+     *
+     * @param id the id of the slot
+     */
+    public void removeSlotFromList(String id) {
+        SlotReservation remove = null;
+        for (SlotReservation e : allSlots) {
+            if (e.getTimeslotSlot().equals(id + ":00")) {
+                remove = e;
+            }
+        }
+        allSlots.remove(remove);
+    }
+
+    public class SlotReservation {
+        private String user;
+        private String date;
+        private String timeslot;
+        private int building;
+        private String room;
+
+        /**
+         * Reservation for a slot.
+         *
+         * @param user     the user reserving
+         * @param timeslot timeslot
+         * @param date     date of reservation
+         * @param building building id
+         * @param room     room id
+         */
+        public SlotReservation(String user, String timeslot,
+                               String date, int building, String room) {
+            this.user = user;
+            this.date = date;
+            this.timeslot = timeslot;
+            this.building = building;
+            this.room = room;
+        }
+
+        public String getUserSlot() {
+            return this.user;
+        }
+
+        public String getDateSlot() {
+            return this.date;
+        }
+
+        public String getTimeslotSlot() {
+            return this.timeslot;
+        }
+
+        public int getBuildingSlot() {
+            return this.building;
+        }
+
+        public String getRoomSlot() {
+            return this.room;
+        }
     }
 }
