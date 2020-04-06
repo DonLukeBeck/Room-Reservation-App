@@ -46,6 +46,8 @@ public class TimeSlotsController implements Initializable {
     private AnchorPane mainScreen;
     @FXML
     private Pane rightPane;
+    @FXML
+    private Label exception;
 
     /**
      * Method to get Building.
@@ -267,12 +269,16 @@ public class TimeSlotsController implements Initializable {
     }
 
     public void reserveSlots(ActionEvent actionEvent) throws IOException {
+        if (allSlots.size() > 4) {
+            exception.setVisible(true);
+            return;
+        }
         for (SlotReservation e : allSlots) {
             con.roomReservation(e.getUserSlot(), e.getTimeslotSlot(),
                     e.getDateSlot(), e.getBuildingSlot(), e.getRoomSlot());
         }
-         HelperController helperController = new HelperController();
-         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
     /**
@@ -368,6 +374,9 @@ public class TimeSlotsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if(!allSlots.isEmpty()){
+            allSlots = new ArrayList<>();
+        }
         addRole();
         List<Buildings> list = null;
 

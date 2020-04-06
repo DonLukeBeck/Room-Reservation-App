@@ -347,5 +347,10 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </JFXButton>
+      <Label fx:id="exception" layoutX="547.0" layoutY="758.0" text="You can not reserve more than 4 time slots !" textFill="RED" visible="false">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
