@@ -107,7 +107,8 @@ public class RoomsControllerTest {
     @Test
     public void deleteRoomsFalseCase2Test() {
         r1 = new Rooms();
-        when(roomsRepository.deleteRoomByRoomID(r1.getRoomId())).thenThrow(NullPointerException.class);
+        when(roomsRepository.deleteRoomByRoomID(
+                r1.getRoomId())).thenThrow(NullPointerException.class);
         assertFalse(roomsController.deleteRoom(r1.getRoomId()));
     }
 

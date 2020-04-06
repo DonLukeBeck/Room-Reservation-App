@@ -88,7 +88,8 @@ public class HolidaysControllerTest {
     @Test
     public void deleteHolidaysFalseCase2Test() {
         h1 = new Holidays();
-        when(holidaysRepository.deleteHolidaysById(h1.getHolidaysID())).thenThrow(NullPointerException.class);
+        when(holidaysRepository.deleteHolidaysById(
+                h1.getHolidaysID())).thenThrow(NullPointerException.class);
         assertFalse(holidaysController.deleteHolidays(h1.getHolidaysID()));
     }
 

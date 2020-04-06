@@ -1,14 +1,17 @@
 package nl.tudelft.oopp.demo.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChangePasswordTest {
 
     private ChangePassword cp;
 
+    /**
+     * Method to initialize a change password before each test.
+     */
     @BeforeEach
     public void setup() {
         cp = new ChangePassword();

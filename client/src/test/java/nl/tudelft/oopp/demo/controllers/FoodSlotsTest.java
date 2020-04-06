@@ -1,15 +1,12 @@
 package nl.tudelft.oopp.demo.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import nl.tudelft.oopp.demo.communication.ServerCommunication;
-import nl.tudelft.oopp.demo.entities.Buildings;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.sql.Time;
-import java.util.Date;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class FoodSlotsTest {
     ServerCommunication con = new ServerCommunication();
@@ -18,6 +15,9 @@ public class FoodSlotsTest {
     private double minuteNow;
     private double hour2;
 
+    /**
+     * Method to setup before every test.
+     */
     @BeforeEach
     public void setUp() {
         hourNow = java.time.LocalTime.now().getHour();
@@ -26,11 +26,9 @@ public class FoodSlotsTest {
         hour2 = hourNow;
         if (minuteNow < 20) {
             hour2 += 0.5;
-        }
-        else if (minuteNow < 50) {
+        } else if (minuteNow < 50) {
             hour2 += 1;
-        }
-        else {
+        } else {
             hour2 += 1.5;
         }
     }

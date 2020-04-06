@@ -75,7 +75,8 @@ public class BuildingsControllerTest {
     @Test
     public void deleteBuildingTrueTest() {
         b1 = new Buildings();
-        when(buildingsRepository.deleteBuildingByBuildingNumber(b1.getBuildingNumber())).thenReturn(1);
+        when(buildingsRepository.deleteBuildingByBuildingNumber(
+                b1.getBuildingNumber())).thenReturn(1);
         assertTrue(buildingsController.deleteBuilding(b1.getBuildingNumber()));
     }
 

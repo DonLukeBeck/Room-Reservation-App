@@ -3,16 +3,16 @@ package nl.tudelft.oopp.demo.controllers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.text.Text;
 import nl.tudelft.oopp.demo.entities.Reservations;
 import nl.tudelft.oopp.demo.entities.UserEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.sql.Date;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserScheduleHandlerTest {
 
@@ -26,6 +26,9 @@ public class UserScheduleHandlerTest {
     private Reservations r1;
     private UserEvent ue1;
 
+    /**
+     * Method to setup before every test.
+     */
     @BeforeEach
     public void setup() {
         t1 = new Time(8,0,0);

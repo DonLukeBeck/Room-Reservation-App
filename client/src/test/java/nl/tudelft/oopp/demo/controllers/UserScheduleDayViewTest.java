@@ -9,6 +9,9 @@ public class UserScheduleDayViewTest {
 
     private UserScheduleDayView userScheduleDayView;
 
+    /**
+     * Method to setup user schedule day view before each test.
+     */
     @BeforeEach
     public void setup() {
         userScheduleDayView = new UserScheduleDayView();

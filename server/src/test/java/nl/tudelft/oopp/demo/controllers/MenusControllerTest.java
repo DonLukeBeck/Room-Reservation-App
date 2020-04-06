@@ -49,7 +49,8 @@ public class MenusControllerTest {
     @Test
     public void addMenuFalseTest() {
         m1 = new Menus();
-        when(menusRepository.addMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(DataIntegrityViolationException.class);
+        when(menusRepository.addMenu(m1.getBuildingNumber(),
+                m1.getDishName())).thenThrow(DataIntegrityViolationException.class);
         assertFalse(menusController.addMenu(m1));
     }
 
@@ -69,7 +70,8 @@ public class MenusControllerTest {
     @Test
     public void editMenuFalseTest() {
         m1 = new Menus();
-        when(menusRepository.addMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(NullPointerException.class);
+        when(menusRepository.addMenu(m1.getBuildingNumber(),
+                m1.getDishName())).thenThrow(NullPointerException.class);
         assertFalse(menusController.editMenu(m1, m1.getDishName()));
     }
 
@@ -92,7 +94,8 @@ public class MenusControllerTest {
     @Test
     public void deleteMenuFalseCase2Test() {
         m1 = new Menus();
-        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(NullPointerException.class);
+        when(menusRepository.deleteMenu(m1.getBuildingNumber(),
+                m1.getDishName())).thenThrow(NullPointerException.class);
         assertFalse(menusController.deleteMenu(m1.getBuildingNumber(), m1.getDishName()));
     }
 
