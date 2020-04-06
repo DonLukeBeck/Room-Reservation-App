@@ -224,13 +224,12 @@ public class UserScheduleDayView {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/AddPersonalEvent.fxml");
         loader.setLocation(xmlUrl);
+        Parent root = loader.load();
         AddPersonalEvent controller = loader.<AddPersonalEvent>getController();
         controller.setDay(day);
         controller.setMonth(month);
         controller.setYear(year);
         controller.setUserScheduleDayView(this);
-
-        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.getIcons().add(new Image("images/favicon.png"));
