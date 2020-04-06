@@ -225,6 +225,7 @@ public class UserScheduleDayView {
         URL xmlUrl = getClass().getResource("/AddPersonalEvent.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
+        root.getBaselineOffset();
         AddPersonalEvent controller = loader.<AddPersonalEvent>getController();
         controller.setDay(day);
         controller.setMonth(month);

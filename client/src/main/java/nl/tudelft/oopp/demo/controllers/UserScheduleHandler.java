@@ -104,6 +104,7 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
         URL xmlUrl = getClass().getResource("/UserScheduleDayView.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
+        root.getBaselineOffset();
         UserScheduleDayView controller = loader.<UserScheduleDayView>getController();
         controller.setDay(day);
         controller.setMonth(month);
