@@ -160,6 +160,9 @@ public class UserScheduleDayView {
             case 12:
                 dateString += " December ";
                 break;
+            default:
+                System.out.println("Default");
+                break;
         }
         dateString += year;
         return dateString;
