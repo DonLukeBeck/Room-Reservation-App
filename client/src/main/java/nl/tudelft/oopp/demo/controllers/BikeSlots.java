@@ -96,6 +96,7 @@ public class BikeSlots implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+
     public void openResources(Event event) throws IOException {
         helper.openResources();
     }
@@ -153,13 +154,6 @@ public class BikeSlots implements Initializable {
      */
     public void timeSlot(Event event) throws IOException {
         building = MainMenuController.getId();
-
-        Rectangle slot = (Rectangle) event.getSource();
-        if (slot.fillProperty().getValue().equals(Color.valueOf("#ffc500"))) {
-            slot.fillProperty().setValue(Color.valueOf("blue"));
-        } else {
-            slot.fillProperty().setValue(Color.valueOf("#ffc500"));
-        }
 
         String str = event.getSource().toString();
         String[] temp = str.split(" ");
@@ -341,6 +335,45 @@ public class BikeSlots implements Initializable {
                 }
                 if (hours < start || hours >= end) {
                     ((Rectangle) k).fillProperty().setValue(Color.valueOf("#827c7c"));
+                    k.disableProperty().setValue(true);
+                }
+            }
+            if (k instanceof Label) {
+                String str = k.toString();
+                String[] temp = str.split(" ");
+                String newTemp = "";
+                for (int i = 0; i < temp.length; i++) {
+                    if (temp[i].contains("id=")) {
+                        newTemp = temp[i];
+                        break;
+                    }
+                }
+                String[] arrId = newTemp.split("=");
+                String temp2 = arrId[1];
+                temp2 = temp2.substring(1, temp2.length() - 1);
+                String time = temp2.replace('A', ':');
+
+                String[] firsttime = time.split(" ");
+                String[] seperateHandM = firsttime[0].split(":");
+
+                for (Reservations t : reservationOnChosenDate) {
+                    String reservationSlot = t.getTimeslot().toString();
+                    reservationSlot = reservationSlot.substring(0, 5);
+                    if (reservationSlot.substring(0, 5).equals(firsttime[0])) {
+                        availablebikes--;
+                    }
+                }
+
+                if (availablebikes <= 0) {
+                    k.disableProperty().setValue(true);
+                }
+
+                double hours = Integer.parseInt(seperateHandM[0]);
+
+                if (seperateHandM[1].equals("30")) {
+                    hours = hours + 0.5;
+                }
+                if (hours < start || hours >= end) {
                     k.disableProperty().setValue(true);
                 }
             }

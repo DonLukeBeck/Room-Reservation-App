@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -79,93 +80,8 @@ public class FoodSlots implements Initializable {
     }
 
     /**
-     * Method to pop up campus map.
-     *
-     * @param event Clicking on 'campus map'
-     * @throws IOException when can not load CampusMap
-     */
-    public void campusMap(Event event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
-        loader.setLocation(xmlUrl);
-        Parent root = loader.load();
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.getIcons().add(new Image("images/favicon.png"));
-        stage.show();
-    }
-
-    public void contactsOpen(Event event) throws IOException {
-        helper.openContacts();
-    }
-    public void openResources(Event event) throws IOException {
-        helper.openResources();
-    }
-
-    /**
-     * Get all information from the chosen time slot.
-     *
-     * @param event on mouse click
-     * @throws IOException when can not load ReservationFoodCompleted
-     */
-    public void timeSlot(Event event) throws IOException {
-        building = MainMenuController.getId();
-        room = null;
-
-        Calendar defaultCalendar = Calendar.getInstance();
-
-        int currentYear = defaultCalendar.get(Calendar.YEAR);
-        int currentMonth = defaultCalendar.get(Calendar.MONTH) + 1;
-        int currentDay = defaultCalendar.get(Calendar.DAY_OF_MONTH);
-
-        String formatDate = currentDay + "";
-        String formatMonth = currentMonth + "";
-
-        if (currentDay < 10) {
-            formatDate = "0" + currentDay;
-        }
-        if (currentMonth < 10) {
-            formatMonth = "0" + currentMonth;
-        }
-
-        date = currentYear + "-" + formatMonth + "-" + formatDate;
-
-        Rectangle slot = (Rectangle) event.getSource();
-        if (slot.fillProperty().getValue().equals(Color.valueOf("#ffc500"))) {
-            slot.fillProperty().setValue(Color.valueOf("blue"));
-        } else {
-            slot.fillProperty().setValue(Color.valueOf("#ffc500"));
-        }
-
-        timeslot = getTimeSlotFromID(event.getSource().toString());
-        String dishName = FoodMenuController.getDishesName();
-
-        con.foodReservation(MainSceneController.getUser(), timeslot
-                + ":00", date, Integer.parseInt(building), dishName);
-
-        HelperController helperController = new HelperController();
-        helperController.loadNextScene("/ReservationFoodCompleted.fxml", mainScreen);
-    }
-
-    public void paneExit(Event event) throws IOException {
-        helper.exit(mainScreen);
-    }
-
-    public void paneLogOut(Event event) throws IOException {
-        helper.logOut(mainScreen);
-    }
-
-    public void paneUserProfile(Event event) throws IOException {
-        helper.userProfile(mainScreen);
-    }
-
-    public void addRole() {
-        helper.addRole(rightPane, MainSceneController.getRole());
-    }
-
-    /**
      * Method for getting the starting hour using LocalTime.
+     *
      * @return the hour used for the start of the building
      */
     public static double getLocalTime() {
@@ -220,6 +136,107 @@ public class FoodSlots implements Initializable {
     }
 
     /**
+     * Method for getting timeslot in proper format from string.
+     *
+     * @param str used string to get timeslot from
+     * @return timeslot in right format
+     */
+    public static String getTimeSlotFromID(String str) {
+        String[] temp = str.split(" ");
+        String newTemp = "";
+        for (int i = 0; i < temp.length; i++) {
+            if (temp[i].contains("id=")) {
+                newTemp = temp[i];
+            }
+        }
+        String[] arrId = newTemp.split("=");
+        String temp2 = arrId[1];
+        temp2 = temp2.substring(1, temp2.length() - 1);
+        timeslot = temp2.replace('A', ':');
+        return timeslot;
+    }
+
+    /**
+     * Method to pop up campus map.
+     *
+     * @param event Clicking on 'campus map'
+     * @throws IOException when can not load CampusMap
+     */
+    public void campusMap(Event event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/CampusMap.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.getIcons().add(new Image("images/favicon.png"));
+        stage.show();
+    }
+
+    public void contactsOpen(Event event) throws IOException {
+        helper.openContacts();
+    }
+
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
+    }
+
+    /**
+     * Get all information from the chosen time slot.
+     *
+     * @param event on mouse click
+     * @throws IOException when can not load ReservationFoodCompleted
+     */
+    public void timeSlot(Event event) throws IOException {
+        building = MainMenuController.getId();
+        room = null;
+
+        Calendar defaultCalendar = Calendar.getInstance();
+
+        int currentYear = defaultCalendar.get(Calendar.YEAR);
+        int currentMonth = defaultCalendar.get(Calendar.MONTH) + 1;
+        int currentDay = defaultCalendar.get(Calendar.DAY_OF_MONTH);
+
+        String formatDate = currentDay + "";
+        String formatMonth = currentMonth + "";
+
+        if (currentDay < 10) {
+            formatDate = "0" + currentDay;
+        }
+        if (currentMonth < 10) {
+            formatMonth = "0" + currentMonth;
+        }
+
+        date = currentYear + "-" + formatMonth + "-" + formatDate;
+
+        timeslot = getTimeSlotFromID(event.getSource().toString());
+        String dishName = FoodMenuController.getDishesName();
+
+        con.foodReservation(MainSceneController.getUser(), timeslot
+                + ":00", date, Integer.parseInt(building), dishName);
+
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/ReservationFoodCompleted.fxml", mainScreen);
+    }
+
+    public void paneExit(Event event) throws IOException {
+        helper.exit(mainScreen);
+    }
+
+    public void paneLogOut(Event event) throws IOException {
+        helper.logOut(mainScreen);
+    }
+
+    public void paneUserProfile(Event event) throws IOException {
+        helper.userProfile(mainScreen);
+    }
+
+    public void addRole() {
+        helper.addRole(rightPane, MainSceneController.getRole());
+    }
+
+    /**
      * Method for disabling all timeslots that aren't available.
      *
      * @param start start of enabled timeslots
@@ -242,37 +259,29 @@ public class FoodSlots implements Initializable {
                     k.disableProperty().setValue(true);
                 }
             }
-        }
-    }
+            if (k instanceof Label) {
+                String time = getTimeSlotFromID(k.toString());
+                String[] firstTime = time.split(" ");
+                String[] seperateHandM = firstTime[0].split(":");
+                double hours = Integer.parseInt(seperateHandM[0]);
 
-    /**
-     * Method for getting timeslot in proper format from string.
-     *
-     * @param str used string to get timeslot from
-     * @return timeslot in right format
-     */
-    public static String getTimeSlotFromID(String str) {
-        String[] temp = str.split(" ");
-        String newTemp = "";
-        for (int i = 0; i < temp.length; i++) {
-            if (temp[i].contains("id=")) {
-                newTemp = temp[i];
+                if (seperateHandM[1].equals("30")) {
+                    hours = hours + 0.5;
+                }
+                if (hours < start || hours >= end) {
+                    k.disableProperty().setValue(true);
+                }
             }
         }
-        String[] arrId = newTemp.split("=");
-        String temp2 = arrId[1];
-        temp2 = temp2.substring(1, temp2.length() - 1);
-        timeslot = temp2.replace('A', ':');
-        return timeslot;
     }
 
     /**
      * Method for initializing timeslots.
      *
      * @param location  The location used to resolve relative paths for the root object,
-     *                 or null if the location is not known
+     *                  or null if the location is not known
      * @param resources The resources used to localize the root object,
-     *                 or null if the root object was not localized
+     *                  or null if the root object was not localized
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

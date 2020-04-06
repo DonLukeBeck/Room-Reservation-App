@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -225,12 +226,6 @@ public class TimeSlotsController implements Initializable {
         date = RoomReservationMenu.getYear() + "-" + formatMonth + "-" + formatDate;
 
 
-        Rectangle slot = (Rectangle) event.getSource();
-        if (slot.fillProperty().getValue().equals(Color.valueOf("#ffc500"))) {
-            slot.fillProperty().setValue(Color.valueOf("blue"));
-        } else {
-            slot.fillProperty().setValue(Color.valueOf("#ffc500"));
-        }
 
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
@@ -274,6 +269,26 @@ public class TimeSlotsController implements Initializable {
                     for (Reservations t : allSuitableRes) {
                         if (t.getTimeslot().toString().substring(0, 5).equals(firstTime[0])) {
                             ((Rectangle) k).fillProperty().setValue(Color.valueOf("red"));
+                            k.disableProperty().setValue(true);
+                        }
+                    }
+                }
+            }
+            if (k instanceof Label) {
+                String time = getTimeSlotFromID(k.toString());
+                String[] firstTime = time.split(" ");
+                String[] seperateHandM = firstTime[0].split(":");
+                double hours = Integer.parseInt(seperateHandM[0]);
+
+                if (seperateHandM[1].equals("30")) {
+                    hours = hours + 0.5;
+                }
+                if (hours < start || hours >= end) {
+                    k.disableProperty().setValue(true);
+                }
+                if (!allSuitableRes.isEmpty()) {
+                    for (Reservations t : allSuitableRes) {
+                        if (t.getTimeslot().toString().substring(0, 5).equals(firstTime[0])) {
                             k.disableProperty().setValue(true);
                         }
                     }

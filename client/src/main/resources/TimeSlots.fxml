@@ -121,217 +121,217 @@
       <AnchorPane fx:id="slots" layoutX="186.0" layoutY="362.0" prefHeight="431.0" prefWidth="908.0">
          <children>
             <Rectangle fx:id="A08A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="149.0" text="08:00 - 08:30" textFill="WHITE">
+            <Label fx:id="A08A00" layoutX="103.0" layoutY="149.0" onMouseClicked="#timeSlot" text="08:00 - 08:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A08A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="193.0" text="08:30 - 09:00" textFill="WHITE">
+            <Label fx:id="A08A30" layoutX="103.0" layoutY="193.0" onMouseClicked="#timeSlot" text="08:30 - 09:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A09A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="237.0" text="09:00 - 09:30" textFill="WHITE">
+            <Label fx:id="A09A00" layoutX="103.0" layoutY="237.0" onMouseClicked="#timeSlot" text="09:00 - 09:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A09A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="278.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="281.0" text="09:30 - 10:00" textFill="WHITE">
+            <Label fx:id="A09A30" layoutX="103.0" layoutY="281.0" onMouseClicked="#timeSlot" text="09:30 - 10:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A10A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="325.0" text="10:00 - 10:30" textFill="WHITE">
+            <Label fx:id="A10A00" layoutX="103.0" layoutY="325.0" onMouseClicked="#timeSlot" text="10:00 - 10:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A23A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="278.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="281.0" text="23:00 - 23:30" textFill="WHITE">
+            <Label fx:id="A23A00" layoutX="721.0" layoutY="281.0" onMouseClicked="#timeSlot" text="23:00 - 23:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A23A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="325.0" text="23:30 - 00:00" textFill="WHITE">
+            <Label fx:id="A23A30" layoutX="721.0" layoutY="325.0" onMouseClicked="#timeSlot" text="23:30 - 00:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A06A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="17.0" text="06:30 - 07:00" textFill="WHITE">
+            <Label fx:id="A06A30" layoutX="103.0" layoutY="17.0" onMouseClicked="#timeSlot" text="06:30 - 07:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A07A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="61.0" text="07:00 - 07:30" textFill="WHITE">
+            <Label fx:id="A07A00" layoutX="103.0" layoutY="61.0" onMouseClicked="#timeSlot" text="07:00 - 07:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A07A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="105.0" text="07:30 - 08:00" textFill="WHITE">
+            <Label fx:id="A07A30" layoutX="103.0" layoutY="105.0" onMouseClicked="#timeSlot" text="07:30 - 08:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A12A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="103.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="106.0" text="12:00 - 12:30" textFill="WHITE">
+            <Label fx:id="A12A00" layoutX="309.0" layoutY="106.0" onMouseClicked="#timeSlot" text="12:00 - 12:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A12A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="147.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="150.0" text="12:30 - 13:00" textFill="WHITE">
+            <Label fx:id="A12A30" layoutX="309.0" layoutY="150.0" onMouseClicked="#timeSlot" text="12:30 - 13:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A13A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="191.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="194.0" text="13:00 - 13:30" textFill="WHITE">
+            <Label fx:id="A13A30" layoutX="309.0" layoutY="194.0" onMouseClicked="#timeSlot" text="13:00 - 13:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A13A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="235.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="238.0" text="13:30 - 14:00" textFill="WHITE">
+            <Label fx:id="A13A30" layoutX="309.0" layoutY="238.0" onMouseClicked="#timeSlot" text="13:30 - 14:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A14A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="279.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="282.0" text="14:00 - 14:30" textFill="WHITE">
+            <Label fx:id="A14A00" layoutX="309.0" layoutY="282.0" onMouseClicked="#timeSlot" text="14:00 - 14:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A10A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="59.0" layoutY="372.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="103.0" layoutY="375.0" text="10:30 - 11:00" textFill="WHITE">
+            <Label fx:id="A10A30" layoutX="103.0" layoutY="375.0" onMouseClicked="#timeSlot" text="10:30 - 11:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A11A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="15.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="18.0" text="11:00 - 11:30" textFill="WHITE">
+            <Label fx:id="A11A00" layoutX="309.0" layoutY="18.0" onMouseClicked="#timeSlot" text="11:00 - 11:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A11A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="59.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="62.0" text="11:30 - 12:00" textFill="WHITE">
+            <Label fx:id="A11A30" layoutX="309.0" layoutY="62.0" onMouseClicked="#timeSlot" text="11:30 - 12:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A16A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="61.0" text="16:00 - 16:30" textFill="WHITE">
+            <Label fx:id="A16A00" layoutX="515.0" layoutY="61.0" onMouseClicked="#timeSlot" text="16:00 - 16:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A16A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="105.0" text="16:30 - 17:00" textFill="WHITE">
+            <Label fx:id="A16A30" layoutX="515.0" layoutY="105.0" onMouseClicked="#timeSlot" text="16:30 - 17:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A17A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="149.0" text="17:00 - 17:30" textFill="WHITE">
+            <Label fx:id="A17A00" layoutX="515.0" layoutY="149.0" onMouseClicked="#timeSlot" text="17:00 - 17:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A17A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="193.0" text="17:30 - 18:00" textFill="WHITE">
+            <Label fx:id="A17A30" layoutX="515.0" layoutY="193.0" onMouseClicked="#timeSlot" text="17:30 - 18:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A18A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="237.0" text="18:00 - 18:30" textFill="WHITE">
+            <Label fx:id="A18A00" layoutX="515.0" layoutY="237.0" onMouseClicked="#timeSlot" text="18:00 - 18:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A14A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="325.0" text="14:30 - 15:00" textFill="WHITE">
+            <Label fx:id="A14A30" layoutX="309.0" layoutY="325.0" onMouseClicked="#timeSlot" text="14:30 - 15:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A15A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="265.0" layoutY="369.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="309.0" layoutY="372.0" text="15:00 - 15:30" textFill="WHITE">
+            <Label fx:id="A15A00" layoutX="309.0" layoutY="372.0" onMouseClicked="#timeSlot" text="15:00 - 15:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A15A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="17.0" text="15:30 - 16:00" textFill="WHITE">
+            <Label fx:id="A15A30" layoutX="515.0" layoutY="17.0" onMouseClicked="#timeSlot" text="15:30 - 16:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A20A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="14.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="17.0" text="20:00 - 20:30" textFill="WHITE">
+            <Label fx:id="A20A00" layoutX="721.0" layoutY="17.0" onMouseClicked="#timeSlot" text="20:00 - 20:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A20A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="58.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="61.0" text="20:30 - 21:00" textFill="WHITE">
+            <Label fx:id="A20A30" layoutX="721.0" layoutY="61.0" onMouseClicked="#timeSlot" text="20:30 - 21:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A21A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="102.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="105.0" text="21:00 - 21:30" textFill="WHITE">
+            <Label fx:id="A21A00" layoutX="721.0" layoutY="105.0" onMouseClicked="#timeSlot" text="21:00 - 21:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A21A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="146.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="149.0" text="21:30 - 22:00" textFill="WHITE">
+            <Label fx:id="A21A30" layoutX="721.0" layoutY="149.0" onMouseClicked="#timeSlot" text="21:30 - 22:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A22A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="190.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="193.0" text="22:00 - 22:30" textFill="WHITE">
+            <Label fx:id="A22A00" layoutX="721.0" layoutY="193.0" onMouseClicked="#timeSlot" text="22:00 - 22:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A18A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="280.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="283.0" text="18:30 - 19:00" textFill="WHITE">
+            <Label fx:id="A18A30" layoutX="515.0" layoutY="283.0" onMouseClicked="#timeSlot" text="18:30 - 19:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A19A00" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="322.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="325.0" text="19:00 - 19:30" textFill="WHITE">
+            <Label fx:id="A19A00" layoutX="515.0" layoutY="325.0" onMouseClicked="#timeSlot" text="19:00 - 19:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A19A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="471.0" layoutY="369.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="515.0" layoutY="372.0" text="19:30 - 20:00" textFill="WHITE">
+            <Label fx:id="A19A30" layoutX="515.0" layoutY="372.0" onMouseClicked="#timeSlot" text="19:30 - 20:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A22A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="234.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="237.0" text="22:30 - 23:00" textFill="WHITE">
+            <Label fx:id="A22A30" layoutX="721.0" layoutY="237.0" onMouseClicked="#timeSlot" text="22:30 - 23:00" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Rectangle fx:id="A00A30" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="25.0" layoutX="677.0" layoutY="370.0" onMouseClicked="#timeSlot" stroke="BLUE" strokeType="INSIDE" width="173.0" />
-            <Label layoutX="721.0" layoutY="373.0" text="00:00 - 00:30" textFill="WHITE">
+            <Label fx:id="A00A30" layoutX="721.0" layoutY="373.0" onMouseClicked="#timeSlot" text="00:00 - 00:30" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
