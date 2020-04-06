@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -71,6 +72,8 @@ public class NoBikesController implements Initializable {
         Parent root = loader.load();
 
         Stage stage = new Stage();
+        stage.setTitle("Room Reservation App");
+        stage.getIcons().add(new Image("images/favicon.png"));
         stage.setScene(new Scene(root));
         stage.show();
     }
