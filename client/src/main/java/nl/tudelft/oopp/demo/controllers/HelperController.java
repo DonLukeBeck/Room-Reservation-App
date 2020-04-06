@@ -82,6 +82,11 @@ public class HelperController {
 
         return list;
     }
+
+    /**
+     * Method to open resources.
+     * @throws IOException Exception if can't find resources scene
+     */
     public void openResources() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/Resources.fxml");

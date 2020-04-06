@@ -50,13 +50,13 @@ public class UserScheduleDayView {
         gridPane = new GridPane();
         int i = 0;
         for (Reservations r : reservations) {
-            AnchorPane pane = new AnchorPane();
-            Text text = new Text(r.getNiceString());
             Button deleteButton = new Button();
             deleteButton.setText("Delete");
             deleteButton.setTranslateY(-20);
             deleteButton.setTranslateX(300);
             deleteButton.setOnAction(new DeleteReservationHandler(r, this));
+            AnchorPane pane = new AnchorPane();
+            Text text = new Text(r.getNiceString());
             pane.getChildren().add(text);
             pane.getChildren().add(deleteButton);
             pane.setTranslateY(25 * i);
@@ -64,13 +64,13 @@ public class UserScheduleDayView {
             i++;
         }
         for (UserEvent e : userEvents) {
-            AnchorPane pane = new AnchorPane();
-            Text text = new Text(e.getNiceString());
             Button deleteButton = new Button();
             deleteButton.setText("Delete");
             deleteButton.setTranslateY(-20);
             deleteButton.setTranslateX(300);
             deleteButton.setOnAction(new DeleteEventHandler(e, this));
+            AnchorPane pane = new AnchorPane();
+            Text text = new Text(e.getNiceString());
             pane.getChildren().add(text);
             pane.getChildren().add(deleteButton);
             pane.setTranslateY(25 * i);
@@ -160,6 +160,9 @@ public class UserScheduleDayView {
             case 12:
                 dateString += " December ";
                 break;
+            default:
+                System.out.println("Default");
+                break;
         }
         dateString += year;
         return dateString;
@@ -221,13 +224,13 @@ public class UserScheduleDayView {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/AddPersonalEvent.fxml");
         loader.setLocation(xmlUrl);
-        Parent root = loader.load();
         AddPersonalEvent controller = loader.<AddPersonalEvent>getController();
         controller.setDay(day);
         controller.setMonth(month);
         controller.setYear(year);
         controller.setUserScheduleDayView(this);
 
+        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.getIcons().add(new Image("images/favicon.png"));

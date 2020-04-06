@@ -117,6 +117,7 @@ public class UserSchedule implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+
     public void openResources(Event event) throws IOException {
         helper.openResources();
     }
@@ -269,9 +270,7 @@ public class UserSchedule implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         addRole();
         helper.loadSidePane(sidePane);
-        String[] allMonths = new String[]{"January", "February", "March", "April", "May",
-                                          "June", "July", "August", "September", "October",
-                                          "November", "December"};
+
         monthChoice.setItems(FXCollections.observableArrayList("January", "February",
                 "March", "April", "May", "June", "July", "August", "September", "October",
                 "November", "December"));
@@ -285,7 +284,6 @@ public class UserSchedule implements Initializable {
         helper.loadSidePane(sidePane);
 
         int year = defaultCalendar.get(Calendar.YEAR);
-        int month = defaultCalendar.get(Calendar.MONTH);
         int day1 = defaultCalendar.get(Calendar.DAY_OF_MONTH);
         DayNow = day1;
 
@@ -296,12 +294,16 @@ public class UserSchedule implements Initializable {
             e.printStackTrace();
         }
 
+        int month = defaultCalendar.get(Calendar.MONTH);
         defaultCalendar.set(Calendar.YEAR, year);
         defaultCalendar.set(Calendar.MONTH, month);
 
         MonthNow = month;
         Fyear = year;
         Fmonth = month;
+        String[] allMonths = new String[]{"January", "February", "March", "April", "May",
+                                          "June", "July", "August", "September", "October",
+                                          "November", "December"};
         String defMon = null;
         for (int i = 0; i < allMonths.length; i++) {
             if (i == month) {
