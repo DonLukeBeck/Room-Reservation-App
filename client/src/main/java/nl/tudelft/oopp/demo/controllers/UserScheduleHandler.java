@@ -111,9 +111,8 @@ public class UserScheduleHandler implements javafx.event.EventHandler<MouseEvent
         controller.setUserEvents(userEvents);
         controller.setEventsText(eventsText);
         controller.initialize();
-
-        Parent root = loader.load();
         Stage stage = new Stage();
+        Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
