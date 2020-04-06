@@ -281,6 +281,9 @@ public class TimeSlotsController implements Initializable {
      * @throws IOException Exception if can't find complete reservation scene
      */
     public void reserveSlots(ActionEvent actionEvent) throws IOException {
+        if (allSlots.isEmpty()) {
+            return;
+        }
         if (allSlots.size() > 4) {
             exception.setVisible(true);
             return;

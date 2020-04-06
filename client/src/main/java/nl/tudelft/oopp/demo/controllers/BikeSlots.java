@@ -240,6 +240,9 @@ public class BikeSlots implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         HelperController helper = new HelperController();
         helper.loadSidePane(sidePane);
+        if (!allSlots.isEmpty()) {
+            allSlots = new ArrayList<>();
+        }
         addRole();
 
         int checkDate = BikeReservationMenu.getDay();
@@ -442,6 +445,9 @@ public class BikeSlots implements Initializable {
      * @throws IOException Exception if can't find complete reservation scene
      */
     public void reserveSlots(ActionEvent actionEvent) throws IOException {
+        if (allSlots.isEmpty()) {
+            return;
+        }
         if (allSlots.size() > 4) {
             exception.setVisible(true);
             return;
