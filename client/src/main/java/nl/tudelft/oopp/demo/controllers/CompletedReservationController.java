@@ -81,11 +81,17 @@ public class CompletedReservationController implements Initializable {
             }
         }
         String[] nameA = name.split("\\(");
+        int defaultY = 380;
+        int count = 0;
 
         addText(440, 470, nameInProperFormat(nameA[0]));
         addText(370, 540, TimeSlotsController.getRoom());
         addText(330, 610, TimeSlotsController.getDate());
-        addText(380, 680, TimeSlotsController.getTimeslot());
+        for (TimeSlotsController.SlotReservation e : TimeSlotsController.getTimeslots()) {
+            addText(defaultY + (count * 85), 680, e.getTimeslotSlot().substring(0, 5));
+            count++;
+        }
+
 
     }
 
@@ -107,6 +113,7 @@ public class CompletedReservationController implements Initializable {
 
     /**
      * Change String to proper format.
+     *
      * @param name String to change
      * @return String in needed format
      */
@@ -126,9 +133,10 @@ public class CompletedReservationController implements Initializable {
 
     /**
      * Create new Label.
+     *
      * @param layoutX layout X chosen
      * @param layoutY layout Y chosen
-     * @param text String to add to the label.
+     * @param text    String to add to the label.
      */
 
     public void addText(double layoutX, double layoutY, String text) {
