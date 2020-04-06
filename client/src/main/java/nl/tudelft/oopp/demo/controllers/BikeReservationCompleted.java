@@ -144,6 +144,10 @@ public class BikeReservationCompleted implements Initializable {
         helper.openContacts();
     }
 
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
+    }
+
     /**
      * Method to format the name properly.
      *

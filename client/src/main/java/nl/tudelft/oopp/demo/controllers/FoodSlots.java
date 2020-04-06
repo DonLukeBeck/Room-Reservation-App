@@ -99,6 +99,9 @@ public class FoodSlots implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
+    }
 
     /**
      * Get all information from the chosen time slot.

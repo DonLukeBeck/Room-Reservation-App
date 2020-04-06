@@ -82,6 +82,18 @@ public class HelperController {
 
         return list;
     }
+    public void openResources() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        URL xmlUrl = getClass().getResource("/Resources.fxml");
+        loader.setLocation(xmlUrl);
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
+        stage.getIcons().add(new Image("images/favicon.png"));
+        stage.show();
+    }
 
 
     /**
@@ -96,6 +108,7 @@ public class HelperController {
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setTitle("Room Reservation App");
         stage.getIcons().add(new Image("images/favicon.png"));
         stage.show();
     }

@@ -52,6 +52,9 @@ public class UserPage implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
+    }
 
     /**
      * Method to change password.

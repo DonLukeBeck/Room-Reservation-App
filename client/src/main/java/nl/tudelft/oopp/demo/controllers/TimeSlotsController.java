@@ -240,6 +240,9 @@ public class TimeSlotsController implements Initializable {
         HelperController helperController = new HelperController();
         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
+    }
 
     /**
      * Disable not suitable slots.

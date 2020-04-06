@@ -24,12 +24,12 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label layoutX="34.0" layoutY="415.0" onDragDetected="#campusMap" onMouseClicked="#campusMap" text="- Campus map" textFill="WHITE">
+                <Label layoutX="34.0" layoutY="415.0" onDragDetected="#campusMap" onMouseClicked="#campusMap" text="- Campus map" textFill="WHITE" underline="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="34.0" layoutY="444.0" onMouseClicked="#contactsOpen" text="- Contacts" textFill="WHITE">
+                <Label layoutX="34.0" layoutY="444.0" onMouseClicked="#contactsOpen" text="- Contacts" textFill="WHITE" underline="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
@@ -39,22 +39,22 @@
                         <Image url="@images/Icon_User.png" />
                     </image>
                 </ImageView>
-                <Label layoutX="34.0" layoutY="475.0" prefHeight="20.0" prefWidth="95.0" text="- Resources" textFill="WHITE">
+                <Label layoutX="34.0" layoutY="475.0" onMouseClicked="#openResources" prefHeight="20.0" prefWidth="95.0" text="- Resources" textFill="WHITE" underline="true">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label fx:id="logOut" layoutX="13.0" layoutY="175.0" onMouseClicked="#paneLogOut" prefHeight="25.0" prefWidth="86.0" text="Log Out" textFill="WHITE">
+                <Label fx:id="logOut" layoutX="13.0" layoutY="175.0" onMouseClicked="#paneLogOut" prefHeight="25.0" prefWidth="86.0" text="Log Out" textFill="WHITE" underline="true">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="exit" layoutX="13.0" layoutY="225.0" onMouseClicked="#paneExit" prefHeight="25.0" prefWidth="86.0" text="Exit" textFill="WHITE">
+                <Label fx:id="exit" layoutX="13.0" layoutY="225.0" onMouseClicked="#paneExit" prefHeight="25.0" prefWidth="86.0" text="Exit" textFill="WHITE" underline="true">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="userProfile" layoutX="13.0" layoutY="125.0" onMouseClicked="#paneUserProfile" prefHeight="25.0" prefWidth="108.0" text="User Profile" textFill="WHITE">
+                <Label fx:id="userProfile" layoutX="13.0" layoutY="125.0" onMouseClicked="#paneUserProfile" prefHeight="25.0" prefWidth="108.0" text="User Profile" textFill="WHITE" underline="true">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>

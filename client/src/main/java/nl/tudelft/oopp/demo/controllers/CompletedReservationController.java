@@ -48,6 +48,9 @@ public class CompletedReservationController implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+    public void openResources(Event event) throws IOException {
+        helper.openResources();
+    }
 
     /**
      * Loading elements when the scene is opened.
