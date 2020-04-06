@@ -204,6 +204,11 @@ public class TimeSlotsController implements Initializable {
         helper.openContacts();
     }
 
+    /**
+     * Finds rectangle.
+     * @param id id of rectangle
+     * @return the rectangle
+     */
     public Rectangle findRectangle(String id) {
         for (Node k : slots.getChildren()) {
             if (k instanceof Rectangle && id.equals(getTimeSlotFromID(k.toString()))) {
@@ -238,7 +243,8 @@ public class TimeSlotsController implements Initializable {
         timeslot = getTimeSlotFromID(event.getSource().toString());
 
         if (event.getSource() instanceof Rectangle) {
-            if (!((Rectangle) event.getSource()).fillProperty().getValue().equals(Color.valueOf("#ffbf00"))) {
+            if (!((Rectangle) event.getSource())
+                    .fillProperty().getValue().equals(Color.valueOf("#ffbf00"))) {
                 ((Rectangle) event.getSource()).fillProperty().setValue(Color.valueOf("#ffbf00"));
                 allSlots.add(new SlotReservation(MainSceneController.getUser(), timeslot + ":00",
                         date, building, room));
@@ -259,20 +265,25 @@ public class TimeSlotsController implements Initializable {
         }
         System.out.println(allSlots.toString());
 
-//        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
-//                date, building, room);
-//
-//        HelperController helperController = new HelperController();
-//        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
+        //        con.roomReservation(MainSceneController.getUser(), timeslot + ":00",
+        //                date, building, room);
+        //
+        //        HelperController helperController = new HelperController();
+        //        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
+    /**
+     * Reserves slots.
+     * @param actionEvent - event on mouse click
+     * @throws IOException Exception if can't find complete reservation scene
+     */
     public void reserveSlots(ActionEvent actionEvent) throws IOException {
         for (SlotReservation e : allSlots) {
             con.roomReservation(e.getUserSlot(), e.getTimeslotSlot(),
                     e.getDateSlot(), e.getBuildingSlot(), e.getRoomSlot());
         }
-         HelperController helperController = new HelperController();
-         helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
+        HelperController helperController = new HelperController();
+        helperController.loadNextScene("/CompleteReservation.fxml", mainScreen);
     }
 
     /**
@@ -433,6 +444,10 @@ public class TimeSlotsController implements Initializable {
         helper.openResources();
     }
 
+    /**
+     * Removes a slot from the list.
+     * @param id the id of the slot
+     */
     public void removeSlotFromList(String id) {
         SlotReservation remove = null;
         for (SlotReservation e : allSlots) {
@@ -450,7 +465,16 @@ public class TimeSlotsController implements Initializable {
         private int building;
         private String room;
 
-        public SlotReservation(String user, String timeslot, String date, int building, String room) {
+        /**
+         * Reservation for a slot.
+         * @param user the user reserving
+         * @param timeslot timeslot
+         * @param date date of reservation
+         * @param building building id
+         * @param room room id
+         */
+        public SlotReservation(String user, String timeslot,
+                               String date, int building, String room) {
             this.user = user;
             this.date = date;
             this.timeslot = timeslot;
