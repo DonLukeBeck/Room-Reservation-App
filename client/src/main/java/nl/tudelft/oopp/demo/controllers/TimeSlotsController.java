@@ -208,6 +208,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Finds rectangle.
+     *
      * @param id id of rectangle
      * @return the rectangle
      */
@@ -276,6 +277,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Reserves slots.
+     *
      * @param actionEvent - event on mouse click
      * @throws IOException Exception if can't find complete reservation scene
      */
@@ -385,7 +387,7 @@ public class TimeSlotsController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(!allSlots.isEmpty()){
+        if (!allSlots.isEmpty()) {
             allSlots = new ArrayList<>();
         }
         addRole();
@@ -455,6 +457,7 @@ public class TimeSlotsController implements Initializable {
 
     /**
      * Removes a slot from the list.
+     *
      * @param id the id of the slot
      */
     public void removeSlotFromList(String id) {
@@ -476,11 +479,12 @@ public class TimeSlotsController implements Initializable {
 
         /**
          * Reservation for a slot.
-         * @param user the user reserving
+         *
+         * @param user     the user reserving
          * @param timeslot timeslot
-         * @param date date of reservation
+         * @param date     date of reservation
          * @param building building id
-         * @param room room id
+         * @param room     room id
          */
         public SlotReservation(String user, String timeslot,
                                String date, int building, String room) {
