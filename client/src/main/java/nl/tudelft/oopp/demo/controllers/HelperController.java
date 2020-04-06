@@ -83,6 +83,11 @@ public class HelperController {
         return list;
     }
 
+
+    /**
+     * Open contacts methods.
+     * @throws IOException Exception if can't find next scene to load
+     */
     public void openContacts() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         URL xmlUrl = getClass().getResource("/Contacts.fxml");

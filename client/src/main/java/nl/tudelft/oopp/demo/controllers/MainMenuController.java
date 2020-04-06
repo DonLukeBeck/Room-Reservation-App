@@ -146,6 +146,7 @@ public class MainMenuController implements Initializable {
             building = Integer.parseInt(buildingID.getValue().toString());
 
         } catch (Exception r) {
+            System.out.println(r);
         }
         List<Rooms> allRooms = con.getRooms();
         List<Rooms> suitableRooms = new ArrayList<>();

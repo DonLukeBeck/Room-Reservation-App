@@ -211,7 +211,6 @@ public class AdminEditHolidayController implements Initializable {
                                 j++;
                             }
 
-
                             oldDishName.setItems(FXCollections.observableArrayList(listDishes));
                             selectNewDishName.setItems(FXCollections
                                     .observableArrayList(listAllDishes1));
@@ -226,8 +225,6 @@ public class AdminEditHolidayController implements Initializable {
 
                 });
 
-
-
         selectDish.getSelectionModel()
                 .selectedIndexProperty()
                 .addListener(new ChangeListener<Number>() {
@@ -236,7 +233,7 @@ public class AdminEditHolidayController implements Initializable {
                                         Number oldValue, Number newValue) {
                         try {
                             List<Dishes> list = con.getDishes();
-                            Dishes dish = new Dishes();
+                            Dishes dish = list.get((int)newValue - 1);
                             for (Dishes d: list) {
                                 if (d.getName().equals(newValue.toString())) {
                                     dish = d;
@@ -244,19 +241,15 @@ public class AdminEditHolidayController implements Initializable {
                             }
                             newDishName.setText(dish.getName());
                             price.setText(String.valueOf(dish.getPrice()));
-                            boolean veg = true;
+                            boolean veg = false;
                             if (dish.getVegan() == 1) {
-                                veg = false;
+                                veg = true;
                             }
                             vegan.setSelected(veg);
 
-
-
-
-
                         } catch (IOException e) {
                             e.printStackTrace();
-                            System.out.println("No selected building");
+                            System.out.println("No selected dish");
                         }
                     }
                 });

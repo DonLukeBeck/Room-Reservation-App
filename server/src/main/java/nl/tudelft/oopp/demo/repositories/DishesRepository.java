@@ -20,7 +20,7 @@ public interface DishesRepository extends JpaRepository<Dishes, Long> {
     Dishes findDishesByName(String name);
 
     @Query(value = "UPDATE Dishes "
-            + "SET name = ?1, price = ?2, vegan = ?3,"
+            + "SET name = ?1, price = ?2, vegan = ?3 "
             + "WHERE name = ?4", nativeQuery = true)
     @Modifying
     @Transactional

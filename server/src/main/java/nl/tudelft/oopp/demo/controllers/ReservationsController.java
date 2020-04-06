@@ -113,7 +113,7 @@ public class ReservationsController {
     }
 
     @GetMapping("/deleteReservation")
-    public @ResponseBody
+    @ResponseBody public
     void deleteReservation(@RequestParam String id) {
         reservationsRepository.deleteReservationByID(id);
     }

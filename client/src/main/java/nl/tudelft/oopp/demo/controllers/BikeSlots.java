@@ -96,6 +96,7 @@ public class BikeSlots implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+
     /**
      * Method for campus map to pop up.
      *
