@@ -86,8 +86,22 @@ public class DishesControllerTest {
     }
 
     @Test
-     public void deleteDishTest() {
+    public void deleteDishTrueTest() {
         d1 = new Dishes();
+        when(dishesRepository.deleteDishByName(d1.getName())).thenReturn(1);
+        assertTrue(dishesController.deleteDish(d1.getName()));
+    }
+
+    @Test
+     public void deleteDishFalseTest() {
+        d1 = new Dishes();
+        assertFalse(dishesController.deleteDish(d1.getName()));
+    }
+
+    @Test
+    public void deleteDishFalseCase2Test() {
+        d1 = new Dishes();
+        when(dishesRepository.deleteDishByName(d1.getName())).thenThrow(NullPointerException.class);
         assertFalse(dishesController.deleteDish(d1.getName()));
     }
 

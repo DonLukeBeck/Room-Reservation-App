@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @ExtendWith(MockitoExtension.class)
 public class MenusControllerTest {
@@ -48,18 +49,10 @@ public class MenusControllerTest {
     @Test
     public void addMenuFalseTest() {
         m1 = new Menus();
-        m1.setDishName("m1");
-        when(menusRepository.findMenu(m1.getBuildingNumber(), m1.getDishName())).thenReturn(m1);
+        when(menusRepository.addMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(DataIntegrityViolationException.class);
         assertFalse(menusController.addMenu(m1));
     }
 
-    @Test
-    public void addMenuFalseCase2Test() {
-        m1 = new Menus();
-        m1.setDishName("");
-        when(menusRepository.findMenu(m1.getBuildingNumber(), m1.getDishName())).thenReturn(m1);
-        assertFalse(menusController.addMenu(m1));
-    }
 
     @Test
     public void addMenuTrueTest() {
@@ -70,36 +63,37 @@ public class MenusControllerTest {
     @Test
     public void editMenuTrueTest() {
         m1 = new Menus();
-
-        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(),
-                "d1")).thenReturn(1);
-        assertTrue(menusController.editMenu(m1, "d1"));
+        assertTrue(menusController.editMenu(m1, m1.getDishName()));
     }
 
     @Test
     public void editMenuFalseTest() {
         m1 = new Menus();
-
-        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(),
-                "d1")).thenReturn(2);
-        assertFalse(menusController.editMenu(m1, "d1"));
+        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(NullPointerException.class);
+        assertFalse(menusController.deleteMenu(m1.getBuildingNumber(), m1.getDishName()));
     }
 
     @Test
-    public void editMenuFalseCase2Test() {
+    public void deleteMenuTrueTest() {
         m1 = new Menus();
 
-        when(menusRepository.updateExistingMenu(m1.getBuildingNumber(), m1.getDishName(),
-                "d1")).thenThrow(NullPointerException.class);
-        assertFalse(menusController.editMenu(m1, "d1"));
-    }
-
-    @Test
-    public void deleteMenuTest() {
-        m1 = new Menus();
-
-        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenReturn(true);
+        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenReturn(1);
         assertTrue(menusController.deleteMenu(m1.getBuildingNumber(), m1.getDishName()));
+    }
+
+    @Test
+    public void deleteMenuFalseTest() {
+        m1 = new Menus();
+
+        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenReturn(0);
+        assertFalse(menusController.deleteMenu(m1.getBuildingNumber(), m1.getDishName()));
+    }
+
+    @Test
+    public void deleteMenuFalseCase2Test() {
+        m1 = new Menus();
+        when(menusRepository.deleteMenu(m1.getBuildingNumber(), m1.getDishName())).thenThrow(NullPointerException.class);
+        assertFalse(menusController.deleteMenu(m1.getBuildingNumber(), m1.getDishName()));
     }
 
 }
