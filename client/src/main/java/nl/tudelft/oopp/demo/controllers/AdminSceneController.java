@@ -46,7 +46,7 @@ public class AdminSceneController {
 
     public void goToAdminAdd(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/AdminView.fxml", mainScreen);
+        helperController.loadNextScene("/AdminAddBuildingView.fxml", mainScreen);
     }
 
     /**
@@ -68,7 +68,7 @@ public class AdminSceneController {
     public void goToAdminHolidayAdd(ActionEvent event) throws IOException {
 
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/AdminHolidayAdd.fxml", mainScreen);
+        helperController.loadNextScene("/AdminAddHolidayView.fxml", mainScreen);
     }
 
     /**
@@ -89,11 +89,11 @@ public class AdminSceneController {
 
     public void goToAdminEditHoliday(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
+        helperController.loadNextScene("/AdminEditHolidayView.fxml", mainScreen);
     }
 
     public void goToAdminEditView(ActionEvent event) throws IOException {
         HelperController helperController = new HelperController();
-        helperController.loadNextScene("/AdminEditView.fxml", mainScreen);
+        helperController.loadNextScene("/AdminEditBuildingView.fxml", mainScreen);
     }
 }

@@ -2,13 +2,11 @@ package nl.tudelft.oopp.demo.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,13 +21,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import nl.tudelft.oopp.demo.communication.AdminServerCommunication;
 import nl.tudelft.oopp.demo.entities.Buildings;
 import nl.tudelft.oopp.demo.entities.Dishes;
-import nl.tudelft.oopp.demo.entities.Rooms;
 
-public class AdminHolidayAddController implements Initializable {
+public class AdminAddHolidayController implements Initializable {
     AdminServerCommunication con = new AdminServerCommunication();
 
     @FXML
@@ -74,7 +70,7 @@ public class AdminHolidayAddController implements Initializable {
     public void goToAdminHolidayAdd(ActionEvent event) throws IOException {
 
         HelperController helper = new HelperController();
-        helper.loadNextScene("/AdminHolidayAdd.fxml", mainScreen);
+        helper.loadNextScene("/AdminAddHolidayView.fxml", mainScreen);
     }
 
 
@@ -103,22 +99,91 @@ public class AdminHolidayAddController implements Initializable {
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         listBuildingID.setValue("Select building");
 
-        List<Dishes> listGetDishes = null;
-        try {
-            listGetDishes = con.getDishes();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String[] listAllDishes = new String[listGetDishes.size() + 1];
+        String[] listAllDishes = new String[2];
         listAllDishes[0] = "Select dishes";
-        int i = 1;
-        for (Dishes t : listGetDishes) {
-            listAllDishes[i] = "" + t.getName();
-            i++;
-        }
+        listAllDishes[1] = "First select building";
 
         dishName.setItems(FXCollections.observableArrayList(listAllDishes));
         dishName.setValue("Select dishes");
+
+        listBuildingID.getSelectionModel()
+                .selectedIndexProperty()
+                .addListener(new ChangeListener<Number>() {
+                    @Override
+                    public void changed(ObservableValue<? extends Number> observable,
+                                        Number oldValue, Number newValue) {
+                        try {
+                            Buildings selectedBuilding = con
+                                    .getBuildingByName(Integer
+                                            .parseInt(listAllBuildings[(int) newValue]));
+
+                            List<Dishes> listGetDishes = null;
+                            try {
+                                listGetDishes = con.getDishes();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            String[] listAllDishes = new String[listGetDishes.size() + 1];
+                            listAllDishes[0] = "Select Dish";
+                            int j = 1;
+                            for (Dishes d : listGetDishes) {
+                                listAllDishes[j] = d.getName();
+                                j++;
+                            }
+
+                            List<Dishes> dishes = null;
+                            try {
+                                dishes = con.getMenuByBuilding(
+                                        selectedBuilding.getBuilding_number());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            String[] listDishesBuilding = new String[dishes.size() + 1];
+                            listDishesBuilding[0] = "Select Dish";
+                            j = 1;
+                            for (Dishes d : dishes) {
+                                listDishesBuilding[j] = d.getName();
+                                j++;
+                            }
+
+                            String[] listAllDishes1 =
+                                    new String[listGetDishes.size() - dishes.size() + 1];
+                            listAllDishes1[0] = "Select Dish";
+
+                            int i = 1;
+                            boolean ok;
+                            for (Dishes d : listGetDishes) {
+                                ok = true;
+                                for (Dishes di : dishes) {
+                                    if (di.getName().equals(d.getName()) && ok) {
+                                        ok = false;
+                                    }
+                                }
+                                if (ok == true) {
+                                    listAllDishes1[i] = "" + d.getName();
+                                    i++;
+                                }
+                            }
+
+                            if (listAllDishes1.length == 1) {
+                                listAllDishes1[0] = "Menu is full";
+                                dishName.setItems(FXCollections
+                                        .observableArrayList(listAllDishes1));
+                                dishName.setValue("Menu is full");
+                            } else {
+                                dishName.setItems(FXCollections
+                                        .observableArrayList(listAllDishes1));
+                                dishName.setValue("Select Dish");
+                            }
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("No selected building");
+                        }
+                    }
+                });
     }
 
 
@@ -150,40 +215,31 @@ public class AdminHolidayAddController implements Initializable {
             }
         }
 
-        String start = startDate.getValue().toString();
-        String end = endDate.getValue().toString();
-
-        if (start.isEmpty()) {
-
-            exception.setText("Please select start date.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
-            return;
-
-
-        }
-
-        if (end.isEmpty()) {
-
-            exception.setText("Please select end date.");
-            exception.setLayoutY(120);
-            exception.setLayoutX(670);
-            exception.setTextFill(Color.valueOf("red"));
-            exception.setFont(Font.font(20));
-            exception.setId("Exception");
+        String start = "";
+        try {
+            start = startDate.getValue().toString();
+        } catch (Exception e) {
+            addException(45, 120, "Please select start date!", exception);
             return;
         }
 
-        String comm = comments.getText();;
-        con.addHolidayAdmin(start, end, comm);
+        String end = "";
+        try {
+            end = endDate.getValue().toString();
+        } catch (Exception e) {
+            addException(45, 120, "Please select end date!", exception);
+            return;
+        }
 
+        if (comments.getText().isEmpty()) {
+            addException(45,120,"Please add some comments!",exception);
+            return;
+        }
+
+        con.addHolidayAdmin(start, end, comments.getText());
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminHolidayAdd.fxml", mainScreen);
-
+        h.loadNextScene("/AdminAddHolidayView.fxml", mainScreen);
 
     }
 
@@ -208,7 +264,7 @@ public class AdminHolidayAddController implements Initializable {
         if (listBuildingID.getValue().toString().equals("Select building")) {
             exception.setText("Please select building.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(453);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -218,7 +274,7 @@ public class AdminHolidayAddController implements Initializable {
         if (dishName.getValue().toString().equals("Select dishes")) {
             exception.setText("Please select a dish.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(453);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -232,7 +288,7 @@ public class AdminHolidayAddController implements Initializable {
         con.addMenuAdmin(build, name);
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminHolidayAdd.fxml", mainScreen);
+        h.loadNextScene("/AdminAddHolidayView.fxml", mainScreen);
 
 
 
@@ -257,7 +313,7 @@ public class AdminHolidayAddController implements Initializable {
         if (dishName1.getText().isEmpty()) {
             exception.setText("Please enter dish name.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(881);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -267,7 +323,7 @@ public class AdminHolidayAddController implements Initializable {
         if (price.getText().isEmpty()) {
             exception.setText("Please enter price.");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(881);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -281,7 +337,7 @@ public class AdminHolidayAddController implements Initializable {
         } catch (Exception e) {
             exception.setText("Only numbers for price");
             exception.setLayoutY(120);
-            exception.setLayoutX(670);
+            exception.setLayoutX(881);
             exception.setTextFill(Color.valueOf("red"));
             exception.setFont(Font.font(20));
             exception.setId("Exception");
@@ -297,10 +353,24 @@ public class AdminHolidayAddController implements Initializable {
         con.addDishAdmin(dish, pr, k);
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminHolidayAdd.fxml", mainScreen);
+        h.loadNextScene("/AdminAddHolidayView.fxml", mainScreen);
 
     }
 
-
+    /**
+     * Open exception when needed.
+     * @param layoutX layout X
+     * @param layoutY layout Y
+     * @param text text for the exception
+     * @param exception Label which text will be changed
+     */
+    public void addException(double layoutX, double layoutY, String text, Label exception) {
+        exception.setText(text);
+        exception.setLayoutY(layoutY);
+        exception.setLayoutX(layoutX);
+        exception.setTextFill(Color.valueOf("red"));
+        exception.setFont(Font.font(20));
+        exception.setId("Exception");
+    }
 
 }

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface DishesRepository extends JpaRepository<Dishes, Long> {
     @Query(value = "SELECT name, price, vegan FROM Dishes "
-            + "JOIN `projects_OOPP-Project-29`.Menus ON dishName=name "
+            + "JOIN Menus ON dishName=name "
             + "WHERE buildingNumber = ?1", nativeQuery = true)
     List<Dishes> findAllByBuildingNumber(int bnr);
 

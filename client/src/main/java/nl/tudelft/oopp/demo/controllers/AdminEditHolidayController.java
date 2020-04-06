@@ -192,7 +192,6 @@ public class AdminEditHolidayController implements Initializable {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            listGetDishes.removeAll(dishes);
 
                             String[] listAllDishes1 =
                                     new String[listGetDishes.size() - dishes.size() + 1];
@@ -271,7 +270,6 @@ public class AdminEditHolidayController implements Initializable {
      */
     public void editHoliday(Event event) throws IOException {
 
-
         Label exception = new Label();
 
         mainScreen.getChildren().add(exception);
@@ -299,7 +297,7 @@ public class AdminEditHolidayController implements Initializable {
         con.editHolidaysAdmin(start.toString(), end.toString(), comm, selectedHoliday);
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
+        h.loadNextScene("/AdminEditHolidayView.fxml", mainScreen);
     }
 
 
@@ -354,7 +352,7 @@ public class AdminEditHolidayController implements Initializable {
                 selectNewDishName.getValue().toString(), oldDishName.getValue().toString());
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
+        h.loadNextScene("/AdminEditHolidayView.fxml", mainScreen);
     }
 
     /**
@@ -384,8 +382,41 @@ public class AdminEditHolidayController implements Initializable {
             return;
         }
 
+        if (newDishName.getText().isEmpty()) {
+            exception.setText("Please enter dish name.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(881);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
+        if (price.getText().isEmpty()) {
+            exception.setText("Please enter price.");
+            exception.setLayoutY(120);
+            exception.setLayoutX(881);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+
+        }
+
+        int pr = 0;
+        try {
+            pr = Integer.parseInt(price.getText());
+        } catch (Exception e) {
+            exception.setText("Only numbers for price");
+            exception.setLayoutY(120);
+            exception.setLayoutX(881);
+            exception.setTextFill(Color.valueOf("red"));
+            exception.setFont(Font.font(20));
+            exception.setId("Exception");
+            return;
+        }
+
         String old = selectDish.getValue().toString();
-        int pr = Integer.parseInt(price.getText());
         int veg = 0;
 
         if (vegan.isSelected() == true) {
@@ -396,9 +427,8 @@ public class AdminEditHolidayController implements Initializable {
 
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminEditHoliday.fxml", mainScreen);
+        h.loadNextScene("/AdminEditHolidayView.fxml", mainScreen);
 
     }
-
 
 }

@@ -14,6 +14,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -22,21 +24,17 @@ import nl.tudelft.oopp.demo.entities.Buildings;
 
 
 @SuppressWarnings("checkstyle:Indentation")
-public class AdminController implements Initializable {
-    AdminServerCommunication con = new AdminServerCommunication();
+public class AdminAddBuildingController implements Initializable {
 
+    AdminServerCommunication con = new AdminServerCommunication();
     @FXML
     private javafx.scene.control.Button add;
-
     @FXML
     private javafx.scene.control.Button goBack;
-
     @FXML
     private ComboBox listOpen;
-
     @FXML
     private ComboBox listClose;
-
     @FXML
     private AnchorPane mainScreen;
     @FXML
@@ -62,23 +60,27 @@ public class AdminController implements Initializable {
     @FXML
     private ChoiceBox roomType;
 
-    /** Sends user to admin add page.
+    /**
+     * Sends user to admin add page.
+     *
      * @param event Logging in as admin
      * @throws IOException Exception if can't find admin view scene
      */
     public void goToAdminAdd(ActionEvent event) throws IOException {
 
         HelperController helper = new HelperController();
-        helper.loadNextScene("/AdminView.fxml", mainScreen);
+        helper.loadNextScene("/AdminAddBuildingView.fxml", mainScreen);
     }
 
     /**
-     *Method for admin to initialize picture and resource bundle.
-     * @param location Location of the picture
+     * Method for admin to initialize picture and resource bundle.
+     *
+     * @param location  Location of the picture
      * @param resources Resource bundle
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         String[] list = new String[48];
         int j = 0;
         for (int i = 0; i <= 23; i++) {
@@ -113,7 +115,7 @@ public class AdminController implements Initializable {
         listClose.setItems(FXCollections.observableArrayList(list));
         listBuildingID.setItems(FXCollections.observableArrayList(listAllBuildings));
         roomType.setItems(FXCollections
-                .observableArrayList("Select type","Study hall", "Exam hall"));
+                .observableArrayList("Select type", "Study hall", "Exam hall"));
 
         listOpen.setValue("07:00");
         listClose.setValue("23:30");
@@ -123,7 +125,8 @@ public class AdminController implements Initializable {
     }
 
     /**
-     *Method to go back to main admin scene.
+     * Method to go back to main admin scene.
+     *
      * @param event Clicking on go back
      * @throws IOException Exception if can't find main admin scene
      */
@@ -134,6 +137,7 @@ public class AdminController implements Initializable {
 
     /**
      * Method for admin to add a building.
+     *
      * @param event Clicking on add building
      * @throws IOException Exception if can't find admin view scene
      */
@@ -162,14 +166,13 @@ public class AdminController implements Initializable {
             return;
         }
 
+
         int buildingID = 0;
         try {
             buildingID = Integer.parseInt(addBuildingID.getText());
         } catch (Exception e) {
             addException(45, 120, "Only numbers are allowed for building ID!", exception);
-
             return;
-
         }
 
         int bikes = 0;
@@ -178,26 +181,30 @@ public class AdminController implements Initializable {
         } catch (Exception e) {
             addException(45, 120, "Only numbers are allowed for bike capacity!", exception);
             return;
-
         }
         String buildingName = addBuildingName.getText();
         String imageUrl = addBuildingUrl.getText();
         String buildingOpen = listOpen.getValue().toString();
         String buildingClose = listClose.getValue().toString();
-        System.out.println(buildingName);
-        System.out.println(buildingID);
-        System.out.println(imageUrl);
-        System.out.println(bikes);
-        System.out.println(buildingOpen);
-        System.out.println(buildingClose);
+
+        try {
+            Image image = new Image(imageUrl);
+            ImageView buildingImage = new ImageView(image);
+        } catch (Exception e) {
+            addException(45, 120, "Not valid URL!", exception);
+            return;
+        }
+
+
         con.addBuildingAdmin(buildingID, buildingName, buildingOpen + ""
                 + ":00", buildingClose + ":00", imageUrl, bikes);
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminView.fxml", mainScreen);
+        h.loadNextScene("/AdminAddBuildingView.fxml", mainScreen);
     }
 
     /**
      * Method for admin to add a room.
+     *
      * @param event Clicking on add room
      * @throws IOException Exception if can't find admin view scene
      */
@@ -236,8 +243,8 @@ public class AdminController implements Initializable {
             return;
         }
 
-        if (roomID.getText().length() > 18) {
-            exception.setText("Max 18 characters allowed.");
+        if (roomID.getText().length() > 14) {
+            exception.setText("Max 14 characters allowed.");
             exception.setLayoutY(120);
             exception.setLayoutX(670);
             exception.setTextFill(Color.valueOf("red"));
@@ -254,10 +261,32 @@ public class AdminController implements Initializable {
             return;
         }
 
+        int roomWhiteboards = 0;
+        try {
+            roomWhiteboards = Integer.parseInt(numberWhiteboards.getText());
+        } catch (Exception e) {
+            addException(670,
+                    120, "Only numbers are allowed for number of whiteboards!", exception);
+            return;
+        }
+
+        int roomTables = 0;
+        try {
+            roomTables = Integer.parseInt(numberTables.getText());
+        } catch (Exception e) {
+            addException(670, 120, "Only numbers are allowed for number of tables!", exception);
+            return;
+        }
+
+        int roomComputers = 0;
+        try {
+            roomComputers = Integer.parseInt(numberComputers.getText());
+        } catch (Exception e) {
+            addException(670, 120, "Only numbers are allowed for number of computers!", exception);
+            return;
+        }
+
         int building = Integer.parseInt(listBuildingID.getValue().toString());
-        int roomWhiteboards = Integer.parseInt(numberWhiteboards.getText());
-        int roomTables = Integer.parseInt(numberTables.getText());
-        int roomComputers = Integer.parseInt(numberComputers.getText());
 
         con.addRoomAdmin(roomID.getText(),
                 roomCap,
@@ -268,14 +297,15 @@ public class AdminController implements Initializable {
                 roomType.getValue().toString());
 
         HelperController h = new HelperController();
-        h.loadNextScene("/AdminView.fxml", mainScreen);
+        h.loadNextScene("/AdminAddBuildingView.fxml", mainScreen);
     }
 
     /**
      * Open exception when needed.
-     * @param layoutX layout X
-     * @param layoutY layout Y
-     * @param text text for the exception
+     *
+     * @param layoutX   layout X
+     * @param layoutY   layout Y
+     * @param text      text for the exception
      * @param exception Label which text will be changed
      */
     public void addException(double layoutX, double layoutY, String text, Label exception) {
