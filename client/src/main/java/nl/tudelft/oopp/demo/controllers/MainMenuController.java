@@ -211,6 +211,7 @@ public class MainMenuController implements Initializable {
     public void contactsOpen(Event event) throws IOException {
         helper.openContacts();
     }
+
     public void openResources(Event event) throws IOException {
         helper.openResources();
     }

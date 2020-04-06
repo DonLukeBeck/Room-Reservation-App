@@ -79,9 +79,9 @@ public class UsersController {
 
     /**
      * Method to change password.
-     * @param changePassword
+     * @param changePassword Path to change password
      * @return True if password changed
-     * @throws NoSuchAlgorithmException
+     * @throws NoSuchAlgorithmException Exception if can't find algorithm
      */
     @PostMapping("/changePassword")
     public @ResponseBody
